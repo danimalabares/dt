@@ -10,7 +10,9 @@
 	\begin{minipage}{1\textwidth}
 	Handouts by Misha Verbitsky	 \hfill Daniel González Casanova Azuela
 		
-		{\small \href{http://verbit.ru/MATH/GEOM-2013/}{verbit.ru/MATH/GEOM-2013} \hfill\href{https://github.com/danimalabares/dt}{github.com/danimalabares/dt}}
+		{\small \href{http://verbit.ru/IMPA/METRIC-2023/}{verbit.ru/IMPA/METRIC-2023/} \hfill\href{https://github.com/danimalabares/dt}{github.com/danimalabares/dt}
+
+		 \href{http://verbit.ru/MATH/GEOM-2013/}{verbit.ru/MATH/GEOM-2013}}
 	\end{minipage}
 \end{minipage}\vspace{.2cm}\hrule
 
@@ -234,14 +236,14 @@ $(\impliedby)$ Suppose $\Delta$ is closed in the product topology.
 	Let $\sim$ be an equivalence relation on a topological space $M$. \textit{\textbf{Factor-topology}} (or \textit{\textbf{quotient topology}}) is a topology on the set $M/\sim$ of equivalence classes such that a subset $U \subset M/\sim$ is open whenever its preimage in $M$ is open.
 \end{thing3}
 
-\begin{thing4}{Exercise 1.17}\leavevmode
+\begin{thing4}{Exercise 1.17}\label{exer:1.17}\leavevmode
 	Let $G$ be a finite group acting (continuously) on a Hausdorff topological space $M$.Prove that the quotient map is closed (i.e. puts closed subsets to closed subsets).
 \end{thing4}
 
 \begin{proof}[Solution]\leavevmode
 The quotient map is $\pi:M\to M/\sim$ where $x \sim y$ if $y=gx$ for some  $g \in G$. To show $\pi$ is closed pick $F \subset M$ closed. We need to show that $\pi(F)$ is closed, so we may show its complement is open. According to the definition of factor topology we want to show that
 \[\pi^{-1}\Big((M/\sim) \setminus \pi(F)\Big)=M\setminus\pi^{-1}(\pi(F))\]
-is open. Now $\pi^{-1}(\pi(F))$ is the set of points that are $G$-related to points in  $F$, namely $\bigcup_{g \in G} gF$. Since $G$ is finite and  acts by homeomorphisms, this set is a finite union of closed sets, which is closed. {\color{2}Looks like I didn't use the Hausdorff hypothesis.}
+is open. Now $\pi^{-1}(\pi(F))$ is the set of points that are $G$-related to points in  $F$, namely $\bigcup_{g \in G} gF$. Since $G$ is finite and  acts by homeomorphisms, this set is a finite union of closed sets, which is closed. {\color{2}Looks like I didn't use the Hausdorff hypothesis; and that the statement holds for countable $G$.}
 \end{proof}
 
 \begin{thing4}{Exercise 1.18*}\leavevmode
@@ -251,6 +253,53 @@ is open. Now $\pi^{-1}(\pi(F))$ is the set of points that are $G$-related to poi
 \end{thing4}
 
 \begin{proof}[Solution]\leavevmode
-If we show that the diagonal is closed in $ M \times M$, then its complement would be an open set, and when projecting to $(M/\sim) \times (M/\sim)$ we obtain that the diagonal is closed in the latter space.
+Our objective is to show that the diagonal $\tilde{\Delta}$ in $(M/\sim)\times(M/\sim)$ is closed. Following the hint, if we show that the diagonal $\Delta$ in $ M \times M$ is closed, we can project to $(M/\sim) \times (M/\sim)$ and we obtain that the diagonal is closed in the latter space; this is because the projection is surjective, i.e. any open surjective map is closed (let $f:X \twoheadrightarrow Y$ be an open map and $F\subset X$ closed, then $f(X\setminus F)=f(X)\setminus f(F)=Y\setminus f(F)$).
+
+It appears that it's not necessary to prove that $\Delta$ is closed: notice that the projection of the graph $\Gamma$ is $\tilde{\Delta}$. Since $\Gamma$ is closed, by the remark above it follows that $\tilde{\Delta}$ is closed in $(M/\sim)\times(M/\sim)$ as we needed.
 \end{proof}
+
+\begin{thing4}{Exercise 1.19}\label{exer:1.19}\leavevmode
+	Let $G$ be a finit group acting on a Hausdorff topological space $M$. Prove that $M/G$ with the quotient topology is Hausdorff,
+	\begin{enumerate}[label=(\alph*)]
+	\item (!) when $M$ is compact.
+	\item  (*) for abitrary $M$.
+	\end{enumerate}
+	\textbf{Hint.} Use the previous exercise.
+\end{thing4}
+
+\begin{proof}[Sketch of solution]\leavevmode
+To use the previous exercise first notice that the action of $G$ induces an equivalence relation on $M$; this follows from group axioms. Then it's enough to show that the projection is open and that the graph $\Gamma$ of the equivalence relation is closed in $M\times M$. But by Exercise \hyperref[exer:1.17]{1.17} we already know that the projection is closed, so it's enough to show that $\Gamma$ is closed.
+
+Notice that $\Gamma=\bigcup_{x \in X} (Gx)\times (Gx)$, that is, the union of cartesian products of every orbit with itself. Each of these cartesian products is a finite set because $G$ is finite. If $M$ is compact, then {\color{2}…}
+\end{proof}
+
+\begin{thing4}{Exercise 1.20**}\label{exer:1.20}\leavevmode
+Let $M=\mathbb{R}$, and $\sim$ an equivalence relation with at most two elements in each equivalence class. Prove that $\mathbb{R}/\sim$ is Hausdorff, or find a counterexample.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+By Exercise \hyperref[exer:1.19]{1.19}, if this equivalence relation is induced by a finite-group action, we know the quotient space is Hausdorff. Let's try to show that there always exists a group inducing this equivalence relation. Since every orbit has at most two elements, we can produce a function
+\begin{align*}
+	g: \mathbb{R} &\longrightarrow \mathbb{R} \\
+	x &\longmapsto \begin{cases}
+		y\qquad &\exists y\sim x,y \neq x \\
+		x\qquad & \text{else} 
+	\end{cases} 
+\end{align*}
+This function satisfies $g^2=\operatorname{id}$. So the group $G=\{\operatorname{id},g\}$ acts on $\mathbb{R}$ producing the equivalence relation we began with.
+\end{proof}
+
+\begin{thing4}{Exercise 1.21*}[Gluing of closed subsets]\label{exer:1.21}\leavevmode
+Let $M$ be a metrizable topological space, and $Z_i \subset M$ a finite number of closed subsets which do not intersect, grouped into pairs of homeomorphic $Z_i \sim Z_i'$. Let $\sim$ be an equivalence relation generated by these homeomorphisms. Show that $M/\sim$ is Hausdorff.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+
+\end{proof}
+
+
+
+
+
+
 \end{document}
