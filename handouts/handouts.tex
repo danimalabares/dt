@@ -1,0 +1,256 @@
+\input{/Users/daniel/github/config/preamble.sty}%This is available at github.com/danimalabares/config
+\input{/Users/daniel/github/config/thms-eng.sty}%This is available at github.com/danimalabares/config
+\usepackage{multicol}
+%\usepackage[style=authortitle-terse,backend=bibtex]{biblatex}
+%\addbibresource{/Users/daniel/github/config/bibliography.bib}
+
+\begin{document}
+
+\begin{minipage}{\textwidth}
+	\begin{minipage}{1\textwidth}
+	Handouts by Misha Verbitsky	 \hfill Daniel González Casanova Azuela
+		
+		{\small \href{http://verbit.ru/MATH/GEOM-2013/}{verbit.ru/MATH/GEOM-2013} \hfill\href{https://github.com/danimalabares/dt}{github.com/danimalabares/dt}}
+	\end{minipage}
+\end{minipage}\vspace{.2cm}\hrule
+
+\vspace{10pt}
+{\huge Practice exercises on smooth manifolds}
+
+A pdf file with the questions may also be found \href{https://github.com/danimalabares/dt/handouts/questions.pdf}{here}.
+
+\section{Remedial topology}
+
+\subsection{Topological spaces}
+
+\begin{thing3}{Definition 1.1}\leavevmode
+	A set of all subsets of $M$ is denoted $2^M$. \textit{\textbf{Topology}} on $M$ is a collection of subsets $S \subset 2^M$ called \textit{\textbf{open subsets}}, and satifsying the following conditions:
+	\begin{enumerate}
+	\item Empty set and $M$ are open
+	\item A union of any number of open sets is open
+	\item An intersection of a finite number of open subsets is open.
+	\end{enumerate}
+	A complement of an open set is called \textit{\textbf{closed}}. A set with topology on it is called a \textit{\textbf{toplogical space}}. An \textit{\textbf{open neighbourhood}} of a point is an open set containig this point.
+\end{thing3}
+
+\begin{thing3}{Definition 1.2}\leavevmode
+	A map $\phi:M\to M'$ of topological spaces is called \textit{\textbf{continuous}} if a preimage of each open set $U \subset M'$ is open in $M$. A bijective cintunuous map is called a \textit{\textbf{homeomorphism}} if its inverse is also continuous.
+\end{thing3}
+
+\begin{thing4}{Exercise 1.1}\leavevmode
+	Let $M$ be a set, and $S$ a set of all subsets of $M$. Prove that $S$ defines a topology on $M$. This topology is called \textit{\textbf{discrete}}. Describe the set of all continuous maps form $M$ to a given topological space.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+Since all sets are open, topology axioms are satisfied by $S$. All maps from $M$ to a given topological space are continuous.
+\end{proof}
+
+\begin{thing4}{Exercise 1.2}\leavevmode
+	Let $M$ be a set, and $S \subset 2^M$ a set of two subsets: empty set and $M$. Prove that $S$ defines a topology on $M$. This topology is called \textit{\textbf{codiscrete}}. Describe the set of all continuous maps from $M$ to a space with discrete topology.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+It's trivial that $S$ satisfies the axioms of topology. A map from $M$ to a space $N$ with discrete topology is always continuous: the preimage of $N$ is always $M$ by definition of function: every point of $M$ corresponds to some point of $N$. Obviously the preimage of $\varnothing$ is $\varnothing$.
+\end{proof}
+
+\begin{thing3}{Definition 1.3}\leavevmode
+	Let $M$ be a topological space, and $Z \subset M$ its subset. \textit{\textbf{Open subsets}} of $Z$ are subsets obtained as $Z \cap U$, where $U$ is open in $M$. This topology is called \textit{\textbf{induced topology}}.
+\end{thing3}
+
+\begin{thing3}{Definition 1.4}\leavevmode
+	A \textit{\textbf{metric space}} is a set $M$ equipped with a \textit{\textbf{distance function}} $d: M \times M \longrightarrow \mathbb{R}^{\geq 0}$ satisfying the following acioms.
+	\begin{enumerate}
+	\item $d(x,y)=0$ iff $x=y$.
+	\item $d(x,y)=d(y,x)$.
+	\item (triangle inequality) $d(x,y)+d(y,z) \geq d(x,z)$.
+	\end{enumerate}
+An \textit{\textbf{open ball}} of raduis $r$ with center in xx is $\{y \in M: d(x,y)<r\}$.
+\end{thing3}
+
+\begin{thing3}{Definition 1.5}\leavevmode
+	Let $M$ be a metric space. A subset $U \subset M$ is called \textit{\textbf{open }} if it is obtained as a union of open balls. This topology is called \textit{\textbf{induced by the metric}}.
+\end{thing3}
+
+\begin{thing3}{Definition 1.6}\leavevmode
+A topological space is called \textit{\textbf{metrizable}} if its topology can be induced by a metric.	
+\end{thing3}
+
+\begin{thing4}{Exercise 1.3}\leavevmode
+Show that discrete topology can be induced by a metric, and codiscrete cannot.	
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+To induce the discrete metric define the distance between any two distinct points to be 1. This clearly satisfies the three axioms of metric, and the ball of radius $1/2$ is an open set that contains only its center, making any point and thus any subset an open set.
+
+If a metric space contains at least two points at distance $d$. The ball with radius $d/2$ at any of these points is an open set distinct from the empty set and the total, so the topology induced by the metric cannot be discrete.
+\end{proof}
+
+\begin{thing4}{Exercise 1.4}\leavevmode
+	Prove that an intersection of any collection of closed subsets of a topological space is closed.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+As I recall this is due to de Morgan laws stating that for any collection $F_\alpha$ of subsets
+\begin{equation}\label{eq:1}\left( \bigcap_\alpha F_\alpha  \right)^c=\bigcup_{\alpha} F^c\end{equation}
+where superscript $c$ means set complement. If this is true 'then' we are done because if $F_\alpha$ are closed, we see that the intersection is also closed as its complement is open.
+
+{\color{2}Let's try to show \cref{eq:1} …}
+\end{proof}
+
+\begin{thing3}{Definition 1.7}\leavevmode
+	An intersection of all closed supersets $Z \subset M$ is called \textit{\textbf{closure}} of $Z$
+\end{thing3}
+
+\begin{thing3}{Definition 1.8}\leavevmode
+	A \textit{\textbf{limit point}} of a set  $Z \subset M$ is a point $x \in M$ such that any neighbourhood of $M$ contains a point of $Z$ other than $x$. A \textit{\textbf{limit}} of a sequence $\{ x_i\}$ of points in $M$ is a point $x \in M$ such that any neighbourhood of  $x \in M$ contains all $x_i$ for ll $i$ except a finite number. A sequence which has a limit is called \textit{\textbf{convergent}}.
+\end{thing3}
+
+\begin{thing4}{Exercise 1.5}\label{exer:1.5}\leavevmode
+	Show that a closure of a set $Z \subset M$ is a union of $Z$ and all its limit points.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+	It's enough to show that the union of $Z$ and all its limits points $W$ is a closed set and that it is contained in any closed set containing $Z$.
+
+	To see $W$ is closed chose a point in its complement $p \in W^c$. Since $p$ is not a limit point of $Z$ nor a point of $Z$, there is a neighbourhood of $p$ not intersecting $Z$. This means that such neighbourhood is contatined in $W^c$. We can do this for all points in $W^c$, thus obtaining a $W^c$ as a union of open sets, which is open, and then $W$ is closed.
+
+	To see $W$ is contained in any closed set containing $Z$, suppose $F$ contains $Z$ but not $W$. Then there must be a limit point of $Z$ that is not in $F$. But then $F$ cannot be closed because there is no neighbourhood of such a limit point contained in $F^c$, which should be open. {\color{2}Indeed, if $F^c$ is open then every point contains a neighbourhood contained in $F^c$.}
+\end{proof}
+
+\begin{thing4}{Exercise 1.7}\label{exer:1.7}\leavevmode
+Let $f:M\to M'$ be a map of metrizable topological spaces, such that $f \left( \lim_{i} x_i \right) =\lim_{i} f(x_i)$ for any convergent sequence $\{x_i \in M\}$. Prove that $f$ is continuous.	
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+It is equivalent that the preimage of every open set is open (definition of $f$ being continuous) with the preimage of every closed subset is closed: for any closed set $M'\setminus U$ with $U$ open, $f^{-1}(M\setminus U)=f^{-1}(M')\setminus f^{-1}(U)$ is closed.
+
+Consider the closed set $F\subset M'$ and let's check that its preimage is also closed. By the same reasoning as in Exercise \hyperref[exer:1.5]{1.5}, to show closedeness it's enough to show the set contains all its limit points. Take a limit point $p\in f^{-1}(F)$. We construct a convergent sequence $\{x_n\}$ taking balls of radius $\frac{1}{n}$ around $p$, each of which must contain a point in $f^{-1}(F)$. This gives a sequence in $F$, which by hypothesis must converge to a limit point $\lim_{i} f(x_i)=f\left(\lim_i x_i\right) \in F$. This means $p=\lim_{i} x_i$ is in the inverse image of $F$.
+\end{proof}
+
+\begin{thing4}{Exercise 1.8*}\leavevmode
+	Find a counterexample to the previous problem for non-metrizable, Hausdorff topological spaces (see the next subsection of a definition of Hausdorff).
+\end{thing4}
+
+\begin{proof}[Sketch of solution]\leavevmode
+Probably Sørgenfrey line is a counter-example? I should look for its definition to make sure it is Hausdorff (and how is it defined exactly---I think open sets are positive rays).
+\end{proof}
+
+\begin{thing4}{Exercise 1.9**}\leavevmode
+	Let $f: M\longrightarrow M'$ be a map of countable topological spaces, such that $f(\lim_{i} x_i)=\lim_{i} f(x_i)$ for any convergent sequence $\{ x_i \in M\}$. Prove that $f$ is continuous, or find a counterexample.
+\end{thing4}
+
+\begin{proof}[Sketch of solution]\leavevmode
+	Is a \textit{\textbf{countable space}} a space whose cardinality is $\mathbb{N}$? What are the possible topologies on $\mathbb{N}$? Discrete topology gives that every map is continuous. Other topologies are maybe, again, rays.
+\end{proof}
+
+\begin{thing4}{Exercise 1.10*}\leavevmode
+	Let $f:M\longrightarrow N$ be a bijective map inducing homeomorphisms on all countable subsets of $M$. Show that it is a homeomorphism, or find a counterexample.
+\end{thing4}
+
+\begin{proof}[Sketch of solution]\leavevmode
+	If we suppose that $M$ and $M'$ are metrizable, we can use Exercise \hyperref[exer:1.7]{1.7} as follows. Choose any convergent sequence $\{x_i \in M\}$. Then the countable set  $\{x_i\}\cup \{\lim_{i} f(x_i)\}$ is mapped homeomorphically to $\{f(x_i)\}\cup  \{f(\lim_{i} x_i)\}$. This implies that $f\left( \lim_{i} f(x_i) \right) =f \left( \lim_{i} x_i \right)$, so $f$ is continuous. The same holds for $f^{-1}$, so $f$ is a homeomorphism.
+
+	Probably the statement isn't true in general, so let's look for a counter-example.
+\end{proof}
+
+\subsection{Hausdorff spaces}
+
+\begin{thing3}{Definition 1.9}\leavevmode
+	Let $M$ be a topological space. It is called \textit{\textbf{Hausdorff}} or \textit{\textbf{separable}}, if any two distinct points $x \neq  y \in M$ can be \textit{\textbf{separated}} by open subsets, that is, there exist open neighbourhoods $U \ni x$ and $V \ni y$ wuch that $U\cap V= \varnothing$.
+\end{thing3}
+
+\begin{thing5}{Remark 1.1}\leavevmode
+	In topology, the Hausdorff axiom is usually assumed by default. In subsequent handouts, it will be always assumed (unless stated otherwise).
+\end{thing5}
+
+\begin{thing4}{Exercise 1.11}\leavevmode
+	Let $M$ be a Hausdorff topological space. Prove that all points in $M$ are closed subsets.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+Fix a point $x \in M$. For every $y \in M$ distinct from $x$ we have the neighbourhoods $U_y \ni x$ and $V_y \ni y$ with $U_y \cap V_y = \varnothing$. Then $X\setminus\{x\}=\bigcup_{y \neq x} V_y$, which is open.
+\end{proof}
+
+\begin{thing4}{Exercise 1.13}\leavevmode
+	Let $M$ be a topological space, with all points of $M$ closed. Prove that $M$ is Hausdorff, or find a counterexample.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+No solution yet…
+\end{proof}
+
+\begin{thing4}{Exercise 1.14}\leavevmode
+	Count the number of non-isomorphic topologies on a finite set of 4 elements. How many of these topologies are Hausdorff.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+For any set $S$ of subsets of $\{1,2,3,4\}$ we can consider the \textit{\textbf{topology generated by $S$}}, which consists of all unions and intersections of elements in $S$, along with the total space and the empty set.
+
+For the following choices of $S$ we get non-isomorphic topologies:
+\begin{multicols}{2}
+\begin{enumerate}
+\item  $S=\varnothing$ (codiscrete topology).
+\item $S=\Big\{\{1\}\Big\}$
+\item $S=\Big\{\{1\},\{2\}\Big\}$.
+\item $S=\Big\{\{1\},\{2\},\{3\}\Big\}$.
+\item $S=\Big\{\{1\},\{2\},\{3\},\{4\}\Big\}$
+
+	(discrete topology).
+\columnbreak\item $S=\Big\{\{1,2\}\Big\}$.
+\item $S=\Big\{\{1,2\},\{3\}\Big\}$
+\item $S=\Big\{\{1,2\},\{3,4\}\Big\}$.
+\item $S=\Big\{\{1,2,3\}\Big\}$.
+\item $S=\Big\{\{1,2,3\},\{4\}\Big\}$.
+\end{enumerate}
+\end{multicols}
+1-5 are Hausdorff while 6-10 are not Hausdorff. 
+\end{proof}
+
+\begin{thing4}{Exercise 1.5}[!]\leavevmode
+	Let $Z_1,Z_2$ be nonintersecting closed subsets of a metrizable space $M$. Find open subsets $U \supset Z_1, V \supset Z_2$ which do not intersect.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+Consider the distance between $Z_1$ and $Z_2$:
+\[d(Z_1,Z_2):=\operatorname{inf}\{d(z_1,z_2):z_1 \in Z_1, z_2 \in Z_2\}.\]
+We must argue that $d(Z_1,Z_2) \neq 0$. Suppose by contradiction that $d(Z_1,Z_2) = 0$ Then for every  $n \in \mathbb{N}$ there is a pair of points $z_1^n$ and $z_2^n$ such that $d(z_1^n,z_2^n)<1/n$.
+\end{proof}
+
+\begin{thing3}{Definition 1.10}\leavevmode
+	Let $M,N$ be topological spaces. \textit{\textbf{Product topology}} is a topology on $M \times N$, with open sets obtained as unions $\bigcup_{\alpha} U_\alpha \times V_\alpha$, where $U_\alpha$ is open in $M$ and $V_\alpha$ is open in $N$.
+\end{thing3}
+
+\begin{thing4}{Exercise 1.16}\leavevmode
+	Prove that a topology on $X$ is Hausdorff if and only if the diagonal $\Delta:=\{(x,y) \in X \times X|x=y\}$ is closed in the product topology.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+$(\implies )$ Suppose that $X$ is Hausdorff. To check that $\Delta$ is closed suppose there is a sequence $(x_n,x_n)$ that converges to some point $(a,b) \in X \times X$. We need to show that $(a,b) \in \Delta$, i.e. that $a=b$. For every neighbourhood $W=U \times V$ of $(a,b)$ we know that all but a finite number of $(x_n,x_n)$ belong to $U$. This means that $x_n$ converges to  $a$ and also to  $b$. But limits are unique in Hausdorff spaces: if $a \neq b$ we can separate $a$ and  $b$ by disjoint open subsets $A$ and  $B$, and then it cannot hold simultaneously that all but a finite number of points in the sequence $x_n$ are in $A$ and in $B$.
+
+$(\impliedby)$ Suppose $\Delta$ is closed in the product topology.
+\end{proof}
+
+\begin{thing3}{Definition 1.11}\leavevmode
+	Let $\sim$ be an equivalence relation on a topological space $M$. \textit{\textbf{Factor-topology}} (or \textit{\textbf{quotient topology}}) is a topology on the set $M/\sim$ of equivalence classes such that a subset $U \subset M/\sim$ is open whenever its preimage in $M$ is open.
+\end{thing3}
+
+\begin{thing4}{Exercise 1.17}\leavevmode
+	Let $G$ be a finite group acting (continuously) on a Hausdorff topological space $M$.Prove that the quotient map is closed (i.e. puts closed subsets to closed subsets).
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+The quotient map is $\pi:M\to M/\sim$ where $x \sim y$ if $y=gx$ for some  $g \in G$. To show $\pi$ is closed pick $F \subset M$ closed. We need to show that $\pi(F)$ is closed, so we may show its complement is open. According to the definition of factor topology we want to show that
+\[\pi^{-1}\Big((M/\sim) \setminus \pi(F)\Big)=M\setminus\pi^{-1}(\pi(F))\]
+is open. Now $\pi^{-1}(\pi(F))$ is the set of points that are $G$-related to points in  $F$, namely $\bigcup_{g \in G} gF$. Since $G$ is finite and  acts by homeomorphisms, this set is a finite union of closed sets, which is closed. {\color{2}Looks like I didn't use the Hausdorff hypothesis.}
+\end{proof}
+
+\begin{thing4}{Exercise 1.18*}\leavevmode
+	Let $\sim$ be an equivalence relation on a topological space $M$, and $\Gamma \subset M \times M$ its \textit{\textbf{graph}}, that is, the set $\{(x,y) \in M \times M|x \sim y\}$. Suppose that the map $M \longrightarrow M/\sim$ is open, and that $\Gamma$ is closed in $M \times M$. Show that $M/\sim$ is Hausdorff.
+
+	\textbf{Hint} . Prove that diagonal is closed in $M \times M$.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+If we show that the diagonal is closed in $ M \times M$, then its complement would be an open set, and when projecting to $(M/\sim) \times (M/\sim)$ we obtain that the diagonal is closed in the latter space.
+\end{proof}
+\end{document}
