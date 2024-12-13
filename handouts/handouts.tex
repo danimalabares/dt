@@ -114,6 +114,8 @@ where superscript $c$ means set complement. If this is true then we are done bec
 \begin{proof}[Solution]\leavevmode
 	It's enough to show that the union of $Z$ and all its limits points $W$ is a closed set and that it is contained in any closed set containing $Z$.
 
+	(The idea is to use the fact that a set is open iff every point has a neighbourhood completely contained in the set. I could show one implication but got stuck in the other…)
+
 	To see $W$ is closed chose a point in its complement $p \in W^c$. Since $p$ is not a limit point of $Z$ nor a point of $Z$, there is a neighbourhood of $p$ not intersecting $Z$. This means that such neighbourhood is contatined in $W^c$. We can do this for all points in $W^c$, thus obtaining a $W^c$ as a union of open sets, which is open, and then $W$ is closed.
 
 	To see $W$ is contained in any closed set containing $Z$, suppose $F$ contains $Z$ but not $W$. Then there must be a limit point of $Z$ that is not in $F$. But then $F$ cannot be closed because there is no neighbourhood of such a limit point contained in $F^c$, which should be open. {\color{2}Indeed, if $F^c$ is open then every point contains a neighbourhood contained in $F^c$.}
