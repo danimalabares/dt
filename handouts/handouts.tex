@@ -296,12 +296,93 @@ Let $M$ be a metrizable topological space, and $Z_i \subset M$ a finite number o
 \end{thing4}
 
 \begin{proof}[Solution]\leavevmode
+{\color{2}?}
+\end{proof}
 
+\section{Compact spaces}
+
+\begin{thing3}{Definition 1.12}\leavevmode
+	A \textit{\textbf{cover}} of a topological space $M$ is a collection of open subsets $\{U_\alpha \in 2^M\}$ such that $\bigcup U_\alpha=M $. A \textit{\textbf{subcover}} of a cover $\{U_\alpha\}$ is a subset $\{U_\beta\}\subset \{U_\alpha\}$. A topological space is called \textit{\textbf{compact}} if any cover of this space has a finite subcover.
+\end{thing3}
+
+\begin{thing4}{Exercise 1.22}[Closed subset of compact is compact]\leavevmode
+	Let $M$ be a compact topological space, and $Z \subset M$ a closed subset. Show that $Z$ is also compact.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+Choose a cover $\{U_\alpha\}$ of $Z$. Complete to a cover $\{U_\alpha\}\cup (M\setminus Z)$ of $M$ since $M\setminus Z$ is open by hypothesis. Since $M$ is compact then there is a finite subcover $\{U_\beta\}$ of $M$. This is also a finite subcover of $Z$.
+\end{proof}
+
+\begin{thing4}{Exercise 1.23}[Countable metrizable $\implies $ contains convergent subseq. or is discrete]\label{exer:1.23}\leavevmode
+	Let $M$ be a countable, metrizable topological space. Show that either $M$ contains a converging sequence of pairwise different elements, or $M$ is discrete.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+Suppose $M$ is not discrete. Then there is a point $z_0$ such that $\{z_0\}$ is not an open set. Then every open set containing $z_0$ contains another point. Choose for every $n \in \mathbb{N}$ a point $z_n$ different from $z_0$ inside the a ball $B_{1/n}(z_0)$. Taking a subsequence if necessary, we obtain a sequence of pairwise different elements $\{z_i\}$ converging to $z_0$.
+
+If $M$ is discrete, it's clear that it cannot have a convergent sequence of pairwise disjoint elements: if the limit point $\{z_0\}$ was open,  $M\setminus \{z_0\}$ would be closed and thus it would contain all its limit points!
+\end{proof}
+
+\begin{thing3}{Definition 1.13}\leavevmode
+	A topological space is called \textit{\textbf{sequentially compact}} if any sequence $\{z_i\}$ of points of $M$ has a converging subsequence.
+\end{thing3}
+
+\begin{thing4}{Exercise 1.24}[Metrizable compact $\implies $ sequentially compact]\label{exer:1.24}\leavevmode
+	Let $M$ be a metrizable compact topological space. Show that $M$ is sequentially compact.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+Let $\{z_i\}$ be a sequence. Since the restricition of a metric to a subset is also a metric, we may use Exercise \hyperref[exer:1.23]{1.23} on the countable metric subspace $\{z_i\}$. Suppose by contradiction that $\{z_i\}$ has no limit point in $M$. In particular it has no limit point in $\{z_i\}$, so by Exercise \hyperref[exer:1.23]{1.23} it is discrete. Then there are neighbourhoods $U_i \ni z_i$ such that $U_i \cap\{z_j\}_{j \neq  i}=\varnothing$. Then $\{U_i\} \cup  (M\setminus \{U_i\})$ is an open cover of $M$, which has a finite subcover. By the pigeon principle, at least one of the $U_i$ contains an infinite number of points in $\{z_i\}$, which is not possible.
+\end{proof}
+
+\begin{thing3}{Definition}[Folland, \textit{Real Analysis}, p. 14-15] \leavevmode
+	A sequence $\{x_n\}$ in a metric space $(X,\rho)$ is called \textit{\textbf{Cauchy}} if $\rho(x_n,x_m)\to 0$ as $n,m \to \infty$. A subset $E$ of $X$ is called \textit{\textbf{complete}} if every Cauchy sequence in $E$ converges and its limit is in $E$. $E$ is called \textit{\textbf{totally bounded}} if for every $\varepsilon>0$, $E$ can be covered by finitely many balls of radius $\varepsilon$.
+\end{thing3}
+
+\begin{thing1}{Theorem 1.6.5}[Burago-Burago-Ivanov, \textit{A course in metric geometry} ]\leavevmode
+	Let $X$ be a metric space. Then the following statements are equivalent:
+	\begin{enumerate}
+	\item $X$ is compact.
+	\item Any sequence in $X$ has a converging subsequence.
+	\item Any infinite subset of $X$ has an accumulation point.
+	\item $X$ is complete and totally bounded.
+	\end{enumerate}
+	[No proof]
+\end{thing1}
+
+\begin{thing1}{Theorem 0.25}[Folland, \textit{Real Analysis}]\leavevmode
+	If $E$ is a subset of the metric space $(X,\rho)$, the following are equivalent:
+	\begin{enumerate}[label=(\alph*)]
+	\item $E$ is complete and totally bounded.
+	\item (\textbf{Bolzano-Weierstrass property}) Every sequence in $E$ has a subsequence that converges to a point of $E$.
+	\item (\textbf{The Heine-Borel Property}) If $\{V_\alpha\}_{\alpha \in A}$ is a cover of $E$ by open sets, there is a finite set $F \subset A $ such that $\{ V_\alpha\}_{\alpha \in F}$ covers $E$.
+	\end{enumerate}
+\end{thing1}
+
+\begin{proof}[Plan of proof]\leavevmode
+	(a) and (b) are equivalent, and  (a) and (b) together imply (c).
 \end{proof}
 
 
+\begin{thing4}{Exercise 1.28}[Continuous function maps compact to compact]\label{exer:1.28}\leavevmode
+Let $f:X\to Y$ be a continuous map of topological spaces with $X$ compact. Prove that $f(X)$ is also compact.
+\end{thing4}
 
+\begin{proof}[Solution]\leavevmode
+	Choose an open cover $\{U_\alpha\}$ of $f(X)$. Then  $\left\{f^{-1}\left( U_\alpha \right) \right\}$ is an open cover of $X$ since $f$ is continuous, and thus it has an open subcover $\{f^{-1}(U_\beta)\}$. I claim that $\{U_\beta\}$ is a cover of $f(X)$: if there was a point $f(x) \not \in \bigcup U_\beta $, then $x$ couldn't be in any of the  $f^{-1}(U_\beta)$, which cover $X$. 
+\end{proof}
 
+\begin{thing4}{Exercise 1.29}[Compact subset of Hausdorff is closed]\label{exer:1.29}\leavevmode
+Let $Z \subset Y$ be a compact subset of a Hausdorff topological space. Prove that it is closed.
+\end{thing4}
 
+\begin{proof}[Solution]\leavevmode
+Recall that a set is closed if it contains all its limit points (if a limit point $z_0$ of the closed set $F$ is not in $F$, then $z_0$ has no neighbourhood contained in $F^c$, but $F^c$ is open).
 
+Let $z_0$ be a limit point of $Z$. 
+\end{proof}
+
+\begin{thing4}{Exercise 1.30}\label{exer:1.30}\leavevmode
+Let $f:X \to Y$ be a continuous, bijective map of topological spaces, with $X$ compact and $Y$ Hausdorff. Prove that it is a homeomorphism.
+\end{thing4}
 \end{document}
