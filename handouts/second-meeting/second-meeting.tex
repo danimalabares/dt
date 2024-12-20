@@ -19,159 +19,19 @@
 \vspace{10pt}
 {\huge Practice exercises on smooth manifolds}
 
-A pdf file with the questions may also be found \href{https://github.com/danimalabares/dt/blob/main/handouts/questions.pdf}{here}.
-\tableofcontents
+{\large Second meeting, 20 of December}
+\vspace{1em}
 
-\section{Remedial topology}
+Plan for today: selection of exercises (I skipped those with *) from sections
 
-\subsection{Topological spaces}
+\begin{itemize}
+\item Hausdorff spaces (3)
+\item Compact spaces (8)
+\item Topological manifolds (2)
+\item Smooth manifolds (4)
+\end{itemize}
 
-\begin{thing3}{Definition 1.1}\leavevmode
-	A set of all subsets of $M$ is denoted $2^M$. \textit{\textbf{Topology}} on $M$ is a collection of subsets $S \subset 2^M$ called \textit{\textbf{open subsets}}, and satifsying the following conditions:
-	\begin{enumerate}
-	\item Empty set and $M$ are open
-	\item A union of any number of open sets is open
-	\item An intersection of a finite number of open subsets is open.
-	\end{enumerate}
-	A complement of an open set is called \textit{\textbf{closed}}. A set with topology on it is called a \textit{\textbf{toplogical space}}. An \textit{\textbf{open neighbourhood}} of a point is an open set containig this point.
-\end{thing3}
-
-\begin{thing3}{Definition 1.2}\leavevmode
-	A map $\phi:M\to M'$ of topological spaces is called \textit{\textbf{continuous}} if a preimage of each open set $U \subset M'$ is open in $M$. A bijective cintunuous map is called a \textit{\textbf{homeomorphism}} if its inverse is also continuous.
-\end{thing3}
-
-\begin{thing4}{Exercise 1.1}\leavevmode
-	Let $M$ be a set, and $S$ a set of all subsets of $M$. Prove that $S$ defines a topology on $M$. This topology is called \textit{\textbf{discrete}}. Describe the set of all continuous maps form $M$ to a given topological space.
-\end{thing4}
-
-\begin{proof}[Solution]\leavevmode
-Since all sets are open, topology axioms are satisfied by $S$. All maps from $M$ to a given topological space are continuous.
-\end{proof}
-
-\begin{thing4}{Exercise 1.2}\leavevmode
-	Let $M$ be a set, and $S \subset 2^M$ a set of two subsets: empty set and $M$. Prove that $S$ defines a topology on $M$. This topology is called \textit{\textbf{codiscrete}}. Describe the set of all continuous maps from $M$ to a space with discrete topology.
-\end{thing4}
-
-\begin{proof}[Solution]\leavevmode
-It's trivial that $S$ satisfies the axioms of topology. Continuous maps from $M$ to a space with discrete topology are constant maps. Such maps are continuous since the preimage of any (open) set is open: either it contains the value of the map at all points, in which case the preimage is all of $M$, or it doesn't, in which case the preimage is empty. Conversely, if a map has more than one value, the preimage of such a value cannot be neither $M$ nor the empty set.
-\end{proof}
-
-\begin{thing3}{Definition 1.3}\leavevmode
-	Let $M$ be a topological space, and $Z \subset M$ its subset. \textit{\textbf{Open subsets}} of $Z$ are subsets obtained as $Z \cap U$, where $U$ is open in $M$. This topology is called \textit{\textbf{induced topology}}.
-\end{thing3}
-
-\begin{thing3}{Definition 1.4}\leavevmode
-	A \textit{\textbf{metric space}} is a set $M$ equipped with a \textit{\textbf{distance function}} $d: M \times M \longrightarrow \mathbb{R}^{\geq 0}$ satisfying the following acioms.
-	\begin{enumerate}
-	\item $d(x,y)=0$ iff $x=y$.
-	\item $d(x,y)=d(y,x)$.
-	\item (triangle inequality) $d(x,y)+d(y,z) \geq d(x,z)$.
-	\end{enumerate}
-An \textit{\textbf{open ball}} of raduis $r$ with center in xx is $\{y \in M: d(x,y)<r\}$.
-\end{thing3}
-
-\begin{thing3}{Definition 1.5}\leavevmode
-	Let $M$ be a metric space. A subset $U \subset M$ is called \textit{\textbf{open }} if it is obtained as a union of open balls. This topology is called \textit{\textbf{induced by the metric}}.
-\end{thing3}
-
-\begin{thing3}{Definition 1.6}\leavevmode
-A topological space is called \textit{\textbf{metrizable}} if its topology can be induced by a metric.	
-\end{thing3}
-
-\begin{thing4}{Exercise 1.3}\leavevmode
-Show that discrete topology can be induced by a metric, and codiscrete cannot.	
-\end{thing4}
-
-\begin{proof}[Solution]\leavevmode
-To induce the discrete metric define the distance between any two distinct points to be 1. This clearly satisfies the three axioms of metric, and the ball of radius $1/2$ is an open set that contains only its center, making any point and thus any subset an open set.
-
-If a metric space contains at least two points at distance $d$, the ball with radius $d/2$ at any of these points is an open set distinct from the empty set and the total, so the topology induced by the metric cannot be discrete.
-\end{proof}
-
-\begin{thing4}{Exercise 1.4}\leavevmode
-	Prove that an intersection of any collection of closed subsets of a topological space is closed.
-\end{thing4}
-
-\begin{proof}[Solution]\leavevmode
-As I recall this is due to de Morgan laws stating that for any collection $F_\alpha$ of subsets
-\begin{equation}\label{eq:1}\left( \bigcap_\alpha F_\alpha  \right)^c=\bigcup_{\alpha} F^c\end{equation}
-where superscript $c$ means set complement. If this is true then we are done because if $F_\alpha$ are closed, we see that the intersection is also closed as its complement is open.
-
-\end{proof}
-
-\begin{thing3}{Definition 1.7}\leavevmode
-	An intersection of all closed supersets $Z \subset M$ is called \textit{\textbf{closure}} of $Z$
-\end{thing3}
-
-\begin{thing3}{Definition 1.8}\leavevmode
-	A \textit{\textbf{limit point}} of a set  $Z \subset M$ is a point $x \in M$ such that any neighbourhood of $M$ contains a point of $Z$ other than $x$. A \textit{\textbf{limit}} of a sequence $\{ x_i\}$ of points in $M$ is a point $x \in M$ such that any neighbourhood of  $x \in M$ contains all $x_i$ for ll $i$ except a finite number. A sequence which has a limit is called \textit{\textbf{convergent}}.
-\end{thing3}
-
-\begin{thing4}{Exercise 1.5}\label{exer:1.5}\leavevmode
-	Show that a closure of a set $Z \subset M$ is a union of $Z$ and all its limit points.
-\end{thing4}
-
-\begin{proof}[Solution]\leavevmode
-	It's enough to show that the union of $Z$ and all its limits points $W$ is a closed set and that it is contained in any closed set containing $Z$.
-
-	To see $W$ is closed chose a point in its complement $p \in W^c$. Since $p$ is not a limit point of $Z$ nor a point of $Z$, there is a neighbourhood of $p$ not intersecting $Z$. This means that such neighbourhood is contatined in $W^c$. We can do this for all points in $W^c$, thus obtaining a $W^c$ as a union of open sets, which is open, and then $W$ is closed.
-
-	To see $W$ is contained in any closed set containing $Z$, suppose $F$ contains $Z$ but not $W$. Then there must be a limit point of $Z$ that is not in $F$. But then $F$ cannot be closed because there is no neighbourhood of such a limit point contained in $F^c$, which should be open. Indeed, if $F^c$ is open then every point contains a neighbourhood contained in $F^c$: at least $F^c$ itself!
-\end{proof}
-
-\begin{thing4}{Exercise 1.7}\label{exer:1.7}\leavevmode
-Let $f:M\to M'$ be a map of metrizable topological spaces, such that $f \left( \lim_{i} x_i \right) =\lim_{i} f(x_i)$ for any convergent sequence $\{x_i \in M\}$. Prove that $f$ is continuous.	
-\end{thing4}
-
-\begin{proof}[Solution]\leavevmode
-It is equivalent that the preimage of every open set is open (definition of $f$ being continuous) with the preimage of every closed subset is closed: for any closed set $M'\setminus U$ with $U$ open, $f^{-1}(M\setminus U)=f^{-1}(M')\setminus f^{-1}(U)$ is closed.
-
-Consider the closed set $F\subset M'$ and let's check that its preimage is also closed. By the same reasoning as in Exercise \hyperref[exer:1.5]{1.5}, to show closedeness it's enough to show the set contains all its limit points. Take a limit point $p\in f^{-1}(F)$. We construct a convergent sequence $\{x_n\}$ taking balls of radius $\frac{1}{n}$ around $p$, each of which must contain a point in $f^{-1}(F)$. This gives a sequence in $F$, which by hypothesis must converge to a limit point $\lim_{i} f(x_i)=f\left(\lim_i x_i\right) \in F$. This means $p=\lim_{i} x_i$ is in the inverse image of $F$.
-\end{proof}
-
-\begin{thing4}{Exercise 1.8*}\leavevmode
-	Find a counterexample to the previous problem for non-metrizable, Hausdorff topological spaces (see the next subsection of a definition of Hausdorff).
-\end{thing4}
-
-\begin{proof}[{\color{2}Sketch of solution}]\leavevmode
-Probably Sørgenfrey line is a counter-example? I should look for its definition to make sure it is Hausdorff (and how is it defined exactly---I think open sets are positive rays).
-\end{proof}
-
-\begin{thing4}{Exercise 1.9**}\leavevmode
-	Let $f: M\longrightarrow M'$ be a map of countable topological spaces, such that $f(\lim_{i} x_i)=\lim_{i} f(x_i)$ for any convergent sequence $\{ x_i \in M\}$. Prove that $f$ is continuous, or find a counterexample.
-\end{thing4}
-
-\begin{proof}[{\color{2}Sketch of solution}]\leavevmode
-	Is a \textit{\textbf{countable space}} a space whose cardinality is $\mathbb{N}$? What are the possible topologies on $\mathbb{N}$? Discrete topology gives that every map is continuous. Other topologies are maybe, again, rays.
-\end{proof}
-
-\begin{thing4}{Exercise 1.10*}\leavevmode
-	Let $f:M\longrightarrow N$ be a bijective map inducing homeomorphisms on all countable subsets of $M$. Show that it is a homeomorphism, or find a counterexample.
-\end{thing4}
-
-\begin{proof}[{\color{2}Sketch of solution}]\leavevmode
-	If we suppose that $M$ and $M'$ are metrizable, we can use Exercise \hyperref[exer:1.7]{1.7} as follows. Choose any convergent sequence $\{x_i \in M\}$. Then the countable set  $\{x_i\}\cup \{\lim_{i} f(x_i)\}$ is mapped homeomorphically to $\{f(x_i)\}\cup  \{f(\lim_{i} x_i)\}$. This implies that $f\left( \lim_{i} f(x_i) \right) =f \left( \lim_{i} x_i \right)$, so $f$ is continuous. The same holds for $f^{-1}$, so $f$ is a homeomorphism.
-
-	Probably the statement isn't true in general, so let's look for a counter-example.
-\end{proof}
-
-\subsection{Hausdorff spaces}
-
-\begin{thing3}{Definition 1.9}\leavevmode
-	Let $M$ be a topological space. It is called \textit{\textbf{Hausdorff}} or \textit{\textbf{separable}}, if any two distinct points $x \neq  y \in M$ can be \textit{\textbf{separated}} by open subsets, that is, there exist open neighbourhoods $U \ni x$ and $V \ni y$ wuch that $U\cap V= \varnothing$.
-\end{thing3}
-
-\begin{thing5}{Remark 1.1}\leavevmode
-	In topology, the Hausdorff axiom is usually assumed by default. In subsequent handouts, it will be always assumed (unless stated otherwise).
-\end{thing5}
-
-\begin{thing4}{Exercise 1.11}\label{exer:1.11}\leavevmode
-	Let $M$ be a Hausdorff topological space. Prove that all points in $M$ are closed subsets.
-\end{thing4}
-
-\begin{proof}[Solution]\leavevmode
-Fix a point $x \in M$. For every $y \in M$ distinct from $x$ we have the neighbourhoods $U_y \ni x$ and $V_y \ni y$ with $U_y \cap V_y = \varnothing$. Then $X\setminus\{x\}=\bigcup_{y \neq x} V_y$, which is open.
-\end{proof}
+\section{Hausdorff spaces}
 
 \begin{thing4}{Exercise 1.12}[Points are closed in Hausdorff]\label{exer:1.12}\leavevmode
 Let $M$ be a Hausdorff topological space. Prove that all points in $M$ are closed subsets.
@@ -181,66 +41,9 @@ Let $M$ be a Hausdorff topological space. Prove that all points in $M$ are close
 Let $x \in M$ and let's see that $M\setminus \{x\}$ is open. Choose a point $y \in M\setminus \{ x\}$. Then there are open sets $U \ni x$ and $V \ni y$ such that $ U \cap V= \varnothing$. Then $V \subset M\setminus \{ x\}$.
 \end{proof}
 
-\begin{thing4}{Exercise 1.13}\leavevmode
-	Let $M$ be a topological space, with all points of $M$ closed. Prove that $M$ is Hausdorff, or find a counterexample.
-\end{thing4}
-
-\begin{proof}[Solution]\leavevmode
-No solution yet…
-\end{proof}
-
-\begin{thing4}{Exercise 1.14}\leavevmode
-	Count the number of non-isomorphic topologies on a finite set of 4 elements. How many of these topologies are Hausdorff.
-\end{thing4}
-
-\begin{proof}[Solution]\leavevmode
-For any set $S$ of subsets of $\{1,2,3,4\}$ we can consider the \textit{\textbf{topology generated by $S$}}, which consists of all unions and intersections of elements in $S$, along with the total space and the empty set.
-
-For the following choices of $S$ we get non-isomorphic topologies:
-\begin{multicols}{2}
-\begin{enumerate}
-\item  $S=\varnothing$ (codiscrete topology).
-\item $S=\Big\{\{1\}\Big\}$
-\item $S=\Big\{\{1\},\{2\}\Big\}$.
-\item $S=\Big\{\{1\},\{2\},\{3\}\Big\}$.
-\item $S=\Big\{\{1\},\{2\},\{3\},\{4\}\Big\}$
-
-	(discrete topology).
-\columnbreak\item $S=\Big\{\{1,2\}\Big\}$.
-\item $S=\Big\{\{1,2\},\{3\}\Big\}$
-\item $S=\Big\{\{1,2\},\{3,4\}\Big\}$.
-\item $S=\Big\{\{1,2,3\}\Big\}$.
-\item $S=\Big\{\{1,2,3\},\{4\}\Big\}$.
-\end{enumerate}
-\end{multicols}
-{\color{2}There are some topologies missing…}
-\end{proof}
-
-\begin{thing4}{Exercise 1.5}[!]\leavevmode
-	Let $Z_1,Z_2$ be nonintersecting closed subsets of a metrizable space $M$. Find open subsets $U \supset Z_1, V \supset Z_2$ which do not intersect.
-\end{thing4}
-
-\begin{proof}[Solution]\leavevmode
-Consider the distance between $Z_1$ and $Z_2$:
-\[d(Z_1,Z_2):=\operatorname{inf}\{d(z_1,z_2):z_1 \in Z_1, z_2 \in Z_2\}.\]
-We must argue that $d(Z_1,Z_2) \neq 0$. Suppose by contradiction that $d(Z_1,Z_2) = 0$ Then for every  $n \in \mathbb{N}$ there is a pair of points $z_1^n$ and $z_2^n$ such that $d(z_1^n,z_2^n)<1/n$. {\color{2}That distance need not be zero! There must be another way to do this…}
-\end{proof}
-
 \begin{thing3}{Definition 1.10}\leavevmode
 	Let $M,N$ be topological spaces. \textit{\textbf{Product topology}} is a topology on $M \times N$, with open sets obtained as unions $\bigcup_{\alpha} U_\alpha \times V_\alpha$, where $U_\alpha$ is open in $M$ and $V_\alpha$ is open in $N$.
 \end{thing3}
-
-\iffalse\begin{remark}\leavevmode
-	A closed set in product topology is a union of products of closed sets, i.e. closed sets in $M \times N$ are obtained as unions $\bigcup_{\alpha} F_\alpha \times F'_\alpha$ where $F_\alpha$ is closed in $M$ and $F'_\alpha$ is closed in $N$.
-
-	Indeed, the complement of a closed set $\mathcal{F} \subset M\times N$ is open in the product, so by definition it is a union of products of open sets $\mathcal{U}=\bigcup_{\alpha} U_\alpha \times V_\alpha$ with $U_\alpha$ in $M$ and $V_\alpha$ in $N$. The complement of $\mathcal{U}$ is 
-\begin{align*}
-	\mathcal{F}&=(M\times N)\setminus \mathcal{U}\\
-&=(M\times N)\setminus \left( \bigcup_{\alpha} U_\alpha\times V_\alpha \right) \\
-& =\bigcap_\alpha (M\setminus U_\alpha)\times (N\setminus V_\alpha),
-\end{align*}
-which is a union of products of closed sets as desired.
-\end{remark}\fi
 
 \begin{thing4}{Exercise 1.16}\leavevmode
 	Prove that a topology on $X$ is Hausdorff if and only if the diagonal $\Delta:=\{(x,y) \in X \times X|x=y\}$ is closed in the product topology.
@@ -250,20 +53,6 @@ which is a union of products of closed sets as desired.
 	$(\implies )$ Suppose that $X$ is Hausdorff. To check that $\Delta$ is closed suppose that $(x,y) \in X \times X$ is a limit point of $\Delta$. We need to show that $(x,y) \in \Delta$, i.e. that $x=y$. If $x \neq y$ we can separate $x$ and  $y$ by disjoint open subsets $U \ni x$ and  $V \ni y$. Then the open set $U \times V$ contains $(x,y)$,  and since $(x,y)$ is a limit point of  $\Delta$ there must be a point $(z,z) \in U \times V$. Then $z \in U$ and $z \in V$, which is a contradiction.
 
 $(\impliedby)$ Suppose $\Delta$ is closed in the product topology and choose two different points $x \neq y$ in $X$. Then $(x,y) \in (X \times X)\setminus \Delta$, which is an open set by hypothesis. Then by definition of product topology there must be two open sets in $X$,  $U \ni x$ and $V \ni y$. Suppose there is a point in the intersection $z \in U \cap V$. Then $(z,z) \in (U \times V) \cap \Delta$, a contradiction.
-\end{proof}
-
-\begin{thing3}{Definition 1.11}\leavevmode
-	Let $\sim$ be an equivalence relation on a topological space $M$. \textit{\textbf{Factor-topology}} (or \textit{\textbf{quotient topology}}) is a topology on the set $M/\sim$ of equivalence classes such that a subset $U \subset M/\sim$ is open whenever its preimage in $M$ is open.
-\end{thing3}
-
-\begin{thing4}{Exercise 1.17}\label{exer:1.17}\leavevmode
-	Let $G$ be a finite group acting (continuously) on a Hausdorff topological space $M$.Prove that the quotient map is closed (i.e. puts closed subsets to closed subsets).
-\end{thing4}
-
-\begin{proof}[Solution]\leavevmode
-The quotient map is $\pi:M\to M/\sim$ where $x \sim y$ if $y=gx$ for some  $g \in G$. To show $\pi$ is closed pick $F \subset M$ closed. We need to show that $\pi(F)$ is closed, so we may show its complement is open. According to the definition of factor topology we want to show that
-\[\pi^{-1}\Big((M/\sim) \setminus \pi(F)\Big)=M\setminus\pi^{-1}(\pi(F))\]
-is open. Now $\pi^{-1}(\pi(F))$ is the set of points that are $G$-related to points in  $F$, namely $\bigcup_{g \in G} gF$. Since $G$ is finite and  acts by homeomorphisms, this set is a finite union of closed sets, which is closed. {\color{7}Looks like the Hausdorff hypothesis is not necessary.}
 \end{proof}
 
 \begin{thing4}{Exercise 1.18*}\leavevmode
@@ -278,46 +67,7 @@ Notice that any open surjective map is closed: let $f:X \twoheadrightarrow Y$ be
 Our objective is to show that the diagonal $\tilde{\Delta}$ in $(M/\sim)\times(M/\sim)$ is closed. The projection of the graph $\Gamma$ is $\tilde{\Delta}$. Since $\Gamma$ is closed, by the remark above it follows that $\tilde{\Delta}$ is closed in $(M/\sim)\times(M/\sim)$ as we needed.
 \end{proof}
 
-\begin{thing4}{Exercise 1.19}\label{exer:1.19}\leavevmode
-	Let $G$ be a finit group acting on a Hausdorff topological space $M$. Prove that $M/G$ with the quotient topology is Hausdorff,
-	\begin{enumerate}[label=(\alph*)]
-	\item (!) when $M$ is compact.
-	\item  (*) for abitrary $M$.
-	\end{enumerate}
-	\textbf{Hint.} Use the previous exercise.
-\end{thing4}
-
-\begin{proof}[{\color{2}Sketch of solution}]\leavevmode
-To use the previous exercise first notice that the action of $G$ induces an equivalence relation on $M$; this follows from group axioms. Then it's enough to show that the projection is closed and that the graph $\Gamma$ of the equivalence relation is closed in $M\times M$. But by Exercise \hyperref[exer:1.17]{1.17} we already know that the projection is closed, so it's enough to show that $\Gamma$ is closed.
-
-Notice that $\Gamma=\bigcup_{x \in X} (Gx)\times (Gx)$, that is, the union of cartesian products of every orbit with itself. Each of these cartesian products is a finite set because $G$ is finite. If $M$ is compact, then {\color{2}…}
-\end{proof}
-
-\begin{thing4}{Exercise 1.20**}\label{exer:1.20}\leavevmode
-Let $M=\mathbb{R}$, and $\sim$ an equivalence relation with at most two elements in each equivalence class. Prove that $\mathbb{R}/\sim$ is Hausdorff, or find a counterexample.
-\end{thing4}
-
-\begin{proof}[Solution]\leavevmode
-By Exercise \hyperref[exer:1.19]{1.19}, if this equivalence relation is induced by a finite-group action, we know the quotient space is Hausdorff. Let's try to show that there always exists a group inducing this equivalence relation. Since every orbit has at most two elements, we can produce a function
-\begin{align*}
-	g: \mathbb{R} &\longrightarrow \mathbb{R} \\
-	x &\longmapsto \begin{cases}
-		y\qquad &\exists y\sim x,y \neq x \\
-		x\qquad & \text{else} 
-	\end{cases} 
-\end{align*}
-This function satisfies $g^2=\operatorname{id}$. So the group $G=\{\operatorname{id},g\}$ acts on $\mathbb{R}$ producing the equivalence relation we began with. {\color{2}But is $g$ continuous?}
-\end{proof}
-
-\begin{thing4}{Exercise 1.21*}[Gluing of closed subsets]\label{exer:1.21}\leavevmode
-Let $M$ be a metrizable topological space, and $Z_i \subset M$ a finite number of closed subsets which do not intersect, grouped into pairs of homeomorphic $Z_i \sim Z_i'$. Let $\sim$ be an equivalence relation generated by these homeomorphisms. Show that $M/\sim$ is Hausdorff.
-\end{thing4}
-
-\begin{proof}[Solution]\leavevmode
-{\color{2}?}
-\end{proof}
-
-\subsection{Compact spaces}
+\section{Compact spaces}
 
 \begin{thing3}{Definition 1.12}\leavevmode
 	A \textit{\textbf{cover}} of a topological space $M$ is a collection of open subsets $\{U_\alpha \in 2^M\}$ such that $\bigcup U_\alpha=M $. A \textit{\textbf{subcover}} of a cover $\{U_\alpha\}$ is a subset $\{U_\beta\}\subset \{U_\alpha\}$. A topological space is called \textit{\textbf{compact}} if any cover of this space has a finite subcover.
@@ -352,35 +102,7 @@ If $M$ is discrete, it's clear that it cannot have a convergent sequence of pair
 \begin{proof}[Solution]\leavevmode
 Let $\{z_i\}$ be a sequence. Since the restricition of a metric to a subset is also a metric, we may use Exercise \hyperref[exer:1.23]{1.23} on the countable metric subspace $\{z_i\}$. Suppose by contradiction that $\{z_i\}$ has no limit point in $M$. In particular it has no limit point in $\{z_i\}$, so by Exercise \hyperref[exer:1.23]{1.23} it is discrete. Then there are neighbourhoods $U_i \ni z_i$ such that $U_i \cap\{z_j\}_{j \neq  i}=\varnothing$. Then $\{U_i\} \cup  (M\setminus \{U_i\})$ is an open cover of $M$, which has a finite subcover. By the pigeon principle, at least one of the $U_i$ contains an infinite number of points in $\{z_i\}$, which is not possible.
 \end{proof}
-
-\begin{thing3}{Definition}[Folland, \textit{Real Analysis}, p. 14-15] \leavevmode
-	A sequence $\{x_n\}$ in a metric space $(X,\rho)$ is called \textit{\textbf{Cauchy}} if $\rho(x_n,x_m)\to 0$ as $n,m \to \infty$. A subset $E$ of $X$ is called \textit{\textbf{complete}} if every Cauchy sequence in $E$ converges and its limit is in $E$. $E$ is called \textit{\textbf{totally bounded}} if for every $\varepsilon>0$, $E$ can be covered by finitely many balls of radius $\varepsilon$.
-\end{thing3}
-
-\begin{thing1}{Theorem 1.6.5}[Burago-Burago-Ivanov, \textit{A course in metric geometry} ]\leavevmode
-	Let $X$ be a metric space. Then the following statements are equivalent:
-	\begin{enumerate}
-	\item $X$ is compact.
-	\item Any sequence in $X$ has a converging subsequence.
-	\item Any infinite subset of $X$ has an accumulation point.
-	\item $X$ is complete and totally bounded.
-	\end{enumerate}
-	[No proof]
-\end{thing1}
-
-\begin{thing1}{Theorem 0.25}[Folland, \textit{Real Analysis}]\leavevmode
-	If $E$ is a subset of the metric space $(X,\rho)$, the following are equivalent:
-	\begin{enumerate}[label=(\alph*)]
-	\item $E$ is complete and totally bounded.
-	\item (\textbf{Bolzano-Weierstrass property}) Every sequence in $E$ has a subsequence that converges to a point of $E$.
-	\item (\textbf{The Heine-Borel Property}) If $\{V_\alpha\}_{\alpha \in A}$ is a cover of $E$ by open sets, there is a finite set $F \subset A $ such that $\{ V_\alpha\}_{\alpha \in F}$ covers $E$.
-	\end{enumerate}
-\end{thing1}
-
-\begin{proof}[Plan of proof]\leavevmode
-	(a) and (b) are equivalent, and  (a) and (b) together imply (c).
-\end{proof}
-
+\iffalse
 \begin{thing4}{Exercise 1.25*}\label{exer:1.25}\leavevmode
 Construct an example of a Hausdorff topological space which is sequentially compact, but not compact.
 \end{thing4}
@@ -398,7 +120,7 @@ Let $G$ be a compact topological group, acting on a topological space $M$ in suc
 \end{thing4}
 
 \begin{proof}[Solution]\leavevmode
-\end{proof}
+\end{proof}\fi
 
 
 \begin{thing4}{Exercise 1.28}[Continuous function maps compact to compact]\label{exer:1.28}\label{exer:1.28}\leavevmode
@@ -429,6 +151,7 @@ We need to see that $f^{-1}$ is continuous, i.e. that $(f^{-1})^{-1}(U)$ is open
 To see $f$ is closed note that since $X$ is compact and  $f$ is bijective, $f(X)=Y$ is also compact by  Exercise \hyperref[exer:1.28]{1.28}. By Exercise \hyperref[exer:1.22]{1.22} a closed subset $F$ of $X$ is compact. Again by continuity, $f(F)$ is compact in  $Y$. Finally by Exercise \hyperref[exer:1.29]{1.29}, since $Y$ is Hausdorff and $f(F)$ is compact, it must be closed.
 \end{proof}
 
+
 \begin{thing3}{Definition 1.15}\leavevmode
 	A topological space $M$ is called \textit{\textbf{pseudocompact}} if any continuous function $f:M\to \mathbb{R}$ is bounded.
 \end{thing3}
@@ -447,8 +170,6 @@ Show that for any continuous function $f:M\longrightarrow \mathbb{R}$ on a compa
 
 \begin{proof}[Solution]\leavevmode
 As in Exercise \hyperref[exer:1.31]{1.31}, the image of $f$ is a bounded set of $ \mathbb{R}$, which means the supremum is well-defined. To see it is attained at a point in $M$ notice that $f(M)$ is compact and thus closed. This means that all its limit points belong to  $f(M)$: if a limit point $z_0$ of the closed set $f(M)$ is not in $f(M)$, then $z_0$ has no neighbourhood contained in $\mathbb{R}\setminus f(M)$, but $\mathbb{R}\setminus f(M)$ is open. In particular  $\operatorname{sup}_{z \in M}f(z)$ is in $f(M)$.
-
-(Extra: proof for sequentially compact.) We construct a sequence of points in $f(X)$ whose limit is  $\operatorname{sup}_{z \in M}f(z)$. (Take balls of radius $1/n$.) This gives a sequence in $X$ which must have a convergent subsequence within $M$. The limit of such sequence is the desired point.
 \end{proof}
 
 \begin{thing4}{Exercise 1.33}\label{exer:1.33}\leavevmode
@@ -461,51 +182,7 @@ First consider the case $n=1$. If  $\{z_n\}$ is a sequence contained in a closed
 Now let's show that $[0,1]^n \subset\mathbb{R}^n$ is also sequentially compact. Chose a sequence $\{z_n\}\subset [0,1]^n$. This gives a sequence in every coordinate, each of which must have a convergent subsequence, {\color{2}but this doesn't give a convergent subsequence in the product…}
 \end{proof}
 
-\begin{thing4}{Exercise 1.34**}\label{exer:1.34}\leavevmode
-Find a pseudocompact Hausdorff topological space which is not compact.
-\end{thing4}
-
-\begin{thing3}{Definition 1.16}\leavevmode
-A map of topological spaces is called \textit{\textbf{proper}} if a preimage of any compact subset is compact.
-\end{thing3}
-
-\begin{thing4}{Exercise 1.35*}\label{exer:1.35}\leavevmode
-Let $f:X\to Y$ be a continuous proper, bijective map of metrizable topological spaces. Prove that $f$ is a homeomorphism, or find a counterexample.
-\end{thing4}
-
-\begin{thing4}{Exercise 1.36*}\label{exer:1.36}\leavevmode
-Let $f:X \to Y$ be a continuous, proper map of metrizable topological spaces. Show that $f$ is closed, or find a counterexample.
-\end{thing4}
-
-\section{Manifolds and sheaves}
-
-\subsection{Topological manifolds}
-
-\begin{thing5}{Remark 2.1}\leavevmode
-	Manifolds can be smooth (of a given "class of smoothness"), real analytic, or topological (continuous). \textit{\textbf{Topological manifold}} is easiest to define, it is a topological space which is locally homeomorphic to an open ball in $\mathbb{R}^n$.
-\end{thing5}
-
-\begin{thing3}{Definition 2.1}\leavevmode
-	\textit{\textbf{An action}} of a group on a manifold is silently assumed to be continuous. Let $G$ be a group acting on a set $M$. The \textit{\textbf{stabilizer}} of $x \in M$ is the subgroup of all elements in $G$ that fix $x$. An action is \textit{\textbf{free}} if the stabilizer of every point os trivial. The \textit{\textbf{quotient space}} $M/G$ is the space of orbits, equipped with the following topology: an open set $U \subset M/G $ is open if its preimage in $M$ is open.
-\end{thing3}
-
-\begin{thing4}{Exercise 2.1}[!]\label{exer:2.1}\leavevmode
-Let $G$ be a finite group acting freely on a Hausdorff manifold $M$. Show that the quotient space $M/G$ is a topological manifold.
-\end{thing4}
-
-\begin{proof}[Solution]\leavevmode
-
-\end{proof}
-
-\begin{thing4}{Exercise 2.2}\label{exer:2.2}\leavevmode
-Construct an example of a finite group $G$ acting non-freely on a topological manifold $M$ m such that $M/G$ is not a topological manifold.
-\end{thing4}
-
-\begin{proof}[Solution]\leavevmode
-Consider the manifold $\mathbb{R}^2$ and a group $G$ generated by some rotation about the origin. This makes the origin the only fixed point of $G$. Any other point has a neighbourhood in which it is the only element in its orbit; such a neighbourhood is mapped diffeomorphically onto the quotient, giving a coordinate chart.
-
-However, any neighbourhood of the origin contains at least two $G$-related elements.  Suppose there is a  coordinate chart of $\bar{0} $ in the quotient. The preimage of this open set is an open set in $\mathbb{R}^2$ containing $0$. The composition of the quotient map and the coordinate chart produce a non-injective map from  $\mathbb{R}^2$ to $\mathbb{R}^2$. If such a map was smooth at $0$, by the inverse function theorem there would be a  neighbourhood of $0$ in which the map would be invertible, a contradiction.
-\end{proof}
+\section{Topological manifolds}
 
 \begin{thing4}{Exercise 2.3}\label{exer:2.3}\leavevmode
 Consider the quotient of  $\mathbb{R}^2$ by the action of $\{\pm  1\}$ that maps $x$ to  $-x$. Is the quotient space a topological manifold?
@@ -515,21 +192,7 @@ Consider the quotient of  $\mathbb{R}^2$ by the action of $\{\pm  1\}$ that maps
 	Yes (it's not \textit{smooth} but it is topological). A homeomorphism between $\mathbb{R}^2/\{\pm 1\}$ and $\mathbb{R}^2$ is $re^{i\theta}\mapsto re^{i2\theta}$ where the angle $\theta$ in the domain is in the interval  $[0,\pi)$ and  $r\in [0,\infty)$. This map is clearly bijective (any equivalence class has a unique representative of the given form) and its continuous inverse is $re^{i\varphi}\mapsto re^{i\varphi/2}$ for $\varphi \in [0,2\pi)$.
 \end{proof}
 
-\begin{thing4}{Exercise 2.4*}\label{exer:2.4}\leavevmode
-Let $M$ be path connected, Hausdorff topological manifold and $G$ a group of all its homeomorphisms. Prove that $G$ acts transitively.
-\end{thing4}
 
-\begin{thing4}{Exercise 2.5**}\label{exer:2.5}\leavevmode
-Prove that any closed subgroup $G \subset \mathsf{GL}(n)$ of a matrix group is homeomorphic to a manifold, or find a counterexample.
-\end{thing4}
-
-\begin{thing5}{Remark 2.2}\leavevmode
-	In the above definition of a manifold, it is not required to be Hausdorff. Nevertheless, in most cases, manifolds are tacitly assumed to be Hausdorff.
-\end{thing5}
-
-\begin{thing4}{Exercise 2.6}\label{exer:2.6}\leavevmode
-Construct an example of a non-Hausdorff manifold.
-\end{thing4}
 
 \begin{thing4}{Exercise 2.7}\label{exer:2.7}\leavevmode
 Show that $\mathbb{R}^2/\mathbb{Z}^2$ is a manifold.
@@ -539,15 +202,7 @@ Show that $\mathbb{R}^2/\mathbb{Z}^2$ is a manifold.
 Let $\bar{z}$ be a point in $\mathbb{R}^2/\mathbb{Z}^2$. Its preimage is the lattice $\{z+(a,b):a,b \in \mathbb{Z}\}$. A ball of radius  $\frac{1}{2}$ centered at any representative of $\bar{z} $ contains only one representative of any other class, so that the restriction of the projection is bijective (and continuous by definition of quotient topology). The inverse map is also continuous by definition of quotient topology: an open set in the ball on $\mathbb{R}^2$ is mapped to an open set in the quotient because its preimage is open.
 \end{proof}
 
-\begin{thing4}{Exercise 2.8}\label{exer:2.8}\leavevmode
-Let $\alpha$ be an irrational number. The group $\mathbb{Z}^2$ acts on $\mathbb{R}$ by the formula $t \mapsto  t +m +n\alpha$. Show that this action is free, but the quotient $\mathbb{R}/\mathbb{Z}^2$ is not a manifold.
-\end{thing4}
-
-\begin{proof}[Solution]\leavevmode
-This action is obviously free since any nonzero pair of integers "moves" any number $t$. The idea is to show that the orbit of every point is dense. This would mean that any open set in the quotient is homeomorphic to $\mathbb{R}$, preventing it from having local neighbourhoods homeomorphic to balls, i.e. being a topological manifold.
-\end{proof}
-
-\subsection{Smooth manifolds}
+\section{Smooth manifolds}
 
 \begin{thing3}{Definition 2.2}\leavevmode
 	A \textit{\textbf{cover}} of a topological space $X$ is a family of open sets $\{U_i\}$ such that $\bigcup_{i} U_i=X$. A cover $\{V_i\}$ is a \textit{\textbf{refinement}} of a cover $\{U_i\}$ if every $V_i$ is contained in some $U_i$.
@@ -578,10 +233,6 @@ A \textit{\textbf{refinement of an atlas}} is a refinement of the corresponding 
 \begin{thing5}{Remark 2.3}\leavevmode
 	Terrible, isn't is?
 \end{thing5}
-
-\begin{thing4}{Exercise 2.12*}\label{exer:2.12}\leavevmode
-Construct an example of two nonequivalent smooth structures on $\mathbb{R}^n$.
-\end{thing4}
 
 \begin{thing3}{Definition 2.6}\leavevmode
 	A \textit{\textbf{smooth function}} on a manifold $M$ is a function $f$ whose restriction to the chart $(U_i,\varphi_i)$ gives a smooth function $f \circ \varphi_i^{-1}:\varphi_i(U_i)\to\mathbb{R}$ for each open subset $\varphi_i(U_i) \subset \mathbb{R}^n$.
@@ -678,9 +329,8 @@ The presheaf condition, that the restriction of a function to
 
 \item Let the open set $U$ be all of $\mathbb{R}^n$. An open cover is given by balls $B_i$ of radius $2/3$ with center in  $i \in\mathbb{Z}^n$.  For every $i \in \mathbb{Z}^n$ define functions $f_i$ that vanish only outside a ball of very small radius, say $1/6$, with center in $i$. These functions coincide (they vanish) in the intersections of the cover, but the function obtained by gluing cannot vanish outside any bounded set: it is non-zero in the union of balls of radius $1/6$ with centers in  $\mathbb{Z}^n$.
 
-\item Item (c) works if we manage to make the functions continuous. This can be done partition of unity. Also we must require that the values of the integrals in the smaller balls of radius $1/6$ do not tend to zero (this way the global integral is an infinite sum of numbers that do not tend to zero, so it cannot be finite).
+\item Item (c) works if we manage to make the functions continuous. This can be done using a {\color{2}partition of unity}. Also we must require that the values of the integrals in the smaller balls of radius $1/6$ do not tend to zero (this way the global integral is an infinite sum of numbers that do not tend to zero, so it cannot be finite).
 \end{enumerate}
 \end{proof}
-
 
 \end{document}
