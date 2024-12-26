@@ -119,6 +119,14 @@ where superscript $c$ means set complement. If this is true then we are done bec
 	To see $W$ is contained in any closed set containing $Z$, suppose $F$ contains $Z$ but not $W$. Then there must be a limit point of $Z$ that is not in $F$. But then $F$ cannot be closed because there is no neighbourhood of such a limit point contained in $F^c$, which should be open. Indeed, if $F^c$ is open then every point contains a neighbourhood contained in $F^c$: at least $F^c$ itself!
 \end{proof}
 
+\begin{thing4}{Exercise 1.6}\label{exer:1.6}\leavevmode
+Let \(f:M \to M'\) be a continuous map of topological spaces. Prove that \(f\left( \lim_{i} x_i \right) =\lim_{i} f(x_i)\) for any convergent sequence \(\{x_i \in M\}\).
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+Let \(U\) be any neighbourhood of the point \(f\left( \lim_{i} x_i \right) \). Then \(f^{-1}(U)\) is a neighbourhood of \(\lim_{i} x_i\), so it must intersect all but a finite number of the \(x_i\). Then all but a finite number of the \(f(x_i)\) must intersect \(U\), meaning \(f\left( \lim_{i} x_i \right) =\lim_{i} f(x_i)\).
+\end{proof}
+
 \begin{thing4}{Exercise 1.7}\label{exer:1.7}\leavevmode
 Let $f:M\to M'$ be a map of metrizable topological spaces, such that $f \left( \lim_{i} x_i \right) =\lim_{i} f(x_i)$ for any convergent sequence $\{x_i \in M\}$. Prove that $f$ is continuous.	
 \end{thing4}
@@ -216,14 +224,38 @@ For the following choices of $S$ we get non-isomorphic topologies:
 {\color{2}There are some topologies missing…}
 \end{proof}
 
-\begin{thing4}{Exercise 1.5}[!]\leavevmode
+\begin{thing4}{Exercise 1.5}[!]\label{exer:1.5}\leavevmode
 	Let $Z_1,Z_2$ be nonintersecting closed subsets of a metrizable space $M$. Find open subsets $U \supset Z_1, V \supset Z_2$ which do not intersect.
 \end{thing4}
 
 \begin{proof}[Solution]\leavevmode
-Consider the distance between $Z_1$ and $Z_2$:
+{\color{2}Consider the distance between $Z_1$ and $Z_2$:
 \[d(Z_1,Z_2):=\operatorname{inf}\{d(z_1,z_2):z_1 \in Z_1, z_2 \in Z_2\}.\]
-We must argue that $d(Z_1,Z_2) \neq 0$. Suppose by contradiction that $d(Z_1,Z_2) = 0$ Then for every  $n \in \mathbb{N}$ there is a pair of points $z_1^n$ and $z_2^n$ such that $d(z_1^n,z_2^n)<1/n$. {\color{2}That distance need not be zero! There must be another way to do this…}
+We must argue that $d(Z_1,Z_2) \neq 0$… but that may not hold!}
+%Suppose by contradiction that $d(Z_1,Z_2) = 0$ Then for every  $n \in \mathbb{N}$ there is a pair of points $z_1^n$ and $z_2^n$ such that $d(z_1^n,z_2^n)<1/n$. {\color{2}That distance need not be zero! There must be another way to do this…}
+
+So consider for \(z_1\in Z_1\) the number
+\[d(z_1,Z_2):=\operatorname{inf}_{z_2\in Z_2}d(z_1,z_2).\]
+This distance \textit{is} positive since otherwise \(z_1\) would be a limit point of \(Z_2\), which is closed, implying that \(z_1 \in Z_2\), but \(Z_1 \cap Z_2=\varnothing\).
+
+Set
+\[r_{z_1}:=\frac{d(z_1,Z_2)}{2}\]
+and
+\[U:=\bigcup_{z_1 \in Z_1} B_{r_{z_1}}(z_1)\]
+where \(B_r(z)\) denotes the ball of radius  \(r\) with center in  \(z\).  \(V\) is defined analgously for  \(Z_2\).
+
+We have defined two open sets \(U \supset Z_1\) and \(V \supset Z_2\). Now let's check they do not intersect. Looking for a contradiction suppose that \(z \in U \cap V\). This gives \(z_1 \in Z_1\) and \(z_2 \in Z_2\) so that
+\[z \in B_{r_{z_1}}(z_1),\qquad z \in B_{r_{z_2}}(z_2),\]
+which means that
+\[d(z,z_1)<r_{z_1}\qquad \text{ and } \qquad d(z,z_2)<r_{z_2}.\]
+By triangle inequality
+\begin{align*}
+d(z_1,z_2)&\leq d(z_1,z)+d(z,z_2)\\
+&<r_{z_1}+r_{z_2}\\
+&=\frac{d(z_1,Z_2)}{2}+\frac{d(z_2,Z_1}{2}\\
+&=\dfrac{\operatorname{inf}_{z_2 \in Z_2}d(z_1,z_2')}{2}+\dfrac{\operatorname{inf}_{z_1 \in Z_1}d(z_1',z_2)}{2}\\
+&\leq \frac{d(z_1,z_2)}{2}+\frac{d(z_1,z_2)}{2}=d(z_1,z_2).
+\end{align*}
 \end{proof}
 
 \begin{thing3}{Definition 1.10}\leavevmode
@@ -272,7 +304,7 @@ is open. Now $\pi^{-1}(\pi(F))$ is the set of points that are $G$-related to poi
 	\textbf{Hint} . Prove that diagonal is closed in $M \times M$.
 \end{thing4}
 
-\begin{proof}[Solution]\leavevmode
+\begin{proof}[{\color{2}Solution here should be corrected}]\leavevmode
 Notice that any open surjective map is closed: let $f:X \twoheadrightarrow Y$ be an open surjective map and $F\subset X$ closed, then $f(X\setminus F)=f(X)\setminus f(F)=Y\setminus f(F)$.
 
 Our objective is to show that the diagonal $\tilde{\Delta}$ in $(M/\sim)\times(M/\sim)$ is closed. The projection of the graph $\Gamma$ is $\tilde{\Delta}$. Since $\Gamma$ is closed, by the remark above it follows that $\tilde{\Delta}$ is closed in $(M/\sim)\times(M/\sim)$ as we needed.
@@ -401,7 +433,7 @@ Let $G$ be a compact topological group, acting on a topological space $M$ in suc
 \end{proof}
 
 
-\begin{thing4}{Exercise 1.28}[Continuous function maps compact to compact]\label{exer:1.28}\label{exer:1.28}\leavevmode
+\begin{thing4}{Exercise 1.28}[Continuous function maps compact to compact]\label{exer:1.28}\leavevmode
 Let $f:X\to Y$ be a continuous map of topological spaces with $X$ compact. Prove that $f(X)$ is also compact.
 \end{thing4}
 
@@ -409,7 +441,7 @@ Let $f:X\to Y$ be a continuous map of topological spaces with $X$ compact. Prove
 	Choose an open cover $\{U_\alpha\}$ of $f(X)$. Then  $\left\{f^{-1}\left( U_\alpha \right) \right\}$ is an open cover of $X$ since $f$ is continuous, and thus it has an open subcover $\{f^{-1}(U_\beta)\}$. I claim that $\{U_\beta\}$ is a cover of $f(X)$: if there was a point $f(x) \not \in \bigcup U_\beta $, then $x$ couldn't be in any of the  $f^{-1}(U_\beta)$, which cover $X$. 
 \end{proof}
 
-\begin{thing4}{Exercise 1.29}[Compact subset of Hausdorff is closed]\label{exer:1.29}\label{exer:1.29}\leavevmode
+\begin{thing4}{Exercise 1.29}[Compact subset of Hausdorff is closed]\label{exer:1.29}\leavevmode
 Let $Z \subset Y$ be a compact subset of a Hausdorff topological space. Prove that it is closed.
 \end{thing4}
 
@@ -446,7 +478,7 @@ Show that for any continuous function $f:M\longrightarrow \mathbb{R}$ on a compa
 \end{thing4}
 
 \begin{proof}[Solution]\leavevmode
-As in Exercise \hyperref[exer:1.31]{1.31}, the image of $f$ is a bounded set of $ \mathbb{R}$, which means the supremum is well-defined. To see it is attained at a point in $M$ notice that $f(M)$ is compact and thus closed. This means that all its limit points belong to  $f(M)$: if a limit point $z_0$ of the closed set $f(M)$ is not in $f(M)$, then $z_0$ has no neighbourhood contained in $\mathbb{R}\setminus f(M)$, but $\mathbb{R}\setminus f(M)$ is open. In particular  $\operatorname{sup}_{z \in M}f(z)$ is in $f(M)$.
+As in Exercise \hyperref[exer:1.31]{1.31}, the image of $f$ is a bounded set of $ \mathbb{R}$, which means the supremum is finite. To see it is attained at a point in $M$ notice that $f(M)$ is compact and thus closed. This means that all its limit points belong to  $f(M)$: if a limit point $z_0$ of the closed set $f(M)$ is not in $f(M)$, then $z_0$ has no neighbourhood contained in $\mathbb{R}\setminus f(M)$, but $\mathbb{R}\setminus f(M)$ is open. In particular  $\operatorname{sup}_{z \in M}f(z)$ is in $f(M)$.
 
 (Extra: proof for sequentially compact.) We construct a sequence of points in $f(X)$ whose limit is  $\operatorname{sup}_{z \in M}f(z)$. (Take balls of radius $1/n$.) This gives a sequence in $X$ which must have a convergent subsequence within $M$. The limit of such sequence is the desired point.
 \end{proof}
@@ -456,9 +488,30 @@ Consider $\mathbb{R}^n$ as a metric space, with the standard (Euclidean) metric.
 \end{thing4}
 
 \begin{proof}[Solution]\leavevmode
-First consider the case $n=1$. If  $\{z_n\}$ is a sequence contained in a closed and bounded set $Z$, then  $\operatorname{sup}_{n \in N}z_n$ is a well-defined element in $Z$. Taking balls of radius $1/m$ we construct a subsequence of  $\{z_n\}$ converging to the $\operatorname{sup}$.
+	First consider the case $n=1$. If  $\{z_i\}$ is a sequence contained in a closed and bounded set $Z$, then  $\operatorname{sup}_{i \in \mathbb{N}}z_i$ is an element in $Z$. Taking balls of radius $1/m$ with center in the supremum we construct a subsequence \(\{z_{i_j}\}\) of  $\{z_i\}$ converging to the $\operatorname{sup}$.
 
-Now let's show that $[0,1]^n \subset\mathbb{R}^n$ is also sequentially compact. Chose a sequence $\{z_n\}\subset [0,1]^n$. This gives a sequence in every coordinate, each of which must have a convergent subsequence, {\color{2}but this doesn't give a convergent subsequence in the product…}
+	Now suppose that $Z \subset\mathbb{R}^n$ is closed and bounded.
+	%Then \(Z\) is contained in a closed rectangle  \([a_1,b_1]\times\ldots\times[a_n,b_n]\). Choose a sequence $\{z_i\}\subset Z$.
+	Projecting gives a sequence in every coordinate, {\color{2}each of which is contained in a closed and bounded set in \(\mathbb{R}\)}, so that they must have convergent subsequences.
+	%{\color{2}But this doesn't give a convergent subsequence in the product since the subsequences may have completely disjoint indices.}
+
+	\begin{claim}\leavevmode
+		Any projection \(\pi:\mathbb{R}^n\to \mathbb{R}\) of a closed and bounded set \(Z\) is closed and bounded.
+	\end{claim}
+	\begin{proof}[Proof of claim]\leavevmode
+	Boundedness is immediate from the fact that the projection of a ball is a ball---this follows from the fact that the absolute value of any coordinate is less or equal than the norm of a vector: \(|x_i|\leq \|x\|\).
+
+	For closedness choose a limit point \(y_0\) of \(\pi(Z)\). This gives a sequence \(\{z_i\} \subset Z\) such that \(\{\pi(z_i)\}\) converges to \(y_0\). By contradiction suppose that there is no \(z_0 \in Z\) such that \(\pi(z_0)=y_0\). Then all \(z \in Z\) are \textit{not} limit points of \(\{z_i\}\): \(\pi\) is continuous, so \(\pi(\lim_{i} z_i)=\lim_{i} \pi(z_i)=y_0\). {\color{2}But that's exactly what this exercise is about!!}
+	\end{proof}
+
+\iffalse
+First let's show that the projection of \(Z\) to any coordinate is a closed. To check this we may use Exercise \hyperref[exer:1.5]{1.5} (disjoint closed sets have non-intersecting neighbourhoods) as follows. Let \(\pi\) any projection \(\mathbb{R}^n \to \mathbb{R}\). Choose a limit point \(y_0 \in \pi(Z)\). By contradiction suppose that there is no point in \(Z\) which is projected onto \(y_0\), that is, \(\pi^{-1}(y_0) \cap Z=\varnothing\). Choose two disjoint open neighbourhoods \(U \supset \pi^{-1}(y_0)\) and \(V \supset Z\).
+
+Note that \(\pi\) is open: the projection of an open ball in \(\mathbb{R}^n\) is an open interval in \(\mathbb{R}\) (because the absolute value of any coordinate is less or equal than the norm of a vector, \(|x_i|\leq \|x\|\)). Then \(\pi(U)\) is an open neighbourhood of \(y_0\), which must intersect \(\pi(Z)\) since \(y_0\) is a limit point of \(\pi(Z)\), a contradiction. This shows \(\pi\) is closed. Also note that \(\pi\) maps bounded sets to bounded sets.
+
+Now choose a sequence $\{z_i\}\subset Z$. Projecting gives a sequence in every coordinate, each of which is contained in a closed and bounded set in \(\mathbb{R}\), so that they must have convergent subsequences. {\color{2}But this doesn't give a convergent subsequence in the product since the subsequences may have completely disjoint indices.}\fi
+
+We must do the process in order. Since the first coordinate gives a bounded sequence in \(\mathbb{R}\), we have a subsequence \(\{z_{i_{j_1}}\}\) of \(\{z_i\}\) for which the first coordinate converges to some number. Then we look at the second coordinate, which is bounded in \(\mathbb{R}\) and gives a subsequence \(\{z_{i_{j_2}}\}\) of \(\{z_{i_{j_1}}\}\) for which the second \textit{and first} coordinates converge. This way we obtain a subsequence \(\{z_{i_{j_n}}\}\) of \(\{z_i\}\) for which all coordinates converge, giving a limit point that is in \(Z\) by construction.
 \end{proof}
 
 \begin{thing4}{Exercise 1.34**}\label{exer:1.34}\leavevmode
@@ -561,11 +614,11 @@ Show that any two covers of a topological space admit a common refinement.
 Let $\{U_i\}$ and $\{U_i'\}$ be covers of a topological space $X$. Then  $\{V_{ij}:=U_i \cap U_j'\}$ is a common refinement. It is obvious that $V_{ij}$ is contained in $U_i$ and $U_j$, so it is a subcover of both covers. And it is also a cover: it $x \in X$ then $x$ must be in some  $U_i$ and some $U_j'$, so that it is in $V_{ij}$.
 \end{proof}
 
-\begin{thing4}{Definition 2.3}\leavevmode
+\begin{thing3}{Definition 2.3}\leavevmode
 	A cover $\{U_i\}$ is an \textit{\textbf{atlas}} if for every $U_i$ we have a map $\varphi_i:U_i\to \mathbb{R}^n$ giving a homeomorphism of $U_i$ with an open subset in  $\mathbb{R}^n$. The \textit{\textbf{transition maps}} 
 	\[\phi_{ij}:\varphi_i(U_i\cap U_j)\to \varphi_j(U_i \cap U_j)\]
 	are induced by the above homeomorphisms. An atlas is \textit{\textbf{smooth}} if all transition maps are smooth (of class $C^\infty$, i.e., infinitely differentiable), \textit{\textbf{smooth of class}} $C^i$ if all transition functions are of differentiability class $C^i$ and \textit{\textbf{real analytic}} if all transition maps admita a Taylor expansion at each point.
-\end{thing4}
+\end{thing3}
 
 \begin{thing3}{Definition 2.4}\leavevmode
 A \textit{\textbf{refinement of an atlas}} is a refinement of the corresponding cover $V_i \subset U_i$ equipped with the maps $\varphi_i:V_i\to \mathbb{R}^n$ that are the restricitions of $\varphi_i:U_i \to \mathbb{R}^n$. Two atlases $(U_i,\varphi_i)$ and $(U_i, \psi_i)$ of class $C^\infty$ of $C^i$ (with the same cover) are \textit{\textbf{equivalent}} in this class if, for all $i$, the map $\psi_i \circ \varphi_i^{-1}$ defined on the corresponding open subset in $\mathbb{R}^n$ belongs to the mantioned class. Two arbitratry atlases are \textit{\textbf{equivalent}} if the corresponding covers possess a common refinement giving equivalent atlases.
@@ -592,7 +645,7 @@ Construct an example of two nonequivalent smooth structures on $\mathbb{R}^n$.
 \end{thing5}
 
 \begin{thing3}{Definition 2.7}\leavevmode
-	A \textit{\textbf{presheaf of functions}} on a topological space $M$ is a collection of subrings $\mathcal{F}(U) \subset C(U)$ in the ring $C(U)$ of all functions on $U$, for each open subset $U \subset M$, such that the restriction of every $\gamma \in \mathcal{F}(U)$ to an open subset $U_1 \subset U$ belongs to $\mathcal{F}(U_1$.
+	A \textit{\textbf{presheaf of functions}} on a topological space $M$ is a collection of subrings $\mathcal{F}(U) \subset C(U)$ in the ring $C(U)$ of all functions on $U$, for each open subset $U \subset M$, such that the restriction of every $\gamma \in \mathcal{F}(U)$ to an open subset $U_1 \subset U$ belongs to $\mathcal{F}(U_1)$.
 \end{thing3}
 
 \begin{thing3}{Definition 2.8}\leavevmode
@@ -679,8 +732,254 @@ The presheaf condition, that the restriction of a function to
 \item Let the open set $U$ be all of $\mathbb{R}^n$. An open cover is given by balls $B_i$ of radius $2/3$ with center in  $i \in\mathbb{Z}^n$.  For every $i \in \mathbb{Z}^n$ define functions $f_i$ that vanish only outside a ball of very small radius, say $1/6$, with center in $i$. These functions coincide (they vanish) in the intersections of the cover, but the function obtained by gluing cannot vanish outside any bounded set: it is non-zero in the union of balls of radius $1/6$ with centers in  $\mathbb{Z}^n$.
 
 \item Item (c) works if we manage to make the functions continuous. This can be done partition of unity. Also we must require that the values of the integrals in the smaller balls of radius $1/6$ do not tend to zero (this way the global integral is an infinite sum of numbers that do not tend to zero, so it cannot be finite).
+
+	{\color{9}Just consider constant functions!}
+\end{enumerate}
+\end{proof}
+
+\begin{thing3}{Definition 2.10}\leavevmode
+	A \textit{\textbf{ringed space}} $(M,\mathcal{F})$ is a topological space equipped with a sheaf of functions. A \textit{\textbf{morphism}} $(M,\mathcal{F}) \xrightarrow{\psi}(N,\mathcal{F})$ of ringed spaces is a continuous map $M \xrightarrow{\psi}N$ such that, for every open subset $U \subset N$ and every function $f \in \mathcal{F}'(U)$, the function $f \circ \Psi$ belongs to the ring $\mathcal{F}(\Psi^{-1}(U))$. An \textit{\textbf{isomorphism}} of ringed spaces is a homeomorphism $\Psi$ such that $\Psi$ and $\Psi^{-1}$ are morphisms of ringed spaces.
+\end{thing3}
+
+\begin{thing5}{Remark 2.6}\leavevmode
+	Usually the term ``ringed space" stands for a more general concept, where the ``sheaf of functions" is an abstract ``sheaf of rings", not necesarily a subsheaf in the sheaf of all functions on  $M$. The above definition is simpler, but less standard.
+\end{thing5}
+
+\begin{thing4}{Exercise 2.16}\label{exer:2.16}\leavevmode
+Let $M, N$ be open subsets in $\mathbb{R}^n$ and let  $\Psi:M \to N$ be a smooth map. Show that $\Psi$ defines a morphism of spaces ringed by smooth functions.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+Let $\mathcal{F}$ be the sheaf of smooth functions on $M$ and  $\mathcal{F}'$ on $N$. Choose an open subset $U\subset M$ and $f \in \mathcal{F}'(U)$. Since $\Psi$ is smooth and composition of smooth functions is smooth, $f \circ \Psi$ is a smooth map.
+\end{proof}
+
+\begin{thing4}{Exercise 2.17}\label{exer:2.17}\leavevmode
+Let $M$ be a smooth manifold of some class and let $\mathcal{F}$ be the space of functions of this class. Show that $\mathcal{F}$ is a sheaf.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+Let $U$ be an open set of $M$. To show $\mathcal{F}$ is a presheaf notice that the restriction of a function of class $C^i$ to an open subset is also of class $C^i$. To show $\mathcal{F}$ is a sheaf fix an open set $U \subset M$, an open cover $\{U_j\}$ of $U$, and a collection of functions $f_j \in \mathcal{F}(U_j)$. As in Exercise \hyperref[exer:2.14]{2.14}, differentiability class $C^i$ is a local condition and thus gluing the $f_j$ produces a $C^i$ function on $U$.
+\end{proof}
+
+\begin{thing4}{Exercise 2.18}[!]\label{exer:2.18}\leavevmode
+Let $M$ be a topological manifold, and let $(U_i,\varphi_i)$ and $(V_j,\psi_j)$ be smooth structures on $M$. Show that these structures are equivalent if and only if the corresponding sheaves of smooth functions coincide.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+First let's clarify what is the sheaf of smooth functions associated to a smooth structure. Let $U \subset M$ be open.  The ring $\mathcal{F}(U)$ associated to the atlas $(U_i,\varphi_i)$ consists of functions $f:U \to \mathbb{R}$ such that $f \circ \varphi_i^{-1}$ is smooth for all $i$.
+
+Also recall that equivalence of smooth structures means that there is a common refinement of the covers $\{U_i\}$ and $\{V_j\}$ such that $\psi_k\circ \varphi_k^{-1}$ is smooth for all $k$ indexing the refinement.
+
+$(\implies )$ Suppose that $(U_i,\varphi_i)$ and $(V_j,\psi_j)$ are equivalent. The corresponding sheaves $\mathcal{F}_1$ and $\mathcal{F}_2$ coincide because functions are smooth with respect to one atlas iff they are smooth with respect to the other. Indeed: fix $U \subset M$ open and a function $f \in\mathcal{F}_1(U)$. Then $f \in \mathcal{F}_2(U)$ since
+\[f \circ \psi^{-1}_j=f \circ (\varphi_i^{-1}\circ \varphi)\circ\psi_j^{-1}=(f \circ \varphi_i^{-1})\circ (\varphi\circ\psi_j^{-1}).\]
+which is smooth.
+
+$(\impliedby)$. Suppose that $\mathcal{F}_1$ and $\mathcal{F}_2$ coincide. Let $W_{ij}:=U_i \cap V_j$ be a common refinement of $\{U_i\}$ and $\{V_j\}$. Set $\varphi_{ij}=\varphi_i|_{W_{ij}}$ and $\psi_{ij}=\psi_j|_{W_{ij}}$. \textbf{We must show that $\psi_{ij}\circ \varphi_{ij}^{-1}$ is smooth.} Idea: to use the fact that the sheaves coincide we can use the coordinate functions of the charts, which are real-valued functions and thus must be elements of the sheaves.
+
+Notice that $\psi_{ij}$ consists of $n:=\dim M$ coordinate functions  $\psi_{ij}^\ell:M \to \mathbb{R}$. Each of this functions is smooth with respect to the smooth structure $(V_j,\psi_j)$ since it is the projection onto the $\ell$-th coordinate, that is,
+\[\psi_{ij}^\ell \circ \psi_{ij}^{-1}(x_1,\ldots,x_\ell,\ldots,x_n)=x_\ell.\]
+Since the sheaf of smooth functions with respect to the smooth structure $(U_i,\varphi_i)$ is the same, $\psi_{ij}^\ell \circ \varphi_{ij}$ must be smooth for all $\ell$, making $\psi_{ij}\circ \varphi_{ij}^{-1}$ smooth.
+\end{proof}
+
+\begin{thing5}{Remark 2.7}\label{rk:2.7}\leavevmode
+This exercise implies that the following definition is equivalent to the one stated earlier.
+\end{thing5}
+
+\begin{thing3}{Definition 2.11}\label{def:2.11}\leavevmode
+	Let $(M,\mathcal{F})$ be a topological manifold equipped with a sheaf of functions. It is said to be a \textit{\textbf{smooth manifold of class}} $C^\infty$ or  $C^i$ if every point in $(M,\mathcal{F})$ has an open neighbourhood isomorphic to the ringed space $(\mathbb{R}^n, \mathcal{F}')$, wherre $\mathcal{F}'$ is a ring of functions on $\mathbb{R}^n$ of this class.
+\end{thing3}
+
+\begin{thing3}{Definition 2.12}\leavevmode
+A \textit{\textbf{coordinate system}} on an open subset $U$ of a manifold $(M,\mathcal{F})$ is an isomorphism between $(U,\mathcal{F})$ and an open subset in $(\mathbb{R}^n,\mathcal{F}')$, where $\mathcal{F}'$ are functions of the same class on $\mathbb{R}^n$.
+\end{thing3}
+
+\begin{thing5}{Remark 2.8}\leavevmode
+In order to avoid complicated notation, from now on we assume that all manifolds are Hausdorff and smooth (of class $C^\infty)$. The case of other differentiability classes can be considered in the same manner.
+\end{thing5}
+
+\begin{thing4}{Exercise 2.19}[!]\label{exer:2.19}\leavevmode
+Let $(M,\mathcal{F})$ and $(N,\mathcal{F}')$ be manifolds and let $\Psi:M \to N$ be a continuous map. Show that the following conditions are equivalent.
+\begin{enumerate}[label=(\roman*)]
+\item In local coordinates $\Psi$ is given by a smooth map
+\item $\Psi$ is a morphism of ringes spaces.
+\end{enumerate}
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+(i)$\implies $(ii). Suppose that in local coordinates $\Psi$ is given by a smooth map. Showing that $\Psi$ is a morphism of ringed is spaces is to show that for any open set $U \subset N$ and smooth function $f \in\mathcal{F}'(U)$, the function $f \circ \Psi$ is smooth on $\Psi^{-1}(U)$. The latter means that for each chart $(U_i,\varphi_i)$ of $\Psi^{-1}(U)$, the composition  $(f \circ\Psi)\circ \varphi_i^{-1}$ is smooth.
+
+\[\begin{tikzcd}[column sep=large,row sep=large]
+	\mathbb{R}&M\arrow[r,"\Psi"]\arrow[d,swap,"\varphi"]\arrow[l,swap,"f \circ \Psi",bend right]& N\arrow[d,"\psi"]\arrow[r,"f",bend left]&\mathbb{R}\\
+	&\mathbb{R}^m\arrow[r,"\psi\circ\Psi\circ \varphi^{-1}",swap]&\mathbb{R}^n
+\end{tikzcd}\]
+The definition of $f$ being smooth in $U$ is that  $f \circ \psi^{-1}_j$ is smooth in any chart $(V_j,\psi_j)$. Starting from $\mathbb{R}^m$, we can go right instead of up to see that
+\[(f \circ \Psi)\circ \varphi^{-1}=(f \circ \psi^{-1}) \circ (\psi \circ \Psi \circ\varphi^{-1}),\]
+which is smooth.
+
+(ii)$\implies $ (i). Now suppose that the pullback of smooth functions (defined on open sets) by $\Psi$ is smooth. Choose the coordinate functions $\psi^\ell$ of a local chart $\psi$. Then $\psi^\ell \circ \Psi \circ \varphi^{-1}$ is smooth for all $\ell$ and for any local chart $(U,\varphi)$ of $M$, making $\psi \circ \Psi \circ \varphi^{-1}$ smooth as well.
+\end{proof}
+
+\begin{thing5}{Remark 2.9}\label{rk:2.9}\leavevmode
+An isomorphism of smooth manifolds is called a \textit{\textbf{diffeomorphism}}. As follows from this exercise, a diffeomorphism is a homeomorphism that maps smooth functions onto smooth ones. {\color{14}Because the inverse map pulls back smooth functions to smooth ones, so the map itself maps smooth functions to smooth ones.}
+\end{thing5}
+
+\subsection{Embedded manifolds}
+
+\begin{thing3}{Definition 2.13}\leavevmode
+A \textit{\textbf{closed embedding}} $\phi:N \hookrightarrow M$ of topological spaces is an injective map from $N$ to a closed subset $\phi(N)$ inducing a homeomorphism of $N$ and $\phi(N)$. An \textit{\textbf{open embedding}} $\phi:N \hookrightarrow M$ is a homeomorphism of $N$ and an open subset of $M$. is an image of a closed embedding.
+\end{thing3}
+
+\begin{thing3}{Definition 2.14}\leavevmode
+Let $M$ be a smooth manifold. $N \subset M$ is called \textit{\textbf{smoothly embedded submanifold of dimension $m$}} if for every point $x \in N$ there is a neighbourhood $U \subset M$ diffeomorphic to an open ball $B \subset \mathbb{R}^n$, such that this diffeomorphism maps $ U \cap N$ onto a linear subspace of $B$ dimension $m$.
+\end{thing3}
+
+\begin{thing4}{Exercise 2.22}\label{exer:2.22}\leavevmode
+Let $(M,\mathcal{F})$ be a smooth manifold and let $N \subset M$ be a smoothly embedded submanifold. Consider the space $\mathcal{F}'(U)$ of smooth functions on $U \subset N$ that are extendable to functions on $M$ defined on some neighbourhood of $U$.
+\begin{enumerate}[label=(\alph*)]
+\item Show that $\mathcal{F}'$ is a sheaf.
+\item  Show that this sheaf defines a smooth structure on $N$.
+\item Show that the natual embedding $(N, \mathcal{F}') \to (M, \mathcal{F})$ is a morphism of manifolds.
+\end{enumerate}
+\textbf{Hint.} To prove that $\mathcal{F}$ is a sheaf, you might need partition of unity introduced below. Sorry.
+\end{thing4}
+\begin{proof}[Solution]\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item To see that $\mathcal{F}'$ is a presheaf fix an open set $U\subset N$ and a function $f \in \mathcal{F}'(U)$. This means that $f$ can be extended to a function $\tilde{f}$ on $M$ defined on some neighbourhood of $U$. Then the restriction of $f $ to any open subset  $U_1 \subset U$ can be extended to the same function \(\tilde{f}\) on $M$ defined on the same neighbourhood of $U$, which is also a neighbourhood of $U_1$. This says that $f|_{U_1}\in\mathcal{F}'(U_1)$.
+
+	To check that $\mathcal{F}'$ is a sheaf consider a cover $ \{ U_i\}$ of $U$ and chose $f_i \in \mathcal{F}(U_i)$ for all $i$ satisfying
+	\[f_i|_{U_i\cap U_j}=f_j|_{U_i \cap U_j},\qquad \forall i,j.\]
+	This means that every $f_i$ can be extended to a function $\tilde{f}_i$ on $M$ defined on some neighbourhood $\tilde{U}_i \subset M$ of $U_i$. Consider $\tilde{U}=\bigcup_{i} \tilde{U}_i$ and the function $\tilde{f}:\tilde{U}\to \mathbb{R}$ given by $x\mapsto \tilde{f}_i(x)$ for any $i$ such that $x \in \tilde{U}_i$. We must make sure that $\tilde{f}_i$ coincide in the $\tilde{U}_i$. Somehow, the fact that they coincide in the intersection of the sets means that they coincide in the whole \(\tilde{U}\).
+
+	\item Suppose that $N$ is a smoothly embedded sumbanifold of dimension $m$.
+
+According to Remark \hyperref[rk:2.7]{2.7} and Definition \hyperref[def:2.11]{2.11} we must show that every point in \((N,\mathcal{F}')\) has an open neighbourhood isomorphic to the ringed space \((\mathbb{R}^m,\mathcal{F}'')\), where \(\mathcal{F}''\) is a sheaf of smooth functions on \(\mathbb{R}^m\).
+		%According to Remark \hyperref[rk:2.9]{2.9}, this means that there are local homeomorphisms between $N$ and \(\mathbb{R}^m\) that map smooth functions to smooth ones.
+
+	Since $N$ is a smoothly embedded submanifold, at every point of $N$ there is a neighbourhood $U$ of $M$ homeomorphic to a ball $B$ in \(\mathbb{R}^n\) such that \(U \cap N\) is mapped to a linear subspace of \(B\). Since \(M\) is a smooth manifold we may suppose (restricting to a smaller open set if necessary) that the same \((U,\mathcal{F})\) is isomorphic to  \((\mathbb{R}^n,\mathcal{F}'')\).
+
+	Let's check that \((U\cap N, \mathcal{F}')\) is isomorphic to \((\mathbb{R}^n,\mathcal{F}'')\). Suppose that \(U\) is isomorphic to  \(\mathbb{R}^m\) via \(\varphi\). It's clear that \(U \cap N\) is homeomorphic to an open subset \(V\) of \(\mathbb{R}^n\) via \(\varphi|_{U \cap N}\).
+
+	Let \(V:=\varphi(U \cap N)\) and \(f'' \in \mathcal{F}''(V)\). Then $f''$ may be smoothly extended to a function on \(\varphi(U)\cong \mathbb{R}^m\): define an extension \(\tilde{f}''(x,y)=f''(x)\); then the partial derivatives with respect to the new variables vanish. Then \(\tilde{f}''\) corresponds to a smooth function on \(U\) by the isomorphism  \((U,\mathcal{F})\cong (\mathbb{R}^m,\mathcal{F}'')\). This shows that the function $f''$ corresponds to a function on \(U \cap N\) that may be extended to a neighbourhood of  \(M\), meaning that it is an element of \(\mathcal{F}'(U \cap N)\).
+
+	Conversely, a function \(f' \in \mathcal{F}'(U\cap N)\) may be smoothly extended to a function on some open set of \(M\) by definition. Intersecting such a set with \(U\) and restricting smooth functions we may suppose it is isomorphic to \((\mathbb{R}^n, \mathcal{F}'')\). Then \(\varphi\) maps the extension of \(f'\) to a smooth function on \(\mathbb{R}^n\), whose restriction to \(V\) is an element of \(\mathcal{F}''(V)\).
+	%\(f' \circ \varphi^{-1}|_{V}\) is a function on \(\mathcal{F}''(V)\).
+
+\item To check that the natural embedding \((N,\mathcal{F}') \xrightarrow{\Psi} (M, \mathcal{F})\) is a morphism of manifolds we must check that it is a continuous map satisfying \(f \circ\Psi \in \mathcal{F}'(\Psi^{-1}(U))\) for any open set \(U \subset M\) and \(f \in \mathcal{F}(U)\).
+
+	Continuity is immediate since {\color{2}$N$ is equipped with the subspace topology}. The second condition is also immediate by definition of \(\mathcal{F}'\).
 \end{enumerate}
 \end{proof}
 
 
+
+\begin{thing4}{Exercise 2.23}\label{exer:2.23}\leavevmode
+Let \(N_1,N_2\) be two manifolds and let \(\varphi_i:N_i\to M\) be smooth embeddings. Suppose that the image of \(N_1\) coincides with that of \(N_2\). Show that \(N_1\) and \(N_2\) are isomorphic.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+%First notice that the condition that the image of \(N_1\) coincides with that of \(N_2\) makes them have the same dimension $m$. Indeed: there are local homeomorphisms \(\varphi_i\) mapping \(N_i \cap U\) to linear subspaces of dimensions \(m_i\) of \(\mathbb{R}^n\), and their composition gives a diffeomorphism between such subspaces. 
+According to Remark \hyperref[rk:2.9]{2.9}, to see that \(N_1\cong N_2\) we must show that there are local homeomorphisms between \(N_2\) and \(N_2\) that map smooth functions to smooth ones.
+
+The smooth structures of \(N_i\) are given by Exercise \hyperref[exer:2.22]{2.22}: they are the sheaves \(\mathcal{F}'_i\), that is, \((N_i,\mathcal{F}'_i)\) are locally isomorphic to \((\mathbb{R}^{n_i},\mathcal{F}'')\) for some \(n_i\). Notice that \(n_1=n_2\) because the image of these embeddings in \(M\) coincides: that means that there is a neighbourhood \(U \subset M\) diffeomorphic to a ball \(B\) in \(\mathbb{R}^m\) such that \(N_i \cap U\) is mapped to the same linear subspace of \(B\) of dimension \(n_1=n_2:=n\).
+
+Local homeomorphisms between \(N_1\) and \(N_2\) may be obtained by composing the local homeomorphisms with \(\mathbb{R}^{n}\) given by each smooth structure:
+
+\[\begin{tikzcd}
+	V_1 \subset N_1\arrow[r,dashed]\arrow[d]&N_2\supset V_2\arrow[d]\\
+	\mathbb{R}^n\arrow[r]&\mathbb{R}^n
+\end{tikzcd}\]
+
+
+The fact that these local homeomorphisms map smooth functions to smooth functions follows from the fact that they are compositions of diffeomorphisms and that the dimensions coincide. (Since the dimensions coincide we can suppose that the map \(\mathbb{R}^{n}\to \mathbb{R}^{n}\) is linear and thus smooth.)
+\end{proof}
+\begin{thing5}{Remark 2.10}\leavevmode
+By the above problem, in order to define a smooth structure on $N$, it sufficies to embed $N$ into \(\mathbb{R}^n\). As it will be clear in the next handout, every manifold is embeddable into \(\mathbb{R}^n\) (assuming it admits partition of unity). Therefore, in place of a smooth manifold, we can use ``manifolds that are smoothly embedded into \(\mathbb{R}^n\)".
+\end{thing5}
+
+
+\subsection{Partition of unity}
+
+\begin{thing4}{Exercise 2.26}\label{exer:2.26}\leavevmode
+Show that an open ball \(\mathbb{B}^n \subset \mathbb{R}^n\) is diffeomorphic to \(\mathbb{R}^n\).
+\end{thing4}
+
+\begin{thing4}{Definition 2.15}\label{def:2.15}\leavevmode
+A cover \(\{U_\alpha\}\) of a topological space \(M\) is called \textit{\textbf{locally finite}} if every point in \(M\) possesses a neighbourhood that intersects only a finite number of \(U_\alpha\).
+\end{thing4}
+
+\begin{thing4}{Exercise 2.27}\label{exer:2.27}\leavevmode
+Let \(\{U_\alpha\}\) be a locally finite atlas on \(M\), and \(U_\alpha\xrightarrow{\phi_\alpha}\mathbb{R}^n\) homeomorphisms. Consider a cover \(\{V_i\}\) of \( \mathbb{R}^n\) given by open balls of radius $n$ centered in integer points, and let \(\{ W_\beta\}\) be a cover of \(M\) obtained as union of \(\phi^{-1}_\alpha(V_i)\). Show that \(\{W_\beta\}\) is locally finite.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+ The result follows from the local finiteness of both \(\{U_\alpha\}\) in \(M\) and \(\{V_i\}\) in \(\mathbb{R}^n\) as follows. (Local finiteness of \(\{V_i\}\) follows from definition of \(\{V_i\}\).)
+
+%{\color{2}I suppose that} \(W_\beta=\phi^{-1}_\alpha(V_i)\) for fixed \(\alpha\) and \(i\). Then \(W_\beta\) is contained in \(U_\alpha\).
+Since \(\{U_\alpha\}\) is locally finite, for a given point $x$ of \(M\) there is a neighbourhood which intersects only a finite number of the \(U_\alpha\). Moreover, since  \(\{V_i\}\) is locally finite, each \(\phi_\alpha(x)\) has a neighbourhood intersecting only finitely many \(V_i\). This results in a collection of neighbourhoods of \(x\) in \(M\), each of which intersects finitely many \(W_\beta\). The result follows by intersecting all these neighbourhoods.
+
+%The same goes if \(W_\beta=\bigcup_{i} \phi_\alpha(V_i)\) for fixed \(\alpha\). If \(W_\beta = \bigcup_{\alpha}\phi^{-1}_\alpha(V_i) \) for fixed $i$ we cannot be certain since \(W_\beta\) may be contained in an uncountable union of the \(U_\alpha\).
+\end{proof}
+
+\begin{thing4}{Exercise 2.28}\label{exer:2.28}\leavevmode
+Let \(\{U_\alpha\}\) be an atlas on a manifold \(M\).
+\begin{enumerate}[label=(\alph*)]
+\item Construct a refinement \(\{W_\beta\}\) of \(\{U_\alpha\}\) such that a closure of each \(W_\beta\) is compact in \(M\).
+\item Prove that such a refinement can be chosen locally finite if \(\{U_\alpha\}\) is locally finite.
+\end{enumerate}
+\textbf{Hint.} Use the previos exercise.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item The refinement is the cover \(\{W_\beta\}\) from Exercise \hyperref[exer:2.27]{2.27}. 
+The closure of \(W_\beta=\phi^{-1}_\alpha(V_i)\) is mapped by \(\phi_\alpha\) to the closure of its image, \(\phi_\alpha(U_\alpha)\cap V_i\). (This is because  \(\phi_\alpha\) is a homeomorphism; by Exercise \hyperref[exer:1.6]{1.6} limit points of the domain map to limit points of the image.) The closure of \(\phi_\alpha(U_\alpha)\cap V_i\) is compact (since it is closed and bounded), and thus its image under \(\phi^{-1}\) is also compact.
+
+\item This is immediate from Exercise \hyperref[exer:2.27]{2.27}.
+\end{enumerate}
+\end{proof}
+
+\begin{thing4}{Exercise 2.29}\label{exer:2.29}\leavevmode
+Let \(K_1, K_2\) be non-intersecting compact subsets of a Hausdorff topological space \(M\). Show that there exist a pair of open subsets \(U_1 \supset K_1\), \(U_2 \supset K_2\) satisfying \(U_1 \cap U_2=\varnothing\).
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+Suppose that for every open subsets \(U_1 \supset K_1\) and \(U_2 \supset K_2\) {\color{2}…}
+\end{proof}
+
+\begin{thing3}{Definition 2.17}\label{def:2.17}\leavevmode
+A \textit{\textbf{function with compact support}} is a function which vanishes outside of a compact set.
+\end{thing3}
+
+\begin{thing3}{Definition 2.18}\label{def:2.18}\leavevmode
+	Let \(M\) be a smooth manifold and let \(\{U_\alpha\}\) be a locally finite cover of \(M\). A \textit{\textbf{partition of unity}} subordinate to the cover \(\{U_\alpha\}\) is a familty of smooth functions \(f_i:M\to [0,1]\) with compact support indexed by the same indices as the \(U_i\)'s and satisfying the following conditions.
+	\begin{enumerate}[label=(\alph*)]
+	\item Every function \(f_i\) vanishes outside \(U_i\).
+	\item \(\sum_i f_i=1\).
+	\end{enumerate}
+\end{thing3}
+
+\begin{thing5}{Remark 2.11}\label{rk:2.11}\leavevmode
+Note that the sum \(\sum_if_i=1\) makes sense only when \(\{U_\alpha\}\) is locally finite.
+\end{thing5}
+
+\begin{thing4}{Exercise 2.34}\label{exer:2.34}\leavevmode
+Show that all derivatives of \(e^{-\frac{1}{x^2}}\) at 0 vanish.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+The first derivative is \(\frac{d}{dx}e^{-x^{-2}}=2x^{-3}e^{-x^{-2}}\), which vanishes at zero. The second derivative is \(2\Big(x^{-3}\frac{d}{dx}e^{-x^{-2}}-3x^{-4}e^{-x^{-2}}\Big)\)
+\end{proof}
+
+\begin{thing4}{Exercise 2.35}\label{exer:2.35}\leavevmode
+Define the following function \(\lambda\) on \(\mathbb{R}^n\) 
+\[\lambda(x)=\begin{cases}
+	e^{\frac{1}{|x|^2-1}}{\color{2}-1}\qquad &\text{ if } |x|<1 \\
+	0\qquad &\text{ if } |x|\geq 1
+\end{cases}\]
+Show that \(\lambda\) is smooth and that all its derivatives vanish at the points of the unit sphere.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+\(\lambda\) is smooth in the unit open ball since it is a composition of smooth functions: real exponent \(e^x\), \(1/x\) for nonzero  $x$ and \(|x|^2-1\). Outside the unit closed ball it is trivially smooth since any point has a neighbourhood in which \(\lambda\) is constant 0. To show that \(\lambda\) is smooth in the unit sphere we must check 
+\end{proof}
 \end{document}
