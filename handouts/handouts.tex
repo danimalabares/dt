@@ -490,9 +490,9 @@ Consider $\mathbb{R}^n$ as a metric space, with the standard (Euclidean) metric.
 \begin{proof}[Solution]\leavevmode
 	First consider the case $n=1$. If  $\{z_i\}$ is a sequence contained in a closed and bounded set $Z$, then  $\operatorname{sup}_{i \in \mathbb{N}}z_i$ is an element in $Z$. Taking balls of radius $1/m$ with center in the supremum we construct a subsequence \(\{z_{i_j}\}\) of  $\{z_i\}$ converging to the $\operatorname{sup}$.
 
-	Now suppose that $Z \subset\mathbb{R}^n$ is closed and bounded.
+	Now suppose that $Z \subset\mathbb{R}^n$ is closed and bounded. Note that any projection \(\pi:\mathbb{R}^n\to \mathbb{R}\) of a closed and bounded set \(Z\) is bounded---this follows from the fact that the absolute value of any coordinate is less or equal than the norm of a vector: \(|x_i|\leq \|x\|\). Then projecting gives a sequence from every coordinate, each of which is contained in a bounded set and thus must have a convergent subsequence (though the limit need not be an element of \(\pi(Z)\)).
 	%Then \(Z\) is contained in a closed rectangle  \([a_1,b_1]\times\ldots\times[a_n,b_n]\). Choose a sequence $\{z_i\}\subset Z$.
-	Projecting gives a sequence in every coordinate, {\color{2}each of which is contained in a closed and bounded set in \(\mathbb{R}\)}, so that they must have convergent subsequences.
+	\iffalse Projecting gives a sequence in every coordinate, {\color{2}each of which is contained in a closed and bounded set in \(\mathbb{R}\)}, so that they must have convergent subsequences.
 	%{\color{2}But this doesn't give a convergent subsequence in the product since the subsequences may have completely disjoint indices.}
 
 	\begin{claim}\leavevmode
@@ -502,7 +502,7 @@ Consider $\mathbb{R}^n$ as a metric space, with the standard (Euclidean) metric.
 	Boundedness is immediate from the fact that the projection of a ball is a ball---this follows from the fact that the absolute value of any coordinate is less or equal than the norm of a vector: \(|x_i|\leq \|x\|\).
 
 	For closedness choose a limit point \(y_0\) of \(\pi(Z)\). This gives a sequence \(\{z_i\} \subset Z\) such that \(\{\pi(z_i)\}\) converges to \(y_0\). By contradiction suppose that there is no \(z_0 \in Z\) such that \(\pi(z_0)=y_0\). Then all \(z \in Z\) are \textit{not} limit points of \(\{z_i\}\): \(\pi\) is continuous, so \(\pi(\lim_{i} z_i)=\lim_{i} \pi(z_i)=y_0\). {\color{2}But that's exactly what this exercise is about!!}
-	\end{proof}
+	\end{proof}\fi
 
 \iffalse
 First let's show that the projection of \(Z\) to any coordinate is a closed. To check this we may use Exercise \hyperref[exer:1.5]{1.5} (disjoint closed sets have non-intersecting neighbourhoods) as follows. Let \(\pi\) any projection \(\mathbb{R}^n \to \mathbb{R}\). Choose a limit point \(y_0 \in \pi(Z)\). By contradiction suppose that there is no point in \(Z\) which is projected onto \(y_0\), that is, \(\pi^{-1}(y_0) \cap Z=\varnothing\). Choose two disjoint open neighbourhoods \(U \supset \pi^{-1}(y_0)\) and \(V \supset Z\).
@@ -511,8 +511,12 @@ Note that \(\pi\) is open: the projection of an open ball in \(\mathbb{R}^n\) is
 
 Now choose a sequence $\{z_i\}\subset Z$. Projecting gives a sequence in every coordinate, each of which is contained in a closed and bounded set in \(\mathbb{R}\), so that they must have convergent subsequences. {\color{2}But this doesn't give a convergent subsequence in the product since the subsequences may have completely disjoint indices.}\fi
 
-We must do the process in order. Since the first coordinate gives a bounded sequence in \(\mathbb{R}\), we have a subsequence \(\{z_{i_{j_1}}\}\) of \(\{z_i\}\) for which the first coordinate converges to some number. Then we look at the second coordinate, which is bounded in \(\mathbb{R}\) and gives a subsequence \(\{z_{i_{j_2}}\}\) of \(\{z_{i_{j_1}}\}\) for which the second \textit{and first} coordinates converge. This way we obtain a subsequence \(\{z_{i_{j_n}}\}\) of \(\{z_i\}\) for which all coordinates converge, giving a limit point that is in \(Z\) by construction.
+We to construct a subsequence of the original sequence we must construct subsequences of every coordinate one by one: since the first coordinate gives a bounded sequence in \(\mathbb{R}\), we have a subsequence \(\{z_{i_{j_1}}\}\) of \(\{z_i\}\) for which the first coordinate converges to some number. Then we look at the second coordinate, which is bounded in \(\mathbb{R}\) and gives a subsequence \(\{z_{i_{j_2}}\}\) of \(\{z_{i_{j_1}}\}\) for which the second \textit{and first} coordinates converge. This way we obtain a subsequence \(\{z_{i_{j_n}}\}\) of \(\{z_i\}\) for which all coordinates converge, so that the subsequence must be convergent itself. Since \(Z\) is closed, the limit point must be in \(Z\).
 \end{proof}
+
+\begin{remark}\leavevmode
+	A more straightforward proof is given by the so-called "lion's chase"---dividing the closed and bounded set in smaller sets.
+\end{remark}
 
 \begin{thing4}{Exercise 1.34**}\label{exer:1.34}\leavevmode
 Find a pseudocompact Hausdorff topological space which is not compact.
@@ -816,7 +820,11 @@ The definition of $f$ being smooth in $U$ is that  $f \circ \psi^{-1}_j$ is smoo
 \[(f \circ \Psi)\circ \varphi^{-1}=(f \circ \psi^{-1}) \circ (\psi \circ \Psi \circ\varphi^{-1}),\]
 which is smooth.
 
+{\color{2}Misha: this is almost trivial, should be easier.}
+
 (ii)$\implies $ (i). Now suppose that the pullback of smooth functions (defined on open sets) by $\Psi$ is smooth. Choose the coordinate functions $\psi^\ell$ of a local chart $\psi$. Then $\psi^\ell \circ \Psi \circ \varphi^{-1}$ is smooth for all $\ell$ and for any local chart $(U,\varphi)$ of $M$, making $\psi \circ \Psi \circ \varphi^{-1}$ smooth as well.
+
+{\color{2}Misha: and this shouldn't be that easy.}
 \end{proof}
 
 \begin{thing5}{Remark 2.9}\label{rk:2.9}\leavevmode
@@ -848,8 +856,17 @@ Let $(M,\mathcal{F})$ be a smooth manifold and let $N \subset M$ be a smoothly e
 
 	To check that $\mathcal{F}'$ is a sheaf consider a cover $ \{ U_i\}$ of $U$ and chose $f_i \in \mathcal{F}(U_i)$ for all $i$ satisfying
 	\[f_i|_{U_i\cap U_j}=f_j|_{U_i \cap U_j},\qquad \forall i,j.\]
-	This means that every $f_i$ can be extended to a function $\tilde{f}_i$ on $M$ defined on some neighbourhood $\tilde{U}_i \subset M$ of $U_i$. Consider $\tilde{U}=\bigcup_{i} \tilde{U}_i$ and the function $\tilde{f}:\tilde{U}\to \mathbb{R}$ given by $x\mapsto \tilde{f}_i(x)$ for any $i$ such that $x \in \tilde{U}_i$. We must make sure that $\tilde{f}_i$ coincide in the $\tilde{U}_i$. Somehow, the fact that they coincide in the intersection of the sets means that they coincide in the whole \(\tilde{U}\).
+	This means that every $f_i$ can be extended to a function $\tilde{f}_i$ on $M$ defined on some neighbourhood $\tilde{U}_i \subset M$ of $U_i$. Consider $\tilde{U}=\bigcup_{i} \tilde{U}_i$; we must construct a smooth function on all of \(\tilde{U}\) from the \(\tilde{f}_i\).
+	
+	The natural choice is to try to define a function $\tilde{f}:\tilde{U}\to \mathbb{R}$ given by $x\mapsto \tilde{f}_i(x)$ for any $i$ such that $x \in \tilde{U}_i$. This may not work since the \(\tilde{f}_i\) may not coincide in the intersections \(\tilde{U}_i\cap \tilde{U}_j\) outside $N$.
 
+	{\color{2}Suppose there is a partition of unity} \(\{\nu_i\}\) subordinate to the cover \(\{\tilde{U}_i\}\). Then each \(\tilde{f}_i\nu_i\) is a smooth function defined on \(\tilde{U}\), and so is the function \(F=\sum_i \tilde{f}_i\nu_i\).
+
+	To conclude we must show that the restriction of \(F\) to any \(U_j\) coincides with \(f_j\). Let \(x \in U_j\) for some $j$. Then
+	\begin{align*}
+	F(x)&=\sum_i\tilde{f}_i(x)\tilde{\nu}_i(x)=\sum_if_i(x)\tilde{\nu}_i(x)=f_j(x)\sum_i\tilde{\nu}_i(x)=f_j(x)
+	\end{align*}
+since the original functions \(f_i\) coincide in the intersections.
 	\item Suppose that $N$ is a smoothly embedded sumbanifold of dimension $m$.
 
 According to Remark \hyperref[rk:2.7]{2.7} and Definition \hyperref[def:2.11]{2.11} we must show that every point in \((N,\mathcal{F}')\) has an open neighbourhood isomorphic to the ringed space \((\mathbb{R}^m,\mathcal{F}'')\), where \(\mathcal{F}''\) is a sheaf of smooth functions on \(\mathbb{R}^m\).
@@ -870,8 +887,6 @@ According to Remark \hyperref[rk:2.7]{2.7} and Definition \hyperref[def:2.11]{2.
 \end{enumerate}
 \end{proof}
 
-
-
 \begin{thing4}{Exercise 2.23}\label{exer:2.23}\leavevmode
 Let \(N_1,N_2\) be two manifolds and let \(\varphi_i:N_i\to M\) be smooth embeddings. Suppose that the image of \(N_1\) coincides with that of \(N_2\). Show that \(N_1\) and \(N_2\) are isomorphic.
 \end{thing4}
@@ -891,6 +906,8 @@ Local homeomorphisms between \(N_1\) and \(N_2\) may be obtained by composing th
 
 
 The fact that these local homeomorphisms map smooth functions to smooth functions follows from the fact that they are compositions of diffeomorphisms and that the dimensions coincide. (Since the dimensions coincide we can suppose that the map \(\mathbb{R}^{n}\to \mathbb{R}^{n}\) is linear and thus smooth.)
+
+{\color{2}This should also be done better.}
 \end{proof}
 \begin{thing5}{Remark 2.10}\leavevmode
 By the above problem, in order to define a smooth structure on $N$, it sufficies to embed $N$ into \(\mathbb{R}^n\). As it will be clear in the next handout, every manifold is embeddable into \(\mathbb{R}^n\) (assuming it admits partition of unity). Therefore, in place of a smooth manifold, we can use ``manifolds that are smoothly embedded into \(\mathbb{R}^n\)".
@@ -915,8 +932,7 @@ Let \(\{U_\alpha\}\) be a locally finite atlas on \(M\), and \(U_\alpha\xrightar
  The result follows from the local finiteness of both \(\{U_\alpha\}\) in \(M\) and \(\{V_i\}\) in \(\mathbb{R}^n\) as follows. (Local finiteness of \(\{V_i\}\) follows from definition of \(\{V_i\}\).)
 
 %{\color{2}I suppose that} \(W_\beta=\phi^{-1}_\alpha(V_i)\) for fixed \(\alpha\) and \(i\). Then \(W_\beta\) is contained in \(U_\alpha\).
-Since \(\{U_\alpha\}\) is locally finite, for a given point $x$ of \(M\) there is a neighbourhood which intersects only a finite number of the \(U_\alpha\). Moreover, since  \(\{V_i\}\) is locally finite, each \(\phi_\alpha(x)\) has a neighbourhood intersecting only finitely many \(V_i\). This results in a collection of neighbourhoods of \(x\) in \(M\), each of which intersects finitely many \(W_\beta\). The result follows by intersecting all these neighbourhoods.
-
+Since \(\{U_\alpha\}\) is locally finite, for a given point $x$ of \(M\) there is a neighbourhood which intersects only a finite number of the \(U_\alpha\). Moreover, since  \(\{V_i\}\) is locally finite, each \(\phi_\alpha(x)\) has a neighbourhood intersecting only finitely many \(V_i\). In conclusion, for each \(\alpha\) there are finitely many \(W_\beta\) determined by the \(V_i\), and there are finitely many \(U_\alpha\) which intersect at a given point.
 %The same goes if \(W_\beta=\bigcup_{i} \phi_\alpha(V_i)\) for fixed \(\alpha\). If \(W_\beta = \bigcup_{\alpha}\phi^{-1}_\alpha(V_i) \) for fixed $i$ we cannot be certain since \(W_\beta\) may be contained in an uncountable union of the \(U_\alpha\).
 \end{proof}
 
@@ -943,7 +959,75 @@ Let \(K_1, K_2\) be non-intersecting compact subsets of a Hausdorff topological 
 \end{thing4}
 
 \begin{proof}[Solution]\leavevmode
-Suppose that for every open subsets \(U_1 \supset K_1\) and \(U_2 \supset K_2\) {\color{2}…}
+	(With some help from {\color{6}ChatGPT}). Fix a point \(y \in K_2\). Since \(M\) is Hausdorff, for every \(x \in K_1\) there are disjoint neighbourhoods \(U_{xy} \ni x\) and \(V_{xy} \ni y\). This means that \( \{U_{xy}\}_{x \in X}\) is an open cover of \(K_1\), which must have a finite subcover \(U_{x_1y},\ldots,U_{x_{n_y}y}\). These open sets correspond to open sets \(V_{x_1y},\ldots,V_{x_{n_y}y}\), {\color{6}the intersection of which is a neighbourhood of $y$ disjoint from \(\bigcup_{i=1}^{n_{y}}U_{x_iy}\).}
+
+Denote this intersection by \(V_y:=\bigcap_{i=1}^{n_{y}}V_{x_iy}\). Then \(\{V_y\}_{y \in Y}\) is an open cover of \(Y\), which must have a finite subcover \(V_{y_1},\ldots,V_{y_m}\). Each \(V_{y_j}\) is associated to an open cover of \(K_1\), from which it is disjoint. The intersection of (the unions of) these \(m\) covers of \(K_1\) is an open set containing \(K_1\), and it is disjoint from \(\bigcup_{j=1}^mV_{y_j} \supset K_2\).
+\end{proof}
+\iffalse
+\begin{proof}[Solution]\leavevmode
+Since \(M\) is Hausdorff, for every pair of points \(x \in K_1\) and \(y \in K_2\) there are open sets \(U \ni x\) and \(V \ni y\) such that \(U \cap V= \varnothing\). In other words, for every point \((x,y) \in K_1 \times K_2\) there is an open neighbourhood \(U\times V\) that does not intersect the diagonal \(\Delta \subset M \times M\). Since \(K_1 \times K_2\) is compact, there is a finite cover \(W= \bigcup_{i} U_i \times V_i\) of \(K_1 \times K_2\) that does not intersect the diagonal.
+
+This is not enough for finding two disjoint neighbourhoods of \(K_i\): we must ensure that \(U_i \cap V_j=\varnothing\) for \(i \neq  j\). This is the same as showing that \(\left(\bigcup_{i} U_i \times V_i\right)\cup \left( \bigcup_{i} V_i \times U_i \right) \) does not intersect the diagonal.
+
+This means that there are pairs \((x_1,y_1,),\ldots,(x_k,y_k)\) and open sets (disjoint from the diagonal) \(U_i\times V_i \ni (x_i,y_i)\) so that \(\mathcal{U}:=\bigcup_{i}^k U_i \supset K_1\) and  \(\mathcal{V}:=\bigcup_{i}^k V_i\supset K_2\) are neighbourhoods of \(K_1\) and \(K_2\).
+
+Note that \(\mathcal{U} \cap \mathcal{V}\) may not be empty: it could happen that \(U_i \cap V_j \neq  \varnothing\) for \(i \neq  j\). In other words, \(\mathcal{U} \times \mathcal{V}\) may intersect \(\Delta\). However, since \(\Delta\) is closed, the set \((\mathcal{U}\times \mathcal{V})\setminus\Delta\) remains open in \(M \times M\) (it is the intersection of two open subsets).
+
+Is the projection open? If so, then \(\pi_i(\mathcal{U} \times \mathcal{V} \setminus \Delta)\) would be the solution. But is it? Maybe finally using compactness… the projection of each \(K_i\) is compact, but we don't know whether the projection of \(\Delta\) is closed. So \(K_1\) is compact in \(\mathcal{U}\). Which means that \(\mathcal{U}\setminus K_1\) is open. But what about \(\mathcal{U} \setminus\pi(\Delta)\)? {\color{6}the argument here is that simply removing the points that ``appear twice" does not stop the sets from being open.}
+
+
+This is because the cartesian product of two unions contains more elements than the union of cartesian products. We may consider instead \(\pi_1(W):= \mathcal{U}\) and \(\pi_2(W):= \mathcal{V}\) where \(\pi_i\) are the projections.
+
+I know that \(U_i \times V_i\) and \(U_j \times V_j\) do not intersect \(\Delta\). But \(U_i \times V_j\) is not
+
+Our objective is to show that there is an open neighbourhood \(W= \bigcup_{i} U_i \times V_i\) of \(K_1 \times K_2\) that does not intersect the diagonal. Suppose there is no such neighbourhood. Then every neighbourhood \(W\) of \(K_1\times K_2\) contains a point in \(\Delta\).
+
+Since the diagonal is closed and \(K_1 \times K_2\) is compact.
+
+If we show that \(K_1 \times K_2\) is compact, this would yield a finite cover open cover
+
+
+
+
+	Suppose that for every open subsets \(U_1 \supset K_1\) and \(U_2 \supset K_2\) there is a point \(z \in U_1 \cap U_2\). We can separate \(z\) from \(K_1\) by considering \(\bigcup_{i} U\)
+
+What about ``sequence converging to set" or ``limit set of a set"? It means that every  neighbourhood of this set \(L\) contains points of \(K_1\) other than those of \(L_1\). If I show: \textbf{claim}: if \(K_1\) is compact and \(L\) is a limit set of \(K_1\) then \(L \subset K_1\), am I done?
+\end{proof}
+\fi
+
+\begin{thing4}{Exercise 2.30}[!]\label{exer:2.30}\leavevmode
+Let \(U \subset M\) be an open subset with compact closure, and \(V \supset M\setminus U\) another open subset. Prove that there exists \(U' \subset U\) such that the closure of \(U'\) is contained in \(U\), and \(V \cup  U'=M\).
+
+\textbf{Hint.} Use the previous exercise.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+	(Without using the previous exercise.) Notice that the sets \(U\) and  \(V\) are a cover of \(M\).
+\end{proof}
+
+\begin{proof}[Solution]\leavevmode
+We can split \(U\) into two parts: \(W:=U\cap V\) and \(W':=U\setminus V\). Since the closure of \(U\) is compact, so are the closures of \(W\) and \(W'\), but the may not be disjoint, so we cannot apply Exercise \hyperref[exer:2.29]{2.29}. We must produce a smaller set
+
+What about \(W'=U \setminus V\) and any point in \(U\) outside the close of \(W'\)? If the closure of \(W'\) contained all of \(U\),  
+
+By Exercise \hyperref[exer:2.29]{2.29} there are two open sets \(W_1 \supset W\) and \(W_1' \supset W'\) 
+
+What about the complement of the closure of \(U\)? It is an open subset of \(M\).
+
+\end{proof}
+
+\begin{thing3}{Definition 2.16}\label{def:2.16}\leavevmode
+Let \(U \subset V\) be two open subsets of \(M\) such that the closure of \(U\) is contained in \(V\). In this case we write \(U \Subset V\).
+\end{thing3}
+
+\begin{thing4}{Exercise 2.31}[!]\label{exer:2.31}\leavevmode
+Let \(\{U_\alpha\}\) be a countable locally finite cover of a Hausdorff topological space, such that a closure of each \(U_\alpha\) is compact. Prove that there exists another cover \(\{V_\alpha\}\) indexed by the same set, such that \(V_\alpha \Subset U_\alpha\).
+
+\textbf{Hint.} Use induction and the previous exercise.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+In order to use Exercise \hyperref[exer:2.30]{2.30} consider for every \(\alpha\) the set \(W_\alpha=\bigcup_{\beta \neq  \alpha} U_\beta\). Then \(W_\alpha \supset M\setminus U_\alpha\), so that there exists \(U'_\alpha \Subset U_\alpha\) and \(W_\alpha \cup U'_\alpha=M\). It remains to show that \(\{U'_\alpha\}\) is a cover. Let \(x \in M\) be any point. Then for each \(\alpha\) either \(x \in U'_\alpha\), in which case we are done, or \(x \in W_\alpha\)
 \end{proof}
 
 \begin{thing3}{Definition 2.17}\label{def:2.17}\leavevmode
@@ -967,7 +1051,25 @@ Show that all derivatives of \(e^{-\frac{1}{x^2}}\) at 0 vanish.
 \end{thing4}
 
 \begin{proof}[Solution]\leavevmode
-The first derivative is \(\frac{d}{dx}e^{-x^{-2}}=2x^{-3}e^{-x^{-2}}\), which vanishes at zero. The second derivative is \(2\Big(x^{-3}\frac{d}{dx}e^{-x^{-2}}-3x^{-4}e^{-x^{-2}}\Big)\)
+	First notice that the function \(e^{-x^{-2}}\) is not defined at 0. However, the limit as \(x \to 0\) is zero, so that defining the function to be 0 at \(x=0\) preserves continuity. The same will happen with its derivatives.
+
+	The first derivative is
+	\[\frac{d}{dx}e^{-x^{-2}}=2x^{-3}e^{-x^{-2}}.\]
+Since exponential decay is faster than polynomial decay, the limit as \(x \to 0\) is zero.
+
+	The second derivative is
+\begin{align*}
+	\frac{d^2}{dx^2}e^{-x^{-2}}&=2\Big(x^{-3}{\color{6}\frac{d}{dx}e^{-x^{-2}}}-3x^{-4}e^{-x^{-2}}\Big)\\
+&=2\Big(x^{-3}{\color{6}2x^{-3}e^{-x^{-2}}}-3x^{-4}e^{-x^{-2}}\Big)\\
+&=P_2(x)e^{-x^{-2}}
+\end{align*}
+where \(P_2(x)\) is some polynomial, so that again the limit as \(x \to 0\) is zero. Proceeding by induction suppose that the \(n\)-th derivative is the product of some polynomial \(P_n(x)\) times \(e^{-x^{-2}}\). Then the \((n+1)\)-th derivative is
+\begin{align*}
+	\frac{d^{n+1}}{dx^{n+1}}e^{-x^{-2}}&=\frac{d}{dx}\left(\frac{d^n}{dx^n}e^{-x^{-2}}\right)\\
+&=\frac{d}{dx}\left(P_n(x)e^{-x^{-2}}\right)\\
+&=P'_n(x)e^{-x^{-2}}+P_n(x)\frac{d}{dx}e^{-x^{-2}}\\
+&=P'_n(x)e^{-x^{-2}}+P_n(x)P_1(x)e^{-x^{-2}}.
+\end{align*}
 \end{proof}
 
 \begin{thing4}{Exercise 2.35}\label{exer:2.35}\leavevmode
