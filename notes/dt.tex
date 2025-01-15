@@ -1,15 +1,12 @@
-\input{/Users/daniel/github/config/preamble.sty}%available at github.com/danimalabares/config
-\input{/Users/daniel/github/config/thms-eng.sty}%available at github.com/danimalabares/config
+\input{/Users/daniel/github/config/preamble-por.sty}%available at github.com/danimalabares/config
+%\input{/Users/daniel/github/config/thms-por.sty}%available at github.com/danimalabares/config
 
 \newcommand{\rightlooparrow}{\mathbin{
     \vbox{\openup-10.25pt\halign{\hss$##$\hss\cr\circ\cr\longrightarrow\cr}}
 }}
-\usepackage[style=authortitle-terse,backend=bibtex]{biblatex}
-\addbibresource{~/github/config/bibliography.bib}
-
-\setcounter{secnumdepth}{2}
 
 \begin{document}
+\bibliographystyle{alpha}
 
 \begin{minipage}{\textwidth}
 	\begin{minipage}{1\textwidth}
@@ -21,10 +18,31 @@
 
 \vspace{10pt}
 {\huge Topologia Diferencial}
-
+\tableofcontents
 \section{Aula 1}
 
-Função suave. Espaço tangente.
+\subsection{Plano do curso, bibliografia}
+
+Cronograma
+\begin{enumerate}
+	\item[0.] Revisão de variedades.
+	\item Transversalidade: Sard, top. forte, fraca, aproximação.
+	\item  Teoria da interseção e indice.
+	\item Teoria de Morse.
+	\item Tópicos adicionais (possiveis): h-cobordismo, top. de baixa dimensão, Poincaré \(n\geq 5\).
+\end{enumerate}
+
+Bibliografía: \cite{milnordt} (intuição),  \cite{gui} (tranqui, tem muito), \cite{hirsch} (pesado, tem tudo, e importante ler, usa Análise Funcional). 
+
+\subsection{Resumo da aula 1}
+
+\begin{enumerate}
+\item Revisão de vriedades, espaço topológico, 2-enumerável, 2-contável, Hausdorff, loc. euclidiano, dimensão é fixa nas componentes conexas, def. de carta, atlas, atlas \(C^k\), atlas maximal. \textbf{Obs.} Existem atlas que não contém sub atlas \(C^k\).
+\item \textbf{Teorema.} \(k=1,\ldots, +\infty\) tuda \(C^k\)-variedade é  \(C^k\)-difeomorfa a uma \(C^\infty\)-variedade.
+\item \textbf{Teorema.} \(1 \leq  \ell \leq  k \leq +\infty\), se \(M,N\) são \(C^k\)-variedades, \(C^\ell\)-difeomorfas, então \(M\) e $N$ são \(C^k\)-difeomorfas. {\color{2}No será \(\ell?\)}
+\item \textbf{Partições da unidade}. Definição. \textbf{Exercício:} toda variedade topológica é paracompacta. \textbf{Teorema:} \(M\) variedade \(C^\infty\) e \(\{ U_i\}\) cobertura, então existe \(C^\infty\) partição da unidade subordinada. 
+\end{enumerate}
+
 
 \section{Aula 2}
 
@@ -111,7 +129,7 @@ onde \(\frac{\partial f_i}{\partial x^j}\) é definida como
 \[D(\psi \circ f \circ \varphi^{-1})_{ij}=\frac{\partial }{\partial x^j}(\psi \circ \varphi \circ \varphi^{-1})\]
 \end{defn}
 
-\begin{defn}[Imersão]\leavevmode
+\begin{defn}\leavevmode
 Seja \(f:M \to N\) uma função suave. \(f\) é uma \textit{\textbf{imersão em $p$}} se a derivada \(Df_p\) é injetiva. \(f\) é uma \textit{\textbf{submersão em $p$}} se \(Df_p\) é sobrejetiva. \(f\) é um \textit{\textbf{mergulho}} se é uma imersão injetiva tom inversa \(g:f(M) \to M\) contínua.
 \end{defn}
 
@@ -250,7 +268,7 @@ E para fibrado vetorial \(E\),
 	Qualquer seção é um mergulho de \(M\) em \(E\).
 \end{exercise}
 
-\begin{thing6}{Extra}\leavevmode
+\begin{thing6}{Mais uma}\leavevmode
 $g$ uma métrica Riemanniana em \(TM\).
 \[g_p:T_pM \times T_p M \to \mathbb{R}\]
 
@@ -260,8 +278,210 @@ $g$ uma métrica Riemanniana em \(TM\).
 \end{align*}
 Então o \textit{\textbf{gradiente}} de \(f\) é
 \[(g^\sharp _p)^{-1}(df_p):=\operatorname{grad}_pf\]
-
-
 \end{thing6}
 
+\section{Aula 3: Teorema de Sard}
+
+\subsection*{Teorema da função implícita (aula pasada)}
+
+Uma função \(f:\mathbb{R}^n \to \mathbb{R}^m\) suave tal que \(f(0)=0\) e  \(f'(0)\) é sobrejetiva (\(\implies n \geq m\)). Então existe uma vizinhança de \(0 \in \mathbb{R}^n\) \(U\) e \(\tilde{U}\) \textbf{e um difeomorfismo} \(\varphi: U \to \tilde{U}\) tal que
+\begin{align*}
+	f \circ \varphi: \mathbb{R}^m \times \mathbb{R}^{n-m} &\longrightarrow \mathbb{R}^m \\
+	(x,y) &\longmapsto x
+\end{align*}
+
+\begin{proof}\leavevmode
+Parecido como a prova de \cite{tus} no teorema do valor regular, usando uma matrix com um \(*\), a identidade, e uma matriz invertível.
+\end{proof}
+
+\subsection{Transversalidade: Teorema de Sard}
+
+A prova do teorema de Sard é muito técnica. Porém, a parte difícil é só análise em \(\mathbb{R}^n\).
+
+Pegue \(a=(a_1,\ldots,a_n),b=(b_1,\ldots,b_n) \in \mathbb{R}^n\), defina um \textit{\textbf{cubo}} como sendo
+\[c(a,b)=\prod_{i=1}^n ]a_i,b_i[ \subset \mathbb{R}^n.\]
+Note que \(\operatorname{Vol}(a,b)=\prod_{i=1}^n(b_i-a_i).\)
+
+\begin{defn}\leavevmode
+\(S \subset \mathbb{R}^n\) possui \textit{\textbf{medida nula}} se \(\forall  \varepsilon >0\) existe \(\{c_i\}_{i=1}^\infty\) cubos (ou bolas) tais que \[S \subset \bigcup_{i=1}^\infty \operatorname{Vol}(c_i)<\varepsilon\]
+\end{defn}
+
+\begin{prop}\leavevmode
+	\begin{enumerate}
+	\item Uma união enumerável de conjuntos de medida nula tem medida nula.
+	\item \(f : \mathbb{R}^n \to \mathbb{R}^n\) \(C^1\) e \(S \subset \mathbb{R}^n\) tem medida nula, então \(f(S)\) tem medida nula.
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}\leavevmode
+\begin{enumerate}
+\item \(\{S_i\}\) enumerável de medida nula, para cada $i$ você pode escolher cubos \(C^i_1,C^i_2,\ldots\) que cobren \(S_i\) e tal que a soma dos volumes deles é menor do que \(\sum_j \operatorname{Vol}(C^i_j)<\frac{\varepsilon}{2^i}\). Vai ver que a soma dos volumeis variando tanto \(i\) como \(j\) da \(\varepsilon\).
+
+\item (Foto)
+\end{enumerate}
+\end{proof}
+
+\begin{defn}\leavevmode
+	\(X\) variedade diferenciável. \(S \subset X\). Dizemos que \(S\) tem \textit{\textbf{medida nula}} se \(\exists \{U_i\}_{i=1}^\infty\) cobertura aberta de \(S\), i.e. \(\bigcup_{i=1}^\infty S_i \supset S\), e cartas \(\varphi_i:U_i\to \mathbb{R}\) e \(S_i \subset U_i\) e \(\varphi(S)\) tem medida nula.
+
+	O más bien: sólo el chiste es que cada conjunto tiene medida en \(\mathbb{R}^n\) cuando proyectas con cualquier carta.
+\end{defn}
+
+\begin{coro}\leavevmode
+	\begin{enumerate}
+	\item \(\{S_i\}_{i=1}^\infty\).  \(S_i \subset X\) medida nula, entao \(\bigcup_{i \in \mathbb{N}}S_i\) tem medida nula.
+	\item \(X^n, Y^n\) variedades, \(f:X \to Y\) suave, \(S \subset X\) medida nula. Então \(f(S)\) tem medida nula.
+	\end{enumerate}
+\end{coro}
+
+\begin{prop}\leavevmode
+\(Y^n\) variedade, \(X^m \subset Y^n\) subvariedade de dimensão \(m <n\). Então \(X\) tem medida nula.
+\end{prop}
+
+\begin{proof}\leavevmode
+É simplesmente levar para \(\mathbb{R}^n\): considera \(X_i\) como a parte de \(X\) que está den'de cada  \(U_i\) no atlas de \(Y\) e vai ver que ele tem dimensão menor. Daí é só provar que subespaços (acho que lineares) de dimensão menor em \(\mathbb{R}^n\) tem dimensão menor.
+\end{proof}
+
+\begin{coro}[Minisard]\leavevmode
+\(X^m,Y^n\) variedades \(m<n\)  e \(f:X \to Y\) suave. Então \(f(X)\) tem medida nula.
+\end{coro}
+
+\begin{proof}\leavevmode
+Aqui se usa o corolário: usar a inclusão \(\iota:X \to X \times \mathbb{R}^{n-m}, \qquad x \mapsto (x,0)\), compor com \(\tilde{f}:X \times R^{n-m}\to Y\), \((x,y) \mapsto  f(x)\). Então \(\tilde{f}(i(X))=f(X)\). O lance é que \(\iota(X)\) é uma subvariedade de codimensão positiva e com medida nula. Daí f(X) também.
+\end{proof}
+
+\begin{coro}[Versão fácil do teorema de mergulho de Whitney]\leavevmode
+	Se \(X^n\) variedade diferenciável compacta, então existem 
+	\[X \hookrightarrow \mathbb{R}^{2n+1},\qquad  X\rightlooparrow \mathbb{R}^{2n}\]
+\end{coro}
+
+\begin{thm}[Difícil de Sard]\leavevmode
+\[X \hookrightarrow \mathbb{R}^{2n},\qquad  X\rightlooparrow \mathbb{R}^{2n-1}\]
+\end{thm}
+
+\begin{proof}\leavevmode
+\begin{enumerate}[label=\textbf{Step \arabic*}]
+\item Mergulhar a variedade num espaço euclidiano \textit{grande}. Pegue um atlas finito \(\{(U_i,\varphi_i)_{i=1}^k\}\), note que \(\varphi_i:U_i \to \mathbb{R}^n\) são mergulhos.
+
+\begin{thing6}{Ideia}\leavevmode
+\begin{align*}
+	\Phi: X &\longrightarrow \mathbb{R}^n\times \mathbb{R}^n \times\ldots\times \mathbb{R}^n \subset \mathbb{R}^{nk} \\
+	p &\longmapsto (\varphi_1(p),\varphi_2(p),\ldots
+\end{align*}
+Isso não da. Para fazer bem precisamos de uma partição da unidade \(\{\rho_i\}_{i=1}^k\) subordinada a \(\{U_i\}_{i=1}^k\) sobertura. Defina \(\rho_i\varphi_i:X \to \mathbb{R}^n\) como sendo zero fora do conjunto bom; note que essa função não é mais um mergulho, mas tudo bem. Agora faça \(X \to (\mathbb{R}^n)^k\times \mathbb{R}^k=\mathbb{R}^{nk+k}\)
+\begin{align*}
+	\Phi: X &\longrightarrow (\mathbb{R}^n)^k \times\mathbb{R}^k = \mathbb{R}^{nk+k} \\
+	p &\longmapsto \Big((\rho_1 \varphi_1)(p),\ldots,\Big(\rho_k \varphi_k)(p)\Big)
+\end{align*}
+\begin{exercise}[Importante]\leavevmode
+	Mostre que \(\Phi\) é uma imersão injetiva.
+\end{exercise}
+\end{thing6}
+
+\item \textbf{Afirmação:}
+	\[X \hookrightarrow  \mathbb{R}^n \implies \begin{cases}
+		X \hookrightarrow \mathbb{R}^{N-1}\qquad &\text{ se $N>2n+1$}  \\
+		X \rightlooparrow \mathbb{R}^{N-1} \qquad &\text{se $N>2n$.} 
+	\end{cases}\]
+\begin{proof}[Prova da afirmação]\leavevmode
+Vamos projetar a variedade mergulhada em \(\mathbb{R}^n\) no plano ortogonal a algum vetor \(a \in \mathbb{R}^n\). Resulta que
+\begin{exercise}\leavevmode
+	\begin{align*}
+	g: X \times X \times \mathbb{R} &\longrightarrow \mathbb{R}^N \\
+	(x,y,t) &\longmapsto \operatorname{pr}_a \circ f
+\end{align*}
+é injetiva.
+\end{exercise}
+\end{proof}
+
+\item \textbf{Ideia:} ver que em quase todo ponto podemos projetar.
+
+Considere agora o mapa pusforward que pega um vetor tangente e manda mediante $f$:
+\begin{align*}
+	h: TX &\longrightarrow \mathbb{R}^N \\
+	(x,v) &\longmapsto (Df)_xv
+\end{align*}
+Agora note que
+\begin{thing4}{Afirmação}\leavevmode
+\(a \not\in \operatorname{Im}(h) \iff \operatorname{pr}_a \circ f\) é uma imersão \(\iff\) \(D(\operatorname{pr}_a \circ f)_a\) é injetiva para toda $x$.
+\end{thing4}
+
+\item A prova termina usando minisard: as imagens de $g$ e de \(h\) tem medida nula. Mesmo a união delas. Então existe um ponto fora dessa união.
+\end{enumerate}
+\end{proof}
+
+\begin{defn}\leavevmode
+Sejam \(X^m, Y^k\) variedades, \(f:X \to Y\) suave, dizemos que
+\begin{enumerate}[label=(\alph*)]
+\item \(x \in X\) é \textit{\textbf{ponto crítico}} se o posto de \(Df_x\) é menor do que \(\operatorname{min}(m,n)\).
+\item \(x \in X\) é \textit{\textbf{ponto regular}} se posto \(Df_x=\operatorname{min}(m,n)\).
+\item \(y \in Y\) é \textit{\textbf{valor crítico}} se existe um ponto crítico tal que \(f(x) = y\).
+\item \(y \in Y\) é \textit{\textbf{valor regular}} se \(\forall x \in f^{-1}(y)\), \(x\) é valor regular.
+\end{enumerate}
+\end{defn}
+
+\begin{thm}[Sard]\leavevmode
+\(f:X \to Y\) suave. Então \(\{\text{valores críticos} \}\) tem medida nula.
+\end{thm}
+
+\begin{remark}\leavevmode
+\begin{enumerate}
+\item Teorema vale se \(f\) é \(C^\ell\), onde \(\ell>\operatorname{max}(m-n,0)\). 
+
+	. \end{enumerate}
+\end{remark}
+
+\begin{proof}\leavevmode
+\begin{enumerate}[label=\textbf{Step \arabic*}]
+\item \textbf{Redução para a versão local.} Supomos que \(X= \mathbb{R}^{m}, Y=\mathbb{R}^n\). \(f:U \subset \mathbb{R}^m \to \mathbb{R}^n\), \(U\) aberto.
+	\[\operatorname{Crit}f= \{x \in 0:\text{posto } f'(x) < \operatorname{min}(m,n)\}\]
+Então \(f(\operatorname{Crit}(f)\) tem medida nula. Para isso fazemos \textbf{indução em $m$.} \(m=0\) trivial.
+
+\(C_i\) vai ser o conjunto onde as derivadas parciais se anulam até $i$:
+ \[C_i=\left\{ p \in U: \frac{\partial^{(\alpha)}}{\partial x^{\alpha}}f_k(p)=0 \forall \alpha, 0<| \alpha|\leq 1, \forall  k \right\}.\]
+ Note que \(C_{i+1}\subset C_i \subset C_{i-1}\subset\ldots C_1\subset C:=\operatorname{Crit}f\).
+
+ \begin{thing7}{Objetivo}\leavevmode
+ \(f(C)\) tem medida nula.
+ \begin{enumerate}[label=\textbf{Paso \arabic*}]
+ \item \(f(C_N)\) tem medida nula para algum  \(N \gg 0\). {\color{8}Crucial}
+\item \(f(C_i \setminus C_{i+1}\) tem medida nula para toda $i$.
+\item \(f(C\setminus C_i\) tem medida nula.
+ \end{enumerate}
+
+\begin{enumerate}[label=\textbf{Paso \arabic*}]
+\item Podemos supor sem perda de generalidade que \(U\subset\)cubo, a fórmula de Taylor diz que
+	\[\|f(x)-f(y)\|_\infty \leq K \cdot \|x-y\|_\infty^{i+1}\]
+para todo \(x, y \in C_i\).
+
+Tem que botar \(C_i\) den'de um cubo \(D_j\) que se divide em \(r^m\) cubos de lado \(b/r\). Então  \(f(D_j)\) está contido num cubo em \(\mathbb{R}^n\) de lado \(K \cdot \left(\frac{b}{r}\right)^{i+1}:=R_j \). Também note que pontos den'de \(D_j\) são tq. \(\|x-y\|_\infty \leq  \frac{b}{r}\).
+
+Agora
+\[f(C_i) \subset f\left(\bigcup_{j=1}^{r^m}D_j\right) \subset \bigcup_{j=1}^{r^m}f(D_j)\subset \bigcup_{j=1}^{r^m}R_j.\]
+Então
+\begin{align*}
+\sum_{j=1}^{r^m}\operatorname{Vol}(R_j)&=r^m\cdot K^n\cdot \left(\frac{b}{r}\right)^{(i+1)\cdot n}\\
+&= \frac{K^n \cdot b^{n(N+1)}}{r^{n(N+1)-m}}
+\end{align*}
+\end{enumerate}
+ \end{thing7}
+
+\item 
+\end{enumerate}
+
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\bibliography{bib.bib}
 \end{document}
