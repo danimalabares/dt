@@ -302,7 +302,27 @@ Pegue \(a=(a_1,\ldots,a_n),b=(b_1,\ldots,b_n) \in \mathbb{R}^n\), defina um \tex
 \[c(a,b)=\prod_{i=1}^n ]a_i,b_i[ \subset \mathbb{R}^n.\]
 Note que \(\operatorname{Vol}(a,b)=\prod_{i=1}^n(b_i-a_i).\)
 
+\begin{thing5}{What \cite{lee} does}\leavevmode
+\begin{enumerate}
+\item A compact subset whose intersection with every hyperplane has measure zero has measure zero.
+\item Graph of continuous function has measure zero.
+\item Affine subspaces of \(\mathbb{R}^n\) have measure zero.
+\item \textbf{Smooth map maps measure zero to measure zero.} 
+\item A set in a manifold has \textit{\textbf{measure zero}} if it(s intersection with the respective domain) is mapped to a set of measure zero by any chart.
+\item Confusing lemma.
+\item Complement of zero measure is dense (in manifolds).
+\item Smooth map \textit{of manifolds} maps measure zero to measure zero.
+\item Sard's theorem (heavy proof): critical value set of smooth map has measure zero.
+\item Corollary \textbf{(minisard)}: image of smaller dimension manifolds under smooth map has measure zero. Corollary 2: smaller dimension immersed submanifolds have measure zero.
+\item Up next: Whitney embedding theorem.
+\end{enumerate}
+\end{thing5}
+
 \begin{defn}\leavevmode
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{fig1}
+	\end{figure}
 \(S \subset \mathbb{R}^n\) possui \textit{\textbf{medida nula}} se \(\forall  \varepsilon >0\) existe \(\{c_i\}_{i=1}^\infty\) cubos (ou bolas) tais que \[S \subset \bigcup_{i=1}^\infty \operatorname{Vol}(c_i)<\varepsilon\]
 \end{defn}
 
@@ -347,7 +367,7 @@ Note que \(\operatorname{Vol}(a,b)=\prod_{i=1}^n(b_i-a_i).\)
 \end{coro}
 
 \begin{proof}\leavevmode
-Aqui se usa o corolário: usar a inclusão \(\iota:X \to X \times \mathbb{R}^{n-m}, \qquad x \mapsto (x,0)\), compor com \(\tilde{f}:X \times R^{n-m}\to Y\), \((x,y) \mapsto  f(x)\). Então \(\tilde{f}(i(X))=f(X)\). O lance é que \(\iota(X)\) é uma subvariedade de codimensão positiva e com medida nula. Daí f(X) também.
+Aqui se usa o corolário: usar a inclusão \(\iota:X \to X \times \mathbb{R}^{n-m},x \mapsto (x,0)\), compor com \(\tilde{f}:X \times R^{n-m}\to Y\), \((x,y) \mapsto  f(x)\). Então \(\tilde{f}(i(X))=f(X)\). O lance é que \(\iota(X)\) é uma subvariedade de codimensão positiva, então pela prop anterior tem medida nula. Daí $f(X)$ também.
 \end{proof}
 
 \begin{coro}[Versão fácil do teorema de mergulho de Whitney]\leavevmode
@@ -413,7 +433,7 @@ Agora note que
 \begin{defn}\leavevmode
 Sejam \(X^m, Y^k\) variedades, \(f:X \to Y\) suave, dizemos que
 \begin{enumerate}[label=(\alph*)]
-\item \(x \in X\) é \textit{\textbf{ponto crítico}} se o posto de \(Df_x\) é menor do que \(\operatorname{min}(m,n)\).
+	\item \(x \in X\) é \textit{\textbf{ponto crítico}} se o posto de \(Df_x\) é menor do que \(\operatorname{min}(m,n)\). (\(\iff\)não é surjetiva I think) {\color{6}Aula 7: essa definição é que a derivada não é de posto máximo. Isso permete que o domínio tenha pontos regulares, así fez Sard e  \cite{gui2}, mas não \cite{lee}, \cite{gui}.}
 \item \(x \in X\) é \textit{\textbf{ponto regular}} se posto \(Df_x=\operatorname{min}(m,n)\).
 \item \(y \in Y\) é \textit{\textbf{valor crítico}} se existe um ponto crítico tal que \(f(x) = y\).
 \item \(y \in Y\) é \textit{\textbf{valor regular}} se \(\forall x \in f^{-1}(y)\), \(x\) é valor regular.
@@ -471,17 +491,167 @@ Então
 
 \end{proof}
 
+\section{Aula 4§}
+
+\subsection{Teorema de Sard}
+
+\begin{thm}[Sard]\leavevmode
+\(f: \mathbb{R}^m \to \mathbb{R}^n\) \(C^\ell\), \(\ell >  \operatorname{max}(m-n,0)\). Então \(\{\text{valores críticos} \}\) tem medida nula.
+\end{thm}
+
+\begin{proof}\leavevmode
+\textbf{Note que} \(\{\text{valores críticos} \}=f(\{\text{ptos críticos} \})\).
+
+Seja \(C=\{\text{ptos críticos de $f$} \}\). Então aproximamos a conjunto onde todas as derivadas parcias são zero com o conjunto \(C_i\) onde as derivadas parciais até \(i\) se anulam. 
+\begin{enumerate}[label=\textbf{Passo \arabic*}]
+\item \(f(C_N)\) tem medida nula se \(N>\operatorname{max}(m-n,0)\). {\color{6}(Feito na aula pasada.)}
+\item \(f(C_i\setminus C_{i+1}\) tem medida nula
+\item \(f(C\setminus C_1\) tem medida nula.
+\end{enumerate}
+Concluimos porque \(f(C)\) é a união de treis conjuntos de medida nula: um por cada passo. Segundo e terceiro passos são com indução em $m$.
+
+Prova:
+\begin{enumerate}[label=\textbf{Passo \arabic*}]
+\item Feito ontem.
+\item A ideia é que podemos dar coordenadas de dimensão 1 menos usando que a derivada \(i+1\) não se anula. (Acho.)
+\item É parecido só que um pouco mas dificil. No caso anterior os valores da função \(h\) são zero, aqui não (ver foto). Aqui usamos
+	\begin{lemma}\leavevmode
+A compact subset whose intersection with every hyperplane has measure zero has measure zero:
+
+\(A \subset\mathbb{R}^n\) compacto tal que \(X \cap \{ x \}\times \mathbb{R}^{n-1}\) tem medida nula em \(\mathbb{R}^{n-1}\) para toda \(x \in \mathbb{R}\). Então \(A\) tem medida nula.
+	\end{lemma}
+	\begin{proof}[Prova do lema]\leavevmode
+	A ideia es pegar uma faixinha de altura $x$ e cobrir esse pedaço de \(A\) com quadradinhos naquele plano \(C^x_j\). Dai, ``como \(A\) é compacto" podemos pegar um \(I_x \subset \mathbb{R}\) intervalo tal que para todo \(y \in I_x\) ($y$ perto de \(x\)), a faixinha de altura $y$ fique contida em \(\bigcup I_x \times C_j^x\)
+
+	{\color{4}\bfseries Ideia.}\hspace{.5em} Como \(A\) é compacto podemos pegar um mini intervalo tal que todas as faixinhas muito pertinho (bom, a parte de \(A\) em cada faixinha) fica den'dos quadrados \(C^x_j\) multiplicados por esse mini-intervalo.
+
+	Agora calculamos os vulmeis. Lembre de análise na reta (ver \cite{lee} lem 6.2, tem que shrink os intervalos) que a soma dos comprimentos dos intervalos \(I_{x_i}\) que conformam uma cobertura esencial (não pode tirar nenhum dos abertos da coberta) de um intervalo \(L\) \textbf{é menor do que duas vezes o tamanho do intervalo}:  \(\sum \operatorname{compr}(I_{x_i})< 2(2L)=4L\).
+
+	Em fim, a soma dos comprimentos é um número finito. Então fica que
+	\begin{align*}
+	\sum_{i,j}\operatorname{Vol}(I_{x_i} \times C_j^{x_i}&= \sum_i \sum_j \operatorname{Vol}_1(I_x) \operatorname{Vol}_{n-1}(C_j^{x_i})<\varepsilon \sum \operatorname{Vol}_1(I_{x_i}) < 4L\varepsilon.
+	\end{align*}
+	\end{proof}
+\end{enumerate}
+\end{proof}
+
+\subsection{Espaço de jatos}
+
+Son como vectores de orden de diferenciabilidad más grande: a ideia é generalizar o espaço tangente e o espaço cotangente \textbf{para derivadas de ordem maior}.
+
+\begin{defn}\leavevmode
+
+	Dos funciones \(f,g:X\to Y\) suaves que mandan \(p\) al mismo punto son equivalentes si existem cartas tales que las derivadas parciales de sus representaciones en coordenadas coinciden hasta orden \(k\).
+
+Sejam \(X, Y\) variedades diferenciaveis suaves e \(f,g:X \to Y\) suaves. Dizmos que \(f \sim_k g\) em \(p \in X\) se, intuitivamente, as derivadas parciais de \(f \) e \(g\) coincidem até ordem $k$. Isso é inuitivo porque precisamos pegar cartas para isso ficar bem definido: precisamos que existam cartas \((U, \varphi),(V,\psi)\) aoredor de \(p\) e \(f(p)\) tais que
+\[\frac{\partial ^{|\alpha|}}{\partial x^\alpha}(\psi \circ f \circ \varphi^{-1}(\varphi(p))=\frac{\partial ^{| \alpha|}}{\partial x^\alpha}(\]
+Los \textit{\textbf{jatos}} son gérmenes:
+\[J^k(X,Y)_{p,q}=\{f:X \to Y: f(p)=q\}\Big/ \sim_k.\]
+Isso generaliza o espaço tangente do seguinte jeito:
+\[J^1(\mathbb{R},Y)_{0,q} \cong T_qY.\]
+\begin{exercise}\leavevmode
+\[J_1(X,\mathbb{R})_{p,0}\cong T_p^*\cong T_p^*Y.\]
+\end{exercise}
+Daí definimos o \textit{\textbf{espaço de $k$-jatos}} (parecido como o espaço tangente):
+\[J^k(X,Y):= \bigsqcup_{\substack{p \in X \\ q \in Y}}J^k(X,Y)_{p,q}\]
+
+Então pega um jato \(\sigma \in J^k(X,Y)\). Isso cuspe um \(p\) e um  \(q\) tais que  \(\sigma \in J^k(X,Y)_{p,q}\). Definamos as funções
+\[\begin{aligned}
+	\alpha: J^k(X,Y) &\longrightarrow X \\
+	\sigma &\longmapsto p
+\end{aligned}\qquad \qquad \begin{aligned}
+	\beta: J^k(X,Y) &\longrightarrow Y \\
+	0 &\longmapsto q
+\end{aligned}\]
+\end{defn}
+
+\begin{example}\leavevmode
+\(X=U \subset \mathbb{R}^n\), \(Y= V \subset \mathbb{R}^m\) abertos. O que é o espaço de jatos neste caso?
+
+Tem uma bijeção 
+\begin{align*}
+	: J^k(U,V)_{x,y} &\xrightarrow{\cong}B_{n,m}^k \\
+	f &\longmapsto (f_1^k,\ldots,f_m^k)
+\end{align*}
+Lance: pode pensar que esas funções são polinomias de grau maximo $k$.
 
 
+\begin{exercise}\leavevmode
+Calcule a dimensão de \(B^k_{n,m}\).
+\end{exercise}
+\[\begin{tikzcd}
+J^k(U,V)\arrow[rr,"\cong"]\arrow[dr,"\alpha",swap]&&U \times V \times B^k_{n,m}\arrow[dl,"\operatorname{pr}_1"]\\
+&U
+\end{tikzcd}\]
 
 
+Creo que: definimos \(f^k_i\) como as "partes sem constante dos polinómios de Taylor de ordem $k$ das coordenadas de $f$",
+\[B^k_{n,m}=\{p: \mathbb{R}^n\to \mathbb{R}^m: p \text{polinomial de grau \(\leq k\) tal que \(p(0)=0\)} \}.\]
+{\color{7}CREO QUE la idea es que la clase de equivalencia \([f]\)  está determinada por los principios de los polinomios de Taylor de sus funciones coordenadas.}
 
+No entendí esto pero va:
+\begin{align*}
+	p: \mathbb{R}^n &\longrightarrow \mathbb{R}^m \qquad \text{polinomial}
+\end{align*}
+\(x_0 \in U, y_0 \in V\), entre aspas:
+\["f(x-x_0) = y_0+p(x-x_0),\]
+\(f(U) \subset V.\)
+En fim, temos que
+\begin{enumerate}
+	\item[2.] \(J^1(M,\mathbb{R}) \cong \mathbb{R} \times T^*M\).
+	\item[3.] \(J^1(\mathbb{R},M) \cong \mathbb{R} \times TM.\)
+\end{enumerate}
+\end{example}
+Agora o pushforward e o pullback, que basicamente é precompor e poscompor:
+\begin{defn}\leavevmode
+\begin{enumerate}
+\item \(\varphi:Y \to Z\) suave, \(X \) variedade suave. O \textit{\textbf{pushforward}} é
+	\begin{align*}
+		\varphi_*: J^k(X,Y) &\longrightarrow J^k(X,Z) \\
+		[f]_x &\longmapsto [\varphi \circ f]_x
+	\end{align*}
+\item O  \textit{\textbf{pullback}} é… mas aqui \textbf{precisamos que  \(\psi\) seja difeomorfismo} 
+	\begin{align*}
+		\psi^*: J^k(X,Y) &\longrightarrow J^k(Z,Y) \\
+		[f]_x &\longmapsto [f \circ \psi]_{\psi(x)}
+	\end{align*}
+\end{enumerate}
+\end{defn}
 
+\begin{remark}\leavevmode
+\begin{enumerate}
+\item \(\sigma \in J^k(X,Y)_{x,y}\), \(\varphi_* \sigma \in J^k(X,Z)_{x,\varphi(y)}\)
+\item \(\sigma \in J^k(X,Y)\), \(\psi ^*\sigma \in J^k(Z,Y)_{\psi^{-1}(x),y}\)
+\end{enumerate}
+\end{remark}
 
+\subsubsection{Estrutura diferenciável no espaço de jatos}
 
+Pegue \(\sigma \in J^k(X,Y)_{p,q}\) e cartas \((U,\varphi)\) de \(p\) e \((V,\psi)\) de $q$. {\color{4}Ideia:} usar o pushforward e o pullback das cartas para levar o problema no \(\mathbb{R}^n\).
 
+\begin{exercise}\leavevmode
+Considere
+\[J^k(U,V)= \bigsqcup_{\substack{p \in U \\ q \in V}}J^k(X,Y)_{p,q}.\]
+Então
+\begin{align*}
+	J^k(U,V) &\longrightarrow J^k(\varphi(U),\psi(V)) \\
+	\sigma &\longmapsto \psi_*(\varphi^{-1})^*\sigma
+\end{align*}
+é uma bijeção.
+\end{exercise}
+Então para dar uma estrutura de variedade topológica no espaço de jatos note que também
+\[J^k(\varphi(0),\varphi(V))\cong \varphi(0) \times \varphi(V) \times B^k_{n,m}\subset \mathbb{R}^{n+m+ \dim B^k_{n,m}}\]
+(lo bueno es que ya sabes cual es la dimension de \(B^k_{n,m}\).) Mas não interessa qual é a dimensão: o importante é que o \(B^k_{n,m}\) tem uma base, é um espaço vetorial.
 
+Em fim, tudo isso da uma estrutura de variedade topologica. Para terminhar só temos que ver o que acontece com as mudanças de coordenadas.
 
+\begin{align*}
+	\varphi(U) \times \psi(V) \times B^k_{n,m}  &\longrightarrow \tilde{\varphi}(\tilde{U})\times \tilde{\psi}(\tilde{V}) \times B^k_{n,m} \\
+	(p,q,f) &\longmapsto \Big(\tilde{\varphi} \circ \varphi^{-1}(p),\tilde{\psi} \circ \psi^{-1}(q) \Big)
+\end{align*}
+\textbf{Isso é suave!} E isso implica que \(J^k(X,Y)\) é uma \(C^\infty\) variedade de dimensão \(n+m+ \dim B^k_{n,m}\). 
+
+E daí que \(\alpha\) e \(\beta\) são submersoes sobrejetivas.
 
 \bibliography{bib.bib}
 \end{document}
