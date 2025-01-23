@@ -1,0 +1,114 @@
+\input{/Users/daniel/github/config/preamble-por.sty}
+%\input{/Users/daniel/github/config/thms-por.sty}
+
+\begin{document}
+\bibliographystyle{alpha}
+
+\begin{minipage}{\textwidth}
+	\begin{minipage}{1\textwidth}
+		Topologia Diferencial\hfill Daniel González Casanova Azuela
+		
+		{Prof. Vinicius Ramos\hfill\href{https://github.com/danimalabares/dt}{github.com/danimalabares/dt}}
+	\end{minipage}
+\end{minipage}\vspace{.2cm}\hrule
+
+\vspace{10pt}
+{\huge Lista 1}
+\begin{thing1}{Problem 1}\label{p:1}\leavevmode
+Let \(G(k,n)\) be the set of dimension \(k\) vector subspaces of \(\mathbb{R}^n\). Construct a smooth structure on \(G(k,n)\) and compute its dimension.
+\end{thing1}
+
+\begin{proof}[Solution]\leavevmode
+	(Proof in \cite{gui2}.) First we topologize \(G(n,k)\) as follows. We identify it with the quotient \(W/ \sim\), the set of \(k\)-frames (sets of \(k\) linearly independent vectors of \(\mathbb{R}^n\)) modulo the equivalence relation of spanning the same vector space. Since \(W \subset (\mathbb{R}^n)^k\) it has a subspace topology, and \(G(n,k)\) has a quotient topology.
+
+	Now fix \(V \in G(n,k)\). To construct a chart consider the set
+	\[W_V=\{U \in G(n,k):\text{orthogonal projection \(U \to V\) is bijective} \}\]
+and the function
+\begin{align*}
+	\rho_V: W_V &\longrightarrow \operatorname{Hom}(V,V^\perp) \\
+	U &\longmapsto \pi_{U,V^\perp}\circ\pi^{-1}_{U,V}
+\end{align*}
+where \(\pi_{X,Y}\) is the orthogonal projection from \(X\) to \(Y\). Since the set \(\operatorname{Hom}(V,V^\perp)\) is the spaces of matrices of  \(\dim V \times \dim V^\perp=k (n-k)\), we may write \(\operatorname{Hom}(V,V^\perp)=\mathbb{R}^{k(n-k)}\).
+
+To complete the proof we must confirm several facts: (1) \(G(n,k)\) is Hausdorff and second countable, (2) \(W_V\) is open for all  \(V\), (3) \(\rho_V\) is a homeomorphism for all \(V\), (4) transition maps \(\rho_{V}\circ \rho_{V'}^{-1}\) are smooth.
+	
+\begin{enumerate}
+\item By thm 7.7 in \cite{tus}, it's enough to show that the quotient projection \(q:W \to W/\sim\) is an open map and that the graph of \(\sim\) is closed.
+\item To see that \(W_V\) is open define \(\widetilde{W}_V\) to be the set of \(k\)-frames  \(\{u_i\}_{i=1}^k\) of \(\mathbb{R}^n\) such that the orthogonal projection from \(\operatorname{span}(u_i)\) onto \(V\) is bijective. Then \(\widetilde{W}_V/\sim=W_V\). Since \(G(n,k)=W/\sim\) is equipped with the quotient topology, it's enough to show that \(q^{-1}\left(q \left(\widetilde{W}_V\right) \right)=\widetilde{W}_V\) is open, where \(q:W \to W/\sim\) is the quotient map.
+
+	Fix \(\{u_i\}_{i=1}^n \in \widetilde{W}_V\). It is clear from elementary properties of euclidean space that there is a neighbourhood of every \(u_i\) such that the vector space obtained by choosing one vector in each of these neighbourhoods orthogonally-projects bijectively onto \(V\). Since we are using the product topology on \(W\), it follows that \(\widetilde{W}_V\) is open.
+%	the set of orthogonal projections \(\{\pi(u_i)\}_{i=1}^k\) onto \(V\) generate \(V\).
+\item %To see that \(\rho_V\) is injective suppose that \(U\) and \(U'\) are such that \(\rho_V(U)=\rho_V(U')\), that is, \(\pi_{U,V^\perp} \circ \pi^{-1}_{U,V}=\pi_{U',V^\perp} \circ \pi^{-1}_{U',V}\). Now given a base \(\{v_i\}\) of \(V\) we obtain bases \(\{u_i\}\) of  \(U\) and \(\{u_i'\}\) of \(U'\) (because the projections \(\pi_{U,V},\pi_{U',V}\) are isomorphisms). The projections of these bases onto \(V^\perp\) coincide by hypothesis, i.e. \(\pi_{U,V^\perp}(u_i)=\pi_{U',V^\perp}(u_i')\). Suppose \(u \in U\setminus U'\). Projecting \(u=\sum \lambda^i u_i\) to \(V^\perp\) gives a linear combination of \(\pi_{U,V^\perp}(u_i)=\pi_{U',V^\perp}(u_i')\), yielding an element of \(U'\).
+
+	%First we check surjectivity. Fix \(T: V \to V^\perp\) linear and bases \(\{v_i\}_{i=1}^k\) of \(V\) and \(\{v_j'\}_{j=1}^{n-k}\) of \(V^\perp\). Since \(\pi_{U,V}\) is a bijection for any \(U \in W_V\), t. Any vector space \(U\) projecting
+
+	%Any linear map from \(V \cong \mathbb{R}^k\) to \(V^\perp \cong \mathbb{R}^{n-k}\)
+\item 
+\end{enumerate}
+
+
+
+	%First consider the set of size \(k\) orthonormal frames (=linearly independent sets) of \(R^n\). It is a subset of \(S^{n-1}\times\ldots\times S^{n-1}\), so that it has a subspace topology. {\color{2}But how to give it a smooth structure?}
+\end{proof}
+
+\begin{thing1}{Problem 2}\label{p:2}\leavevmode
+Let \(M\) and $N$ be manifolds of dimension $m$ and $n$, respectively, and let \(f:M \to N\) be a smooth function whose rank is \(k\) for every point in an open set \(\tilde{U} \subset M\). Prove that for each point \(p \in \tilde{U}\), there exist charts \((U, \phi)\) and \((V,\psi)\) centered at \(p\) and \(f(p)\) such that \(f(U) \subset V\) and
+\[\psi \circ f \circ \phi^{-1}(x_1,\ldots,x_k,x_{x+1},\ldots,x_m)=(x_1,\ldots,x_k,0,\ldots,0).\]
+\end{thing1}
+
+\begin{proof}[Solution]\leavevmode
+	(Adapted from the proof of thm B.4 in \cite{tus}.) Since \(D_{p}f\) has rank \(k\) at \(p\), we may assume the first \(k\) columns are linearly independent. Define a locally invertible map of \(\mathbb{R}^m\) to itself by
+\[G(x_1,\ldots,x_k,y_1,\ldots,y_{m-k})=\Big(f_1(x,y),\ldots,f_k(x,y),y\Big).\]
+where \(f_i\) are the coordinate functions of $f$ for some charts of \(p\) and \(f(p)\). \(G\) is locally invertible since it has nonsingular derivative at \(p\). Notice that \(f \circ G^{-1}\) maps 
+\[(x,y) \mapsto \Big(x,f_{k+1} \circ G^{-1}(x,y),\ldots,f_{n} \circ G^{-1}(x,y)\Big).\]
+{\color{6}Notice that \(f \circ G^{-1}\) does not depend on \(y\) in a neighbourhood of \(p\):} since \(G\) is locally a diffeomorphism, the rank of \(f \circ G^{-1}\) must be the same as that of \(f\), and its derivative is
+\[D_q(f \circ G^{-1})=\begin{pmatrix}\operatorname{Id}&0\\ \frac{\partial (f \circ G^{-1})_i}{\partial x^j} &\frac{\partial (f \circ G^{-1})_i}{\partial y^j}\end{pmatrix},\quad\text{ for }  k \leq i \leq n\]
+so that the matrix \(\frac{\partial (f \circ G^{-1})_i}{\partial y^j}\) must be singular \textbf{for all $q$ in a neighbourhood of $p$} (here we use that $f$ has \textbf{constant} rank \(k\)). This allows us to define the function of \(R^n\) to itself
+\[F(x,y)=\Big(x,y_1-f_{k+1}\circ G^{-1}(x),\ldots,y_n-f_n \circ G^{-1}(x) \Big) \]
+which is locally invertible: its derivative is
+\[D_{f(p)}F(x,y)=\begin{pmatrix}\operatorname{Id}&0\\ *&\operatorname{Id}\end{pmatrix}\]
+using that \(f_i \circ G^{-1}\) does not depend on \(y\) near $p$. Thus we may restrict our domains as necessary to obtain open sets  \(U \ni p\) and \(V \ni f(p)\) such that
+\[F \circ \hat{f} \circ G^{-1}(x,y)=F\Big(x,f_{k+1} \circ G^{-1}(x,y),\ldots,f_{n} \circ G^{-1}(x,y)\Big)=(x,0)\]
+where \(\hat{f}=(f_1,\ldots,f_n)\) is the coordinate representation of $f$ with which we started.
+
+\end{proof}
+\iffalse
+\begin{proof}[Ideas using \cite{lee}]\leavevmode
+	A linear map with kernel collapses to zero a piece of its domain. Thus the image of the map may be smaller than the domain. Then the rank says how big is the image, how small is the kernel.
+
+	We can chose coordinates such that a linear map of rank \(k\) is seen as the identity in the first \(k\times k\) block and 0 elsewhere: these are given by (1) a basis of the domain composed by a basis of the kernel and the preimage of a basis of the image, and (2) the same basis of the image completed to any basis of the codomain.
+
+	This exercise is the non-flat analogoue for the latter linear case: show that a smooth map of rank \(k\) has coordinate representation \((x_1,\ldots,x_m) \mapsto (x_1,\ldots,x_k,0,\ldots,0)\).
+
+	Proceeding in analogy, we want to find (1) a chart of the domain composed by a chart of the zero-set of \(f \circ \psi\) and the preimage of a chart of the image, and (2) a chart for the codomain which is just the completion of a chart for the image.
+
+	Now the image of $f$ may not be a manifold (for this we need $f$ to be an embedding). But instead $f$ has rank \(k\). If we are allowed to use the level-set theorem, we know at once that \(f^{-1}(c)\) is a \(m-k\)-dimensional submanifold of \(M\) for any \(c \in f(M)\). This gives us a chart for \(f^{-1}(c)\).
+
+	
+
+
+\end{proof}\fi
+
+\clearpage\begin{thing1}{Problem 3}\label{p:3}\leavevmode
+Let \(M\) be a compact manifold. Prove that does not exist a submersion \(F: M \to \mathbb{R}^k\), \(k>0\).
+\end{thing1}
+
+\begin{proof}[Solution]\leavevmode
+%{\color{6}How to prove that a submersion is open?}
+	Since \(M\) is compact any real-valued function is bounded, so the composition of \(F\) with the modulus function \(\|\cdot\| \circ F\) is bounded and so is \(F\). Now let \(x_0 \in M\) a point such that \(\|F(x)\|\) is maximum over \(M\).
+
+Let \(\gamma\) be the curve in \(\mathbb{R}^k\) given by \(\gamma(t)=F(x_0)+tF(x_0)\). It corresponds to a vector at \(F(x_0)\) pointing in the direction of \(F(x_0)\), so that the norm of points on \(\gamma\) for positive \(t\) is larger than that of \(F(x_0)\)
+
+Since \(D_{x_0}F\) is surjective, there is a vector such that its image under \(D_{x_0}F\) is \([\gamma]\). Namely, \([F^{-1}\circ \gamma]\) for some local inverse of \(F\). (Indeed: \(F_*[F^{-1}\circ \gamma]=\frac{d}{dt}\Big|_{t=0}F \circ F^{-1} \circ \gamma\).)
+
+Now let \(x_1:=F^{-1} \circ \gamma(t_1)\) for some \(t_1>0\). Then \(F(x_1)\) has a bigger norm than \(F(x_0)\):
+\begin{align*}
+\|F(x_1)\|&=\|\gamma(t_1)\|=\|F(x_0)+t_1F(x_0)\|>\|F(x_0)\|
+\end{align*}
+but \(\|F(x_0)\|\) is maximum.
+\end{proof}
+
+
+\bibliography{bib.bib}
+
+\end{document}
