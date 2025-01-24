@@ -19,7 +19,21 @@ Let \(G(k,n)\) be the set of dimension \(k\) vector subspaces of \(\mathbb{R}^n\
 \end{thing1}
 
 \begin{proof}[Solution]\leavevmode
-	(Proof in \cite{gui2}.) First we topologize \(G(n,k)\) as follows. We identify it with the quotient \(W/ \sim\), the set of \(k\)-frames (sets of \(k\) linearly independent vectors of \(\mathbb{R}^n\)) modulo the equivalence relation of spanning the same vector space. Since \(W \subset (\mathbb{R}^n)^k\) it has a subspace topology, and \(G(n,k)\) has a quotient topology.
+	(Ideas from \href{https://math.stackexchange.com/questions/1310511/looking-for-a-neat-proof-of-the-fact-that-the-grassmannian-manifold-is-hausdorff}{StackExchange}, \cite{hat}.) Every \(k\)-vector subspace of \(\mathbb{R}^n\) has an orthonormal base. \(\mathsf{O}(k)\) acts on the set \(V(n,k)\) of orthonormal frames of \(\mathbb{R}^n\) since its transformations preserve the inner product. The equivalence relation \(\alpha \sim \beta\) iff \(\exists A \in \mathsf{O}(k)\) st \(A \alpha=\beta\) for \(\alpha,\beta \in V(n,k\) is the same as asking that two bases generate the same vector space, so that the quotient space is \(G(n,k)\).
+
+%To give \(V(n,k)\) a smooth structure \href{https://math.stackexchange.com/questions/3678179/collection-of-m-frame-is-a-manifold-stiefel-manifold}{notice} it is an open subset of \(S^{n-1} \times \ldots\times S^{n-1}\). Indeed, any orthonormal frame can be thought as an \(n \times k\) matrix of rank \(k\), meaning that it has a \(k \times k\) submatrix which, by continuity of the determinant of this submatrix, has a neighbourhood of rank \(k\) matrices around it. The smooth structure on \(V(n,k)\) exists since open subsets of manifolds are manifolds themselves.
+
+	\(V(n,k)\) has a smooth structure making it a manifold of dimesion \(nk-(k+1)k/2\) [\href{https://mathworld.wolfram.com/StiefelManifold.html}{Wolfram}].
+
+In order to use the Quotient Manifold Theorem (thm 21.10 in \cite{lee}) we need to check that the action \(\mathsf{O}(n)\mathbb{y}V(n,k)\) is smooth, free and proper. The latter follows from \(O(n)\) being compact (which in turn is because it is closed by being a level set of \(\mathsf{GL}(n) \to \operatorname{Mat}(n),A\mapsto A^{\mathbf{T}}A\), and bounded the normality condition). Freeness and smoothness are immediate.
+
+The dimension of the quotient manifold \(G(n,k)\) is \(\dim V(n,k)-\dim \mathsf{O}(k)\). Since the dimension of \(\mathsf{O}(k)\) is \(k(k-1)/2\), substracting we get \(\dim G(n,k)=k(n-k)\).
+\end{proof}
+
+Next I show my progress following the proof of \cite{gui2}, which unfortunately is incomplete. Feel free to skip it.
+
+\begin{proof}\leavevmode
+(Proof in \cite{gui2}.) First we topologize \(G(n,k)\) as follows. We identify it with the quotient \(W/ \sim\), the set of \(k\)-frames (sets of \(k\) linearly independent vectors of \(\mathbb{R}^n\)) modulo the equivalence relation of spanning the same vector space. Since \(W \subset (\mathbb{R}^n)^k\) it has a subspace topology, and \(G(n,k)\) has a quotient topology.
 
 	Now fix \(V \in G(n,k)\). To construct a chart consider the set
 	\[W_V=\{U \in G(n,k):\text{orthogonal projection \(U \to V\) is bijective} \}\]
@@ -28,22 +42,34 @@ and the function
 	\rho_V: W_V &\longrightarrow \operatorname{Hom}(V,V^\perp) \\
 	U &\longmapsto \pi_{U,V^\perp}\circ\pi^{-1}_{U,V}
 \end{align*}
-where \(\pi_{X,Y}\) is the orthogonal projection from \(X\) to \(Y\). Since the set \(\operatorname{Hom}(V,V^\perp)\) is the spaces of matrices of  \(\dim V \times \dim V^\perp=k (n-k)\), we may write \(\operatorname{Hom}(V,V^\perp)=\mathbb{R}^{k(n-k)}\).
+where \(\pi_{X,Y}\) is the orthogonal projection from \(X\) to \(Y\). Since the set \(\operatorname{Hom}(V,V^\perp)\) is the space of matrices of  \(\dim V \times \dim V^\perp=k (n-k)\), we may write \(\operatorname{Hom}(V,V^\perp)=\mathbb{R}^{k(n-k)}\).
 
-To complete the proof we must confirm several facts: (1) \(G(n,k)\) is Hausdorff and second countable, (2) \(W_V\) is open for all  \(V\), (3) \(\rho_V\) is a homeomorphism for all \(V\), (4) transition maps \(\rho_{V}\circ \rho_{V'}^{-1}\) are smooth.
+To complete the proof we must confirm that: (1) \(G(n,k)\) is Hausdorff and second countable, (2) \(W_V\) is open for all  \(V\), (3) \(\rho_V\) is a homeomorphism for all \(V\), (4) transition maps \(\rho_{V}\circ \rho_{V'}^{-1}\) are smooth.
 	
 \begin{enumerate}
-\item By thm 7.7 in \cite{tus}, it's enough to show that the quotient projection \(q:W \to W/\sim\) is an open map and that the graph of \(\sim\) is closed.
-\item To see that \(W_V\) is open define \(\widetilde{W}_V\) to be the set of \(k\)-frames  \(\{u_i\}_{i=1}^k\) of \(\mathbb{R}^n\) such that the orthogonal projection from \(\operatorname{span}(u_i)\) onto \(V\) is bijective. Then \(\widetilde{W}_V/\sim=W_V\). Since \(G(n,k)=W/\sim\) is equipped with the quotient topology, it's enough to show that \(q^{-1}\left(q \left(\widetilde{W}_V\right) \right)=\widetilde{W}_V\) is open, where \(q:W \to W/\sim\) is the quotient map.
+\item By Theorem 7.7 in \cite{tus}, it's enough to show that the quotient projection \(q:W \to W/\sim\) is an open map and that the graph \(\Gamma=\{(x,y) \in W:x \sim y\}\) of \(\sim\) is closed in \(W \times W\).
+
+	\textbf{($q$ is open.)} Let \(Z \subset W\) be an open set. Showing that \(q\) is open means that \(q^{-1}(q(Z))\) is open. Let \(\{z_i\}_{i=1}^k\) be an element (a frame) in \(q^{-1}(q(Z))\). We will show that there is an (open) neighbourhood of \(\{z_i\}\) contained in \(q^{-1}(q(W))\). 
+
+	Since \(\{z_i\}\in q^{-1}(q(Z))\), \(\{z_i\}\) generates the same vector space as some frame \(\{z_i'\}\) in \(Z\). Because \(Z\) is open there is an open neighbourhood \(Z'\) of \(\{z_i'\}\) contained in \(Z\). The fact that \(\operatorname{span}(z_i)=\operatorname{span}(z_i')\) means that there is a linear transformation \(A \in \mathsf{GL}(k)\) mapping \(z_i \mapsto z_i'\).
+
+	Notice that \(A\) does not act on elements of  \(W\) pointwise: they are  $nk$-dimensional vectors! However, \(A\) does act on elements of \(W\) when these are seen as frames within the \(k\)-dimensional vector space they span. Explicitly, a frame given as an \(n \times k\) matrix of rank \(k\) may be multiplied by \(A\) (a \(k \times k\) matrix) giving a \(n \times k\) matrix. The range of the product of this matrices is \(k\) since \(A\) is invertible, i.e. another frame.
+
+	Since \(A\) is a homeomorphism, the set \(A(Z')\subset Z\) is the required open  neighbourhood of \(\{z_i\}\).
+
+	\textbf{(Graph of \(\sim\) is closed.)} {\color{2}[Incomplete]} 
+
+\item To see that \(W_V\) is open define \(\widetilde{W}_V\) to be the set of \(k\)-frames  \(\{u_i\}_{i=1}^k\) of \(\mathbb{R}^n\) such that the orthogonal projection from \(\operatorname{span}(u_i)\) onto \(V\) is bijective. Then \(\widetilde{W}_V/\sim=W_V\). Since we have shown that the quotient map $q$ is open, it's enough to show that \(\widetilde{W}_V\) is open.
 
 	Fix \(\{u_i\}_{i=1}^n \in \widetilde{W}_V\). It is clear from elementary properties of euclidean space that there is a neighbourhood of every \(u_i\) such that the vector space obtained by choosing one vector in each of these neighbourhoods orthogonally-projects bijectively onto \(V\). Since we are using the product topology on \(W\), it follows that \(\widetilde{W}_V\) is open.
 %	the set of orthogonal projections \(\{\pi(u_i)\}_{i=1}^k\) onto \(V\) generate \(V\).
-\item %To see that \(\rho_V\) is injective suppose that \(U\) and \(U'\) are such that \(\rho_V(U)=\rho_V(U')\), that is, \(\pi_{U,V^\perp} \circ \pi^{-1}_{U,V}=\pi_{U',V^\perp} \circ \pi^{-1}_{U',V}\). Now given a base \(\{v_i\}\) of \(V\) we obtain bases \(\{u_i\}\) of  \(U\) and \(\{u_i'\}\) of \(U'\) (because the projections \(\pi_{U,V},\pi_{U',V}\) are isomorphisms). The projections of these bases onto \(V^\perp\) coincide by hypothesis, i.e. \(\pi_{U,V^\perp}(u_i)=\pi_{U',V^\perp}(u_i')\). Suppose \(u \in U\setminus U'\). Projecting \(u=\sum \lambda^i u_i\) to \(V^\perp\) gives a linear combination of \(\pi_{U,V^\perp}(u_i)=\pi_{U',V^\perp}(u_i')\), yielding an element of \(U'\).
+\item {\color{2}[Incomplete]}
+	\iffalse To see that \(\rho_V\) is injective suppose that \(U\) and \(U'\) are such that \(\rho_V(U)=\rho_V(U')\), that is, \(\pi_{U,V^\perp} \circ \pi^{-1}_{U,V}=\pi_{U',V^\perp} \circ \pi^{-1}_{U',V}\). Now given a base \(\{v_i\}\) of \(V\) we obtain bases \(\{u_i\}\) of  \(U\) and \(\{u_i'\}\) of \(U'\) (because the projections \(\pi_{U,V},\pi_{U',V}\) are isomorphisms). The projections of these bases onto \(V^\perp\) coincide by hypothesis, i.e. \(\pi_{U,V^\perp}(u_i)=\pi_{U',V^\perp}(u_i')\). Suppose \(u \in U\setminus U'\). Projecting \(u=\sum \lambda^i u_i\) to \(V^\perp\) gives a linear combination of \(\pi_{U,V^\perp}(u_i)=\pi_{U',V^\perp}(u_i')\), yielding an element of \(U'\).
 
-	%First we check surjectivity. Fix \(T: V \to V^\perp\) linear and bases \(\{v_i\}_{i=1}^k\) of \(V\) and \(\{v_j'\}_{j=1}^{n-k}\) of \(V^\perp\). Since \(\pi_{U,V}\) is a bijection for any \(U \in W_V\), t. Any vector space \(U\) projecting
+	First we check surjectivity. Fix \(T: V \to V^\perp\) linear and bases \(\{v_i\}_{i=1}^k\) of \(V\) and \(\{v_j'\}_{j=1}^{n-k}\) of \(V^\perp\). Since \(\pi_{U,V}\) is a bijection for any \(U \in W_V\), t. Any vector space \(U\) projecting\fi
 
 	%Any linear map from \(V \cong \mathbb{R}^k\) to \(V^\perp \cong \mathbb{R}^{n-k}\)
-\item 
+\item {\color{2}[Incomplete]}
 \end{enumerate}
 
 
@@ -57,13 +83,15 @@ Let \(M\) and $N$ be manifolds of dimension $m$ and $n$, respectively, and let \
 \end{thing1}
 
 \begin{proof}[Solution]\leavevmode
-	(Adapted from the proof of thm B.4 in \cite{tus}.) Since \(D_{p}f\) has rank \(k\) at \(p\), we may assume the first \(k\) columns are linearly independent. Define a locally invertible map of \(\mathbb{R}^m\) to itself by
+	(Adapted from the proof of Theorem B.4 in \cite{tus}.) Since \(D_{p}f\) has rank \(k\) at \(p\), we may assume the first \(k\) columns are linearly independent. Define a locally invertible map of \(\mathbb{R}^m\) to itself by
 \[G(x_1,\ldots,x_k,y_1,\ldots,y_{m-k})=\Big(f_1(x,y),\ldots,f_k(x,y),y\Big).\]
 where \(f_i\) are the coordinate functions of $f$ for some charts of \(p\) and \(f(p)\). \(G\) is locally invertible since it has nonsingular derivative at \(p\). Notice that \(f \circ G^{-1}\) maps 
 \[(x,y) \mapsto \Big(x,f_{k+1} \circ G^{-1}(x,y),\ldots,f_{n} \circ G^{-1}(x,y)\Big).\]
 {\color{6}Notice that \(f \circ G^{-1}\) does not depend on \(y\) in a neighbourhood of \(p\):} since \(G\) is locally a diffeomorphism, the rank of \(f \circ G^{-1}\) must be the same as that of \(f\), and its derivative is
 \[D_q(f \circ G^{-1})=\begin{pmatrix}\operatorname{Id}&0\\ \frac{\partial (f \circ G^{-1})_i}{\partial x^j} &\frac{\partial (f \circ G^{-1})_i}{\partial y^j}\end{pmatrix},\quad\text{ for }  k \leq i \leq n\]
-so that the matrix \(\frac{\partial (f \circ G^{-1})_i}{\partial y^j}\) must be singular \textbf{for all $q$ in a neighbourhood of $p$} (here we use that $f$ has \textbf{constant} rank \(k\)). This allows us to define the function of \(R^n\) to itself
+so that the matrix \(\frac{\partial (f \circ G^{-1})_i}{\partial y^j}\) must be singular \textbf{for all $q$ in a neighbourhood of $p$} (here we use that $f$ has \textbf{constant} rank \(k\)).
+
+This allows us to define the function of (some subsets of) \(R^n\) to itself
 \[F(x,y)=\Big(x,y_1-f_{k+1}\circ G^{-1}(x),\ldots,y_n-f_n \circ G^{-1}(x) \Big) \]
 which is locally invertible: its derivative is
 \[D_{f(p)}F(x,y)=\begin{pmatrix}\operatorname{Id}&0\\ *&\operatorname{Id}\end{pmatrix}\]
@@ -89,7 +117,7 @@ where \(\hat{f}=(f_1,\ldots,f_n)\) is the coordinate representation of $f$ with 
 
 \end{proof}\fi
 
-\clearpage\begin{thing1}{Problem 3}\label{p:3}\leavevmode
+\begin{thing1}{Problem 3}\label{p:3}\leavevmode
 Let \(M\) be a compact manifold. Prove that does not exist a submersion \(F: M \to \mathbb{R}^k\), \(k>0\).
 \end{thing1}
 
@@ -106,6 +134,11 @@ Now let \(x_1:=F^{-1} \circ \gamma(t_1)\) for some \(t_1>0\). Then \(F(x_1)\) ha
 \|F(x_1)\|&=\|\gamma(t_1)\|=\|F(x_0)+t_1F(x_0)\|>\|F(x_0)\|
 \end{align*}
 but \(\|F(x_0)\|\) is maximum.
+
+\begin{remark}\leavevmode
+	After consulting \href{https://math.stackexchange.com/questions/470164/a-submersion-f-mathcalx-to-mathcaly-must-be-surjective}{the literature} I figured an easier proof:  submersion is an open map since it is locally invertible in every point of its image (yielding at every such point an open neighbourhood that stays within \(f(X)\)). Then \(f(X)\) is both open and closed, making \(f\) surjective since \(\mathbb{R}\) is connected. A contradiction, since \(f(X)\) must be bounded.
+\end{remark}
+
 \end{proof}
 
 
