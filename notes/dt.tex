@@ -643,6 +643,7 @@ Agora o pushforward e o pullback, que basicamente é precompor e poscompor:
 \end{enumerate}
 \end{remark}
 
+\clearpage
 \subsubsection{Estrutura diferenciável no espaço de jatos}
 
 \subsubsection{When dani finally understood this}
@@ -672,10 +673,39 @@ Define
 {\color{2}\bfseries The point is}\hspace{.5em}that when you take an open set of \(J^k(X,Y)\) you are basically taking an open set of \(X\), an open set of \(Y\), and \textit{an open set in some crazy polynomial space (that is not crazy at all: it's euclidean space!)}. So, its just a product of
 \[\text{\textbf{open set in \(X\)} } \times \text{\textbf{open set in \(Y\)} } \times \text{\textbf{crazy euclidean space \(\mathbb{R}^N\)} } \]
 Never forget that this is what a basic open set in \(J^k(X,Y)\) looks like.
-
-	 
 \end{enumerate}
 
+\subsubsection{how this can also be something else}
+\textbf{Now we read the book of Mukherjee}
+
+
+The space of polynomials of degree \(\leq r\) with constant term equal to zero defined on \(\mathbb{R}^n\) with values in \(\mathbb{R}^m\) is
+\[P^r(n,m)=L(\mathbb{R}^n,\mathbb{R}^m)\times L^2_s(\mathbb{R}^n,\mathbb{R}^m) \times \ldots \times L^r_s(\mathbb{R}^n,\mathbb{R}^m)\]
+where \(L^k(\mathbb{R}^n,\mathbb{R}^m)\) is the space of \(k\)-multilinear maps \(L(\mathbb{R}^n\times \ldots\times, \mathbb{R}^m\) and the little \(s\) means they are symmetric.
+
+So we also have
+\[P^r(n,m)=\underbrace{P^r_n \oplus  \ldots \oplus  P^r_n}_{\text{\(m\) summands} }\]
+where \(P^r_n\) is the set of all polynomial functions in \(n\) variables.
+
+\begin{thing2}{Superlemma 8.1.3}[Mukherjee]\leavevmode
+Let \(U\subset \mathbb{R}^n_+\) and \(V \subset \mathbb{R}^m\) be open subsets. Then there is a canonical bijection
+\begin{align*}
+	 h_{U,V}: J^{r}(U,V) &\longrightarrow U \times V \times P^r(n,m)\\
+	 j^rf&\longmapsto \Big(p,f(p),Df(p), \ldots, D^r f(p)\Big)
+\end{align*}
+where \(D^kf\) is the \(k\)th total derivative of \(f\), a \(k\)-multilinear map from \( \mathbb{R}^n\) to \(\mathbb{R}^m\), i.e. an element of \(L^k(\mathbb{R}^n,\mathbb{R}^m)\) defined inductively by taking the derivative of the derivative etc. (Symmetric I think because partial derivatives commute.)
+
+
+\vspace{4em}
+{\color{6}\bfseries Now we see}\hspace{.5em} that two things that are similar and yet very different can be used interchangably: the ``differential coordinates" of a jet (=the part of the coordinates that is not the coordinates in \(X\) nor \(Y\)) can be seen as:
+\begin{itemize}
+\item the truncated Taylor polynomials of the \(m\) coordinate functions of \(f\) at some  local charts,
+\item the total differentials of \(f\) from \(0\) to \(k\).
+\end{itemize}
+
+\end{thing2}
+
+\clearpage
 \subsubsection{Lecture notes}
 
 Pegue \(\sigma \in J^k(X,Y)_{p,q}\) e cartas \((U,\varphi)\) de \(p\) e \((V,\psi)\) de $q$. {\color{4}Ideia:} usar o pushforward e o pullback das cartas para levar o problema no \(\mathbb{R}^n\).
