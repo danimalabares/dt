@@ -645,6 +645,35 @@ Agora o pushforward e o pullback, que basicamente é precompor e poscompor:
 
 \subsubsection{Estrutura diferenciável no espaço de jatos}
 
+\subsubsection{When dani finally understood this}
+
+Here's how the charts (and the topology) of \(J^k(X,Y)\) is constructed.
+\begin{enumerate}
+\item Choose charts \((U,\varphi)\) of \(X\) and \((V,\psi)\) of \(Y\).
+
+ \item Take the jet space \(J^{k}(U,V)\) to an euclidean jet space via the induced maps of the charts:
+	 \[(\psi^{-1})^*\varphi*:J^{k}(U,V)\to J^{k}(U',V')\]
+	where \(U'=\varphi(U)\) and \(V'=\psi(V)\).
+
+\item Now that you are in euclidean space you can compute Taylor polynomials: a  \(k\)-jet \([f]\in J^{k}(U',V')\) has coordinate functions, the Taylor polynomials of which are well-defined up to order \(k\):
+	\begin{align*}
+		f: U' \subset \mathbb{R}^n &\longrightarrow V' \subset \mathbb{R}^m \\
+		x_0 &\longmapsto \Big(f_1(x_0),\ldots,f_m(x_0) \Big)
+	\end{align*}
+Define
+\[T_kf_i(x_0):=\text{Taylor polynomial of \(f_i\) at \(x_0\) up to degree \(k\)}. \]
+\item Realise: for every \(k\)-jet \([f] \in J^{k}(U',V')\) its coordinates are:
+	\begin{align*}
+	\Big(\alpha[f],\beta[f],T_kf_1(\alpha[f]),\ldots,T_kf_m(\alpha[f]) \Big)&\in U' \times V'\times P^k_{n}\times\ldots\times P^k_n\\
+	&=U' \times V' \times B^k_{n,m}.
+	\end{align*}
+	where \(\alpha[f]\) is the source, \(\beta[f]\) its target.
+
+	 
+\end{enumerate}
+
+\subsubsection{Lecture notes}
+
 Pegue \(\sigma \in J^k(X,Y)_{p,q}\) e cartas \((U,\varphi)\) de \(p\) e \((V,\psi)\) de $q$. {\color{4}Ideia:} usar o pushforward e o pullback das cartas para levar o problema no \(\mathbb{R}^n\).
 
 \begin{exercise}\leavevmode
