@@ -283,6 +283,14 @@ Então o \textit{\textbf{gradiente}} de \(f\) é
 
 \subsection*{Teorema da função implícita (aula pasada)}
 
+\begin{upshot}\leavevmode
+Think of the circle as the zero-set of \(f(x,y)=x^2+y^2-1\). If the Jacobian matrix of $f$ has enough rank at a given point \((x,y)\), we can find a function \(g: \mathbb{R} \to \mathbb{R}\) that parametrizes the circle locally. That is: \(\Big(x,g(x)\Big)\) is in the circle, i.e. \(f\Big(x,g(x) \Big)=0\). (So the zero-set is the graph of \(g\)).
+
+So you have the zero-set of a function at a point, which is a subset of the domain. It is a geometric object. You want to parametrize it. If the derivative has rank  \(k\), you can put \(k\) of the variables of the domain in terms of the remaining ones.
+
+So the real upshot is that this geometric thing is truly determined by \(k\) variables, so we don't need the other variables. That's it. The theorem says how to get rid of the excess of info locally: \(g\) needs less variables and produces the geometric thing locally.
+\end{upshot}
+
 Uma função \(f:\mathbb{R}^n \to \mathbb{R}^m\) suave tal que \(f(0)=0\) e  \(f'(0)\) é sobrejetiva (\(\implies n \geq m\)). Então existe uma vizinhança de \(0 \in \mathbb{R}^n\) \(U\) e \(\tilde{U}\) \textbf{e um difeomorfismo} \(\varphi: U \to \tilde{U}\) tal que
 \begin{align*}
 	f \circ \varphi: \mathbb{R}^m \times \mathbb{R}^{n-m} &\longrightarrow \mathbb{R}^m \\
@@ -490,7 +498,7 @@ Então
 
 \end{proof}
 
-\section{Aula 4§}
+\section{Aula 4}
 
 \subsection{Teorema de Sard}
 
@@ -541,6 +549,7 @@ Son como vectores de orden de diferenciabilidad más grande: a ideia é generali
 \begin{defn}\leavevmode
 
 	Dos funciones \(f,g:X\to Y\) suaves que mandan \(p\) al mismo punto son equivalentes si existem cartas tales que las derivadas parciales de sus representaciones en coordenadas coinciden hasta orden \(k\).
+\end{defn}
 
 Sejam \(X, Y\) variedades diferenciaveis suaves e \(f,g:X \to Y\) suaves. Dizmos que \(f \sim_k g\) em \(p \in X\) se, intuitivamente, as derivadas parciais de \(f \) e \(g\) coincidem até ordem $k$. Isso é inuitivo porque precisamos pegar cartas para isso ficar bem definido: precisamos que existam cartas \((U, \varphi),(V,\psi)\) aoredor de \(p\) e \(f(p)\) tais que
 \[\frac{\partial ^{|\alpha|}}{\partial x^\alpha}(\psi \circ f \circ \varphi^{-1}(\varphi(p))=\frac{\partial ^{| \alpha|}}{\partial x^\alpha}(\]
@@ -551,6 +560,10 @@ Isso generaliza o espaço tangente do seguinte jeito:
 \begin{exercise}\leavevmode
 \[J^1(X,\mathbb{R})_{p,0}\cong T_p^*Y.\]
 \end{exercise}
+
+\begin{proof}[Solution]\leavevmode
+Vamos definir uma correspondência que a cada jato associa um funcional em \(T^*_pM\) pensando que os vetores são classes de equivalência de curvas \([\gamma]\). Pegue um jato \(\sigma\). Esse jato \(\sigma\) tem um representante \(f:X \to \mathbb{R}\) (que manda $p$ a zero). Pegue \(d_pf:T_pX \to \mathbb{R}\), um elemento de \(T_p^* X\). É claro que esta correspondência está bem definida: se \(g : X \to \mathbb{R}\) está relacionada com \( f\), as derivadas parciais delas coincidem em $p$, de forma que \(d_pf=d_pg\). A contenção oposta é evidente: toda forma em \(T_p^*X\) é a diferencial de algum jato já que a base canônica de \(T^*_pX\) está dada por diferenciais de funções em $p$.
+\end{proof}
 Daí definimos o \textit{\textbf{espaço de $k$-jatos}}:
 \[J^k(X,Y):= \bigsqcup_{\substack{p \in X \\ q \in Y}}J^k(X,Y)_{p,q}\]
 
@@ -562,7 +575,6 @@ Então pega um jato \(\sigma \in J^k(X,Y)\). Isso cuspe um \(p\) e um  \(q\) tai
 	\beta: J^k(X,Y) &\longrightarrow Y \\
 	0 &\longmapsto q
 \end{aligned}\]
-\end{defn}
 
 \begin{example}\leavevmode
 \(X=U \subset \mathbb{R}^n\), \(Y= V \subset \mathbb{R}^m\) abertos. O que é o espaço de jatos neste caso?
@@ -573,11 +585,19 @@ Tem uma bijeção
 	f &\longmapsto (f_1^k,\ldots,f_m^k)
 \end{align*}
 Lance: pode pensar que esas funções são polinomias de grau maximo $k$.
-\[B^k_{n,m}=\{p: \mathbb{R}^n\to \mathbb{R}^m: p \text{polinomial de grau \(\leq k\) tal que \(p(0)=0\)} \}.\]
+\[B^k_{n,m}=\{p: \mathbb{R}^n\to \mathbb{R}^m: p \text{ polinomial de grau \(\leq k\) tal que \(p(0)=0\)} \}.\]
 
 \begin{exercise}\leavevmode
 Calcule a dimensão de \(B^k_{n,m}\).
 \end{exercise}
+
+\begin{proof}[Solution]\leavevmode
+Enquanto eu achei que a dimensão era \(k^m\), porque cada espaço de polinomios (\textit{em uma variável}, sem termo constante) está generado por \(\left<x,x^2,\ldots,x^k\right>\) e temos $m$ deles, errei. Porque são polinomios em $n$ variaveis. Então a base do espaço de polinomios em $n$ variáveis de grau máximo \(k\) e sem termo constante e… o conjunto de monomios linearmente independentes de grau máximo \(k\)
+
+Façamos um polinomio de $n$ variáveis de grau máximo \(k\). Tendo $n$ variáveis, pode pegar só uma delas, ai tem $n$ opções. Pode pegar duas delas, ai tem mais \(n^2\) opções. Tres, quatro, até \(k\) delas. Tem \(\sum_{i=1}^k n^i\) diferentes monomios. {\color{2}Mas…} o que acontece com a ordem?
+
+De acordo com ChatGPT, o problema fica melhor quando pensamos que a cada variável (=indeterminada \(x_i \in k[x_1,\ldots,x_n]\)) de um monómio associamos um número inteiro maior o igual de que 0, o exponente da variável. Daí a quantidade de monomios de grau \(i\) é simplesmente a quantidade de vetores inteiros não negativos \(a_j\) tais que \(\sum a_j=i\). Isso é o mesmo que a quantidade de formas de acomodar \(i\) bolinhas em $n$ caixinhas. Isso é o mesmo que a quantidade de formas de acomodar \(n-1\) divisionsinhas numa lista de \(i\) bolinhas (porque todas as bolinhas são iguais). Então são \(i + n-1\) coisas (divisionsinhas ou bolinhas) numa linha, e nesses \(i + n-1 \) lugares escolhemos \(n-1\) para botar as divisionsinhas. O resultado é \(\binom{i+n-1}{n-1}\). Somar sobre \(i\). Elevar à $m$.
+\end{proof}
 \[\begin{tikzcd}
 J^k(U,V)\arrow[rr,"\cong"]\arrow[dr,"\alpha",swap]&&U \times V \times B^k_{n,m}\arrow[dl,"\operatorname{pr}_1"]\\
 &U
@@ -649,7 +669,660 @@ Em fim, tudo isso da uma estrutura de variedade topologica. Para terminhar só t
 \end{align*}
 \textbf{Isso é suave!} E isso implica que \(J^k(X,Y)\) é uma \(C^\infty\) variedade de dimensão \(n+m+ \dim B^k_{n,m}\). 
 
-E daí que \(\alpha\) e \(\beta\) são submersoes sobrejetivas.
+
+\section{Aula 5: topologia de Whitney}
+
+\begin{enumerate}
+\item Terminhamos a estrutura de variedade diferenciavel do espaço de jatos. As cartas são
+	\[J^k(\varphi(U),\psi(V)) \xrightarrow{\text{ bijeção} }\varphi(U) \times \psi(U) \times B^k_{n,m}\subset \mathbb{R}^N\]
+	lembramos como ver que as funções de transição são suaves {\color{2}(exercício: fazer detalhes)}
+\item
+	\begin{defn}\leavevmode
+	Sejam \(E\), \(B\), \(F\) varoedades dif. \(\pi: E \to B\) suave é um \textit{\textbf{fibrado}} com fibra \(F\) se
+	\begin{itemize}
+	\item \(\pi\) é uma submersão sobrejetiva.
+	\item  para todo \(b \in B\) existe \(U \subset B \) aberto \( U \ni b\) e um difeomorfismo
+		\[\begin{tikzcd}
+		\pi^{-1}(U)\arrow[rr,"\text{ dif} "]\arrow[dr,"\pi",swap]&&U \times F\arrow[dl,"\operatorname{pr}_1"]\\
+		&U
+		\end{tikzcd}\]
+	\end{itemize}
+	\end{defn}
+
+\item  \(\alpha \) e \(\beta\) são fibrados. Também \(\alpha \times \beta: J^k(X,Y)\to X \times Y\). As fibras do último são difeomorfas a um espaço vetorial (polinomios B) mas esse difeomorfismo não induzem estrutura de espaço vetorial. Caso \(Y=\mathbb{R}^n\) pode sim pq os jatos são funções em \(m\mathbb{R}^n\), assim pode botar estrutura de espaço vetorial nas fibras.
+\item Para cada função  \(f \in C^\infty(X,Y)\) temos uma \textbf{seção} de \(J^k(X,Y)\) chamada \(j^k f:X \to J^k(X,Y)\) dada por \(x \mapsto  [f]_x\).
+
+\item  Topologia de Whitney \(C^k\) defn.
+\item  Lema: \(k \leq  \ell \implies  W_k \subset W_\ell\).
+\item Def: a topologia \(C^ \infty\) \textit{\textbf{de Whitney}} é a topologia gerada por \( \bigcup_{k=1}^\infty W_k\) onde \(W_k\) e a \(k\)-ésima. ``\(U\) é aberto em \(C^\infty\)" se para todo \(x\in U\) existe \(V\) aberto em algum \(C^k\) (para todo \(x\) existe \(V\) e existe \(k\)) tais que \(x \in V \subset U\).
+\item  Def: Seja \(\delta : X \to \mathbb{R}_+=(0,\infty)\) e \(f \in C^\infty(X,Y)\) definimos a \textit{\textbf{\(\delta\)-bola}} como
+	\[D_\delta(f)=\{f \in C^\infty(X,Y)|d(j^kf(x),j^kg(x))<\delta(x)\forall x \in X\}\]
+	onde $d$ é qualquer métrica em \(J^k(X,Y)\). {\color{6}(A distancia entre as derivadas é muito pequena.)}
+\item Prop: \(\{B_\delta(f): \delta:X \to \mathbb{R}_+\}\) é uma base local centrada em \(f\) da topologia \(C^k\), i.e.
+	\begin{itemize}
+	\item \(B_\delta(f)\) é aberto.
+	\item \(\forall  \mathcal{W} \ni f\) aberto, existe \(\delta\) tal que \(B_\delta(f) \subset \mathcal{W}\).
+	\end{itemize}
+\item Fix: a locally finite atlas \(\Phi\) of \(X\) with a \(\Subset\) cover (every open set of the cover contains an open subset whose closure is compact and contained in the original open set), an atlas \(\Psi\) of \(Y\), e uns números positivos \(\mathcal{E}=\{ \varepsilon_i\}\), e uma função \(f \in C^\infty(X,Y)\). Então a topologia gereada por (foto) coincide com a topologia \(C^k\).
+\item Obs: quando \(X\) é compacto, \(\delta_n=\frac{1}{n}\), \(\{B_{\delta_n}(f)\}\) é uma base local da topologia \(C^k\).
+\item Prop: seja \(\{ f_n\}_{n \in \mathbb{N}} \subset C^\infty(X,Y)\), \(f_n \xrightarrow{C^k}f\). Então existe \(K \subset X\) compacto tal que \(f_n \equiv f\) em \(X \setminus K\) e \(j^k f_n \xrightarrow{u}j^kf\) em \(K\).
+\end{enumerate}
+
+
+\section{Aula 6: topologia de Whitney (cont.). Teoremas de transversalidade.}
+
+\subsection{Topologica de Whitney (cont.)}
+
+\begin{enumerate}
+\item Lembrança das topologias \(C^k\) e \(C^\infty\).
+\item \(X\) variedade não compacta existe \(\{ K_n\}\) compactos tais que \(K_n \subset \int (K_{n+1}\) e \(\bigcup_{n \in N} K_n=X\). Também existe \(\rho: X \to \mathbb{R}_+\),  \(\rho|_{K_{2n+1}\setminus K_{2n}}=2\). \(\rho\) é própria.
+\item  Em toda variedade existe uma métrica completa (análise em variedades…).
+\item Definição de espaço de Baire.
+\item Teo (Prop 3.3). Se \(X, Y\) são variedades suaves, então \(C^\infty(X,Y)\) é um espaço de Baire na topologia \(k=1,2,\ldots,+\infty\).
+\item Prop 3.\(X, Y\) variedades diferenciaveis \( j^k : C^\infty(X,Y)\to C^\infty(X, J^k(X,Y))\) é contínua em \(C^\infty\).
+\item  \(\phi: Y \to Z \) suave então \(\phi_*: C^\infty(X,Y)\to C^\infty(X,Z)\), \(f \mapsto \phi \circ f\) é contínua em \(C^\infty\). Também \(C^\infty(X,Y) \times C^\infty(X,Z)\to C^\infty(X, Y \times Z)\), \(f, g) \mapsto f \times g\).
+\end{enumerate}
+
+\subsection{Teoremas de transversalidade}
+
+A ideia é que a transervsalidade é uma condição generica.
+
+\begin{enumerate}
+\item Def: \(X,Y\),  \(f \in C^\infty(X,Y)\), \(W \subset Y\) subvariedade. \(f\) é \textit{\textbf{transversal}} a \(W\) se para todo  \(x \in f^{-1}(W)\),
+	\[df_x(T_xW)+T_{f(x)}W=T_{f(x)}Y.\]
+\item Obs. Isso impoe restrições sobre as dimensoes: se \(f \pitchfork W\) e \(f^{-1}(W)\neq \varnothing.\) Então \(\dim X + \dim W \geq \dim Y\).
+
+	\begin{remark}[\cite{gui}, p. 35]\leavevmode
+	Why can't two curves in \(\mathbb{R}^3\) never intersect transversally (except if they do not intersect at all)? Doesn't make sense because of course they can intersect transversally, right? what happens is that \textit{by a small deformation of either curve, one can abruptly pull the two enteirly apart; their intersection is not stable}:
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{fig2}
+		\caption*{}
+	\end{figure}
+	\end{remark}
+\item Teorema muito importante. \(X,Y\) variedades suaves \(f \in C^\infty(X,Y)\), \(W \subset Y\) subvariedade, \(f \pitchfork W\) e \(f^{-1}(W) \neq  \varnothing\). Então \(f^{-1}(W)\subset X\) é uma subvariedade e \(\operatorname{codim}f^{-1}(W)=\operatorname{codim}(W)\).
+
+	Outra encarnação do teroema da função inversa.
+
+	\begin{remark}[\cite{gui}, p. 29]\leavevmode
+	When \(W\) is just a single point, its tangent space is the zero subspace of \(T_y(Y)\). Thus \(f\) is transversal to \(y\) if \(df_x[T_x(X)]=T_y(Y)\) for all \(x \in f^{-1}(y)\) \textbf{which is to say that \(y\) is a regular value of \(f\)}. So transversality includes the notion of regularity as a special case. 
+\end{remark}
+\end{enumerate}
+
+\section{Aula 7}
+
+
+
+\begin{enumerate}
+\item Prop: Sejam \(X,Y\) variedades e \(W \subset Y\) subvariedade fechada como subconjunto. \[T_W:= \{f \in C^\infty(X,Y): f \pitchfork W\}\]
+é aberto em \(C^\infty\).
+
+{\color{7}A ideia é que podemos perturbar variedades que se intersectam transversalmente, e isso fica transversal que podemos perturbar variedades que se intersectam transversalmente, e isso fica transversal.}
+
+\item Prop: Sejam \(X,Y,B\) variedades, \(W \subset Y\) subvariedade, \(j:B \to C^\infty(X,Y)\) (não podemos supor que \(j\) é contínua. Considere também
+\begin{align*}
+	\Phi: X \times B &\longrightarrow Y \\
+	(x,b) &\longmapsto j(b)(x).
+\end{align*}
+Suponha que \(\Phi \pitchfork W\).
+
+Então \(\{ B \in B : j(b) \pitchfork W\}\) é denso em \(B\). (Também é verdade que esse conjunto tem medida total.)
+	
+\item Corolário 4.7.
+\item Teorema de transversalidade de Thom. (Formulação.)
+\item Coro 4.11. (Formulação.)
+
+\end{enumerate}
+
+\section{Aula 8: teorema de transversalidade de Thom; multijatos}
+
+\subsection{Teorema de transversalidade de Thom}
+
+\begin{thm}[de transversalidade de Thom]\leavevmode
+Sejam \(X, Y\) variedades diferenciáveis, \(W \subset J^k(X,Y)\) subvariedade. Então
+\[\{ d \in C^\infty (X,Y): j^kf \pitchfork W\}\]
+é residual (=interseção de abertos densos).
+
+(Se \(W\) é fechado, então o conjunto também é aberto.)
+\end{thm}
+
+\begin{proof}\leavevmode
+Primeiro, para o último comentário ali entre paréntese, note que se \(W\) é fechado,
+\[U=\{g \in C^\infty (X,J^k(X,Y)):g \pitchfork W\}\]
+é aberto. Note que \(T_W= (j^k)^{-1}(U)\).
+
+Como \(j^k: C^\infty (X,Y) \to C^\infty (X,J^k(X,Y))\) é contínua, \(T_W\) é aberto.
+
+\textbf{Começa a prova.} $\mathsf{OK}$ então pegue \(\sigma \in W\). Seja \(W_\sigma \subset W\)  uma vizinhança, e cartaso \(\varphi_\sigma: U_\sigma \to \mathbb{R}^n\), \(\psi_\sigma:V_\sigma \to \mathbb{R}^m\) tais que
+\begin{enumerate}
+\item \(\alpha(\sigma) \in U_\sigma\) \(\beta(\sigma) \in V_\sigma\).
+\item \(\overline{W}_\sigma\), \(\overline{U}_\sigma\) compactos.
+\item \(\alpha(\overline{W}_\sigma) \subset U_\alpha\), \(\beta(\overline{W}_\sigma) \subset V_\sigma\).
+\item \(\psi_\sigma(V_\sigma) = \mathbb{R}^m\).
+\end{enumerate}
+Então beleza. Agora pegue
+\[T_\sigma=\{f \in C^\infty (X,Y): j^kf \pitchfork W \text{ em } \overline{W}_\sigma\}\]
+Então
+\[\bigcap_{\sigma \in W}T_\sigma=T_W.\]
+Como \(W\) é 2-enumerável, podemos escolher \(\{\sigma_n\}_{n \in \mathbb{N}}\) tal que \(\bigcup_{n \in \mathbb{N}}W_{\sigma_n}=W\). Logo
+\[ \bigcap_{n \in \mathbb{N}}=T_W.\]
+\begin{claim}\leavevmode
+\(T_\sigma\) é aberto e denso.
+\end{claim}
+
+\begin{proof}[Prova da afirmação]\leavevmode
+\begin{prop}[da aula passada modificada]\leavevmode
+\(X,Y\) variedades dif. \(W\subset Y\) subvariedade, \(W' \subset W\) fechado em \(Y\). Então
+ \[\{f \in C^\infty (X,Y): j^kf \pitchfork W \text{ em } W'\}\]
+é aberto.
+\end{prop}
+Ussando essa proposição é o fato de que \(j^k\) é contínua, mostramos que \(T_\sigma\) é aberto.
+
+{\color{6}
+Para ver que \(T_\sigma\) é denso considere \(f \in C^\infty (X,Y)\). Vamos construir \(\{ g_n\}\subset C^\infty (X,Y)\) tal que \(g_n \xrightarrow{C^\infty }f\) e \(g_n \in T_\sigma\).}
+
+Vamos escolher
+\[\rho_1:\mathbb{R}^n\to[0,1]\qquad \qquad \rho_2:\mathbb{R}^m\to [0,1]\]
+suaves, \(\rho_1 \equiv 1\) numa vizinhança de \(\varphi_\sigma(\alpha(\overline{W}_\sigma))\), \(\rho_2 \equiv 1\) numa viz. de \(\psi_\sigma(\beta(\overline{W}_\sigma))\), \(\operatorname{supp}\rho_1, \operatorname{supp}\rho_2\) compactos (partição da unidade).
+
+Seja \(B=\{\text{funções polinomiais de \(\mathbb{R}^n \to \mathbb{R}^n\) de grau \(\leq k\)} \} \cong \mathbb{R}^m \oplus  B^k_{n,m}\).
+
+Para \(b \in B\), definimos \( g_b: X \to Y\), 
+
+
+\[g_b=\begin{cases}
+	\psi^{-1}_\sigma(\psi_\sigma(f(x))+\rho_2(\psi_\sigma(f(x))\rho_1(\varphi_\sigma(x))\cdot b(\varphi_\sigma(x))),\qquad &\text{se }x \in U_\sigma\text{ e } f(x) \in V_\sigma  \\
+	f(x)\qquad &\text{ se } x \not \in U_\sigma \text{ e } f(x) \not \in V_\sigma
+\end{cases}\]
+\(g_0=f\).
+
+\paragraph{Intuition for \(g_b\) by ChatGPT.} 
+The function \(g_b\) is a smooth perturbation of \(f\) designed to ensure \(j^k g_b \pitchfork W\) in \(\overline{W}_\sigma\). Locally, near \(\overline{W}_\sigma\), \(g_b\) behaves like \(f\) plus a polynomial perturbation \(b(\varphi_\sigma(x))\), where \(b \in B\) spans the \(k\)-jet space. The partition of unity functions \(\rho_1, \rho_2\) localize the perturbation to a compact region, ensuring \(g_b\) is globally smooth and matches \(f\) outside this neighborhood.
+
+Agora:
+\begin{align*}
+	\Phi: X \times B &\longrightarrow J^k(X,Y) \\
+	(x,b) &\longmapsto j^kg_b(x)
+\end{align*}
+
+\paragraph{Dependence of \(g_b\) on \(b\).} 
+For each \(b \in B\), where \(B\) is the space of polynomials of degree \(\leq k\) in the local coordinates \(\varphi_\sigma(x)\), there is a corresponding perturbation \(g_b\). The choice of \(b\) determines how \(g_b\) modifies \(f\) locally near \(\overline{W}_\sigma\). The perturbation:
+\begin{itemize}
+    \item Is localized to \(\overline{W}_\sigma\) by the partition of unity functions \(\rho_1\) and \(\rho_2\), ensuring \(g_b = f\) outside \(U_\sigma\).
+    \item Explores all possible modifications in the \(k\)-jet space \(B^k_{n,m}\), making the construction rich enough to enforce transversality.
+\end{itemize}
+While \(b\) can be chosen freely from \(B\), the perturbation is controlled, smooth, and compactly supported, ensuring \(g_b\) remains globally well-behaved.
+
+
+\textbf{Ideia:} \(\Phi \not{\pitchfork} W\).
+
+Seja \(\varepsilon=\frac{1}{2}\operatorname{dist}(\psi_\sigma(\beta(\overline{W}_\sigma)),\rho^{-1}_2([0,1)))>0\).
+
+\[\tilde{B}=\{b \in B: \|b(x)\|<\varepsilon \forall  x \in \operatorname{sup p} \rho_1\}\]
+aberto, \(0 \in \tilde{B}.\)
+
+
+\paragraph{The subset \(\tilde{B}\) (GPT).} 
+The set \(\tilde{B}\) is a subset of the polynomial space \(B\), defined as:
+\[
+\tilde{B} = \{b \in B : \|b(x)\| < \varepsilon \, \forall x \in \operatorname{supp} \rho_1\},
+\]
+where \(\varepsilon = \frac{1}{2} \operatorname{dist}(\psi_\sigma(\beta(\overline{W}_\sigma)), \rho_2^{-1}([0,1))) > 0\). This means that \(\tilde{B}\) contains only those polynomials \(b(x)\) whose values are bounded by \(\varepsilon\) within the support of \(\rho_1\). The set \(\tilde{B}\) is open in \(B\), and \(0 \in \tilde{B}\).
+
+\(\tilde{\Phi}:\Phi\Big|_{X \times \tilde{B}}X \times \tilde{B} \to J^k(X,TY)\) é um difeomorfismo local numa viz. de \((x,0)\), onde  \(\Phi(x,b) \in \overline{W}_\sigma.\)
+
+\((x,b)\) t.q. \(\Phi(x,b) \in \overline{ W}_\sigma\). \(j^k g_b(x) \implies x \in \alpha (\overline{W}_\sigma)\), \(g_b(x)=\beta (\Phi(x,b))\).
+
+\[\Psi_b(g_b(x))=\Psi_\sigma(f(x))+\rho_2(\psi_\sigma(f(x))\rho_1(\varphi_\sigma(x))b(\varphi_\sigma(x)).\]
+\[\|\Psi_\sigma(g_b(x))-\psi_\sigma(f(x))\| \leq  \|b(\varphi(x))\|<\varepsilon.\]
+Então
+\[\rho_2(b(\varphi_\sigma(x)))=1.\]
+
+\[g_b(x)=\psi^{-1}_\sigma(\psi_\sigma(f(x))+b(\varphi_\sigma(x)))\]
+\[g_b'(x)=\psi^{-1}_\sigma(\psi_\sigma(f(x))+b'(\varphi_\sigma(x))\]
+para \(b'\) suficientement próxima de  $b$. \textbf{Isso implica que \(\Phi\)} é um difeomorfismo local para todo \((x,b) \in \Phi^{-1}(\overline{W}_\sigma\).
+
+\paragraph{Summary of \(\tilde{B}\) and its Role (GPT).}
+The set \(\tilde{B} = \{b \in B : \|b(x)\| < \varepsilon \, \forall x \in \operatorname{supp} \rho_1\}\), where 
+\(\varepsilon = \frac{1}{2} \operatorname{dist}(\psi_\sigma(\beta(\overline{W}_\sigma)), \rho_2^{-1}([0,1))) > 0\), defines a controlled subset of perturbations. Perturbations \(b \in \tilde{B}\) ensure that:
+\begin{itemize}
+    \item The map \(\tilde{\Phi} = \Phi\big|_{X \times \tilde{B}} : X \times \tilde{B} \to J^k(X, Y)\) is a local diffeomorphism near \((x, 0)\), allowing smooth control of \(j^k g_b\).
+    \item For \((x, b)\) such that \(\Phi(x, b) \in \overline{W}_\sigma\), we have \(x \in \alpha(\overline{W}_\sigma)\) and \(g_b(x) = \beta(\Phi(x, b))\), ensuring the perturbation is relevant to \(\overline{W}_\sigma\).
+    \item The bound \(\|\Psi_\sigma(g_b(x)) - \psi_\sigma(f(x))\| < \varepsilon\) ensures the perturbation remains localized, with \(\rho_2 = 1\) in the active region, maintaining smoothness and compact support.
+\end{itemize}
+This construction ensures \(g_b\) perturbs \(f\) only where needed, while staying smooth and controlled globally.
+
+Logo \(\tilde{\Phi}\) é submersão para todo \(x \in \tilde{\Phi}^{-1}(\overline{W}_\sigma)\).
+
+Logo \(d \tilde{\Phi}_{(x,b)}(T_{(a,b)}(X \times \Big)+ T_{\tilde{\Phi}(x,b)}W=T_{\tilde{\Phi}(x,b)}(J^k(X,Y)) \implies \tilde{\Phi} \pitchfork W\) em \(X \times \tilde{B}\).
+
+Pelo lema da aula passada
+\[j^kg_b=\Phi_b \pitchfork W\]
+para um conjunto denso de \(b \in \tilde{ B}\). Então existe \(b_n \to 0\) tal que \(j^k g_{b_n} \pitchfork W\) em \(\overline{W}_\sigma\), \(g_{b_n}\xrightarrow{C^\infty }f\). (Tem uma conta aqui para ser feita.)
+
+\paragraph{Final Step of the Proof.}
+The map \(\tilde{\Phi}: X \times \tilde{B} \to J^k(X, Y)\) is a submersion on \(\tilde{\Phi}^{-1}(\overline{W}_\sigma)\), meaning:
+\[
+d\tilde{\Phi}_{(x,b)}(T_{(x,b)}(X \times \tilde{B})) + T_{\tilde{\Phi}(x,b)}W = T_{\tilde{\Phi}(x,b)}(J^k(X,Y)).
+\]
+This implies \(\tilde{\Phi} \pitchfork W\) on \(X \times \tilde{B}\).
+
+By a previous lemma, for a dense subset of \(b \in \tilde{B}\), we have:
+\[
+j^k g_b = \tilde{\Phi}_b \pitchfork W \text{ on } \overline{W}_\sigma.
+\]
+Thus, there exists a sequence \(b_n \to 0\) in \(\tilde{B}\) such that:
+\[
+j^k g_{b_n} \pitchfork W \text{ on } \overline{W}_\sigma, \quad \text{and} \quad g_{b_n} \xrightarrow{C^\infty} f.
+\]
+This concludes the proof by showing that \(f\) can be approximated arbitrarily closely by maps achieving transversality.
+
+
+\end{proof}
+
+\end{proof}
+
+\begin{coro}[da demostração]\leavevmode
+Sejam \(X, Y\) variedades, \(W \subset J^k(X,Y)\) subvariedade, agora já sei que \(\alpha(\overline{W}) \subset U\), \(U\) aberto de \(X\). {\color{6}``So preciso modificar a função num conjunto aberto, não preciso modificar a função globalmente."}
+
+Então existe \(g \in \mathcal{V}\) tal que \(j^kg \pitchfork W\) \textbf{e \(g \equiv f\) em \(X\setminus U\)}.
+\end{coro}
+
+\begin{coro}[Versão simples da transversalidade]\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item \(X,Y\) variedades, \(W \subset Y\) subvariedade. Então
+\[\{ f \in C^\infty (X,Y): f \pitchfork W\}\]
+é denso.
+
+Se \(W\) é fechado, então esse conjunto é aberto.
+\item \(U_1,U_2\subset X\)abertos, \(\overline{U_1}\subset U_2\). Então existe \(g \in C^\infty (X,Y)\) tal que \(f \equiv g\) em \(U_1\), \(g \pitchfork W\) em \(X \setminus U_2\). (É só aplicar o corolário para caso de 0-jatos.
+\end{enumerate}
+\end{coro}
+
+\subsection{Multijatos}
+Um pouco mais de teoria para obter corolários bonitos.
+
+\(X,Y\) variedades, \(s \in \mathbb{N}\).
+\[X^{(s)}=\{(x_1,x_s)\in X^s: x_1 \neq  x_j, i\neq j\}\]
+(são os pontos que não tem duas coordenadas iguais). Isso é claramente aberto em \(X^s\).
+
+\begin{align*}
+	\alpha^s: J^k(X,Y)^s &\longrightarrow X^s \\
+	(\sigma_1,\ldots,\sigma_s) &\longmapsto (\alpha(\sigma_1),\ldots,\alpha(\sigma_s))
+\end{align*}
+O espaço de \textit{\textbf{multijatos}} é o espaço de $s$-jatos tal que cada jato está num ponto diferente:
+\[J^k_s(X,Y):=(\alpha^s)^{-1}(X^{(s)})\]
+i.e. \((\sigma_1,\ldots,\sigma_s) \in J^k_s(X,Y)\) sse \(\sigma_1=j^kf_i(x_i)\), \(x_i \neq  x_j, \qquad  i \neq  j\).
+
+Note que
+\[J^k_s(X,Y) \subset J^k(X,Y)^s\]
+é aberto.
+
+E agora
+\[\alpha^s: J^k_s(X,Y) \to X^{(s)}\]
+fibrado.
+
+Para \(f \in C^\infty (X,Y)\),
+\begin{align*}
+	j^k_sf: X^{(s)} &\longrightarrow J^k_s(X,Y) \\
+	(x_1,\ldots,x_s) &\longmapsto (j^kf(x_1),\ldots,j^kf(x_s))
+\end{align*}
+
+\begin{thm}[transversalidade para multijatos]\leavevmode
+Sejam \(X,Y\) variedades e \(W \subset J^k_s(X,Y)\) subvariedade.
+\[T_w=\{ f \in C^\infty (X,Y):j^k_sf \pitchfork W\}\]
+é residual. Além disso, se \(W\) é \textbf{compacto}, então \(T_W\) é aberto.
+\end{thm}
+
+\subsection{Imersão e mergulho de Whitney}
+
+Sejam \(X, Y\) variedades, \(\sigma = j^1f(x) \in J^1(X,Y)\), \(\operatorname{rk}\sigma=\operatorname{rk}(df_x:T_xX \to T_{f(x)}Y)\). Definimos o \textit{\textbf{coposto}} como sendo
+\[\operatorname{corank}=\operatorname{min}(n,m)-\operatorname{rk}\sigma\]
+\begin{lemma}\leavevmode
+Seja \(S_r=\{\sigma \in J^1(X,Y): \operatorname{corank}\sigma=r\}\). $f$ é imersão (\(n\leq n\)) ou submersão ( \(n \geq m\)) see \(j^1f(X) \cap \bigcup_{r \geq  1}S_r= \varnothing\).
+\end{lemma}
+
+\begin{thm}[Imersão de Whitney]\leavevmode
+Sejam \(X,Y\) variedades tais que \(m \geq  2n\). Então
+\[\operatorname{Im}(X,Y)= \{ f: X \to Y: f \text{é imersão} \}\]
+é aberto e denso.
+\end{thm}
+
+\begin{prop}\leavevmode
+\(S_r\) é uma subvariedade de codimensão \((n-q+r)(m-q+r)\), onde \(q=\operatorname{min}(m,n)\) (o posto máximo).
+\end{prop}
+
+\begin{proof}\leavevmode
+\(S_r\) é um fibrado sobre \(X \times Y\) cuja fibra é
+\[\{A \in \mathcal{L}(\mathbb{R}^n,\mathbb{R}^m): \operatorname{corank}k=r\}\]
+Pega uma transformação linear de posto $r$, \(M \in \mathcal{L}^r( \mathbb{R}^n , \mathbb{R}^m)\), \(q = \operatorname{min} (n,m)\), \(k = \operatorname{rk} M= q-r\). Então
+\[[M]=\begin{bmatrix} A& B\\C & D \end{bmatrix} \]
+Seja \(U\) uma viz. de \(M\) em \(\mathcal{L} (\mathbb{R}^m,\mathbb{R}^m)\). Pegue \(M' \in U\). Então
+
+\(\begin{bmatrix} M' \end{bmatrix} = \begin{bmatrix} A' & B'\\ C' & D' \end{bmatrix}_{n \times m}\) 
+
+Vamos multiplicar \(M'\) por uma matriz que preserva o rank:
+\[\operatorname{rk}M'=\operatorname{rk} \begin{bmatrix} I_k& 0\\-C'(A')^{-1} &  I_{m-k} \end{bmatrix}_{m \times m}M'\]
+\[=\operatorname{rk} \begin{bmatrix} A' & B'\\0 & D'-C'(A')^{-1} B' \end{bmatrix} \]
+{\color{7}Como é que o posto dessa matriz é \(k\)?} Isso acontece see  \(D'-C'(A')^{-1}B'=0\).
+
+Ou seja, \(M' \in \mathcal{L}^r(\mathbb{R}^n,\mathbb{R}^m) \iff D'-C'(A')^{-1}B'=0\).
+
+\begin{align*}
+	\varphi: U \subset \mathcal{L}(\mathbb{R}^n,\mathbb{R}^m) &\longrightarrow \mathcal{L}(\mathbb{R}^{n-k},\mathbb{R}^{m-k}) \\
+	[M']=\begin{bmatrix} A' & B'\\ C' & D' \end{bmatrix}  &\longmapsto [D' - C'(A')^{-1}B']
+\end{align*}
+
+\[\mathcal{L}^r(\mathbb{R}^n,\mathbb{R}^m) \cap U = \varphi^{-1}(0).\]
+Submersão, pois
+\[\varphi \begin{bmatrix} A' & B' \\ C' & * \end{bmatrix} =\operatorname{Id}- C' (A')^{-1}B'\]
+\[\operatorname{codim} \mathcal{L}^r(\mathbb{R}^n,\mathbb{R}^m)=(n-k)(m-k)=(m-q+r)(n-q+r)\]
+\end{proof}
+
+\begin{proof}[Do teorema de imersão de Whitney]\leavevmode
+\begin{align*}
+\operatorname{Im}(X,Y)&=\{f : j^1f(X) \subset S^0\}\\
+&=\{ f : j^1f(X) \cap \bigcup_{r \geq  1}S_r = \varnothing\}.
+\end{align*}
+\end{proof}
+
+\section{Aula 9}
+
+\subsection{Teorema das imersões injetivas}
+
+\begin{thm}[das imersões injetivas]\leavevmode
+\(X^n, Y^m\) variedades dif. \(m \geq  2n+1\),
+\[\{f \in C^\infty(X,Y): f \text{ imersão injetiva} \}\]
+é residual.
+\end{thm}
+\begin{proof}\leavevmode
+Note que $f$ não é injetiva pode ser dito na linguagem de multijatos assim: \(\exists  (x_1,x_2) \in X^{(2)}\) tal que \(j^0_2f(x_1,x_2) \in X^{(2)}\times \Delta_Y\).
+
+Logramos argumentar que $f$ é injetiva see \(j^0_2f(X^{(2)}) \pitchfork W= \varnothing\) para \(W=X^{(2)}\times \Delta_Y \subset J^0_2(X,Y)\), note que \(\operatorname{codim} W=\dim Y=m\). Dai \(\dim X^{(2)}=2n<m=\operatorname{codim} W\). Dai \(j^0_2 f \pitchfork W \iff j^0_2f(X^{(2)}) \pitchfork W= \varnothing\).
+
+aplicamos teorema de transversalidade de multijatos, obtendo que \(\operatorname{In j}(X,Y)\) é residual, e o resultado segue.
+\end{proof}
+
+\begin{lemma}\leavevmode
+Seja \(X\) variedade.
+\[\operatorname{Pr op}(X, \mathbb{R}^m)=\{f: X \to \mathbb{R}^m: f \text{ é própria} \}\]
+é não-vazio e aberto.
+\end{lemma}
+
+\begin{proof}\leavevmode
+\begin{itemize}
+\item \textbf{(Não vazio.)} Pegue \(\rho:X \to \mathbb{R}\) própria. Dai \(i:\mathbb{R} \to \mathbb{R}^m\), \(x \mapsto (x,0,\ldots,0)\) é injetiva e linear, asi \(i \circ \rho\) é própria.
+
+\item \textbf{(Aberto.)} Pegue \(f \in \operatorname{Pr o p}(X,\mathbb{R}^m)\). Pegue \(V \subset J^0(X,\mathbb{R}^m) \cong X \times \mathbb{R}^m\) aberto. Queremos ver que \(f \in M(V) \subset \operatorname{ Pr o p}(X,\mathbb{R}^m)\).
+
+	Defina \(Vx=\{y \in \mathbb{R}^m: d(y,f(x))<1\}.\) O truque e esse!
+
+	\[g \in M(V) \iff d (g(x),f(x))<1 \forall  x \in X \iff j^0 g(X) \subset V\]
+	então para \(g \in M(V)\) com \(d(g(x),g(x))<1\)  \(\forall  x \in X\), e asi
+	\[g^{-1}(\overline{B_r(0)}\subset f^{-1}(\overline{B_r(0))}\]
+	e isso implica que \(g\) é própria.
+\end{itemize}
+\end{proof}
+
+\subsection{Teorema do mergulho de Whitney}
+
+\begin{coro}[Teorema do mergulho de Whitney]\leavevmode
+\(X^m\) variedade, \(X \hookrightarrow  \mathbb{R}^{2n+1}\).
+\end{coro}
+
+\begin{proof}\leavevmode
+\(\operatorname{Im}(X,Y) \cap \operatorname{Inj}(X,Y)\) é residual, logo denso. Então \(\operatorname{Im}(X,Y) \cap \operatorname{Inj}(X,Y) \cap \operatorname{Pr o p}(X,Y) \neq  \varnothing\), which implies that \(X \hookrightarrow  Y=\mathbb{R}^{2n+1}\).
+\end{proof}
+
+\subsubsection{Funções de Morse}
+
+\begin{defn}\leavevmode
+\( f \in C^\infty(X)=C^\infty(X,\mathbb{R})\). Um ponto crítico de $f$ é quando a derivada não tem posto máximo, neste caso isso implica que a derivada tem posto 0, ou seja, \(d_pf=0\).
+ \[D^2_pf:T_pM \times T_pM \to \mathbb{R}\]
+ é uma forma bilinear simétrica. Para mostrar que isso está bem definido quando mudamos de coordanadas necesitamos usar que \(d_pf=0\). Também pode ver isso usando  ``conexões": quando a derivada é zero, temos uma eleção canônica de horizontal bundle e podemos identificar \(T_{(p,\underbrace{v}_{=0})}(TM) \cong T_pM \times T_pM\)
+\end{defn}
+
+\begin{defn}\leavevmode
+\(p \in \operatorname{Crit}(f)\) é não degenerado se \(D^2f_p\) é não degenerada, i.r. para todo \(v \in T_pM \setminus\{0\}\) existe \(w\) tal que \(D^2f_p(v,w)\neq 0 \iff \left(\frac{\partial^2(f \circ \varphi^{-1}}{\partial x^i \partial x^j}\right) \) é residual.
+\end{defn}
+
+\[S^1:= \{ j^1 g(x) \in J^1(X,\mathbb{R}):dg_x=0 \iff \operatorname{corank}\sigma=1\}\]
+
+\begin{prop}\leavevmode
+\(p \in \operatorname{Crit}(f)\) é não degenerada \(\iff\) \(j^1f \pitchfork S^1\) em $p$. \(p \in (j^1f)^{-1}(S^1)\)
+\end{prop}
+
+\begin{proof}\leavevmode
+Se usa que a dimensão de \(X\) é a mesma do que a dimensão de \(\mathcal{L}(\mathbb{R}^{2n},\mathbb{R})\).
+\end{proof}
+
+\begin{defn}\leavevmode
+\(f \in C^\infty(X)\) é uma \textit{\textbf{função de Morse}} se todo ponto crítico de $f$ é não  degenerado.
+\end{defn}
+
+\begin{coro}[da proposição]\leavevmode
+$f$ é de Morse \(\iff\) \(j^1 f \pitchfork S^1\).
+\end{coro}
+
+\begin{thm}\leavevmode
+\(\{f \in C^\infty(X): f \text{ é de Morse} \}\) é aberto denso de \(C^\infty(X,\mathbb{R})\).
+\end{thm}
+
+\begin{proof}\leavevmode
+\(S^1\) é fechado porque é subvariedade, logo o conjunto das funções de Morse é igual a \(\{f : j^1 f \pitchfork S^1\}\) é aberto e denso pelo teorema de Thom.
+\end{proof}
+
+\subsection{Teoria de interseção}
+
+\subsubsection{Preliminares: variedades com bordo e orientação}
+
+\begin{defn}\leavevmode
+Uma \textit{\textbf{variedade topológica}} \(X\) \textit{\textbf{com bordo}} é um espaço topológico Hausdorff 2-enumerável tal que todo ponto possui uma vizinhança aberta homeomorfa a um aberto de \(\mathbb{H}^n=\{(x_1,\ldots,x_n) \in \mathbb{R}^n :x_1 \geq 0\}\). \(\partial \mathbb{H}^n=\{(x_1,\ldots,x_n):x_1=0\}\).
+\end{defn}
+
+\begin{prop}\leavevmode
+\(X\) variedade topológica com bordo, \(p \in X\) tal que existe cart \((U,\varphi)\), \(p \in U\) tal que \(\varphi(p) \in \partial \mathbb{H}^n\). Seja \((V,\psi)\) outra carta, \(p \in V\). Então \(\psi(p) \in \partial \mathbb{H}^n\).
+\end{prop}
+
+\begin{proof}\leavevmode
+Suponha que existe \((V,\psi)\) tal que \(\psi(p) \in \operatorname{in t}\mathbb{H}^n\). Pega a bolinha pequenenina que está contida no interior do \(\mathbb{H}^n\) e a preimagem dela está dentro de \(U\). Então obtemos um difeomorfismo entre uma bola cortada e uma bola. Tira o ponto: de um lado obtemos um conjunto contrátil, do outro lado não. Usar topologia algébrica.
+\end{proof}
+
+\begin{defn}\leavevmode
+O \textit{\textbf{bordo}} de uma variedade com bordo é
+\[\partial X=\{ p \in X : \exists (U,\varphi)\text{ cata } , U \ni p, \varphi(p) \in \partial \mathbb{H}^n\}\]
+O \textit{\textbf{interior}} é
+\[\operatorname{ in t }X \setminus \partial X=\{ p \in X: \exists  (U, \varphi) \text{ carta,} U \ni p, \varphi(p) \in \operatorname{in t}\mathbb{H}^n\}.\]
+\end{defn}
+
+\begin{remark}\leavevmode
+\(\operatorname{ in t}X, \partial X\) são variedades topológicas sem bordo.
+\end{remark}
+
+\begin{defn}\leavevmode
+\(f: U \overset{\text{op} }{\subset} \mathbb{H}^n \to \mathbb{H}^n\)  é \textit{\textbf{suave}} se existe uma extensão suave \(\tilde{f}: \tilde{U} \subset \mathbb{R}^n \to \mathbb{R}^n\), \(\tilde{U} \supset U\), \(\tilde{U}\) aberto.
+\end{defn}
+
+\begin{thing4}{Intuição}\leavevmode
+É uma função que era suave e vc trabou. Não que ela acaba aí.
+\end{thing4}
+
+\begin{defn}\leavevmode
+\(X\) é uma \textit{\textbf{variedade diferenciável com bordo}} se está munida de um atlas suave maximal. (Tem que definir compatibilidade de cartas em \(\mathbb{H}^n\).)
+\end{defn}
+
+\begin{example}[Look!]\leavevmode
+	\(B^n\) the unit ball is \(f^{-1}((-\infty,1])\) where \(f\) is the norm function.
+\end{example}
+
+\begin{prop}\leavevmode
+	\(f \in C^\infty(X)\), \(a \in \mathbb{R}\) valor regular de $f$. Então \(f^{-1}(-\infty,a]\) e \(f^{-1}([a,+\infty))\)são variedades com bordo.
+\end{prop}
+
+\begin{proof}\leavevmode
+	\(f^{-1}(-\infty,a))\) é aberto porque $f$ é contínua, então é uma subvariedade do domínio. Seja \(p \in f^{-1}(a)\). Usando TFI podemos upor que \(\varphi^{-1}(x_1,\ldots,x_n)=-x_1+a\). Pegue \(y \in f^{-1}(-\infty,a])\)…
+\end{proof}
+
+\begin{defn}\leavevmode
+\(X\) variedade dif. com bordo. O \textit{\textbf{espaço tangente}} em pontos interiores é o mesmo que em variedades sem bordo, e no bordo fica um espaço vetorial da mesma dimensão: porque com curvas que moram no interior e podem ser extendidas podemos obter muitos vetores.
+\end{defn}
+
+Se \(X\) é uma variedade com bordo, também é podemos definir:
+
+\begin{itemize}
+\item \textit{\textbf{submersão}} em \(x \in X\) se a derivada for sobreyetiva.
+\end{itemize}
+
+\begin{prop}[level set for manifolds with boundary]\leavevmode
+	Sejam \(X,Y\) variedades com bordo, \(\dim X > \dim Y\), pega um ponto \(y \in \operatorname{ in t}Y\), \(f \in C^\infty(X,Y)\) tal que \(y\) valor regular de $f$ e \(y\) \textbf{valor regular de \(\partial f:=f|_{\partial X}\) } (isso é mais forte). Então \(f^{-1}(y)\) é uma variedade com bordo e \(\partial f^{-1}(y)=(\partial f)^{-1}(y)\).
+\end{prop}
+
+\section{Aula 10}
+
+\subsection{Mais variedades com bordo}
+
+Lembre que o espaço tangente em pontos do bordo não tem mistério: \(T_xX=\operatorname{span}\frac{\partial }{\partial x^i}\), porque é generado pelas derivadas de curvas que realmente continuam sendo suaves em \( \mathbb{R}^n\).
+
+Como o bordo de \(X\) é uma subvariedade, note que, olhando essas curvas tangentes no bordo como curvas em \(M\), obtemos uma inclusão natural
+\[T_x(\partial X)\subset T_x X\]
+
+\begin{prop}\leavevmode
+\(X\), \(Y\) variedades \(X\) tem bordo, \(\dim X> \dim Y\) e \(\partial Y \neq  0\). \(y \in Y\) valor regular de \(f\), e valor regular de \(\partial f:= f|_{ \partial X}\).
+
+Então \(f^{-1}(y)\) é uma variedade com bordo de codimensão $m$ e \(\partial f^{-1}(y)=(\partial f)^{-1}(y)=f^{-1}(y) \cap \partial X\).
+\end{prop}
+
+``Não é só que a imagem inversa é uma subvariedade; é que a fronteira dela é \textit{exatamente a parte que esta tocando a fronteira} "
+
+\begin{prop}\leavevmode
+	\(X,Y\) variedades, \(\partial Y= \varnothing\). \(W \subset Y\) subvaiedade sem bordo. \(f : X \to Y\), \(f \pitchfork W\),  \(\partial f \pitchfork W\).
+
+	Então \(f^{-1}(W)\) é uma subvariedade com bordo \(\partial  (f^{-1}(W)) = (\partial  f)^{-1}(W)= f^{-1}(W) \cap \partial  X\) e \(\operatorname{codim} f^{-1}(W)=\operatorname{codim}W\).
+\end{prop}
+
+\subsection{Teorema de Sard com bordo}
+
+\begin{thm}[de Sard com bordo]\leavevmode
+\(X,Y\) variedades, \(\partial Y=\varnothing\), \(f:X \to Y\), \(\{y \in Y: y \text{ valor crítico de \(f\) em \(\partial f\)} \}\) tem medida nula.
+\end{thm}
+
+\begin{proof}\leavevmode
+ \begin{align*}
+ f(\operatorname{ C ri t}f \cup \partial f(\operatorname{C r i t}(\partial f)&=f(\operatorname{C r it }(f) \cup  \operatorname{ C r i t}(\partial f))
+ \end{align*}
+\end{proof}
+
+\subsection{Teorema de transversalidade de Thom com bordo}
+
+\begin{thm}[de transversalidade de Thom com bordo]\leavevmode
+\(X,Y\) variedades \(W \subset J^k(X,Y)\), \(\partial W \subset \alpha^{-1}(\partial X)\). Então
+\[\{f \in C^\infty(X,Y): j^kf \pitchfork W\text{ e } j^k(\partial f) \pitchfork W\}\]
+é residual.
+\end{thm}
+
+\begin{proof}\leavevmode
+Tá no interior não tem problema. Tá no bordo olha pro bordo é uma variedade sem bordo tudo bem. Interseção de residuais é residual.
+\end{proof}
+
+\begin{coro}\leavevmode
+\begin{enumerate}
+\item \(X,Y\) variedades, \(W \subset Y\) subvariedade, \(\partial Y=\partial W=\varnothing\). Então
+	\[\{f \in C^\infty(X,Y): f \pitchfork W \text{ e } \partial f \pitchfork W\}\]
+	é residual.
+\item \(f \in C^\infty(X,Y)\), \(\partial f \pitchfork W\), \(\forall U \ni f\) aberto \(\exists g \in U\) tal que \(g=f\) em uma vizinhançade \(\partial X\).
+\end{enumerate}
+\end{coro}
+
+\begin{remark}\leavevmode
+Sobre b.: mais forte que \(\partial f\) seja transversal a \(W\) do que \(f\) transversal a \(W\) nos pontos do bordo.
+\end{remark}
+
+\subsection{Orientação}
+
+\begin{defn}\leavevmode
+\(V\) espaço vetorial. Duas bases \(\{x^i\}, \{y^i\}\) são \textbf{equivalentes}  se a transformação linear \(T:V \to V\), \(x^i \mapsto  y^i\) tem determinatne positivo.
+\end{defn}
+
+\begin{remark}\leavevmode
+Existem exatamente duas classes de equivalência.
+\end{remark}
+
+\begin{defn}\leavevmode
+Uma \textit{\textbf{orientação}} em uma variedade \(X\) é uma escolha de orientação de cada \(T_pX\) para todo \(p \in X\) tal que \(\forall (U,\varphi)\) carta \(\varphi=(x_1,\ldots,x_n)\) é sempre positive o sempre negativa (\(\forall p \in U\)).
+\end{defn}
+
+\begin{remark}[Extra]\leavevmode
+Se \(X\) é simplesmente conexa, então existe uma orientação.
+\end{remark}
+
+\begin{remark}\leavevmode
+\(X\) conexa e orientável, então \(X\) possui exatamente 2 orientações.
+\end{remark}
+
+\begin{remark}\leavevmode
+Existem variedades não orientáveis.
+\end{remark}
+
+\(X\) variedade orientada com bordo induiz uma orientação em \(\partial X\). É porque existe um fibrado vetorial \(N \) de dimenão 1 ao longo do \(\partial  X\) tal que \(N_x \pitchfork T_x (\partial X)\) \(\forall  x \in \partial  X\). Pode pegar uma métrica Riemanniana o pode fazer assim: pega em cada carta (atlas localmente finito, usamos partição da unidade) ai pega o campo vetorial \(\frac{\partial }{\partial x_1}\) que com a nossa definição de \( \mathbb{H}^{n}\) é a direção que ``sae" da variedade, multiplica com a partição da unidade e some. Ai você tem um campo vetorial que não está no fibrado tangenta ao bordo.
+
+Então em cada \(x \in \partial X\) temos uma base \(\{x_1,\ldots,x^{n-1}\}\) de \(T_x(\partial X)\). Completamos a uma base de \(T_xX\), \(\{n_x,x_1,\ldots,x^{n-1}\}\).
+
+\begin{thing2}{Definição}\leavevmode
+\(p \in \partial X\). \(T_p(\partial X) \subset T_pX\). \(N_p \oplus  T_p(\partial X) = T_pX\). uma base é orientada se, {\color{2}e aqui tem que ter alguém que decide}, a base obtida declarando que a primeria entrada vai ter um sinal \(-\frac{\partial }{\partial x_1}\), e completando para uma base, i.e. \(\left(- \frac{\partial }{\partial x_1},\ldots,\right) \), esa base tá na orientação de \(X\).
+\end{thing2}
+
+\begin{defn}\leavevmode
+\(\{v_1,\ldots,v_n\}\) é \textit{\textbf{orientada}} se \(\{n_x,v_1,\ldots,v_n\}\) é positivamente orientada.
+\end{defn}
+
+\begin{example}\leavevmode
+O intervalo. Pode decidir que um ponto da borda tenha orientação positiva, ai o outro ponto fica com orientação negativa.
+
+\(X\) orientada sem bordo. \(\partial  (I\times X)=\{0\}\times X \sqcup \{1\}\times X\). \(T_{(t,x)}(I \times X) \cong I_t I \oplus  T_xX\). Então o bordo fica \(\partial (I \times X)= \{1\}\times X \sqcup (- \{ 0\} \times X\).
+\end{example}
+
+\begin{prop}\leavevmode
+\(X,Y\) variedades, \(W \subset Y\) subvariedade, \(\partial W=\partial Y=\varnothing\), \(f: X \to Y\), \(f \pitchfork W\), \((\partial f)\pitchfork W\). Suponhamos que \(X, Y\) e \(W\) são orientadas.
+
+Então  \(Q= f^{-1}(W)\) possui uma orientação induzida.
+\end{prop}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \bibliography{bib.bib}
 \end{document}

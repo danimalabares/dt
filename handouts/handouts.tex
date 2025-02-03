@@ -932,7 +932,9 @@ Let \(\{U_\alpha\}\) be a locally finite atlas on \(M\), and \(U_\alpha\xrightar
  The result follows from the local finiteness of both \(\{U_\alpha\}\) in \(M\) and \(\{V_i\}\) in \(\mathbb{R}^n\) as follows. (Local finiteness of \(\{V_i\}\) follows from definition of \(\{V_i\}\).)
 
 %{\color{2}I suppose that} \(W_\beta=\phi^{-1}_\alpha(V_i)\) for fixed \(\alpha\) and \(i\). Then \(W_\beta\) is contained in \(U_\alpha\).
-Since \(\{U_\alpha\}\) is locally finite, for a given point $x$ of \(M\) there is a neighbourhood which intersects only a finite number of the \(U_\alpha\). Moreover, since  \(\{V_i\}\) is locally finite, each \(\phi_\alpha(x)\) has a neighbourhood intersecting only finitely many \(V_i\). In conclusion, for each \(\alpha\) there are finitely many \(W_\beta\) determined by the \(V_i\), and there are finitely many \(U_\alpha\) which intersect at a given point.
+Since \(\{U_\alpha\}\) is locally finite, for a given point $x$ of \(M\) there is a neighbourhood \(U_0\) which intersects only a finite number of the \(U_\alpha\). Moreover, since  \(\{V_i\}\) is locally finite, each \(\phi_\alpha(x)\) has a neighbourhood intersecting only finitely many \(V_i\). Then there's only finitely many of the \(W_\beta\) intersecting \(U_0\) (for any \(\alpha\) and \(i\)).
+
+%In conclusion, for each \(\alpha\) there are finitely many \(W_\beta\) determined by the \(V_i\), and there are finitely many \(U_\alpha\) which intersect at a given point.
 %The same goes if \(W_\beta=\bigcup_{i} \phi_\alpha(V_i)\) for fixed \(\alpha\). If \(W_\beta = \bigcup_{\alpha}\phi^{-1}_\alpha(V_i) \) for fixed $i$ we cannot be certain since \(W_\beta\) may be contained in an uncountable union of the \(U_\alpha\).
 \end{proof}
 
@@ -1010,7 +1012,9 @@ Let \(U \subset M\) be an open subset with compact closure, and \(V \supset M\se
 
 	The boundary \(\partial U\) of our open set with compact closure \(U\) is compact: it is contained in the closure of \(U\) (since all its points are limit points of \(U\)), and it is closed: every point in its complement has a neighbourhood that stays inside its complement; whether it is in \(U\), or in \(M\setminus \bar{U}\).
 
-	Now let's use Exercise \hyperref[exer:2.29]{2.29}. We can separate \(K_1:=\partial U\) and \(K_2:=U \setminus V\). Both are compact, and they are disjoint because the boundary of \(U\) is disjoint from \(U\), so it must be contained in \(V\). Then there are disjoint neighbourhoods \(U_1\) and \(U_2\) of \(K_1\) and \(K_2\).
+	Now let's use Exercise \hyperref[exer:2.29]{2.29}. We can separate \(K_1:=\partial U\) and \(K_2:=\overline{U \setminus V}\). Both are compact since they are closed sets in the compact set \(\overline{U}\). And they are disjoint: if \(x \in \partial U \cap \overline{U\setminus V}\), then \(x\) cannot be in \(U\) since it is a point of the boundary, meaning that \(x \in V\), and since \(V\) is open, there is a  neighbourhood \(W\) of \(x\) contained in \(V\). But \(x \in \overline{U \setminus V}=U\setminus V \cup \partial U\setminus V\), so that \(x \in \partial U \setminus V\) since \(x \not \in U\). So every neighbourhood of \(x\) intersects \(U\setminus V\). So there is a point of \(W\) not in \(V\), a contradiction.
+
+	Then we use  Exercise \hyperref[exer:2.29]{2.29} to obtain disjoint neighbourhoods \(U_1\) and \(U_2\) of \(K_1\) and \(K_2\).
 
 	Now let's show that \(U_2 \cap U:=U'\) is the open set we are looking for, that is, that its closure is contained in \(U\) and \(V \cup U'=M\). If a point in the closure of \(U'\) was outside \(U\), then such a limit point would be in the boundary of \(U\): any open neighbourhood must contain a point of \(U\) since it is a limit point of \(U\), and also a point outside it, the limit point itself! But the boundary of \(U\) is disjoint from  \(U_2\).This shows that the closure of \(U'\) is inside \(U\).
 
@@ -1043,7 +1047,25 @@ Let \(\{U_\alpha\}\) be a countable locally finite cover of a Hausdorff topologi
 \end{thing4}
 
 \begin{proof}[Solution]\leavevmode
-In order to use Exercise \hyperref[exer:2.30]{2.30} consider for every \(\alpha\) the set \(W_\alpha=\bigcup_{\beta \neq  \alpha} U_\beta\). Then \(W_\alpha \supset M\setminus U_\alpha\), so that there exists \(U'_\alpha \Subset U_\alpha\) and \(W_\alpha \cup U'_\alpha=M\). It remains to show that \(\{U'_\alpha\}\) is a cover. Let \(x \in M\) be any point. Then for each \(\alpha\) either \(x \in U'_\alpha\), in which case we are done, or \(x \in W_\alpha\)
+In order to use Exercise \hyperref[exer:2.30]{2.30} consider for every \(\alpha\) the set \(W_\alpha=\bigcup_{\beta \neq  \alpha} U_\beta\). Then \(W_\alpha \supset M\setminus U_\alpha\), so that there exists \(U'_\alpha \Subset U_\alpha\) and \(W_\alpha \cup U'_\alpha=M\). It remains to show that \(\{U'_\alpha\}\) is a cover. Let \(x \in M\) be any point. but how?
+
+That's why the hint says use induction. We go one by one: consider \(U_1\), an open set. The rest of the cover yields an open set like  \(V\) from the last exercise, which contains the complement of  \(U\). Then that exercise yields a set  \(U_1' \Subset U\) st \(V \cup  U_1' = M\).
+
+Now take \(n=2\). But don't use the original open cover:  \textit{substitute \(U_1\) by \(U_1'\)}. Obviously. (It works basically because of the second condition, explaining why we went through so much hustle to construct the set \(U'\), anyway moving on.) The point is that now we get a set \(U_2' \Subset U_2\) which covers \(M\) along with \(U_1'\) and the rest of the \(U_\alpha\).
+
+This works for all $\alpha$: there is \(U_\alpha' \Subset U_\alpha\) such that \(U_\alpha' \cup  U_{\alpha-1}' \cup  \ldots \cup U_1' \cup \bigcup_{i>\alpha}U_i\) covers \(M\).
+
+Let's show that \(\{U'_\alpha\}\) is a cover. Suppose there's a point \(x\) outside \(U'_\alpha\) for all \(\alpha\). Then it is in \(\bigcup_{i>\alpha}U_i\) for all \(\alpha\), meaning 
+%that there is \(i_0\) st \(x \in U_{i_0}\). But then \(U'_{i_0}\cup U'_{i_0-1}\cup \ldots\cup \bigcup_{i>i_0}U_i\) is a cover of \(M\)! So \(x \in U_{i_1}\) for \(i_1>i_0\). So 
+\(x\) is in a infinite ammount of open sets of the locally finite cover \(U_i\).
+\end{proof}
+
+\begin{thing4}{Exercise 2.32}\label{exer:2.32}\leavevmode
+Solve the previous exercise when \(\{U_\alpha\}\) is not necessarily countable.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+Back to the notation of the past exercise, consider \(W_\alpha:=\bigcup_{\beta \neq  \alpha}U_\beta\)… Suppose there is a point $x$ outside \(U'_\alpha\) for all \(\alpha\). Then for all \(\alpha\) it is in \(W_\alpha\). So by definition of union it is in some \(U_\beta, \beta \neq  \alpha\) for all \(\alpha\). That is, for every \(\alpha\) there is \(\beta\) such that \(x\) is in \(U_\beta\). Which is very unhelpful.
 \end{proof}
 
 \begin{thing3}{Definition 2.17}\label{def:2.17}\leavevmode
@@ -1100,4 +1122,83 @@ Show that \(\lambda\) is smooth and that all its derivatives vanish at the point
 \begin{proof}[Solution]\leavevmode
 \(\lambda\) is smooth in the unit open ball since it is a composition of smooth functions: real exponent \(e^x\), \(1/x\) for nonzero  $x$ and \(|x|^2-1\). Outside the unit closed ball it is trivially smooth since any point has a neighbourhood in which \(\lambda\) is constant 0. To show that \(\lambda\) is smooth in the unit sphere we must check 
 \end{proof}
+
+\section{Vector fields and derivations}
+
+\subsection{Derivations of a ring}
+
+\begin{thing5}{Remark 3.1}\label{rk:3.1}\leavevmode
+All rings in these handouts are assumed to be commutative and with unit. Algebras are associative, but not necessarily commutative (such as the matrix algebra). \textit{\textbf{Rings over a field \(k\)}} are rings containing a field \(k\).
+\end{thing5}
+
+\begin{thing3}{Definition 3.1}\label{def:3.1}\leavevmode
+Let \(R\) be a ting over a field \(k\). A \(k\)-linear map \(D: R \to R\) is called \textit{\textbf{a derivation}} if it satisfies \textit{\textbf{the Leibniz equation}} \(D(fg)=D(f)g+fD(g)\). The space of derivations is denoted as \(\operatorname{Der}_k(R)\).
+\end{thing3}
+
+\begin{thing4}{Exercise 3.1}\label{exer:3.1}\leavevmode
+Let \(D \in \operatorname{Der}_kR\). Prove that \(D|_{k}=0\).
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+\(D(1)=D(1\cdot 1)=D(1)\cdot 1+1\cdot D(1)=2D(1) \implies D(1)=0.\)
+\end{proof}
+
+\begin{thing4}{Exercise 3.2}\label{exer:3.2}\leavevmode
+Let \(D_1,D_2\) be derivations. Prove that the commutator \([D_1,D_2]:=D_1D_2-D_2D_1\) is also a derivation.
+\end{thing4}
+
+\begin{thing4}{Exercise 3.3}[!]\label{exer:3.3}\leavevmode
+Let \(K \supset k\) be a field which contains a field \(k\) of characteristic 0, and is finite-dimensional over \(k\) (such fields \(K\) are called \textit{\textbf{finite extensions}} of \(k\)). Find the space \(\operatorname{Der}_k K\).
+\end{thing4}
+
+\subsection{Modules over a ring}
+
+\begin{thing3}{Definition 3.2}\label{def:3.2}\leavevmode
+Let \(R\) be a ring over a field \(k\). \textit{\textbf{An \(R\)-module}} is a vector space \(V\) over \(k\),equipped with an algebra homomorphism \(R \to \operatorname{End}(V)\), where \(\operatorname{End}(V)\) denotes the endomorphism algebra of \(V\), that is, the matrix algebra.
+\end{thing3}
+
+\begin{thing4}{Exercise 3.9}\label{exer:3.9}\leavevmode
+Let \(R\) be a field. Prove that \(R\)-modules are the same as vector spaces ove \(R\).
+\end{thing4}
+
+\begin{thing5}{Remark 3.2}\label{rk:3.2}\leavevmode
+An \(R\)-module is a group, equipped with an operation of  ``multiplication by elements of \(R\)", and satisfying the same axioms of distributibity and associativity as in the definition of a vector space.
+\end{thing5}
+
+\begin{thing5}{Remark 3.3}\label{rk:3.3}\leavevmode
+Homomorphisms, isomorphisms, submodules, quotient modules, direct sums of modules are defined in the same way as for the vector spaces. A ring \(R\) is itself an \(R\)-module. A direct sum of $n$ copies of \(R\) is denotes \(R^n\). Such \(R\)-module is called \textit{\textbf{a free \(R\)-module}}.
+\end{thing5}
+
+\subsection{Vector fields}
+
+\begin{thing5}{Remark 3.5}\label{rk:3.5}\leavevmode
+Let \(R\) be a ring over \(k\). The space \(\operatorname{Der}_k(R)\) of derivations is also an \(R\)-module, with multiplicative action of \(R\) given by \(rD(f)=D(rf)\).
+\end{thing5}
+
+\begin{thing4}{Exercise 3.16}\label{exer:3.16}\leavevmode
+Let \(R=k[t_1,\ldots,t_k\) be a polynomial ring. Prove that \(\operatorname{Der}_k(R)\) is a free \(R\)-module isomorphic to \(R^n\), with generators \(\frac{d}{dt_1},\ldots,\frac{d}{dt_n}\).
+\end{thing4}
+
+\begin{thing4}{Exercise extra}\label{exer:extra}\leavevmode
+What about trying that exercise on Fredholm operators from lecture 9?
+\end{thing4}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}

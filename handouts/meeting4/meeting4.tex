@@ -19,21 +19,106 @@
 \vspace{10pt}
 {\huge Practice exercises on smooth manifolds}
 
-{\large Fourth meeting, 17 of January}
+{\large Fourth meeting, 21 of January}
 \vspace{1em}
 
-Plan for today: selection of exercises (I skipped those with *) from sections
+Plan for today: some exercises on partition of unity and discussion of homework 1 from complex surfaces course.
 
-\begin{itemize}
+\iffalse\begin{itemize}
 \item Topological spaces (1)
 \item Hausdorff spaces (1)
 \item Compact spaces (1)
 \item Smooth manifolds (4)
 \item Embedded submanifolds (2)
 \item Partition of unity (2)
-\end{itemize}
+\end{itemize}\fi
 
-\section{Topological spaces}
+\begin{thing3}{Definition 2.15}\label{def:2.15}\leavevmode
+A cover \(\{U_\alpha\}\) of a topological space \(M\) is called \textit{\textbf{locally finite}} if every point in \(M\) possesses a neighbourhood that intersects only a finite number of \(U_\alpha\).
+\end{thing3}
+
+\begin{thing4}{Exercise 2.27}\label{exer:2.27}\leavevmode
+	Let \(\{U_\alpha\}\) be a locally finite atlas on \(M\), and \(U_\alpha\xrightarrow{\phi_\alpha}\mathbb{R}^n\) homeomorphisms. Consider a cover \(\{V_i\}\) of \( \mathbb{R}^n\) given by open balls of radius $n$ centered in integer points, and let \(\{ W_\beta\}\) be a cover of \(M\) {\color{2}obtained as union of \(\phi^{-1}_\alpha(V_i)\)}. Show that \(\{W_\beta\}\) is locally finite.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+ The result follows from the local finiteness of both \(\{U_\alpha\}\) in \(M\) and \(\{V_i\}\) in \(\mathbb{R}^n\) as follows. (Local finiteness of \(\{V_i\}\) follows from definition of \(\{V_i\}\).)
+
+%{\color{2}I suppose that} \(W_\beta=\phi^{-1}_\alpha(V_i)\) for fixed \(\alpha\) and \(i\). Then \(W_\beta\) is contained in \(U_\alpha\).
+Since \(\{U_\alpha\}\) is locally finite, for a given point $x$ of \(M\) there is a neighbourhood \(U_0\) which intersects only a finite number of the \(U_\alpha\). Moreover, since  \(\{V_i\}\) is locally finite, each \(\phi_\alpha(x)\) has a neighbourhood intersecting only finitely many \(V_i\). Then there's only finitely many of the \(W_\beta\) intersecting \(U_0\) (for any \(\alpha\) and \(i\)).
+
+%The same goes if \(W_\beta=\bigcup_{i} \phi_\alpha(V_i)\) for fixed \(\alpha\). If \(W_\beta = \bigcup_{\alpha}\phi^{-1}_\alpha(V_i) \) for fixed $i$ we cannot be certain since \(W_\beta\) may be contained in an uncountable union of the \(U_\alpha\).
+\end{proof}
+
+\begin{thing4}{Exercise 2.28}\label{exer:2.28}\leavevmode
+Let \(\{U_\alpha\}\) be an atlas on a manifold \(M\).
+\begin{enumerate}[label=(\alph*)]
+\item Construct a refinement \(\{W_\beta\}\) of \(\{U_\alpha\}\) such that a closure of each \(W_\beta\) is compact in \(M\).
+\item Prove that such a refinement can be chosen locally finite if \(\{U_\alpha\}\) is locally finite.
+\end{enumerate}
+\textbf{Hint.} Use the previos exercise.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item The refinement is the cover \(\{W_\beta\}\) from Exercise \hyperref[exer:2.27]{2.27}. 
+The closure of \(W_\beta=\phi^{-1}_\alpha(V_i)\) is mapped by \(\phi_\alpha\) to the closure of its image, \(\phi_\alpha(U_\alpha)\cap V_i\). (This is because  \(\phi_\alpha\) is a homeomorphism; by Exercise \hyperref[exer:1.6]{1.6} limit points of the domain map to limit points of the image.) The closure of \(\phi_\alpha(U_\alpha)\cap V_i\) is compact (since it is closed and bounded), and thus its image under \(\phi^{-1}\) is also compact.
+
+\item This is immediate from Exercise \hyperref[exer:2.27]{2.27}.
+\end{enumerate}
+\end{proof}
+
+\begin{thing4}{Exercise 2.29}\label{exer:2.29}\leavevmode
+Let \(K_1, K_2\) be non-intersecting compact subsets of a Hausdorff topological space \(M\). Show that there exist a pair of open subsets \(U_1 \supset K_1\), \(U_2 \supset K_2\) satisfying \(U_1 \cap U_2=\varnothing\).
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+	(With some help from {\color{6}ChatGPT}). Fix a point \(y \in K_2\). Since \(M\) is Hausdorff, for every \(x \in K_1\) there are disjoint neighbourhoods \(U_{xy} \ni x\) and \(V_{xy} \ni y\). This means that \( \{U_{xy}\}_{x \in X}\) is an open cover of \(K_1\), which must have a finite subcover \(U_{x_1y},\ldots,U_{x_{n_y}y}\). These open sets correspond to open sets \(V_{x_1y},\ldots,V_{x_{n_y}y}\), {\color{6}the intersection of which is a neighbourhood of $y$ disjoint from \(\bigcup_{i=1}^{n_{y}}U_{x_iy}\).}
+
+Denote this intersection by \(V_y:=\bigcap_{i=1}^{n_{y}}V_{x_iy}\). Then \(\{V_y\}_{y \in Y}\) is an open cover of \(Y\), which must have a finite subcover \(V_{y_1},\ldots,V_{y_m}\). Each \(V_{y_j}\) is associated to an open cover of \(K_1\), from which it is disjoint. The intersection of (the unions of) these \(m\) covers of \(K_1\) is an open set containing \(K_1\), and it is disjoint from \(\bigcup_{j=1}^mV_{y_j} \supset K_2\).
+
+\begin{upshot}\leavevmode
+	You have pairs of disjoint sets. The intersection of one family is disjoint from the union of the other.
+\end{upshot}
+\end{proof}
+
+\begin{thing4}{Exercise 2.30}[!]\label{exer:2.30}\leavevmode
+Let \(U \subset M\) be an open subset with compact closure, and \(V \supset M\setminus U\) another open subset. Prove that there exists \(U' \subset U\) such that the closure of \(U'\) is contained in \(U\), and \(V \cup  U'=M\).
+
+\textbf{Hint.} Use the previous exercise.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+	(Using ChatGPT.) Define the \textit{\textbf{boundary}} \(\partial A\) of a set  \(A\) in a topological space \(X\) to be the set of points \(x \in X\) such that every neighbourhood of \(x\) contains a point of \(A\) and a point of \(X\setminus A\).
+
+	The boundary \(\partial U\) of our open set with compact closure \(U\) is compact: it is contained in the closure of \(U\) (since all its points are limit points of \(U\)), and it is closed: every point in its complement has a neighbourhood that stays inside its complement; whether it is in \(U\), or in \(M\setminus \bar{U}\).
+
+	Now let's use Exercise \hyperref[exer:2.29]{2.29}. We can separate \(K_1:=\partial U\) and \(K_2:=U \setminus V\). Both are compact, and they are disjoint because the boundary of \(U\) is disjoint from \(U\). Then there are disjoint neighbourhoods \(U_1\) and \(U_2\) of \(K_1\) and \(K_2\).
+
+	Now let's show that \(U_2 \cap U:=U'\) is the open set we are looking for, that is, that its closure is contained in \(U\) and \(V \cup U'=M\). If a point in the closure of \(U'\) was outside \(U\), then such a limit point would be in the boundary of \(U\): any open neighbourhood must contain a point of \(U\) since it is a limit point of \(U\), and also a point outside it, the limit point itself! But the boundary of \(U\) is disjoint from  \(U_2\).This shows that the closure of \(U'\) is inside \(U\).
+
+	To show that \(V \cup  U'=M\) pick a point in \(M \setminus V\). Then \(U':=U_2 \cap U\supset K_2:=U\setminus V\) contains it.
+\end{proof}
+
+\begin{thing4}{Exercise 2.31}[!]\label{exer:2.31}\leavevmode
+Let \(\{U_\alpha\}\) be a countable locally finite cover of a Hausdorff topological space, such that a closure of each \(U_\alpha\) is compact. Prove that there exists another cover \(\{V_\alpha\}\) indexed by the same set, such that \(V_\alpha \Subset U_\alpha\).
+
+\textbf{Hint.} Use induction and the previous exercise.
+\end{thing4}
+
+\begin{proof}[Solution]\leavevmode
+In order to use Exercise \hyperref[exer:2.30]{2.30} consider for every \(\alpha\) the set \(W_\alpha=\bigcup_{\beta \neq  \alpha} U_\beta\). Then \(W_\alpha \supset M\setminus U_\alpha\), so that there exists \(U'_\alpha \Subset U_\alpha\) and \(W_\alpha \cup U'_\alpha=M\). It remains to show that \(\{U'_\alpha\}\) is a cover. Let \(x \in M\) be any point. but how?
+
+That's why the hint says use induction. We go one by one: consider \(U_1\), an open set. The rest of the cover yields an open set like  \(V\) from the last exercise, which contains the complement of  \(U\). Then that exercise yields a set  \(U_1' \Subset U\) st \(V \cup  U_1' = M\).
+
+Now take \(n=2\). But don't use the original open cover:  \textit{substitute \(U_1\) by \(U_1'\)}. Obviously. (It works basically because of the second condition, explaining why we went through so much hustle to construct the set \(U'\), anyway moving on.) The point is that now we get a set \(U_2' \Subset U_2\) which covers \(M\) along with \(U_1'\) and the rest of the \(U_\alpha\).
+
+This works for all $\alpha$: there is \(U_\alpha' \Subset U_\alpha\) such that \(U_\alpha' \cup  U_{\alpha-1}' \cup  \ldots \cup U_1' \cup \bigcup_{i>\alpha}U_i\) covers \(M\).
+
+Let's show that \(\{U'_\alpha\}\) is a cover. Suppose there's a point \(x\) outside \(U'_\alpha\) for all \(\alpha\). Then it is in \(\bigcup_{i>\alpha}U_i\) for all \(\alpha\), meaning 
+%that there is \(i_0\) st \(x \in U_{i_0}\). But then \(U'_{i_0}\cup U'_{i_0-1}\cup \ldots\cup \bigcup_{i>i_0}U_i\) is a cover of \(M\)! So \(x \in U_{i_1}\) for \(i_1>i_0\). So 
+\(x\) is in a infinite ammount of open sets of the locally finite cover \(U_i\).
+\end{proof}
 
 
 \end{document}
