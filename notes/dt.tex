@@ -700,10 +700,13 @@ where \(D^kf\) is the \(k\)th total derivative of \(f\), a \(k\)-multilinear map
 {\color{6}\bfseries Now we see}\hspace{.5em} that two things that are similar and yet very different can be used interchangably: the ``differential coordinates" of a jet (=the part of the coordinates that is not the coordinates in \(X\) nor \(Y\)) can be seen as:
 \begin{itemize}
 \item the truncated Taylor polynomials of the \(m\) coordinate functions of \(f\) at some  local charts,
-\item the total differentials of \(f\) from \(0\) to \(k\).
+\item the total differentials of \(f\) from \(1\) to \(k\).
 \end{itemize}
 
 \end{thing2}
+
+\vspace{3em}
+{\color{8}\bfseries Last but not least}\hspace{.5em}these open sets are in fact jet spaces of the form \(J^k(U,V)\).
 
 \clearpage
 \subsubsection{Lecture notes}
@@ -1344,48 +1347,197 @@ O intervalo. Pode decidir que um ponto da borda tenha orientação positiva, ai 
 \(X\) orientada sem bordo. \(\partial  (I\times X)=\{0\}\times X \sqcup \{1\}\times X\). \(T_{(t,x)}(I \times X) \cong I_t I \oplus  T_xX\). Então o bordo fica \(\partial (I \times X)= \{1\}\times X \sqcup (- \{ 0\} \times X\).
 \end{example}
 
+
+\section{Aula 11}
+
 \begin{prop}\leavevmode
 \(X,Y\) variedades, \(W \subset Y\) subvariedade, \(\partial W=\partial Y=\varnothing\), \(f: X \to Y\), \(f \pitchfork W\), \((\partial f)\pitchfork W\). Suponhamos que \(X, Y\) e \(W\) são orientadas.
 
-Então  \(Q= f^{-1}(W)\) possui uma orientação induzida.
+Então  \(Q= f^{-1}(W)\) possui uma orientação \textit{natural}. 
 \end{prop}
 
+\begin{proof}\leavevmode
+Sejam \(n = \dim X\), \(m = \dim Y\) e \(k = \dim W\). Como é que a gente calcula?
+\begin{quotation}
+	A codimensão de \(Q= f^{-1}(W)\) é a mesma que a codimensão de \(W\).
+\end{quotation}
+Ou seja, \(Q\) é uma subvariedade de dimensão \(n - m + k \) e  \(\partial  Q=\partial Q \cap \partial X\).
+
+\textbf{Também lembre que se} 
+\[V_1 \oplus  V_2= V_3\]
+\textbf{sabendo a orientação de dois deles, já tem como saber a orientação do terceiro.} 
+
+Pegue o fibrado normal (lembre que não precisa de uma métrica rimeanniana para isso, qualquer complemento de \(TQ\) funciona.)
+
+\textbf{A gente vai usar a orientação de \(X\) e \(Y\) para orientar o fibrado normal.} 
+
+Olhe pra a condição de transeversalided
+\[ df_p(T_pX) + T_{f(p)}W = T_{f(p)}Y\]
+Tu vai poder pegar só o fibrado normal a \(Q\) e ai vai virar soma direita. Claro, porque por definição do fibrado normal temos uma descomposição em soma direita do fibrado de \(X\), então basta com pegar a componente normal a \(W\) para generar o mesmo bundle do que estamos falando no left hand sida da equação acima.
+
+Entao para mostrar isso argumentamos por dimensão: a dimensão da soma tem que ser maior o igual à soma das dimensoes, e quando tem igualdade é soma direita:
+\[\underbrace{df_p(N_pQ)}_{\dim=m-k} + \underbrace{T_{f(p)}W}_{\dim=k}= \underbrace{T_{f(p)}Y}_{\dim= m}\]
+entao a soma fica direita.
+
+Entao tu ta na situação desse comentario acima com \(V_i\). Entao pode orientar o terceiro espaço (\(W\) e \(Y\) são orientadas). E como \(df_p\) é injetiva, (acho que isso é por causa do agumento de dimensão,, soma direita).
+
+Tendo uma orientação para \(d_p N_pQ\), e que \(df_p\)  é injetiva, pode voltar para a equação \(N_pQ \oplus  T_pQ=T_qX\), e como \(X\) e \(NQ\)  são orientados, acabou.
+\end{proof}
 
 
+\begin{exercise}\leavevmode
+\(\partial (f^{-1}(W)) = (-1)^{m-1}(\partial f)^{-1}(W)\). \textbf{Hint.} É uma continha, número de transposições.
+\end{exercise}
 
+\subsection{ii. Número de interseção}
 
+\begin{thm}[Classificação das 1-variedades compactas (com bordo?)]\leavevmode
+	Seja \(X\) uma 1-variedade compacta e conexa de dimensão 1. Então \(X\) é difeomorfa a \(S^1\) (caso sem bordo) ou \([0,1]\).
+\end{thm}
 
+\begin{proof}\leavevmode
+Exercício.
+\end{proof}
 
+\begin{coro}\leavevmode
+Toda variedade (compacta) de dimensão 1 é orientável. \(\# (\partial X)\) é par. Fixando uma orientação de \(X\), \(\sum_{p \in \partial X}\operatorname{sgn}(p)=0\)
+\end{coro}
 
+\begin{remark}\leavevmode
+O teorema anterior pode ser feito para variedades não compactas, obtendo intervalos abertos o meio abertos. Mas a gente não vai usar isso.
+\end{remark}
 
+Agora pegue \(X,Y,W\) variedades [orientadas, mas vamos fazer o caso não orientado primeiro] sem bordo (agora nehuma tem bordo), \(W \subset Y\). Seja \(f \in C^\infty (X,Y)\), \(f \pitchfork  W\). Agora vamos botar uma condição a mais: que é  que as dimensões são complementares, é uma condição bem forte:
+\[\dim X+ \dim W=\dim Y\]
+Então \(f^{-1}(W)\) é uma variedade de dimensão 0 (um conjunto de pontos).
 
+\begin{defn}\leavevmode
+Suponha \(X\) comacto é \(W\) fechado.	O \textit{\textbf{índice}} é 
+	\[I_\alpha(f,W) := \# f^{-1}(W) \in \mathbb{Z} \operatorname{ mod}2\]
+Se \(X, Y W \) orientadas, definimos
+\[I(f,W) = \sum _{p \in f^{-1}(W)}\operatorname{sign}(p) \in \mathbb{Z}\]
 
+\end{defn}
 
+a gente vai ver que esses números são estaveis baixo homotopias.
 
+\textbf{Como e que definimos a orientação, a sinal, num ponto?} Olha aqui
+\[N_pQ \oplus  T_p Q= T_qX\]
+se as orientações de \(N_pQ\) e \(T_qX\) batem (coincidem), ai definimos que orientação do pontinho \(T_pQ\) (a gente esta supondo que issod ai e um ponto), entao deifniomos que esta  \textit{\textbf{positivamente orientado}}. Ou seja:
 
+\begin{defn}\leavevmode
+Pega \(p \in f^{-1}(W)\). Qual é o sinal de \(p\)?
+ \[df_p(T_pX) \oplus  T_{f(p)}W = T_{f(p)}Y\qquad (*)\]
+entao
+\[\operatorname{sign}p:=+\]
+se \((*)\) for base orientada, i.e. \(x_1,\ldots,x_n\) base de \(T_pX\), \(w_1,\ldots,w_k\) base de \(T_{f(p)}W\),
+\[\{df_p(x_1),\ldots,df_p(x_n),w_1,\ldots,w_k\}\]
+é uma base orientada de \(T_{f(p)}Y\).
 
+\begin{defn}\leavevmode
+Agora pega \(X, W \subset Y\) subvariedades. Definimos \(X \pitchfork W\) \(i_X \pitchfork  W\) \(\iff i_W \pitchfork  X\). \(\dim X + \dim W= \dim Y\).
 
+\[I(X,W) = I(i_X,W)\]
 
+\begin{remark}\leavevmode
+Se um deles \(X,W\) for compacto é suficiente para garantir que a interseção é finita
+\end{remark}
 
+\(p \in X \cap W\). \(i_X^{-1}(W)=i^{-1}_W(X)\cong X \cap W\).
 
+Resulta que 
+\[I(X,W)= (-1)^{nk}I(W,X)\]
+porque tem que permutar a base quando considera \(T_pX \oplus  T_pW = T_pY\) ou \(T_pW \oplus  T_pX= T_pY\).
+\end{defn}
 
+\end{defn}
 
+\begin{remark}\leavevmode
+O indice não orientado é o índice orientado mod 2. Então tudo que vamos fazer vai ser pro caso orientado mas para passar no caso não orientado e só pegar mod 2.
+\end{remark}
 
+\begin{prop}[Lema mais importante da teoria de interseção. Extremamente poderoso.]\leavevmode
+	Com as hipóteses necessárias para definir número de interseção (dominio compacto, subvariedade fechada, dimensoões complementares), \(X = \partial  Z\), \(Z\) variedade compacta orientada. \(W \subset Y\), \(f \in C^\infty (X,Y)\), \(f \pitchfork  W\). Supongamos que podemos extender \(f\), i.e. existe \(F in C^\infty (Z,Y)\) tal que \(\partial F=F |_{ X}=f\). Então \(I(f,W)=0\).
+\end{prop}
 
+\begin{proof}\leavevmode
+Que está pasando? O bordo de \(Z\) é transversal a \(W\). Isso implica  \(F \pitchfork W\) em \(\partial Z\). (Note que \(f \pitchfork  W \implies F \pitchfork  W\)em \(\partial Z\). A primeira é mais forte.)
 
+Daí
+\[\dim Z+ \dim W= \dim Y+1\]
+\[F^{-1}(W) \text{ variedade de dimensão 1} \]
+\[\partial (F^{-1}(W))= F^{-1}(W) \implies I_Z(f,W)=0. \]
+Se \(X,Y,W,Z\) são orientadas,
+\[\partial (F^{-1}(W))= (-1)^{nk}f^{-1}(W)\]
+\[\implies I(f,W) = \sum_{p \in f^{-1}(W)}\operatorname{sign}(p)\]
+\[= \pm  \sum_{ \partial  F^{-1}(W)}\operatorname{ sign}(p)=0\]
+\end{proof}
 
+\begin{thm}[em \cite{gui} tudo é um lemma]\leavevmode
+	\(X,Y,W\) uma subvariedade \(X \) compact, \(W \subset Y\) fechada. \(f_0,f_1 \in C^\infty(X,Y)\), \(f_0,f_1\pitchfork W\). Supondo que \(f_0 \simeq f_1\), i.e. que existe \(F:[0,1] \times X \to Y\) tal que \(F(0,x)=f_0(x), F(1,x)=f_1(x)\). Então \(I(f_0,W)=I(f_1,W)\)
+\end{thm}
 
+\begin{proof}\leavevmode
+	\(Z=[0,1] \times X\), \(\partial Z=-\{0\}\times X \sqcup \{ 1\}\times X\). Note a sinal numa das componentes de \(\partial Z\). O negocio é igual que como quando orientamos o intervalo: um pontinho do bordo do intervalo vai ter uma orientação e o outro a outra. É só levar iso para o caso de \(T_{(t,x)}([0,1] \times X) \cong T_t[0,1] \oplus  T_xX\).
 
+	Então ai a ideia é olhar para a preimagen de \(F^{-1}(W)\) no bordo. Por causa do lemma o numero de interseção da zero, e por causa do negocio do intervalo que muda de sinal de um lado a outro da fronteira do cilindro \(Z=[0,1] \times X\), teremos que
+	\[F|_{\partial W}^{-1}=\{1\}\times f^{-1}_1(W) \sqcup {\color{2}-}\{0\} \times f^{-1}_0(W)\]
+	\[\implies I(f_0,W) = I(f_1,W).\]
+\end{proof}
 
+\begin{remark}[dani]\leavevmode
+	Me recuerda al cobordismo: para estudiar una variedad nos imaginamos una variedad mas grande cuya frontera es la variedad inicial.
+\end{remark}
 
+Isso permite definir transversalidade sem necessidade de que a função seja transversal ussando o teorema de Thom:
 
+\(X\) compacta, \(W \subset Y\) fechado. \(f \in C^\infty (X,Y)\), \(I(f,W):= I(\tilde{f},W)\) onde \(\tilde{f} \simeq f\), \(\tilde{f} \pitchfork  W\). \textbf{Explicación}: perturbamos um pouqinho \(f\) para que fique transversal a \(W\).
 
+\begin{remark}[dani]\leavevmode
+So how to pass from ``dense in Whitney \(C^\infty\)" to ``homotopic".
+\end{remark}
 
+\begin{example}[muito bom]\leavevmode
+	Pega dois circulos tangentes. Parece que a interseção é \(\pm  1\), mas \textit{\textbf{eles não se intersectam transversalmente!}} Preciso perturbar. Perturbo. Ou bem ficam sem se intersectar (\(I=0\)), o se intersectan duas vezes, e ai tb da zero.
+\end{example}
 
+\begin{remark}\leavevmode
+\(\dim Y=2n\), \(X \subset Y\), \(\dim X= n\), podemos definir o número de interseção de \(X\) com \(X\)! porque perturbamos o embedding de \(X\) em \(Y\).
 
+Note que se  \(n\) é ímpar, \(I(X,X)=(-1)^{nm}I(X,X)=-I(X,X)\), o número de interseção dele é zero!
+\end{remark}
 
+\begin{example}\leavevmode
+	O número de interseção de um crículo em \(\mathbb{R}^n\) é zero. O número de interseção de um círculo numa faixa de Möbius é 1!
+\end{example}
 
+\subsection{Grau}
 
+\begin{defn}\leavevmode
+\(X,Y\) variedades, \(\partial X=\partial Y=\varnothing\), \(\dim X= \dim Y\), \(X\) compacto, \(Y\) \textbf{conexo}. \(W = \{ a\}\), \(a \in Y\). \( f \in C^\infty(X,Y)\). O  \textit{\textbf{grau}} de \(f \) é 
+\[\operatorname{deg}f:=I(f, \{ a\})\]
+\end{defn}
 
+\begin{prop}\leavevmode
+O grau está bem definido, ou seja, não depende de \(a\).
+\end{prop}
+
+\begin{proof}\leavevmode
+Podemos supor que \(f \pitchfork  \{ a\}\), \(\\iff a\) é valor regular de \(f\).
+
+\begin{claim}\leavevmode
+\(I(f,\{a\})\) é localmente constante, i.e. em uma vizinhança de \(a\) esse número não muda.
+\end{claim}
+
+\begin{proof}[Prova da afirmação]\leavevmode
+Como \(a\) é valor regular e supusimos que \(\dim X= \dim Y\), \(f^{-1}(a)\) é uma quantidade finita de pontos \(x_1,x_2,\ldots,x_n\). E pelo TFI temos uma vizinhança de cada um desses pontinhos a uma vizinhança de \(a\). Cada ponto nessa vizinhança de \(a\) tem uma preimagem perto de cada \(x_i\).
+\end{proof}
+
+Em fim. O teorema acaba desde que \(Y\) é conexo.
+\end{proof}
+
+\begin{remark}\leavevmode
+Se \(f_0 \simeq f_1\) então \(\operatorname{deg}f_0 \simeq \operatorname{deg}f_1\).
+\end{remark}
 \bibliography{bib.bib}
 \end{document}

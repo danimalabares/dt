@@ -47,7 +47,9 @@ Fix \(U\) a \(C^\infty\)-open set and  \(f \in U\). We need to show that there i
 
 Since \(f \in U\), by definition of the \(C^\infty\) topology there must be a set
 \[M(V)=\{g \in C^\infty(X,Y): j^kg(x) \in V \;\forall x \in X\} \subset U\]
-for some  \(V\) open in \(J^k(X,Y)\). We need to construct a set \(W\) contained in \(M(V)\). Fix for now any atlases  \(\Phi,\Psi\) and set of compact sets \(\mathcal{K}\) and set of numbers \(\varepsilon\). To get the contention \(W:=W^k(f;\Phi,\Psi,\mathcal{K},\varepsilon)\subset M(V)\) we must show that any \(g \in W\) satisfies \(j^kg(X) \subset V\), which ``is the definition of being in \(V\)". Indeed, the open 
+for some  \(V\) open in \(J^k(X,Y)\). We need to construct a set \(W\) contained in \(M(V)\). Fix for now any atlases  \(\Phi,\Psi\) and set of compact sets \(\mathcal{K}\) and set of numbers \(\varepsilon\). To get the contention \(W:=W^k(f;\Phi,\Psi,\mathcal{K},\varepsilon)\subset M(V)\) we must show that any \(g \in W\) satisfies \(j^kg(X) \subset V\), which ``is the definition of being in \(V\)".
+
+Suppose that \(V= J^k(\tilde{U},\tilde{V})\) for some open sets \(\tilde{U} \subset X\) and \(\tilde{V} \subset Y\). Equivalently, \(V\overset{\operatorname{dif}}{\simeq}\tilde{U} \times \tilde{V} \times \tilde{W}\) for some open set \(\tilde{W}\) in an euclidean space (constructed as a polynomial vector space). The condition \(j^kg(x) \in V \forall  x \in X\) may be restated as: the source of \(g\) is in \(\tilde{U}\) (though this is obvious if we take the jet \(j^kg(x)\) for \(x \in \tilde{U}\)), its target is in \(\tilde{V}\), and its derivatives in \(\tilde{W}\).
 
 \end{proof}
 
@@ -73,18 +75,28 @@ Consider the map
 \end{align*}
 for any smooth function \(f \in C^\infty(X,Y)\) and \(p \in X\).
 
-First notice that \(\pi\) is a submersion. Fix a point \(p \in X\) and a jet \(\sigma:= j^\ell f(p)\). After fixing local coordinates on \(X\) and \(Y\), \(\sigma\) has a coordinate representation \[\Big((x_1,\ldots,x_n), (y_1,\ldots,y_m),T_\ell(\sigma)\Big)\] where \(T_\ell\) gives the Taylor polynomials of the coordinate functions of \(f\) with respect to the chosen coordinates. Then the coordinates of \(\pi\sigma\) are given simply by composing \(T_\ell\) with \(T_k\), which basically means ``forgetting" the coefficients of the Taylor polynomials for degrees above \(k\). This just says that the differential will be the identity in the coordinates of the points in \(X\) and \(Y\), and also for the first \(k\) coordinates of the Taylor polynomials. The rest of the matrix will have zeroes, but it will be full rank since the dimension of \(J^k(X,Y)\) is smaller than that of  \(J^\ell(X,Y)\).
+First notice that \(\pi\) is a submersion. Fix a point \(p \in X\) and a jet \(\sigma:= j^\ell f(p)\). After fixing local coordinates on \(X\) and \(Y\), \(\sigma\) has a coordinate representation 
+\[\Big((x_1,\ldots,x_n), (y_1,\ldots,y_m),T_\ell f_1(p),\ldots,T_\ell f_m(p)\Big)\]
+where \(T_\ell\) gives the truncated Taylor polynomials at \(p\) of the coordinate functions of \(f\) with respect to the chosen coordinates. Then the coordinates of \(\pi\sigma\) are given simply by composing \(T_\ell\) with \(T_k\), which basically means ``forgetting" the coefficients of the Taylor polynomials for degrees above \(k\). This just says that the differential will be the identity in the coordinates of the points in \(X\) and \(Y\), and also for the first \(k\) coordinates of the Taylor polynomials. The rest of the matrix will have zeroes, but it will be full rank since the dimension of \(J^k(X,Y)\) is smaller than that of  \(J^\ell(X,Y)\).
 
-Now let's look at \(\pi^{-1}(\sigma)\), it's the manifold given by all the \(\ell\)-jets that coincide with \(\sigma\) up to order \(k\). Computing its dimension is analogous of computing the dimension of jet spaces in general: it will be the product of the dimensions of \(X\), \(Y\), and the dimension of a certain polynomial space. For the polynomial coordinates we need to consider how the Taylor expansion of the coordinate functions can vary in degrees between  \(k+1\) and \(\ell\). It is \(m \sum_{r=k+1}^\ell \binom{r+n-1}{n-1}\) according to the following combinatorial argument.
+Now pick a jet \(\tau\) downstairs and let's look at \(\pi^{-1}(\tau)\). It's the manifold given by all the \(\ell\)-jets that coincide with \(\tau\) up to order \(k\). Computing its dimension is analogous of computing the dimension of jet spaces in general: it will be the product of the dimensions of \(X\), \(Y\), and the dimension of a certain polynomial space. For the polynomial coordinates we need to consider how the Taylor expansion of the coordinate functions can vary in degrees between  \(k+1\) and \(\ell\). It is \(m \sum_{r=k+1}^\ell \binom{r+n-1}{n-1}\) according to the following combinatorial argument.
 
+\begin{quotation}
 For each coordinate function of \(f\), we consider its Taylor polynomial at \(p\), which is a polynomial in  \(n\) variables. We need to put a number (a coordinate) at every monomial. Every monomial is determined by the exponents we put in each indeterminate. The exponents should add up to the degree of the monomial, say \(r\) where \(k<r\leq \ell\). Thus different monomials are different choices of \(n\) nonnegative integers that add up to \(r\). That's like putting \(r\) balls in \(n\) boxes, which is like putting \(n-1\) ``divisions" among the \(r\) objets. So it's a choice of \(n-1\) things among \(r+n-1\) things. Taking into account the \(m\) polynomials, this gives the above number.
+\end{quotation}
 
-To conclude we must show that \(\pi\) admits local trivializations. Let \(\tau \in J^k(X,Y)_{p,q}\). An open neighbourhood \(U\) of \(\tau\) is a product of neighbourhoods of \(p\) and \(q\) in their respective spaces, and \(\mathbb{R}^N\) for some crazy \(N\). The inverse image \(\pi^{-1}(U)\) only differs from \(U\) in the polynomial part, where now we consider polynomials up to degree \(\ell\) instead of only \(k\). A diffeomorphism \(\pi^{-1}(U) \cong U \times F\) is given as 
+To conclude we must show that \(\pi\) admits local trivializations. Let \(\tau \in J^k(X,Y)_{p,q}\). An open neighbourhood \(W\) of \(\tau\) is a product of neighbourhoods of \(p\) and \(q\) in their respective spaces, and \(\mathbb{R}^N\) for some crazy \(N\). The inverse image \(\pi^{-1}(W)\) only differs from \(W\) in the polynomial part, where now we consider polynomials up to degree \(\ell\) instead of only \(k\).
+
+The key observation here is that the fiber \(\pi^{-1}(\tau)\) is given precisely by varying the last \(\ell-k\) coordinates of the polynomial part. This yields a local trivialization \(\pi^{-1}(W) \cong W \times F\).
+\iffalse
+The 
+
+A diffeomorphism \(\pi^{-1}(W) \cong W \times F\) is given as 
 \begin{align*}
-	 \pi^{-1}(U) &\longrightarrow U \times F \\
+	 \pi^{-1}(W) &\longrightarrow W \times F \\
 	 (p,q,T_\ell (\sigma)) &\longmapsto (p,q,T_k(\sigma)),
 \end{align*}
-
+\fi
 \end{proof}
 
 \begin{thing1}{Problem 4}\label{p:4}\leavevmode
@@ -97,9 +109,27 @@ Let \(M\) be a non-compact manifold.
 
 \begin{proof}[Solution]\leavevmode
 \begin{enumerate}[label=(\alph*)]
-\item Fix \(f \in C^\infty (M,\mathbb{R})\). Then we have a multiplication map \(\mu_f:\mathbb{R}\to C^\infty (M,\mathbb{R}\). So maybe this is not continuous, i.e. there is a convergent sequence of numbers \((a_n)\) but \((a_nf)\) does not converge to \(a_0f\). Convergence means that for every open neighbourhood \(U\) of  $f$ there is \(N \in \mathbb{N}\) st \(\forall  n>N\), \(a_nf \in U\).
+\item Fix \(f \in C^\infty (M,\mathbb{R})\). Then we have a multiplication map \(\mu_f:\mathbb{R}\to C^\infty (M,\mathbb{R}\). Following \cite{gui2}, pp. 46-47, if \(\mu_f\) was continuous, we'd have that \(\lim_{n}f/n=0\) in the \(C^\infty\) topology. If \(M\) is not compact and we choose \(f\) to have noncompact support, by definition we must have that given any compact set \(K\) there is a point \(x_0\) outside the support of \(f\), i.e. such that \(f(x_0)\neq 0\).
 
-	Fix an open neighbourhood \(U\) of \(f\). Then every \(g \in U\) is in a \(C^k\)-open neighbourhood contained in \(U\). This means that the \(k\)-jet of every function in \(W\) is "\(k\)-polynomially-close" to \(g\).
+	A contradiction follows from
+
+	\begin{thing8}{Exercise 8.5}[\cite{muk}, Chpt. 8, Sec. 2, p. 240]\leavevmode
+		Let \(X\) be a paracompact space, and \(Y\) a metrizable space. Show that a sequence \(\{f_n\}\) in \(C^\infty(X,Y)\) converges in the \(C^\infty(X,Y)\) topology iff there exists a compact set \(K \subset X\) such that \(f_n=f\) {\color{2}[outside \(K\)]} for all but finitely many \(n\), and the sequence \(\{f_n|_{K}\}\) converges uniformly to \(f|_{K}\).
+	\end{thing8}
+
+	Indeed: if \(f/n \xrightarrow{C^\infty} 0\) there would be a compact outside of which \(f/n=0\) for all but finitely many \(n\), but this is impossible since \(f\) has to be nonzero somewhere outside any compact set \(K\).
+
+	Now let's use Problem 1 from this homework to solve Exercise 8.5 above.
+
+	\begin{proof}[Solution of Exercise 8.5 in \cite{muk}]\leavevmode
+Suppose that \(f_n \xrightarrow{C^\infty}f\)	. This means that for every basic open neighbourhood \(W:=W^k(f; \Phi,\Psi,\mathcal{K},\varepsilon)\) of \(f\) there is a natural numer \(N\) such that for every  \(n > N \), \(f_n \in W\). This says that
+\begin{gather*}
+\qquad  \qquad f_n(K_i)\subset V_i,\\ \|D^r(\psi_i \circ f \circ \varphi_i^{-1})(x)-D^r(\psi_i \circ f_n \circ \varphi_i^{-1})(x)\|<\varepsilon_i,\\
+\qquad \forall x \in K_i,\qquad \forall i \in I, \qquad \forall r\text{ s.t. } \; 0 \leq r\leq k.
+\end{gather*}
+So we get uniform convergence on \textit{any} compact set \(K_i\) immediately by taking \(r=0\). But \textbf{why should \(f_n\) and \(f\) coincide outside \textit{any} of the compact sets?} 
+	\end{proof}
+
 
 \item 
 	First notice (thanks to ChatGPT) that addition map
@@ -139,12 +169,55 @@ Let \(X\) be a submanifold of \(\mathbb{R}^n\) and \(k \geq  \operatorname{codim
 \end{thing1}
 
 \begin{proof}[Solution]\leavevmode
-Let \(\mathcal{T}\subset \operatorname{Gr}(n,k)\) be the set of all subspaces of dimension \(k\) that don't intersect \(X\) transversally. To use Sard's theorem it's enough to show that it is the set of critical points of a smooth function. Consider
+For this exercise I use \cite{gui} since this problem is  exercise 7 in Chpt. 2, Sec. 3. As a preliminary remark notice that the condition \(k \geq  \operatorname{codim}X\) doesn't say much---by definition of transversality we can't have transversal intersections without this condition. Now let's start by stating
+\begin{thing5}{The Transversality Theorem}[\cite{gui}, p. 68]\leavevmode
+Suppose that \(F : X \times S \to Y\) is a smooth map of manifolds, where only \(X\) has boundary, and let \(Z\) be any boundaryless submanifold of \(Y\). If  both \(F\) and \(\partial  F\) are transversal to \(Z\), then for almost every \(s \in S\), both \(f_s\) and \(\partial f_s\) are transversal to \(Z\).
+\end{thing5}
+
+In order to use this result recall that in Lecture 7 of our course it was proved that
+
+\begin{thing1}{Lemma 4.6}[\cite{gui2}, p.53]\leavevmode
+Let \(X\), \(B\) and \(Z\) be smooth manifolds with \(W\) a submanifold of \(Z\). Let \(j:B \to C^\infty(X,Y)\) be a mapping (not necessarily continuous) and define \(\Phi: X \times B \to Y\) by \( \Phi(x,b)= j(b)(x)\). Assume that \(\Phi\) is smooth and that \(\Phi \pitchfork  W\). Then the set \(\{b \in B : j(b) \pitchfork  W\}\) is dense in \(B\). \textbf{And in my lecture notes I find that:} the set actually has total measure. 
+\end{thing1}
+I shall follow the notation from \cite{gui}.
+
+A hint from \cite{gui} tells us to consider the map
 \begin{align*}
-	d: \operatorname{Gr}(n,k) &\longrightarrow \mathbb{Z} \\
-	V &\longmapsto \dim (V \cap T_pX)
+	F: \mathbb{R}^k \times S &\longrightarrow \mathbb{R}^n \\
+	\Big((t_1,\ldots,t_k), \{v_i\}_{i=1}^k \Big)&\longmapsto \sum_{i=1}^k t_iv_i
 \end{align*}
-where \(p\) is 
+where
+\[S:=\{\text{set of \(k\)-frames of \(\mathbb{R}^n\)} \},\]
+and show it is a submersion. (A \textit{\textbf{frame}} is a set of linearly independent vectors.) The hint suggests that \(S\) is an open set of \((\mathbb{R}^n)^k\)---we need to give \(S\) the structure of a smooth manifold! Though I'm not sure how to show it is an open set, we could consider only the \textit{orthonormal} frames, which coincide with orthonormal matrices, which may be given the structure of a smooth manifold via inverse function theorem using the map \(\mathsf{GL}(n) \to \operatorname{Mat}(n),A\mapsto A^{\mathbf{T}}A\).
+
+Moving on, if we can show that \(F\) is transversal to \(X \subset \mathbb{R}^n\), we obtain that \(F_s\) is transversal to \(X\) for almost every \(k\)-frame \(s:=\{v_i\}\). The latter is exactly what we want: the map \(F_s\) is an  embedding \(\mathbb{R}^k \hookrightarrow \mathbb{R}^n\) putting \(\mathbb{R}^k\) in \(\mathbb{R}^n\) as the space generated by the frame \(s\). 
+
+As suggested in the hint, to show that \(F\) is transversal to \(X\) it's enough to show it is a submersion. To this end we write the coordinate functions of \(F\) by
+\[F(\vec{t},\{v_i\})=t_1 \begin{pmatrix} v_1^1\\ \vdots \\ v^n_1 \end{pmatrix} + \ldots +t_k \begin{pmatrix} v_k^1\\ \vdots \\ v^n_k \end{pmatrix} = \begin{pmatrix} F_1(\vec{t}, \{v_i\})\\ \vdots  \\ F_n(\vec{t},\{v_i\} \end{pmatrix} \]
+where \(\vec{t}=(t_1,\ldots,t_k)\). For further clarity let's write
+\begin{align*}
+F_1(\vec{t},\{v_i\})&=t_1v_1^1+t_2v_2^1+\ldots+t_kv_k^1\\
+F_2(\vec{t},\{v_i\})&=t_1v_1^2+t_2v_2^2+\ldots+t_kv_k^2\\
+\vdots \\
+F_n(\vec{t},\{v_i\})&=t_1v_1^n+t_2v_2^n+\ldots+t_kv_k^n
+\end{align*}
+To compute the differential of \(F\) first notice that the derivatives of the coordinate functions \(F_i\) with respect to the \(t_i\) variables gives a matrix whose columns are the coordinates of the vectors \(v_i\):
+\[\left(\frac{\partial F_i}{\partial t^j}\right)_{i,j} =\begin{pmatrix} v_1^1 & v_2^1 & \ldots & v_k^1\\ v_1^2 & v_2^2 & \ldots & v_k^2\\
+\vdots \\
+v_1^n & v_2^n & \ldots & v_k^n\end{pmatrix} \]
+which is of rank \(k\) because \(\{v_i\}\) is a frame.
+
+The rest of the matrix \(DF_{\vec{t},\{v_i\}}\) is given by differentiating with respect to each of the coordinates of each of the basis vectors \(\{v_i\}\). So for each coordinate function we differentiate with respect to all the coordinates of the first vector, then w.r.t. the coordinates of the second vector and so on.
+
+This gives the following matrix:
+\[\left(\frac{\partial F_i}{\partial v^j}\right)_{i,j} =\begin{pmatrix}\overbrace{\begin{aligned}t_1 &\; 0 & \cdots  &\; 0\end{aligned}}^{v_1} &  \overbrace{\begin{aligned}t_2 &\; 0 & \cdots  &\; 0\end{aligned}}^{v_2} &  \cdots  &  \overbrace{\begin{aligned}t_k &\; 0 & \cdots  &\; 0\end{aligned}}^{v_k}\\
+\begin{aligned}0 &\; t_1 & \cdots  &\; 0\end{aligned}& \begin{aligned}0 &\; t_2 & \cdots  &\; 0\end{aligned}& \cdots & \begin{aligned}0 &\; t_k & \cdots  &\; 0\end{aligned}\\
+\begin{aligned} &\;  & \ddots  &\; \end{aligned}& \begin{aligned} &\;  & \ddots  &\; \end{aligned}& \cdots & \begin{aligned} &\;  & \ddots  &\; \end{aligned}\\
+\begin{aligned}0 &\; 0 & \cdots  &\; t_1\end{aligned}& \begin{aligned}0 &\; 0 & \cdots  &\; t_2\end{aligned}& \cdots & \begin{aligned}0 &\; 0 & \cdots  &\; t_k\end{aligned}
+\end{pmatrix}\]
+Each of the blocks of this matrix is a multiple of the identity of \(n \times n\). In conclusion, the differential of \(F\) at \((\vec{t},\{v_i\})\) is the \(n \times (k+nk)\) matrix
+\[DF_{(\vec{t},\{v_i\})}=\begin{pmatrix} \left(\frac{\partial F_i}{\partial t^j}\right)_{i,j} &\left(\frac{\partial F_i}{\partial v^j}\right)_{i,j}  \end{pmatrix} \]
+And it is surjective in virtue of the second block, which is of rank \(n\) provided not all \(t_i\) are zero.
 \end{proof}
 
 
