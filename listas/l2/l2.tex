@@ -30,7 +30,6 @@ But how is the topology on \(J^k(X,Y)\)? Or better yet, what is \(J^k(X,Y)\)? Po
 
 So, an open set \(U \subset J^k(X,Y)\) is (a union of) coordinate charts of the kind explained above. So you can just think that there is a natural way of saying how close or far away are jets from each other, because jets are simple.
 \end{defn}
-\fi
 \begin{thing1}{Problem 1}\label{p:1}\leavevmode
 Let  \(\Phi=\{\varphi_i,U_i\}_{i \in I}\) be a locally finite atlas of \(X\), \(\mathcal{K}=\{K_i\}_{i \in I}\) a family of compact sets \(K_i \subset U_i\), \(\Psi=\{\psi_i,V_i\}\) an atlas of \(Y\), \(\varepsilon=\{\varepsilon_i\}_{i \in I}\subset \mathbb{R}^+\) and \(f\in C^\infty(X,Y)\) such that \(f (K_i) \subset V_i\). Let
 \begin{align*}
@@ -52,16 +51,21 @@ for some  \(V\) open in \(J^k(X,Y)\). We need to construct a set \(W\) contained
 Suppose that \(V= J^k(\tilde{U},\tilde{V})\) for some open sets \(\tilde{U} \subset X\) and \(\tilde{V} \subset Y\). Equivalently, \(V\overset{\operatorname{dif}}{\simeq}\tilde{U} \times \tilde{V} \times \tilde{W}\) for some open set \(\tilde{W}\) in an euclidean space (constructed as a polynomial vector space). The condition \(j^kg(x) \in V \forall  x \in X\) may be restated as: the source of \(g\) is in \(\tilde{U}\) (though this is obvious if we take the jet \(j^kg(x)\) for \(x \in \tilde{U}\)), its target is in \(\tilde{V}\), and its derivatives in \(\tilde{W}\).
 
 \end{proof}
-
+\fi
 \begin{thing1}{Problem 2}\label{p:2}\leavevmode
 A function is said to be \textit{\textbf{closed}} if the image of every closed set is closed. Prove that the set \(\{f \in C^\infty(\mathbb{R},\mathbb{R}): f \text{ is closed} \}\) is closed in the \(C^\infty\) topology.
 \end{thing1}
 
-\begin{proof}[Solution]\leavevmode
-Choose a non-closed function $f$ and around it find a \(C^k\)-neighbourhood of non-closed functions, for some \(k\). This means that when we put the \(C^k\) glasses, we see less clearly, we can barely distinguish functions up to degree \(k\) (further than that they could be different but we won't notice).
+\textbf{Unfortunately I have no complete solution :(}
 
-If $f$ is non-closed then it cannot be a submersion: a submersion is open. Then there is a point where \(d_pf\) is not surjective. I want a neighbourhood of functions that have the same derivative as $f$ (but they are still \(k\)-close to $f $). So they can be different in second derivative. So all these functions are the same function in \(k=1\) topology. Do I not need \(C^0\) topology for that? To distinguish them. But \(C^0\) topology gives me the functions that map \(x \mapsto y=f(x)\).
-\end{proof}
+\textbf{Attempt 1.} \hspace{.5em} 
+	Let \(f \) be a limit point of \(\mathcal{F}=\{g\in C^\infty(\mathbb{R},\mathbb{R}):g\text{ is closed} \}\). To show that \(f\) is closed pick a closed set \(F \subset X\) and let \(y\) be a limit point of  \(F(X)\). Then there is a sequence \(\{x_n\}_n \subset X\) such that \(|f(x_n)-y| \to 0\). Since \(f\) is a limit point of \(\mathcal{F}\) there exists a closed function \(g\) such that \(|g(x_n)-f(x_n)|\to 0\) (for this we can take a ball of radius \(\delta(x)\), a continuous function extending \(\delta(x_n)=1/n\)). Then \(g(x_n) \to y\), so that there is some \(x_0 \in X\) such that \(g(x_0)=y\). But I'm not sure that \(f(x_0)=y\).
+
+\textbf{Attempt 2.} \hspace{.5em}  Let \(f \) be a limit point of \(\mathcal{F}=\{g\in C^\infty(\mathbb{R},\mathbb{R}):g\text{ is closed} \}\). To show that \(f\) is closed pick a closed set \(F \subset X\) and let \(y\) be a limit point of  \(F(X)\). Then there is a sequence \(\{x_n\}_n \subset X\) such that \(|f(x_n)-y| \to 0\). Since \(f\) is a limit point of \(\mathcal{F}\) there exists a sequence of closed functions \(g_k\) converging uniformly to \(f\) on compact sets. Then \(g_k(x_n) \xrightarrow{n\to \infty} y\) for all \(k\). Since each \(g_k\) is closed there must exist \(x_k\) so that \(g_k(x_k) =y\)…
+
+\begin{remark}\leavevmode
+The result follows almost immediately from Exercise 8.5 in \cite{muk} (see Problem 4(a) below). Indeed, if a sequence of closed maps \(g_n\) coincides with \(f\) outside some compact set, \(f\) is closed since continuous image of compact sets is compact (and thus closed).
+\end{remark}
 
 \begin{thing1}{Problem 3}\label{prob:3}\leavevmode
 Let \(X\) and \(Y\) be manifolds and \(\ell \geq  k\). Prove that there exists a natural fiber bundle \(J^\ell(X,Y) \to J^k(X,Y)\) and compute the dimension of its fiber.
@@ -109,7 +113,16 @@ Let \(M\) be a non-compact manifold.
 
 \begin{proof}[Solution]\leavevmode
 \begin{enumerate}[label=(\alph*)]
-\item Fix \(f \in C^\infty (M,\mathbb{R})\). Then we have a multiplication map \(\mu_f:\mathbb{R}\to C^\infty (M,\mathbb{R}\). Following \cite{gui2}, pp. 46-47, if \(\mu_f\) was continuous, we'd have that \(\lim_{n}f/n=0\) in the \(C^\infty\) topology. If \(M\) is not compact and we choose \(f\) to have noncompact support, by definition we must have that given any compact set \(K\) there is a point \(x_0\) outside the support of \(f\), i.e. such that \(f(x_0)\neq 0\).
+\item Fix \(f \in C^\infty (M,\mathbb{R})\). Then we have a multiplication map \(\mu_f:\mathbb{R}\to C^\infty (M,\mathbb{R}\). If \(\mu_f\) was continuous, we'd have that \(\lim_{n}f/n=0\) in the \(C^\infty\) topology (because it's the image of the sequence \(1/n\) under a continuous map). Chose an open ball of the constant function 0 of raduis a function \(\delta(x)\). There would have to exist a number \(N\) such that \(\forall n>N\), \(\frac{1}{n}|f(x)|<\delta(x)\).
+
+	A smart choice of \(f\) and \(\delta\) should be enough to show that it holds. Notice that if \(M\) is compact,  there would be constants \(f(x) \leq M\) and \(M_1 \leq  \delta(x)\), so that for big \(n\), \(f(x)/n \leq  M/ n <  M_1 \leq \delta(x)\) would always hold, meaning \(f/n\) does converge to \(0\).
+
+	Since \(M\) is not compact, there is a function that grows faster than \(n\), so that \(f(x)/n\) would be eventually larger than any number, so that fixing a constant raduis  \(\delta(x)\equiv c>0\) would give a contradiction. A formal way to construct such \(f\) is by introducing a Riemannian metric on \(M\) and using the distance to a fixed point, which would diverge since otherwise we could show \(M\) is sequentially compact. This completes the proof.
+
+\textbf{Incomplete alternative attempt}
+
+
+	Fix \(f \in C^\infty (M,\mathbb{R})\). Then we have a multiplication map \(\mu_f:\mathbb{R}\to C^\infty (M,\mathbb{R}\). Following \cite{gui2}, pp. 46-47, if \(\mu_f\) was continuous, we'd have that \(\lim_{n}f/n=0\) in the \(C^\infty\) topology. If \(M\) is not compact and we choose \(f\) to have noncompact support, by definition we must have that given any compact set \(K\) there is a point \(x_0\) outside the support of \(f\), i.e. such that \(f(x_0)\neq 0\).
 
 	A contradiction follows from
 
@@ -119,20 +132,10 @@ Let \(M\) be a non-compact manifold.
 
 	Indeed: if \(f/n \xrightarrow{C^\infty} 0\) there would be a compact outside of which \(f/n=0\) for all but finitely many \(n\), but this is impossible since \(f\) has to be nonzero somewhere outside any compact set \(K\).
 
-	Now let's use Problem 1 from this homework to solve Exercise 8.5 above.
-
-	\begin{proof}[Solution of Exercise 8.5 in \cite{muk}]\leavevmode
-Suppose that \(f_n \xrightarrow{C^\infty}f\)	. This means that for every basic open neighbourhood \(W:=W^k(f; \Phi,\Psi,\mathcal{K},\varepsilon)\) of \(f\) there is a natural numer \(N\) such that for every  \(n > N \), \(f_n \in W\). This says that
-\begin{gather*}
-\qquad  \qquad f_n(K_i)\subset V_i,\\ \|D^r(\psi_i \circ f \circ \varphi_i^{-1})(x)-D^r(\psi_i \circ f_n \circ \varphi_i^{-1})(x)\|<\varepsilon_i,\\
-\qquad \forall x \in K_i,\qquad \forall i \in I, \qquad \forall r\text{ s.t. } \; 0 \leq r\leq k.
-\end{gather*}
-So we get uniform convergence on \textit{any} compact set \(K_i\) immediately by taking \(r=0\). But \textbf{why should \(f_n\) and \(f\) coincide outside \textit{any} of the compact sets?} 
-	\end{proof}
-
+	(But I was unable to show Exercise 8.5 :(
 
 \item 
-	First notice (thanks to ChatGPT) that addition map
+	First notice that addition map
 	\[A: C^\infty(M,\mathbb{R}) \times C^\infty(M,\mathbb{R}) \to C^\infty(M,\mathbb{R}),\qquad  (f,g)\mapsto  f+g\]
 	induces a bundle map
 \[\tilde{A}:J^{k}(M,\mathbb{R})\times J^{k}(M,\mathbb{R})\longrightarrow J^{k}(M,\mathbb{R})\]
