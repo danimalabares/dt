@@ -1367,6 +1367,10 @@ Ou seja, \(Q\) é uma subvariedade de dimensão \(n - m + k \) e  \(\partial  Q=
 \[V_1 \oplus  V_2= V_3\]
 \textbf{sabendo a orientação de dois deles, já tem como saber a orientação do terceiro.} 
 
+\begin{thing6}{Dani}\leavevmode
+	Creo que formalmente es así: supongamos que \(V_2\) y \(V_3\) son orientados. Para construir una base orientada de \(V_1\) sólo pegamos una base orientada \(\{e_i\}\) de \(V_1\) y la completamos a una base orientada de \(V_3\). Los vectores completadores forman una base \textit{orientada}  de \(V_2\).
+\end{thing6}
+
 Pegue o fibrado normal (lembre que não precisa de uma métrica rimeanniana para isso, qualquer complemento de \(TQ\) funciona.)
 
 \textbf{A gente vai usar a orientação de \(X\) e \(Y\) para orientar o fibrado normal.} 
@@ -1539,5 +1543,148 @@ Em fim. O teorema acaba desde que \(Y\) é conexo.
 \begin{remark}\leavevmode
 Se \(f_0 \simeq f_1\) então \(\operatorname{deg}f_0 \simeq \operatorname{deg}f_1\).
 \end{remark}
+
+\section{Aula 12}
+
+\subsection{Orientando o bordo de \(Q=f^{-1}(W)\)}
+
+A gente mostrou ontem como é que \(Q=f^{-1}(W)\) tem uma orientação \textit{natural} induzida pelas orientações deos demais espaços. Hoje vamos orientar o bordo.
+
+\textbf{A primeira coisa a entender}  é esa igualdade daqui: \(N_p\tilde{Q}=N_qQ\), onde \(\tilde{Q}=\partial Q\). É claro que \(\subset\), e a igualdade fica porque são espaços da mesma dimensão.
+
+\begin{thing5}{dani}\leavevmode
+Acho que o claim ai é que \(\partial f^{-1}(W)=(-1)^{\operatorname{codim}W}(\partial f)^{-1}(W)\), ver \cite{gui} p. 101.  \end{thing5}
+
+\subsection{Exemplos: calculando o grau}
+
+\begin{example}\leavevmode
+Grau de \(f:\mathbb{C}P^{1}\to \mathbb{C}P^{1}\), \(z \mapsto  z^n\), I think it is \(n\), because at 0 there's only one preimage, but zero is not regular value, so in regular values you have \(n\) preimages.
+
+Considere \(f(z)=\bar{z}^{n}\). Podemos ver isso como uma composição. Para isso convém escrever
+
+\begin{claim}[Leminha do produto]\leavevmode
+\(X \xrightarrow{f}Y \xrightarrow{g}\), \(Y,Z\) conexas, então
+\[\operatorname{deg}(g \circ f)=\operatorname{deg}g \cdot \operatorname{deg}f\]
+\end{claim}
+
+Usando isso, podemos calcular \(\operatorname{deg} \bar{z}^n\) calculando simplesmente os graus de \(z \mapsto  \bar{z}\) e \(z\mapsto  z^{-1}\). Então por exemplo \(\bar{z}\) é muito fácil porque é uma reflexão em \(\mathbb{R}^2\), ou seja, sua derivada é ela mesma, que troca orientação. Segue que \(\operatorname{deg}(\bar{z}^n)=-n\)
+\end{example}
+
+\begin{remark}[Algo que não falamos a vez passada]\leavevmode
+é que se uma função não é sobrejetiva, o grau dela é zero. Porque entao pode pegar um valor que não está na imagem, que é regular por definição, e aí tem zero preimagens.
+\end{remark}
+
+\subsubsection{Teorema fundamental da álgebra com teoria do grau}
+
+Suponha que \(p\) é um polinomio de grau \(\geq 1\) e, por contradição, supoha que não tem raizes. Suponha que \(p(z)=z^n+a_n z^{n-1}+\ldots+a_0\). Seja \(R>0\) tal que \(R^n> |a_{n-1}|R^{n-1}+ \ldots + |a_0|\). Defina
+ \[p_t(z)=z^n+t\Big(a_{n-1}z^{n-1}+\ldots+a_0 \Big).\]
+ \begin{align*}
+ 	f: S^1 &\longrightarrow S^1 \\
+ 	z &\longmapsto z^n
+ \end{align*}
+ é claro que \(\operatorname{deg}(z^n_{S^1}=n \in \mathbb{Z}\).
+
+ Agora pega
+ \[p_t: \partial B(R) \to \mathbb{R}^2\]
+Note que
+\begin{align*}
+|p_t(z)|&\geq |z^n|-t|a_{n-1}z^{n-1}+\ldots+a_0|\\
+&\geq |z|^n-t(|a_{n-1}||z|^{n-1}+\ldots+|a_0|\\
+&=R^n-t(|a_{n-1}|R^{n-1}+\ldots+|a_0|)\\
+&>0
+\end{align*}
+Dai,
+\[\frac{p_t}{|p_t|}:\partial B (R) \to S^1,\]
+\[\operatorname{deg}\left(\frac{p}{|p|}\right) =\operatorname{deg} \left(\frac{z^n}{R^n}\right) =n>0\]
+Então \(\frac{p}{|p|}\) é sobrejetiva. Temos
+\[\frac{ p}{|p|}: \partial  B(R) \to S^1\]
+\textbf{Podemos extender a} 
+\[\frac{p}{|p|}: B (R)\to S^1\]
+E concluimos que
+ \[I\left(\frac{p}{|p|},\{a\}\right) =0.\]
+acho que isso é porque:
+\begin{prop}\leavevmode
+Se tem uma função definida numa variedade, e consegue extender essa função para outra variedade cujo bordo é a variedade inicial, o grau da função é zero.
+
+\(X,Y,W\), \(f:X \to Y\), \(\dim X +\dim W=\dim Y\). \(f=F|_{X}\), \(F: Z \to Y\), \(Z\) compacta, \(\partial Z=X\). Então \(I(f,W)=0\).
+\end{prop}
+
+\subsection{Winding number}
+
+Começamos com esse teorema muito bom, que Jordan provou para curvas e Brouwer generalizou a toda dimensão:
+
+\begin{thm}[Jordan-Brouwer]\leavevmode
+\(X \subset \mathbb{R}^n\) uma hipersuperficie (subvariedade de codimensão 1) compact conexa. Então \(\mathbb{R}^n\setminus X= U_1 \sqcup U_2\) onde \(U_1\) é uma variedade compacta com bordo \(\partial \overline{U_1}=X\) e \(U_2\) é não compacta com bordo também \(\partial \overline{U}=X\).
+\end{thm}
+
+Para definir o Winding number ussando teoria de grau pegue \(X\) compacto sem bordo, \(\dim X=0\). Vamos começar definindo para funções \(f:X \to \mathbb{R}^{n+1}\). Pegue \(p \not \in f(X)\). Então definimos
+\[\operatorname{wind}_p(f)=\operatorname{deg}\frac{f-p}{\|f-p\|}\]
+A ideia é que essa função dai va de \(X \to S^n\). É como se fosse \(S^1\to S^1\), mandando \(z \mapsto  z^n\).
+
+\begin{remark}[Invariança homotópica do wind]\leavevmode
+	\(f_t: X \to \mathbb{R}^{n+1}\), \(p \not \in f_t(x) \forall  t\), então \(\operatorname{wind}_p(f_0)=\operatorname{wind}_pf_1\).
+\end{remark}
+
+\begin{example}\leavevmode
+\(p: \mathbb{C} \to \mathbb{C}\) de grau \(n\). \(p |_{\partial B(R)}:\partial  B (R) \to \mathbb{C}\).
+\[\operatorname{wind}_0(p|_{\partial  B (R)}=q \qquad  \text{ se \(R\) é muito grande} \]
+\end{example}
+
+\begin{prop}\leavevmode
+	Suponha que \(X - \partial  Z\), \(Z\) compacto e \(f \) se estende para \(F:Z \to \mathbb{R}^{n+1}\). Então \(\operatorname{wind}_p (f)=I(F, \{p\})\), para \(p \not \in f(X)\).
+\end{prop}
+
+\begin{proof}\leavevmode
+\(f \pitchfork \{p\}\) porque \(p \not \in f(X)\). Então podemos supor que \(F \pitchfork  \{ p\}\). Casos:
+\begin{enumerate}
+\item \(F^{-1}(p)=\varnothing\). Então \(I(F,\{p\})=0\).
+	\[\operatorname{wind}_pf=\operatorname{deg} \left(\frac{f-p}{\|f-p\|}\right) =I\left(\frac{f-p}{\|f-p\|}, \{ a\}\right) \]
+	que é zero ussando aquele lema de que se podemos extender a função \(\frac{f-p}{\|f-p\|}\) a \(Z\) compacta com \(\partial  Z=X\), o índice da equação anterior é zero.
+	
+\item \(F^{-1}(p)=\{x_1,\ldots,x_n\}\). {\color{6}Ideia: pegar bolinhas ao redor de cada pontinho e calcular o grau ai, depois somar.} Considere
+	\[u=\frac{F-p}{\|F-p\|}:Z\setminus \{x_1,\ldots,x_n\}\to S^{n}\]
+Pegue umas bolinhas \(B_i \ni x_i\). Olhemos para
+\[u|_{Z \setminus \bigcup_{i=1}B_i}: Z\setminus \bigcup_{i=1}^N B_i \to S^{n}\]
+Obtemos
+\[\partial (Z\setminus \bigcup_{i=1}^N B_i=X \sqcup - \bigsqcup_{i=1}^N \partial B_i\]
+Pela proposição da aula passada de que quando logramos estender o índice vale zero, o índice vale zero aqui, assim que
+\[\operatorname{deg}\left(u|_{X\sqcup \bigsqcup_{i=1}^n \partial B I}\right) =0\]
+mass isso dai é
+\[\operatorname{deg}(u|_{X})+ \sum_{i=1}^N \operatorname{deg}(u|_{\partial B_i}\]
+Concluimos que
+\[\operatorname{wind}_pf= \sum_{i=1}^N \operatorname{wind}_p f_i.\]
+Então queremos calcular \(\operatorname{wind}_pf_i\). Usamos TFI. Mas precisamos de uma versão do TFI orientado.
+
+\begin{thm}[TFI orientado]\leavevmode
+Se \(g: \mathbb{R}^n \to \mathbb{R}^n\) e \(g'(0)\) é inversível, existe um difeo \(\varphi:U \subset \mathbb{R}^n \to V \subset \mathbb{R}^n\), mandando \(0 \mapsto  0\), que \textbf{preserva orientação}  e tal que  \(g \circ \varphi\) é a identidade ou uma reflexão, i.e.
+\[g \circ \varphi=\begin{cases}
+	\operatorname{id}\qquad \\
+	(x_1,\ldots,x_n)\mapsto (-x_1,x_2,\ldots,x_n)\qquad &
+\end{cases}\]
+\end{thm}
+Ussando isso concluimos que
+\[\operatorname{wind}_pf_i=\operatorname{sign}_F(x_i)=I(F,\{p\}).\]
+\end{enumerate}
+\end{proof}
+
+\subsection{Prova do teorema de Jordan-Bruower}
+
+\begin{proof}\leavevmode
+\begin{enumerate}
+\item  \(\mathbb{R}^n\setminus X\) possui, no máximo, duas componentes conexas. Pegue \(x \in X\), \(U \ni x\) vizinhança. 
+\end{enumerate}
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
 \bibliography{bib.bib}
 \end{document}
