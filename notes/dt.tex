@@ -1675,7 +1675,50 @@ Ussando isso concluimos que
 \end{enumerate}
 \end{proof}
 
+\section{Prova 1!}
 
+Here's Dani's summary of everything needed to succeed in the test:
+
+\begin{enumerate}
+	\item \textbf{(How to use the IFT to make \(f^{-1}(x)\) a submanifold if \(f:X^n \to Y^m\) is a submersion.)} You choose charts of \(x\) and \(f(x)\), and because \(f\) is a submersion you get that the coordinate functions of \(f\) are locally invertible. Then you make new coordinates around \(x\) like this: \((f_1,\ldots,f_m,x_{m+1},\ldots,x_n)\). If a point is in \(f^{-1}(x)\) then the first \(m\) corrdinates vanish!
+
+		Of course there are several ways this can happen but that's basically it. In fact the intuition is simply to simply "solve for the variables" so "despejar" las variables que definen la variedad del dominio: intersectar una variedad algebraica con otra significa decir que los puntos deben satisfacer las ecuaciones que definen las dos variedades. La condición \textit{ser sumersión} significa \textit{puedo despejar} (teorema de la función inversa). Entonces qué hago? Uso esas ecuaciones para expresar unas funciones en términos de las otras (teorema de la función implícita), que funciona \textit{en la intersección de las variedades}. Entonces al final tengo menos variables realmente, ¿cuántas? Tantas como las que no despejé. Esa es la dimensión de la intersección: lo que no pude despejar. Y ese es el trip con las codimensiones por todos lados.
+
+	\item Sard's theorem.
+
+	\item Jet spaces with the topology.
+	\item Whitney topologies.
+		\begin{enumerate}
+		\item How to show that a set is open or closed in this topology? See prop 4.5
+		\item Here's an idea on how to prove the parametric version of the transversality theorem: check that if \(s \in S\) is a regular value, then \(F_s \pitchfork W\).
+
+			So the idea for these theorems it boils down to some fried arithmetic on the dimensions. You just have to find the correct map to apply this to, in this case the projection since these functions depend on \(s\).
+		\end{enumerate}
+	\item Thom transversality theorem.
+
+	\item Whitney Embedding Theorem. Immersions are dense if \(m \geq 2n\). Idea of proof: express immersion condition as jet transversality. \(\bigcup_{r}S_r\) is just the set where \(f \) is singular! So \(S_r\) is like it is not singular of size \(r\) or something.
+
+	Whitney 1-1 immersion theorem. If  \(m \geq 2n+1\) 1-1 immersions is a resisual set. Proof using multijets for injectivity.
+
+	Whitney embedding theorem. \(\exists X^{n} \hookrightarrow X^{2n+1}\). Notice that it's not the one that says \(X^n \hookrightarrow X^{2n}\) (that's another one, looks like algebraic topology was used. It's also Whitney's). So how to prove it? Use the fact that an injective proper immersion is an embedding. We already said that injective immersions are open and dense. So just show that proper maps are \textit{nonempty} and open. Nonempty is then a simple argument extending a proper map to \(\mathbb{R}\) for other dimensions.
+
+	To show that the set of proper maps is open might be \textbf{a good example on how to deal with this crazy topology} : choose a proper map and take the unit ball with center \(f(x)\) for every \(x \in X\). Then \(V:=\cup \{(x,B_{f(x)}(1)\}\) is open in \(J^0(X,\mathbb{R}^m)=X \times \mathbb{R}^m\) (by continuity of \(f\)…). So the nghb is \(M(V)\). The inverse image of a function \(g \in M(V)\) takes a closed ball (or any compact set I guess) with center in \(y\) \textit{inside} a the inverse image of a ball or radius a little larger, i.e.
+	\begin{align*}
+	g^{-1}(\overline{B_r(y)}&\subset f^{-1}(\overline{B_{r+1}(y)}\quad \text{because} \\
+	|g(x)-y|&\leq r \implies |f(x)-y|\leq r+1 \quad \text{because} \\
+	|f(x)-y|&\leq |f(x)-g(x)|+|g(x)-y|=1+|g(x)-y|=1+r
+	\end{align*}
+	and \(f\) is proper so we are done :star.
+
+\item \textbf{(No retraction from compact sets to itself theorem.)} Story goes there cannot be a retraction from the closed ball to its boundary. Not only because the cohomolgy groups are distinct, but because taking the inverse image of a regular value in the boundary yields a 1-submanifold of the ball, which has 2 points for a boundary. (An even number of points if you mind.) And those two points actually live in the boundary of the ball. But also the boundary points of the preimage are the inverse image of the boundary map. But the boundary map is the identity, and its preimage is a point, which cannot have an even number of points in the boundary.
+
+	So now you see, there are three things that are the same:
+	\[\partial (f^{-1}(Z)) = f^{-1}(Z) \cap \partial X = (\partial f)^{-1}(Z)\]
+
+	\textbf{(Brouwer's fixed point theorem.)} Once convinced of that, you show that if a function from a compact set to itself (maybe this time use the unit ball) must have a fixed point. Otherwise you could construct a retraction in that funny way with a picture. And you show it's smooth. Which may not be obvious but once you read it in the book it's actually very simple.
+
+	\item Other concerns: what's the deal that if the manifold is closed no se que
+\end{enumerate}
 
 
 
