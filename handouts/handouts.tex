@@ -1183,10 +1183,42 @@ Let \(R=k[t_1,\ldots,t_k\) be a polynomial ring. Prove that \(\operatorname{Der}
 What about trying that exercise on Fredholm operators from lecture 9?
 \end{thing4}
 
+\section{Exercises from \cite{gui}}
 
 
+\begin{enumerate}
+	\item 
+	\item 
+	\item 
+	\item Difficult
+	\item By item 4., every point in \(U\)…
+	\item There is a homotopy \(u_{z_t}\).
+	\item Difficult
+	\item \(W_2(X,z_0)\) is the number of times the ray \(r\) intersects \(X\) when starting from \(z_0\). When starting from \(z_1\) we obtain \(W_2(X,z_1)\) intersections. This just means that \(W_2(X,z_0)-W_2(X,z_1)=\ell\).
+	\item Chose any two points in a neighbourhood of a point, then \(W_2(X,z_0)=W_2(X,z_1)+1\). In particular both \(D_0\) and \(D_1\) are nonempty.
+	\item Difficult. If \(x\) is very large… VR: considere a homotopía da inclusão com a função que poe \(X\) num ponto só:
+		\[\operatorname{deg}\left(\frac{x-z}{\|x-z\|}\right) =\operatorname{deg}\left(\frac{t x -z}{\|t x -z\|}\right) =\operatorname{deg}\left(\frac{z}{\|z\|}\right) \]
+		
+	\item 
+		\begin{enumerate}
+		\item \(X \subset \partial D_1\): let \(U\) be a neighbourhood of \(x \in X\), then there is a path from \(u \in U\) to any \(z \in D_1\), so that \(u \in D_1\). (This also shows that \( X \subset \partial D_0\).
+		\item \(\partial D_1 \subset X\): chose \(x \in \partial D_1\). If \(x \not \in X\) then it is either in \(D_0\) or \(D_1\). In either case take the min distance to the compact mdf X and obtain a neighbourhood of \(x\) contained in \(D_1\) (\(D_0\) resp.).
+		\end{enumerate}
+		That shows \(\partial D_1=X\) and \(\partial D_2=X\). Now let's show that \(D_1\) is bounded. This follows from ex. 10, because if it was not bounded I'd find a point that has \(W_2=0\).
+\end{enumerate}
 
+\begin{thing4}{Exercise III.3.26}\label{exer:III.3.26}\leavevmode
+Prove that any connected manifold is orientable.
+\end{thing4}
 
+\begin{proof}[Solution]\leavevmode
+\begin{enumerate}[label=\textbf{Step \arabic*}]
+\item Given a path on \(X\) we can transport a basis from one point to another. Does a path induce an automorphism of \(X\)?
+\item The base we obtain depends on the path.
+\item Homotopic paths give the same base.
+\item In a simply connected manifold all paths joining two given points are homotopic. Suppose they are not homotopic. Then the loop obtained by concatenating cannot be contractible: if it was, then the loop would be homotopic to one of the paths travelled back and forth {\color{2}fixing the endpoint}
+\end{enumerate}
+\end{proof}
 
 
 

@@ -1710,6 +1710,8 @@ Here's Dani's summary of everything needed to succeed in the test:
 	\end{align*}
 	and \(f\) is proper so we are done :star.
 
+	Confusing Lemma 4.3: a map is transversal iff there is a coordinate chart of the codomain that composing with the map is a submersion.
+
 \item \textbf{(No retraction from compact sets to itself theorem.)} Story goes there cannot be a retraction from the closed ball to its boundary. Not only because the cohomolgy groups are distinct, but because taking the inverse image of a regular value in the boundary yields a 1-submanifold of the ball, which has 2 points for a boundary. (An even number of points if you mind.) And those two points actually live in the boundary of the ball. But also the boundary points of the preimage are the inverse image of the boundary map. But the boundary map is the identity, and its preimage is a point, which cannot have an even number of points in the boundary.
 
 	So now you see, there are three things that are the same:
@@ -1717,14 +1719,138 @@ Here's Dani's summary of everything needed to succeed in the test:
 
 	\textbf{(Brouwer's fixed point theorem.)} Once convinced of that, you show that if a function from a compact set to itself (maybe this time use the unit ball) must have a fixed point. Otherwise you could construct a retraction in that funny way with a picture. And you show it's smooth. Which may not be obvious but once you read it in the book it's actually very simple.
 
+	\item Degree and index. When you have \textbf{complementary} dimension manifolds, so basically a plane and a line. (That's it. Or a plane and a curve, or a surface and a curve. But not a curve and a curve, nor a plane and a plane, nor a point and a line. But yes a point and plane.) They intersect in points as you can see. So if the domain is compact and the image is closed then the preimage is a closed set in a compact manifold that cannot be infinite for it'd have a limit point where local euclidean neighbourhood could not be found. So there's just some finite number of points.
+
+		If you consider the sign of the Jacobian you get some sense of orientation. Never forget that orientation is intrinsecally confusing because it requires for an external conciousness that chooses one thing among two. Once that happens you can tell whether the sign of the Jacobian is the good one or the bad one. Also you can define positive orientation like we did in class and not like it is in wikipedia which is that Jacobian definition: you say it's positive when the base you obtain when you push a base of \(X\) at the point and look at a base of \(W\) and because they have complementary dimensions, you get a base of \(Y\) that may be the good one or the bad one, choose the good one.
+
+		So that's the \textit{\textbf{intersection number}}: the sum of the orientations at every point. (So like the other concepts it's more intuitive to think this is about two submanifolds but we phrase in terms of a map that maybe you think it's an embedding and the other submanifold inside the codomain of the map.) You can mod out by \(\mathbb{Z}_2\).
+
+		This happens with the index: \(I(X,W)=(-1)^{-1}I(W,X)\).
+
+		And the \textit{\textbf{degree}} of a map is the index of the map and a single point. So the catch is that a nice map has constant number of preimages, so that's well defined. And it's just how many preimages the map has taking into account orientation.
+
 	\item Other concerns: what's the deal that if the manifold is closed no se que
 \end{enumerate}
 
+\section{Aula 13}
+
+\begin{thm}[Jordan-Brouwer]\leavevmode
+	\(X \subset \mathbb{R}^{n+1}\) hipersuperfície compacta conexa sem bordo. Então \(\mathbb{R}^{n+1}\setminus X=U_1 \sqcup U_2\) onde
+\begin{itemize}
+\item \(U_1,U_2\) são abertos conexos.
+\item \(\overline{U_1},\overline{U_2}\) são variedades com bordo \(X\).
+\item \(\overline{U_1}\) é compacto e \(\overline{U_2}\) não.
+\end{itemize}
+\end{thm}
+
+\begin{proof}\leavevmode
+\(f : X^n \to \mathbb{R}^{n+1}\). Pega \(p \not \in \operatorname{img} f\), definimos
+\[\operatorname{wind}(f,p): X \to S^{n}\]
+\[\operatorname{wind}(f,p)=\operatorname{deg}\frac{f-p}{\|f-p\|}\]
+Quando \(f\) é a inclusão \(i:X \to \mathbb{R}^{n+1}\), podemos definir para \(p \not \in X\) o \(\operatorname{wind}p \in \mathbb{Z}_2\).
+
+Defina
+\[U_i=\{p \in \mathbb{R}^{n+1}\setminus X: \operatorname{wind}p=i\},\qquad i=0,1\]
+Como o wind só pode ser 0 ou 1, é imediato que \(U_0 \sqcup U_1=\mathbb{R}^{n+1}\setminus X\).
+
+\begin{lemma}\leavevmode
+Suponha que \(p\) e \(q\) estão na mesma componente conexa de \(\mathbb{R}^{n+1}\setminus X\). Então \(\operatorname{wind} p = \operatorname{wind} q\).
+\end{lemma}
+\begin{proof}\leavevmode
+	\(\gamma:I \to \mathbb{R}^{n+1}\setminus X\) conectando \(p\) e \(q\). Pode supor que \(\gamma\) é suave por densidade das funções suaves. Defina
+	\begin{align*}
+		F_t: X &\longrightarrow S^{n} \\
+		x &\longmapsto \frac{f(x)-\gamma(t)}{\|f(x)-\gamma(t)\|}.
+	\end{align*}
+	Então
+	\[\operatorname{wind}p=\operatorname{deg}(F_0)=\operatorname{deg}(F_1)=\operatorname{wind} q\]
+	\begin{claim}\leavevmode
+	\(U_0\) e \(U_1\) são conexos.
+	\end{claim}
+	\begin{proof}\leavevmode
+	\(x_0 \in X\). Seja \(V\) uma vizinhança de \(x_0\). Vamos mostrar que dado \(z \in \mathbb{R}^{n+1}\setminus X\) pode ser conectado a uma das componentes conexas de \(V\setminus X\).
+
+	Para vé-lo, considere primerito um camino que liga \(x_0\) a \(z\) em \(\mathbb{R}^{n+1}\). Pode supor que \(\sigma \pitchfork  X\). O conjunto de interseções desse caminho com \(X\) é um número finito de pontos. Digamos que \(p\) é o último deles, o ponto mais perto a \(z\). Então o resto do caminho não intersecta o \(X\).
+
+	Como \(X\) é conexo, existe um caminho \(c\) em \(X\) ligando \(x_0\) a \(p\). Existe uma vizinhança desse caminho difeomorfa a \(B^{n-1}\times(-\varepsilon,\varepsilon)\). (Os detalhes disso deixamos para depois… a ideia e pegar bolinhas e extender…)
+
+	Então ai a gente conclui informalmente: pega o resto do \(\sigma\) que liga \(z\) e \(p\), sae de \(z\) mas para antes de \(p\), e vai ao longo de \( c\) por fora de \(X\) até chegar a \(V\).
+	\end{proof}
+\begin{claim}\leavevmode
+	Agora pegue \(p,q\) em dois lados diferentes de \(V\setminus X\). Considere \(\ell\) segmento de reta que os liga e tal que \(\ell \pitchfork  X\). Então 
+	\[\operatorname{wind}p-\operatorname{wind}q=1 \operatorname{mod} 2\]
+\end{claim}
+\begin{proof}\leavevmode
+Suponha que
+ \[\ell(t)=tv+p\]
+com \(v=p-q\).
+\end{proof}
+
+considere a homotopía da inclusão com a função que poe \(X\) num ponto só:
+\[\operatorname{deg}\left(\frac{x-z}{\|x-z\|}\right) =\operatorname{deg}\left(\frac{t x -z}{\|t x -z\|}\right) =\operatorname{deg}\left(\frac{z}{\|z\|}\right) \]
+\end{proof}
+
+\subsection{Torema de Borsuk-Ulam}
+
+\begin{thm}[Borsuk-Ulam]\leavevmode
+\(f : S^n \to \mathbb{R}^n\) suave, então \(\exists  x \in S^{n}\) com \(f(x)=f(-x)\).
+\end{thm}
+
+\begin{proof}\leavevmode
+Por absurdo: suponha que não existe ese ponto. Então considere
+\[g(x)=f(x)-f(-x)\]
+que é ímpar, i.e. \(g(-x)=-g(x)\) e nunca se anula. Agora considere
+\begin{align*}
+	\tilde{g}: S^{n} &\longrightarrow \mathbb{R}^{n+1} \\
+	x &\longmapsto (g(x),0)
+\end{align*}
+Então \(\tilde{g}\) também é ímpar e \(0 \not \in \tilde{g}(S^{n)})\).
+
+Note que \(\operatorname{wind}(\tilde{g},0)=0\) porque a imagem de \(\frac{\tilde{g}}{\|\tilde{g}\|}\) tá no ecuador da esfera \(S^n\) (porque \(\operatorname{img}g\) tá alí dentro). Entao quase todo ponto de \(S^{n}\) não esta na imagem.
+
+\begin{claim}\leavevmode
+\(\operatorname{wind}\tilde{g},0=1\)
+\end{claim}
+\begin{proof}\leavevmode
+PAra \(n=1\): \(\tilde{g}:S^1\to \mathbb{R}^1\). Considere
+\[h=\tilde{g}/\|\tilde{g}\|,\]
+que ainda é impar e va \(h:S^1 \to S^1\).
+
+Lembre que uma função de \(S^1\to S^1\) pode ser levantada a \(\mathbb{R}\), dando uma função períodica \(\tilde{h}(t+2\pi)=\tilde{h}(t)+2\pi k\). para algum \(k\) que resulta ser o grau de \(h\). Mas tem mais: como \(\tilde{h}\) é ímpar, na verdade só precisamos da metade do período, i.e.
+\[\tilde{h}(t+\pi)=\tilde{h}(t)+\pi \tilde{k}.\]
+
+\subsection{Poincaré-Hopf theorem}
+
+\begin{defn}\leavevmode
+\(x \in X\), \(V_x=0\). Dizemos que \(x\) é um \textit{\textbf{zero isolado}} de \(V\in \mathfrak{X}(X)\) se existe \(U \ni x\) vizinhança tal que \(\forall  y \in U\setminus \{x\} \implies V_y \neq 0\).
+
+Seja \(x\) um zero isolado de \(V \in \mathfrak{X}(x)\). Seja \((U,\varphi)\) uma carta centrada em \(x\). Então \(\bar{\varphi} : TM|_{ U} \to \varphi(U) \times \mathbb{R}^n\).
+
+Summary: define \(\tilde{V}\) usando uma trivialización do \(TX\):
+\[\tilde{V}: \varphi U \subset \mathbb{R}^n \to \mathbb{R}^n\]
+\(\tilde{V}0=0\). Pode pegar uma bolinha  \(B_{r}(0)\subset \mathbb{R}^n\setminus \{0\}\).. Definimos:
+\[\operatorname{ind}(V,x)=\operatorname{wind}(\tilde{V}|_{\partial B_r(0)},0)=\operatorname{deg}\left(\frac{\tilde{V}}{\|\tilde{V}\|}\Big|_{\partial B_r(0)}\right).\]
+\end{defn}
+
+\begin{thm}[Poincaré-Hopf]\leavevmode
+\(X\) compacto orientado. \(V \in \mathfrak{X}(X)\) cujos zeros são isolados. Então
+\[\sum_{z\text{ zero de \(V\)} }\operatorname{ind}(V,x)=\chi(X)\]
+
+\end{thm}
+
+
+\end{proof}
 
 
 
+\end{proof}
 
+\end{proof}
 
+\begin{exercise}\leavevmode
+\(F: \mathbb{C} \to \mathbb{C}, z \mapsto z^n\)
+Tem um campo vetorial, mostre que \(\operatorname{ind}(F,0)=n\).
+\end{exercise}
 
 
 
