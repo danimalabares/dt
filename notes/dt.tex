@@ -1852,6 +1852,7 @@ Summary: define \(\tilde{V}\) usando uma trivialización do \(TX\):
 Tem um campo vetorial, mostre que \(\operatorname{ind}(F,0)=n\).
 \end{exercise}
 
+\iffalse
 \section{Summary of concepts by Dani}
 
 \begin{enumerate}
@@ -1859,8 +1860,10 @@ Tem um campo vetorial, mostre que \(\operatorname{ind}(F,0)=n\).
 
 \item Never forget that the Möbius strip is not orientable because the \textit{\textbf{mod 2}} self-intersection number of the ``soul" circle is not zero, and the \textit{\textbf{oriented}} intersection number of a submanifold \(X\) of is \(I(X,X)=(-1)^{-\dim X}I(X,X)\). (So it would be zero if Möbius was oriented.)
 \end{enumerate}
+\fi
+\section{Aula 14: Teorema de Poincaré-Hopf e teorema de Hopf}
 
-\section{Aula 14: Teorema de Poincaré-Hopf}
+\subsection{Teorema de Poincaré-Hopf}
 
 \begin{thm}[Poincaré-Hopf]\leavevmode
 Se \(X\) é uma variedade compacta (sem bordo) e \(V \in \mathfrak{X}(X)\) cujos seros são isolados, então
@@ -1999,10 +2002,143 @@ Vou para \(\mathbb{R}^n\), faço homotopía e volto (entro em pánico não):
 	\psi^{-1}\Big((1-\rho(u)t)\psi(f(z))+\rho(u)t\psi(\tilde{f}(z))\Big)\qquad &z= \varphi(x,u) \\
 	f(z)\qquad & z \not \in \operatorname{img}\varphi
 \end{cases}\]
-
-
-
-
 \end{proof}
+
+\section{Aula 15: Teorema de Hopf, Pontryagin-Hopf}
+
+\subsection{Teorema de Hopf}
+
+\begin{remark}\leavevmode
+	(Na aula anterior mostramos injetividade)
+\end{remark}
+
+\begin{thm}[Hopf]\leavevmode
+\(X\) de dimensão \(n\), conexa, compacta e sem bordo. O conjunto de classes de homotopía de mapas de \(X \to S^{n}\) é bijectable a \(\mathbb{Z}\), i.e.
+\begin{align*}
+	[X,S^n] &\longrightarrow \mathbb{Z} \\
+	[f] &\longmapsto \operatorname{deg}f
+\end{align*}
+é bijetiva.
+\end{thm}
+
+\begin{proof}\leavevmode
+Que a função está bem definida é por invarianza homotópica de grau.
+
+Construir uma homotopía entre \(f\) e \(\tilde{f}\) só sado que a preimagem de \(y\) é a mesma, e a orientação é a mesma.
+
+	Primeira coisa que vamos fazer é considerar \(Q_0\), um conjunto de pontos. Todo ponto possui uma  vizinhança…
+
+	Sobrejetividade: para construir um mapa com grau \(k\) pega \(k\) pontos em \(X\), com umas bolinhas aordedor de cada um, e pega a projeção esstereográfica \(\mathbb{R}^n \to S^n\setminus \{ p\}\), e no exterior das bolinhas só define o mapa como sendo \(p\). E ai só concertar que tudo fique orientado e suave.
+\end{proof}
+
+\subsection{Construcção de Pontryagin-Thom}
+
+Como classificar mapas \(f :X^m \to S^n\), com \(m\geq n\). Pegue um valor regular \(y\) de \(f\). 
+\begin{remark}\leavevmode
+Quando \(m=n\), já mostramos que exist euma homotopía se e somente se a contagem de preimagens é mesma.
+\end{remark}
+
+Pegue dois mapas homotópicos \(f,g:X^m \to S^n\) e um valor regulad dos dois \(y\). Então a ver que que é a homotopía?
+\begin{align*}
+	H: I\times X &\longrightarrow S^n \\
+	H(0,\cdot ) &= f\\
+	H(1,\cdot )&=g\\
+	H \pitchfork  \{y\} &
+\end{align*}
+Então pela \(n\)-ésima versão do teorema da função inversa, sabemos que
+\[\partial  H^{-1}(y)=\{ 1 \}\times Q_1 \sqcup (-\{ 0\}\times Q_0\]
+i.e. \(H^{-1}(y)\) variedade compacta de dimensão \(m-n+1\) metida den de \(I \times X\).
+
+\begin{defn}\leavevmode
+\(X\) variedade orientada compacta sem bordo. \(Q_0\), \(Q_1\subset X\) subvariedades compactas orientadas sem bordo. Um \textit{\textbf{cobordismo (orientado)}} \(C\) entre \(Q_0\) e \(Q_1\) é uma subvariedade compacta orientada den de \(I\times X\) tal que \(\partial C=\{1\}\times Q_1 \cup (-\{0\}\times Q_0\).
+\end{defn}
+
+Ahora suponte que cerca de los puntos de \(Q_0\) y \(Q_1\) dentro del cilindro \(I\times X\) la curva \(C\) es constante. Eso lo escribimos así:
+\[C \cap (1- \varepsilon , 1] \times X= (1-\varepsilon,1] \times Q_1\]
+\[C \cap([0,\varepsilon) \times X)=[0,\varepsilon) \times Q_0\]
+De fato isso faz que seja mais facil colar dois cobordismos. Porque cobordismo é relação de equivalência.
+
+\begin{defn}\leavevmode
+\(Q \subset X\) subvariedade. Um \textit{\textbf{frame (referencial)}} de \(Q\) é uma trivialização do fibrado normal \(NQ\). Se é dimensão 1 é só pegar uma seção nonvanishing. Uma hipersuperfície é orientável se somente se o fibrado normal é trivializável.
+\end{defn}
+
+\begin{remark}\leavevmode
+A outra maneira de definir o fibrado normal, além de usando uma métrica Riemanniana, é deinindo ele como \(NQ= TX|_{Q}/TQ\). Com métrica Riemanniana é \((TQ)^\perp\).
+\end{remark}
+
+\begin{remark}\leavevmode
+\(f: X^m \to Y^n\) com \(m \geq n\), \(y\) valor regular. Então \(Q=f^{-1}(y)\) possui um referencial. Sim, porque como \(NQ\) é o complementar de \(X\), ele tem a mesma dimensão que \(Y\) …? acho que sim, o fato é que (citando o quadro) \(N_xQ \cong T_y Y\). Então pegando um frame em \(TY\) podemos puxar ele pra \(NQ\).
+\end{remark}
+
+Então \(Q_0\) e \(Q_1\), as preimagens de \(f \simeq g\) são referenciadas e cobordantes.
+
+\begin{defn}\leavevmode
+\((Q_0,\tau_0),(Q_1,\tau_1)\) duas subvariedades compactas sem bordo referenciadas de \(X\). Um \textit{\textbf{cobordismo referenciado}} é \((X,\tau)\), onde \(C \subset I\times X\) é um cobordismo entre \(Q_0\) e \(Q_1\), onde \(\tau\) é uma trivialização de \(NC\) tal que {\color{7}Es constante cerquita de los extremos como hicimos arriba}:
+\[\tau |_{\{t\}\times Q_0}=\tau_0\qquad \forall t \in [0,\varepsilon)\qquad \tau|_{(1-\varepsilon,1] \times Q_1}=\tau_1\]
+\end{defn}
+
+\begin{example}\leavevmode
+	Um mapa \(f: S^2 \to S^2\) com um valor regular \(q\) e \(p_1,\ldots p_3\) preimagens. Mostre que tem um cobordismo entre \(\{ p_i\}\) e \(q\).
+\end{example}
+
+\(f,g: X^m \to S^n\), \(f \simeq g\) cobordismo referenciado entre \(f^{-1}(y)\) e \(g^{-1}(y)\) (\(y\) valor regular). Pega homotopía
+
+ \begin{align*}
+	H: I\times X &\longrightarrow S^n \\
+	H(t,\cdot ) &=\begin{cases}
+		f\qquad & t \in [0, \varepsilon) \\
+		g\qquad &t \in (1-\varepsilon,1]
+	\end{cases}
+\end{align*}
+ou seja \(H\) é constante perto dos extremos. Também pode supor que \(H \pitchfork  \{ y\}\), \(C=H^{-1}(y)\). Como antes, temos que
+\[d H_x: N_x C \xrightarrow{\cong}T_yS^n\]
+E de fato nos extremos obtemos o framing que dão \(f\) e \(g\).
+
+Qué está pasando?
+
+\begin{align*}
+	 C^\infty(X^m,Y^n) &\longrightarrow \left\{\substack{\text{subvariedades orientadas}  \\ \text{referenciadas de \(\dim=m-n\)} } \right\} \\
+	f &\longmapsto f^{-1}(y)
+\end{align*}
+Posso fazer mais do que isso:
+\begin{align*}
+	\Phi: C^\infty(X^m,Y^n)\Big/\text{homotopía}  &\longrightarrow \left\{\substack{\text{subvariedades orientadas}  \\ \text{referenciadas de \(\dim=m-n\)} } \right\}\Big/\substack{\text{cobordismo}  \\ \text{referenciado} }  \\
+	f &\longmapsto f^{-1}(y)
+\end{align*}
+A gente mostro que dadas dois homotopías, obtemos um cobordismo no se que. Ahora o lance é
+\begin{thing6}{Teorema}[Pontryagin-Thom]\leavevmode
+\(Y=S^n \implies \) esse mapa é uma bijeção.
+\end{thing6}
+
+\begin{proof}\leavevmode
+\begin{enumerate}
+\item \textbf{(Vale para qualquer contradomínio.)} De novo: a gente já mostrou que \(f,g \pitchfork  \{y\}\implies f^{-1}(y)\) e \(g^{-1}(y)\) são cobordantes por referencial.
+\item \textbf{(Precisa contradomínio conexo e compacto.)} \(y\) e \(z\) são valores regulares de \(f\), então \(f^{-1}(y)\) e \(f^{-1}(z)\) são cobordantes por referencial. Então como \(Y\) é conexo por caminhos pega um caminho \(\gamma\) de \(y\) a \(z\)  e extende \(\gamma'\) a um campo vetoiral \(V\) (pode fazer isso, tipo definindo  \(V\) constante fora de uma vizinhançaou algo.) \(V\) possui um fluxo. Como \(Y\) é compacto esse fluxo tá bem definido para toda \(t\). E pode pedir que esse fluxo mande \(\varphi_1(y)=z\).
+
+	Agora considere
+	\begin{align*}
+		\varphi_1 \circ f: X &\longrightarrow S^n \\
+		(\varphi_1 \circ f)^{-1}(z) &\longmapsto f^{-1}(y)
+	\end{align*}
+Então o que é bom e que \(\varphi_1 \circ f \simeq \varphi \circ f\). Por 1., \((\varphi \circ f)^{-1}(z)=f^{-1}(y)\) e \(f^{-1}(z)\) são cobordantes por referencial (``frame cobordant").
+
+\item \textbf{Codominio é esfera, \(Y=S^{n}\).} Vamos ver que \(\Phi\)  é sobrejetiva. Pegue uma subvariedade \((W,\eta)\) uma subvariedade referenial de \(X\) de dimensão \(m-n\). Queremos uma fun ção \(f: X \to S^n\) com \(f^{-1}(y)=w\).
+
+	Pelo teorema da vizinhança tubular, consigo mergulhar \(\varphi: NW \to X\). E tem um referenciall, i.e. uma trivialização do fibrado normal:
+	\[\begin{tikzcd}
+		\varphi: NW \arrow[ r]\arrow[d,"\cong"]\arrow[d,"\eta",swap]&  X\\
+		W \times \mathbb{R}^n
+	\end{tikzcd}\]
+Então que segue?
+\[f(z):=\begin{cases}
+	\psi^{-1}(u)\qquad &z=\varphi(x,u) \\
+	p,\qquad &z \not \in \operatorname{Im}\varphi
+\end{cases}\]
+onde \(\psi:S^n\setminus \{p\}\to \mathbb{R}^n\). Então \(f^{-1}(-p)=W\).
+
+\item Agora vamos mostrar que \(\Phi\) é injetiva. Pegue \(f,g: X \to S^n\). A prova ficou parecida como a prova do teorema de Hopf: construimos umas funções \(\tilde{f}, \tilde{g}\) homotópicas…
+\end{enumerate}
+\end{proof}
+
 \bibliography{bib.bib}
 \end{document}

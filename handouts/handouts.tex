@@ -1185,19 +1185,20 @@ What about trying that exercise on Fredholm operators from lecture 9?
 
 \section{Exercises from \cite{gui}}
 
-
-\begin{enumerate}
-	\item 
-	\item 
-	\item 
-	\item Difficult
-	\item By item 4., every point in \(U\)…
-	\item There is a homotopy \(u_{z_t}\).
-	\item Difficult
+\begin{thm}[Jordan-Brouwer]\leavevmode
+\(X^{n-1} \subset \mathbb{R}^n\) compact \textbf{connected} hypersurface. Then \(\mathbb{R}^n\setminus X\) has two connected components, one of which is compact.
+\end{thm}
+	\begin{enumerate}[label=\textbf{Step \arabic*}]
+	\item The set \(\bar{X}\) of points in \(X\) where the condition holds is open, closed and nonempty. Closed: choose a sequence of points in \(\bar{X}\) converging to \(x \in X\). Then in any neighbourhood of \(x\) there is a point \(x_n\), which means that there is a \(u\) making the job. Open: let \(U\) be a neighbourhood of \(x\). Then for every point \( x'\in U\) we can simply use the same \(u\) and the same path {\color{2}(something should be wrong here: because in the hint we have that we could ``make \(X\) look like \(\mathbb{R}^{n-1}\) locally". What for?}.
+	\item Basically because there are two sides about \(X\) locally. And by step 1 we can connect the two sides. {\color{6}This doesn't show that these two sets are non-empty.}
+	\item There is a homotopy
+		\[\frac{x-\gamma(t)}{|x - \gamma (t)|}\]
+		
+	\item Difficult mesmamente.
 	\item \(W_2(X,z_0)\) is the number of times the ray \(r\) intersects \(X\) when starting from \(z_0\). When starting from \(z_1\) we obtain \(W_2(X,z_1)\) intersections. This just means that \(W_2(X,z_0)-W_2(X,z_1)=\ell\).
 	\item Chose any two points in a neighbourhood of a point, then \(W_2(X,z_0)=W_2(X,z_1)+1\). In particular both \(D_0\) and \(D_1\) are nonempty.
-	\item Difficult. If \(x\) is very large… VR: considere a homotopía da inclusão com a função que poe \(X\) num ponto só:
-		\[\operatorname{deg}\left(\frac{x-z}{\|x-z\|}\right) =\operatorname{deg}\left(\frac{t x -z}{\|t x -z\|}\right) =\operatorname{deg}\left(\frac{z}{\|z\|}\right) \]
+	\item VR: Considere a homotopía da inclusão com a função que poe \(X\) num ponto só:
+		\[\operatorname{deg}\left(\frac{x-z}{\|x-z\|}\right) =\operatorname{deg}\left(\frac{t x -z}{\|t x -z\|}\right) =\operatorname{deg}\left(\frac{z}{\|z\|}\right) =0\]
 		
 	\item 
 		\begin{enumerate}
@@ -1212,12 +1213,16 @@ Prove that any connected manifold is orientable.
 \end{thing4}
 
 \begin{proof}[Solution]\leavevmode
-\begin{enumerate}[label=\textbf{Step \arabic*}]
-\item Given a path on \(X\) we can transport a basis from one point to another. Does a path induce an automorphism of \(X\)?
-\item The base we obtain depends on the path.
-\item Homotopic paths give the same base.
-\item In a simply connected manifold all paths joining two given points are homotopic. Suppose they are not homotopic. Then the loop obtained by concatenating cannot be contractible: if it was, then the loop would be homotopic to one of the paths travelled back and forth {\color{2}fixing the endpoint}
-\end{enumerate}
+\textbf{Proof from \cite{gui}}. Fix two points \(x, y \in X\). \(U_0\) open nghb of \(x\). Give it the orientation of \(\mathbb{R}^n\) using a positive-determinant chart. Orient a sequence of open sets making the transition functions orientable. This gives an orientation about \(U_k \ni y\).
+
+To show that this orientation on \(y\) does not depend on the choice of \(U_i\) consider another such choice \(V_i\) and a homotopy \(H(t,p)\) from  a path \(\gamma \subset \cup U_i\) to a path \(\tilde{\gamma}\subset \cup V_i\). Fixing any point \(\gamma(*)\) on the way and varying \(t \) we obtain ``transversal" paths that we may orient in the same way by choosing some \(U_i^p\). This makes the orientations of \(U_i\) and \(V_j\) coincide for all \(i,j\).
+
+\textbf{Idea using parallel transport}. Introduce a Riemannian metric and consider parallel transport along any curve joining \(x\) and \(y\).
+
+\begin{claim}\leavevmode
+Parallel transport of a frame along homotopic loops gives the same orientation.
+\end{claim}
+Since any loop is homotopic to point, then holonomy group transformations preserve orientation. {\color{6}But why would this make \(M\) orientable?}. Also, {\color{6}show this doesn't depend on the choice of \( \nabla\).}
 \end{proof}
 
 
