@@ -1,0 +1,29 @@
+\input{/Users/daniel/github/config/preamble-por.sty}
+%\input{/Users/daniel/github/config/thms-por.sty}
+
+\begin{document}
+\bibliographystyle{alpha}
+
+\begin{minipage}{\textwidth}
+	\begin{minipage}{1\textwidth}
+		Topologia Diferencial\hfill Daniel González Casanova Azuela
+		
+		{Prof. Vinicius Ramos\hfill\href{https://github.com/danimalabares/dt}{github.com/danimalabares/dt}}
+	\end{minipage}
+\end{minipage}\vspace{.2cm}\hrule
+
+\vspace{10pt}
+{\huge Lista 3}
+
+\vspace{1em}
+\begin{thing1}{Problema 1}\label{prob:1}\leavevmode
+Seja \(f: X \to Y\) un difeomorfismo entre duas variedades orientadas conexas. Prove que \(df_x\) preserva orientação para um ponto \(x \in X\) se, e somente se, \(df_x\) preserva orientação para todo ponto \(x \in X\).
+\end{thing1}
+
+\begin{proof}\leavevmode
+Pelo teorema da função inversa orientado,  existe uma vizinhança \(U\) de  \(x\) na qual \(\det d_zf\) é positivo para todo \(z \in U\).
+
+Como \(X\) é conexa, podemos ligar \(x\) com qualquer outro ponto \(y \in X\) mediante uma curva \(\gamma\). Pegue em cada ponto \(\gamma(t)\) uma vizinhança na qual \(\det d_{z}f\) é positivo em qualquer ponto \(z\) da vizinhança. Como \(\operatorname{Im}\gamma\) é compacto, temos uma quantidade finita de abertos onde \(\det df\) é positivo.
+\end{proof}
+
+\end{document}
