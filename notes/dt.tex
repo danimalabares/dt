@@ -1852,8 +1852,157 @@ Summary: define \(\tilde{V}\) usando uma trivialización do \(TX\):
 Tem um campo vetorial, mostre que \(\operatorname{ind}(F,0)=n\).
 \end{exercise}
 
+\section{Summary of concepts by Dani}
+
+\begin{enumerate}
+\item El \textit{\textbf{índice}} o \textit{\textbf{número de intersección}} es la suma de las orientaciones en cada punto de la preimagen de un punto. La orientación de cada punto es \textit{\textbf{positiva}} si \(\{d_{q}f(v_i),w_j\}\) es una base orientada de \(T_pY\) cuando \(v_i\) es una base orientada de \(T_qX\) y \(w_j\) de \(T_pZ\), con  \(q=f(p)\).
+
+\item Never forget that the Möbius strip is not orientable because the \textit{\textbf{mod 2}} self-intersection number of the ``soul" circle is not zero, and the \textit{\textbf{oriented}} intersection number of a submanifold \(X\) of is \(I(X,X)=(-1)^{-\dim X}I(X,X)\). (So it would be zero if Möbius was oriented.)
+\end{enumerate}
+
+\section{Aula 14: Teorema de Poincaré-Hopf}
+
+\begin{thm}[Poincaré-Hopf]\leavevmode
+Se \(X\) é uma variedade compacta (sem bordo) e \(V \in \mathfrak{X}(X)\) cujos seros são isolados, então
+\[\sum_{x \in X} \operatorname{ind}_x=\chi(X)=I(\Delta_X,\Delta_X).\]
+\end{thm}
+
+\begin{example}\leavevmode
+Esfera, toro, e superfície de genero \(g\).
+\end{example}
+
+\begin{remark}\leavevmode
+\(V \in \mathfrak{X}(X)\), \(V_x=0\), \(x\) é dito \textit{\textbf{zero simples}} se zero é um valor regular de \(\tilde{V}\) (o ``pullback" de \(V\) no \(\mathbb{R}^n\) usando cartas). 
+\end{remark}
+
+\begin{remark}\leavevmode
+SE \(x\) é zero simples de \(V\), então \(\operatorname{ind}_x V=\pm 1\). (Dani: porque a diferencial tem que ser bijectiva.) Porque a menos de uma mudança de coordendas podemos supor que \(\tilde{V}\) é a identidade ou uma reflexão.
+\end{remark}
+
+\begin{exercise}\leavevmode
+Pega \(x\) um zero isolado (não necessariamente simples) de \(V\). Existe um \(U\) tal que \(x\) é o único zreo de \(V\) em \(U\). Então existe \(\tilde{V}\) que coincide com \(V\) fora de \(U\) tal que 
+\begin{itemize}
+\item todos os zeros de \(\tilde{V}\) em \(U\) são simples.
+\item \(\sum_{V_y=0}\operatorname{ind}_y \tilde{V}=\operatorname{ind}_xV\)
+\end{itemize}
+\end{exercise}
+
+\begin{example}[Intuição do exercício]\leavevmode
+Considere \(z \mapsto  z^n\) e faz uma perturbação, i.e. considere \(V(z)=z+\varepsilon\). Então obtemos \(n\) zeros simples bem pertinho do 0.
+\end{example}
+
+\begin{proof}[Prova do Poincaré-Hopf.]\leavevmode
+Podemos supor que os zeros de \(V\) são simples. Vamos usar o fluxo de \(V\) para perturbar a diagonal. Considere
+\[\operatorname{F ix}=\{x \in X: \varphi_t(x)=x\}\]
+se \(t\) é suficientemente pequeno, o conjunto de pontos fixos do fluxo coincide com o conjunto de zeros de \(V\).
+
+Note que o grafo de \(\varphi_t\) é homotópico à diagonal \(\Delta\). Daí
+\[I(\Delta,\Delta)=I(\Delta,\operatorname{graf}\varphi_t)\]
+\begin{claim}\leavevmode
+\(\Delta \pitchfork \operatorname{gr}\varphi_t\) e \(\operatorname{sign}((x,x))=\operatorname{ind}_x(V) \in \{1, -1\}\)
+\end{claim}
+Note que isso mostra o teorema.
+
+\begin{proof}[Prova da afirmação]\leavevmode
+	Como os zeros de \(V\) são simples, podemos supor que numa vizinhança deles, \(V\) é a identidade ou uma reflexão. Daí, o índice de \(V\) é 1 ou -1.
+
+	Podemos integrar esse campo vetorial:
+	\[\varphi_t(x_1,\ldots,x_n)=(e^tx,\ldots,e^tx_{n-1},e^{qt}x_n\]
+	onde \(q=\pm 1\).
+
+	Pegue um ponto \((x,x) \in \Delta \cap \operatorname{Gr}(\varphi_t)\) e considere as bases
+	\[T_{(x,x)}\Delta=\operatorname{span}\{e_1 \times e_1,\ldots,e_n \times e_n\}\]
+	\[T_{(x,x)}\operatorname{Gr}(\varphi_t)=\operatorname{span}(e_1 \times e^t e_1,\ldots,e_n \times e^{qt}x_n)\]
+
+	{\color{2}Lance:} botar todos os vetores básicos numa matriz e ver qual é o determinante dela: se o determinante não é zero então as variedades são transversais, porque a união das bases é uma base do espaço tangente da imagem. Se o determinante é positivo, são orientadas ( de acordo com a ``orientação direct image do grafo", que é, em geral para \(f:X \to X\), \(\{e_i,(df)xe_i\}\)), e se o determinante é negativo, é negativa.
+
+	Tá, a matriz é:
+	\[\begin{pmatrix} 1 & 0 & \ldots & 0 & | & 1 & 0 & \ldots & 0\\
+	0 & 1 & \ldots & 0 & | & 0 & 1 & \ldots & 0\\
+	\vdots  & \vdots  & & \vdots & | & \vdots  & \vdots  &  & \vdots \\
+	0 & 0 & \cdots & 1 &| & 0 & 0 & \cdots & 1\\
+	-&-&-&-&-&-&-& - & -\\
+	1 & 0 & \ldots & 0 & | & e^t & 0 & \ldots & 0\\
+	0 & 1 & \ldots & 0 & | & 0 & e^t & \ldots & 0\\
+	0 & 0 & \cdots & 1  &| & 0 & 0 & \cdots & e^{qt}
+	\end{pmatrix} \]
+Pode triangular isso para obter
+\[\begin{pmatrix} \operatorname{Id} &  \operatorname{Id}\\
+0 &  \begin{matrix} e^{t}-1 &  \ldots &  0\\
+\vdots &  \ddots &  \vdots \\
+0&  \ldots &  e^{qt}-1\end{matrix} \end{pmatrix} \]
+Em fim, o determinante depende de \(q\).
+\end{proof}
+\end{proof}
+
+\subsection{Trangulações}
+
+\(\Delta^n:=\) fecho convexo de  \(n+1\) pontos genéricos em \(\mathbb{R}^N\).
+
+Pode construir um campo vetorial em uma variedade trangulada botando zeros (fontes) nos centros de cada simplexo.
+
+\begin{exercise}\leavevmode
+\(\chi(X)=\sum_{V_x=0}\operatorname{ind}_x(V)=\sum_k (-1)^k \# \text{\(k\)-simplexos} \)
+\end{exercise}
+
+\subsection{Teorema de Hopf}
+
+\begin{thm}[de Hopf]\leavevmode
+Seja \(X\) uma variedade compacta, orientada e conexa (sem bordo). Sejam \(f,g:X \to S^{n}\). (O grau está bem definido porque \(X\) compacta e \(S^n\) conexa.) Então
+\[f \simeq g \iff \operatorname{deg}f=\operatorname{deg}g.\]
+\end{thm}
+
+\begin{proof}\leavevmode
+Só a volta. Pegue \(f,g: X \to S^n\) com \(\operatorname{deg}f=\operatorname{deg}g \in \mathbb{Z}\).
+
+Seja \(y \) um valor regular de \(f\) e \(g\). Temos duas variedades: \(Q_0:=f^{-1}(y)\) e \(Q_1:=g^{-1}(y)\).
+
+Lembre que
+\[\operatorname{deg}f=\# Q_0, \operatorname{deg}g=\# Q_1\text{ orientadamente} \]
+Pense em \(X \times I\). em \(\{0\}\times Q_1\) temos uma copia de \(Q_0\) e no outro extremo a copia de \(Q_1\). Em cada um deles temos as preimagens de qualquer ponto, munidos das suas sinais. Agora \textbf{pense em curvas \(C\) que ligam cada ponto em \(Q_0\) com seu respetivo em \(Q_1\)}. Ou seja, positivo com positivo e negativo com negativo. Mas pode ser que de um lado tenha mas pontos que do outro lado; apenas é a coma com sinal que coincide. E por isso, se tiver de um lado mais pontos, vao ser tantos positivos quantos negativos, e vai conseguir ligar eles mesmo.
+
+Entao a ver suponha que em \(Q_0\) temos os pontos \(p_1,\ldots,p_k, p_{k+1},\ldots,p_\ell\). E em \(Q_1\) temos \(q_1,\ldots,q_k\).
+
+Agora vamos constuir
+\begin{align*}
+	H: I \times X &\longrightarrow S^n \\
+	\text{tal que}  H^{-1}(y)&=C\\
+	H(0,\cdot )&=f\\
+	H(1,\cdot )&=g
+\end{align*}
+Agora temos que pegar uma vizinhança tubular de \(C\). Resulta que dada cualquer subvariedade, existe uma vizinhança dela que é difeomorfa ao fibrado normal \(NQ\). (Nao provamos isso neste curso.) Ou seja tem
+\[\varphi: C \times \mathbb{R}^n \longrightarrow I \times X\]
+
+Agora pega a projeção estereográfica
+\[\psi: \mathbb{R}^n \longrightarrow S^n\setminus \{-y\}\]
+Ou a inversa dela. O ponto é que leva o zero no \(y\).
+
+E o mapa é
+\[H(z)=\begin{cases}
+	\psi(w)\qquad &z = \varphi(x,w),\text{ onde } (x,w) \in (C \times \mathbb{R}^n \\
+	-y\qquad &z \not \in \operatorname{img} \varphi
+\end{cases}\]
+{\color{2}Lance:} que no bordo da vizinhança tubular temos \(-y\) porque  \(-y\) é quando tamos no infinito, ou, pegando um difeo bola  \(\leftrightsquigarrow\) \(\mathbb{R}^n\), quando chegamos no bordo da bola.
+\begin{exercise}\leavevmode
+	Podemos escolher \(\psi\) tal que \(H\) é \(C^\infty\), \(y\) valor regular de \(H\)e  \(H^{-1}(y)=C\).
+\end{exercise}
+Falta mostrar que \(\tilde{f}=H(0,\cdot )\), \(\tilde{g}=H(1,\cdot \). Já temos que \(f^{-1}(y)=\tilde{f}^{-1}(y)=Q_0\) e que \(g^{-1}(y)=\tilde{g}^{-1}(y)=Q_1\).
+
+Então temos
+\[f, \tilde{f}: X \to S^n \qquad  \text{\(y\) valor regular para \(f\) e \(\tilde{f}\)} \]
+\[f^{-1}(y)=\tilde{f}^{-1}(y)\qquad  \text{ com orientação} \]
+\[\varphi:Q_0 \times \mathbb{R}^n \longrightarrow X\]
+\[\rho: \mathbb{R}^n \longrightarrow [0,1]\qquad  C^\infty, \operatorname{supp}\rho \subset B^n_\varepsilon(0), \rho \equiv 1 \text{ em } B^n_{\varepsilon/2}(0)\]
+ \[\psi:S^n\setminus \{ -y\}\longrightarrow \mathbb{R}^n\]
+Vou para \(\mathbb{R}^n\), faço homotopía e volto (entro em pánico não):
+ \[F_t(z)=\begin{cases}
+	\psi^{-1}\Big((1-\rho(u)t)\psi(f(z))+\rho(u)t\psi(\tilde{f}(z))\Big)\qquad &z= \varphi(x,u) \\
+	f(z)\qquad & z \not \in \operatorname{img}\varphi
+\end{cases}\]
 
 
 
+
+\end{proof}
 \bibliography{bib.bib}
 \end{document}
