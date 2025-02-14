@@ -21,9 +21,56 @@ Seja \(f: X \to Y\) un difeomorfismo entre duas variedades orientadas conexas. P
 \end{thing1}
 
 \begin{proof}\leavevmode
-Pelo teorema da função inversa orientado,  existe uma vizinhança \(U\) de  \(x\) na qual \(\det d_zf\) é positivo para todo \(z \in U\).
+Considere
+\begin{align*}
+	D: X &\longrightarrow \mathbb{R} \\
+	x &\longmapsto \det d_xf
+\end{align*}
+É uma funcão contínua que nunca pode ser zero. Como é positiva em \(x\), deve ser positiva sempre. {\color{7}I don't even need \(Y\) connected?}
+\iffalse
+	Pelo teorema da função inversa orientado,  existe uma vizinhança \(U\) de  \(x\) na qual \(\det d_zf\) é positivo para todo \(z \in U\).
 
-Como \(X\) é conexa, podemos ligar \(x\) com qualquer outro ponto \(y \in X\) mediante uma curva \(\gamma\). Pegue em cada ponto \(\gamma(t)\) uma vizinhança na qual \(\det d_{z}f\) é positivo em qualquer ponto \(z\) da vizinhança. Como \(\operatorname{Im}\gamma\) é compacto, temos uma quantidade finita de abertos onde \(\det df\) é positivo.
+Como \(X\) é conexa, podemos ligar \(x\) com qualquer outro ponto \(y \in X\) mediante uma curva \(\gamma\). Pegue em cada ponto \(\gamma(t)\) uma vizinhança na qual \(\det d_{z}f\) é positivo em qualquer ponto \(z\) da vizinhança. Como \(\operatorname{Im}\gamma\) é compacto, temos uma quantidade finita de abertos onde \(\det df\) é positivo.\fi
 \end{proof}
+
+\begin{thing1}{Problem 2}\label{prob:2}\leavevmode
+Seja \(X\) uma variedade orientável. Prove que a orientação induzida em \(X \times X\) é independente da orientação de \(X\).
+\end{thing1}
+
+\begin{proof}\leavevmode
+A orientação de \(X \times X\) está dada como segue: uma base \((\beta_1,\beta_2)\) do espaço tangente \(T_(x,y) X \times X\) é orientada se \(\beta_1\) e \(\beta_2\) são bases orientadas de \(X\).
+
+Agora considere a mesma construção usando \(-X\). A base \((\tilde{\beta_1},\tilde{\beta_2})\) de \(-X \times -X\) é orientada se \(\tilde{\beta_1}\) e \(\tilde{\beta_2}\) são bases orientadas de \(-X\).
+
+Porém, é equivalente que \((\beta_1,\beta_2)\) seja orientada em \(X\times X\) e que \((\tilde{\beta_1},\tilde{\beta_2})\) seja orientada em \(-X \times -X\): tanto a transformação que manda \(\beta_1 \mapsto \tilde{\beta_1}\) quanto a transformação que manda \(\beta_2 \mapsto \tilde{\beta_2}\) tem determinante negativo, de modo que a transformação que manda \((\beta_1,\beta_2)\mapsto (\tilde{\beta_1},\tilde{\beta_2})\) tem determinante positivo!
+\end{proof}
+
+\begin{thing1}{Problem 3}\label{prob:3}\leavevmode
+Prove que \(\mathsf{SO}(n)\) é uma variedade orientável e calcule a sua dimensão. Usando teoria da interseção prove que \(\chi(\mathsf{SO}(n))=0\).
+\end{thing1}
+
+\begin{proof}\leavevmode
+	If it is true that \(\mathsf{O}(n)\) is orthonormal frames, we can compute its dimension by taking first a vector \(v_1\) in \(S^{n-1}\), then a unitary vector in the orthogonal complement of  \(v_1\), i.e. a vector in \(S^{n-2}\), and so on until we choose either of the two vectors in \(S^0\). This means that we are choosing points in \(S^{n-1}\times S^{n-2} \times \ldots S^0\), which gives \(\dim \mathsf{O}(n)=\sum_{i=0}^{n-1}i\). The summand \(i=0\) corresponds to the choice of orientation of the base.
+
+	The tangent bundle of \(\mathsf{SO}(n)\) is trivial since the orbit of any frame at the identity under the action of left translations gives a global frame. The orientation given by defining this base with positive sign is 
+
+	Taking a basis at the identity matrix and moving it around our manifold using left translations generates a smooth global choice of basis; i.e. an orientation.
+
+	The fact that \(\chi(\mathsf{SO}(n))=0\) is immediate from the fact that its tangent bundle is trivial: there is a nowhere vanishing vector field (the orbit of any nonzero vector), giving the result by Hopf theorem.
+\iffalse
+	\(\mathsf{SL}(n)\) is \(\det^{-1}(1)\) for \(\det:\mathsf{GL}(n)\to \mathbb{R}\). And \(\mathsf{O}(n)\) is \(F^{-1}(\operatorname{Id})\) for \(F: \mathsf{GL}(n)\to \mathsf{GL}(n)\), \(A \mapsto  A A^{\mathbf{T}}\). And then \(\mathsf{SO}(n)=\mathsf{SL}(n)\cap \mathsf{O}(n)\).
+
+To compute the dimension of \(\mathsf{SO}(n)\) consider the embedding \(\mathsf{O}(n)\hookrightarrow \mathsf{GL}(n)\). If \(\mathsf{O}(n)\pitchfork \mathsf{SL}(n)\) we get that \(\mathsf{SO}(n)\) has the same codimension inside \(\mathsf{O}(n)\) as the codimension of \(\mathsf{SL}(n)\) inside \(\mathsf{GL}(n)\), the latter being 1 since it is a level-set of a real valued function. {\color{2}But what is the dimension of \(\mathsf{O}(n)\)?}
+
+To give \(\mathsf{SO}(n)\) an orientation we can use the preimage orientation. That is\fi
+
+
+
+
+
+
+\end{proof}
+
+
 
 \end{document}
