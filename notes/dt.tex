@@ -2037,6 +2037,17 @@ Construir uma homotopía entre \(f\) e \(\tilde{f}\) só sabendo que a preimagem
 
 \subsection{Construcção de Pontryagin-Thom}
 
+\begin{upshot}\leavevmode
+Take two homotopic maps \(f\simeq g:X \to S^m\) and a regular value \(y \in S^m\). What's the relationship between
+\[f^{-1}(y)\text{ and } g^{-1}(y)?\]
+They are \textbf{cobordant}: you can find a compact manifold of dimension one higher such that the boundary is \(f^{-1}(y)\) and \(g^{-1}(y)\), one with the opposite orientation.
+
+Here's why: the homotopy \(H:X \times I \to S^m\) gives you a manifold \(H^{-1}(y)\) (you perturb \(H\) so that it is transverse to \(\{y\}\)) whose boundary is  
+\[\partial H^{-1}(y)=\{1\}\times g^{-1}(y) \cup -\{0\}\times f^{-1}(y).\]
+
+Also there is a thing called \textbf{framing} that is a ``trivialization of the normal bundle of a submanifold". The Pontryagin-Hopf construction is a bijection between framed cobordisms (we put a framing on the cobordism) and homotopic maps \(X \to S^n\). This is a generalization of the degree. (Recall that Hopf theorem says two maps \(X \to S^n\) are homotopic iff they have the same degree.)
+\end{upshot}
+
 Como classificar mapas \(f :X^m \to S^n\), com \(m\geq n\). Pegue um valor regular \(y\) de \(f\). 
 \begin{remark}\leavevmode
 Quando \(m=n\), já mostramos que exist euma homotopía se e somente se a contagem de preimagens é mesma.
@@ -2063,7 +2074,7 @@ Ahora suponte que cerca de los puntos de \(Q_0\) y \(Q_1\) dentro del cilindro \
 De fato isso faz que seja mais facil colar dois cobordismos. Porque cobordismo é relação de equivalência.
 
 \begin{defn}\leavevmode
-\(Q \subset X\) subvariedade. Um \textit{\textbf{frame (referencial)}} de \(Q\) é uma trivialização do fibrado normal \(NQ\). Se é dimensão 1 é só pegar uma seção nonvanishing. Uma hipersuperfície é orientável se somente se o fibrado normal é trivializável.
+\(Q \subset X\) subvariedade. Um \textit{\textbf{frame (referencial)}} de \(Q\) é uma trivialização do fibrado normal \(NQ\) {\color{6}(we are implicity asking that this bundle is trivial!)}. Se é dimensão 1 é só pegar uma seção nonvanishing. Uma hipersuperfície é orientável se somente se o fibrado normal é trivializável.
 \end{defn}
 
 \begin{remark}\leavevmode
