@@ -72,6 +72,33 @@ Seja \(\Sigma\) uma superfície de gênero \(g\). Construa um campo vetorial em 
 \end{thing1}
 
 \begin{proof}[Solution]\leavevmode
+Primeiro note que é suficiente construir um campo vetorial com um único zero, já que pelo teorema do índice de Hopf ele necessariamente vai ter índice \(2-2g=\chi(\Sigma)\). (Um modo de comprovar que essa é a característica de Euler de \(\Sigma\) é usando o campo gradiente da função altura, que tem dois zeros de índice 2 e \(2g\) zeros de índice \(-1\).)
+
+Para constuir um campo vetorial com um único zero usarei ideas de \href{https://math.stackexchange.com/questions/1453942/existence-of-a-vector-field-with-one-singularity-on-a-surface}{StackExchange}.
+
+Sabemos que \(\Sigma\) pode ser vista como um polígono com certas identificações no bordo. Podemos dar uma decomposição simplicial dele simplesmente botando um vértice no centro do polígono e as aristas que ligam os vértices do polígono com o centro. Ussando o campo vetorial para triangulações discutido em aula,
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{fig1.png}
+\end{figure}
+obtemos um campo vetorial em \(\Sigma\) com uma quantidade finita de zeros.
+
+A ideia é construir um grafo conexo em \(\Sigma\) cujos vértices sejam os zeros do campo, e que não tenha ciclos i.e. uma árvore. Desse jeito, uma vizinhança tubular do grafo é homeomorfa a um disco, e a restrição do campo a esse disco não tem zeros no bordo. Daí conseguirmos perturbar o campo ussando à ``Adaptação do truque de Alexander":
+
+\begin{lemma}\leavevmode
+Se \(v\) é um campo vetorial suave em \(D^2\) sem zeros no bordo, existe outro campo vetorial suave com um único zero que coincide com \(v\) no bordo.
+\end{lemma}
+
+\begin{proof}[Prova do lema]\leavevmode
+Como \(v\) não tem zeros no bordo (e o nosso \(v\) na verdade tem uma quantidade finita de zeros) podemos pegar um \(\varepsilon<1\) tal que os zeros de \(v\) estão na bola \(B_\varepsilon\). Daí pegamos uma bump function \(\rho\) que tenha um único zero em zero e seja constante 1 fora de \(B_\varepsilon\).
+
+Então defina
+\[w(r,\theta)=\begin{cases}
+	v(r,\theta)\qquad &r \geq \varepsilon \\
+	\rho(r)v(\varepsilon,\theta)\qquad &r \leq \varepsilon
+\end{cases}\]
+Para concluir é so dar uma perturbada a \(w:D^n \to TD^2=\mathbb{R}^2\) para 
+\end{proof}
 
 \end{proof}
 
@@ -80,9 +107,17 @@ Seja \(A\) uma matriz de \(n \times n\) com coeficientes inteiros e seja \(f:\ma
 \end{thing1}
 
 \begin{proof}\leavevmode
-	To compute the degree of \(f \) it's enough to compute the numer of preimages of \([0] \in \mathbb{R}^n/\mathbb{Z}^n\). This is the same as counting the number of points with integer coordinates in \(P:=A\Big( [0,1)^n \Big)\).
+	To compute the degree of \(f \) it's enough to compute the number of preimages of \([0] \in \mathbb{R}^n/\mathbb{Z}^n\). To do this consider the fundamental domain \([0,1)^n\) and map it with \(A\) to  \(\mathbb{R}^n\). When we take the quotient, all the points with integer coordinates will be glued together in the class \([0]\). I.e. we are looking for the number of points with integer coordinates in \(P:=A\Big( [0,1)^n \Big)\).
 
-	In fact, this number is the volume of \(P\). To check this we may
+	I claim that this number is the volume of \(P\), i.e. the determinant of  \(A\). To see why consider the case of dimension 2. We may assume that the image of \(e_1\) is a vector in the \(x\) axis using a rotation (which preserves the volume of \(P\) \textit{and} the ammount of integer points inside \(P\)). The number of integer points inside \(P\) after rotating is simply the product of the lengths of \(Ae_1\) and \(Ae_2\):
+
+
+	This product is \(\det A\)
+
+
+	the case of two dimensions. First use an isometry to assume that one of the sides of \(P\) is in the \(x\) axis. Then consider the map that projects the other side of \(P\) to the \(y\) axis, mapping \(P\) to a rectangle
+
+	the area of \(P\) is the same as the area of the rectangle we obtain when projecting the side
 
 
 
