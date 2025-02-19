@@ -2155,5 +2155,179 @@ onde \(\psi:S^n\setminus \{p\}\to \mathbb{R}^n\). Então \(f^{-1}(-p)=W\).
 \end{enumerate}
 \end{proof}
 
+\section{Aula 16}
+
+\subsection{Teoria de Morse}
+
+\subsubsection{Lema de Morse}
+
+Vamos começar lembrando 
+
+\begin{defn}\leavevmode
+Seja \(X\) uma variedade possivelmente com bordo, \(f \in C^\infty (X)\). Um ponto crítico \(p \in \operatorname{crit}f\) é \textit{\textbf{não degenerado}} se \((D^2f)_p:T_pM \times T_pM \to \mathbb{R}\) é não degenerado. Ou seja basicamente se a matriz daqui em baixo é inversível ou não.
+\end{defn}
+
+\begin{exercise}\leavevmode
+Mostre que para que essa forma esteja bem definida é necessário que \(p\) seja um ponto crítico. A definição dela é
+\[(D^2f)_p\left(\frac{\partial }{\partial x^i}, \frac{\partial }{\partial x^j}\right) =\frac{\partial ^2}{\partial x^i \partial x^j}(f \circ \varphi^{-1})(\varphi(p))\]
+para alguma carta \((U,\varphi)\) centrada em \(p\).
+
+Também pode vê-lo como
+\[df:X \to T^*X \rightsquigarrow d(df)_p:T_pX \to T_{(p,df_p)}(T^*X)\]
+agora se \(E\) é um fibrado tangente sobre \(X\)
+\[\begin{tikzcd}
+E\arrow[d]\\
+X
+\end{tikzcd}\]
+para \(v \in E_p\) podemos decompor \(E_{(p,v)}E  \cong T_pX \oplus  E_p\). Só que essa escolha de isomorfismo não é canônica. Quando \(p\) é um ponto crítico vira canônica.
+
+Relacionado com conexão: o espaço tangente a um fibrado vetorial num ponto pode se decompor como o espaço tangente à fibra mais o espaço tangente no ponto. Só que essa decomposição não é canônica. Quando estamos na seção zero vira canônica. Isso serve porque \(d(df)_{(p,v)}:T_{(p,v)}TX \cong T_pX \oplus  T_pX\to \mathbb{R}\). Uma conexão pode ser definida como uma escolha daquele isomorfismo!
+
+The following sequence splits:
+\[\begin{tikzcd}0\arrow[r]&T_vE_p \cong E_p\arrow[r,"i"]&\arrow[l,dashed,bend left]T_vE\arrow[r,"d\pi_v"]&T_pB\arrow[l,dashed, bend left]\arrow[r]&0\end{tikzcd}\]
+So we get
+\[T_vE \cong T_pB \oplus  E_p\]
+So a connection is a choice of this non-canonical isomorphism. Which the same as the dashed arrows by splitting lemma.
+
+Ahora falemos de derivada covariante por que não. Pega uma seção \(s \in \Gamma(E)\) e \( X \in \mathfrak{X}(X)\). Deriva \(s: X \to E\), \(ds_p:T_pS \to T_{s(p)}E\). A \textit{\textbf{derivada covariante }} é \(\nabla_X s:=(k \circ d\sqrt{-1}-p(X)\in E_p\), so \(\nabla_Xs \in \Gamma(E)\). The point is that this definition coincides with the application that satisfies Lebiniz and is linear and no se que.
+\end{exercise}
+
+\begin{thing6}{Exemplo canônico}\leavevmode
+\begin{align*}
+	f: \mathbb{R}^n &\longrightarrow \mathbb{R} \\
+	(x_1,\ldots,x_n) &\longmapsto \sum x_i^2
+\end{align*}
+then
+ \[D^2f(x,y)=2 \left<x,y\right>\]
+ and zero is a minimum, a nondegenerate singular point.
+\end{thing6}
+
+\begin{example}\leavevmode
+Como o anterio mas \(f(x_1,\ldots,x_n=\sum_{i=1}^k x_i^2 -\sum_{j=k+1}x_j^2\). This gives a sela point. also nondegenerate.
+\end{example}
+
+\begin{example}\leavevmode
+\(f=\) cte todos os pontos são degenerados. \(f(x_1,x_2)=x_1^3+x_2^2\) entao \((0,0)\) é degenerado. (calcular la matriz)
+\end{example}
+
+\begin{defn}\leavevmode
+\(f \in C^\infty (X,\mathbb{R})\) é \textit{\textbf{de Morse}} se todos os pontos críticos são degenerados.
+\end{defn}
+
+\begin{prop}\leavevmode
+Lembre que Teo. Thom nos disse que
+\[\{ f \in C^\infty(X): f\text{ é de Morse} \}\]
+é aberto e denso.
+\end{prop}
+
+\begin{lemma}[de Morse]\leavevmode
+\(f \in C^\infty(X)\), \(p \in \operatorname{crit}f\) não-degenerado. Então existe uma carta centrada em \(p\) tal que
+\[f(\circ \varphi^{-1})(x_1,\ldots,x_n)=-\sum_{i=1}^k x_i^2+ \sum_{i=k+1}^nx_i^2+f(p)\]
+ou seja, uma constante, \(f(p)\), e duas coisas quadráticas beleza: são diagonais.
+\end{lemma}
+
+\begin{proof}\leavevmode
+Podemos supor sem perda de generalidade que \(X=\mathbb{R}^n\)porque é um enunciado local. Então temos \(f: \mathbb{R}^n \to \mathbb{R}\). Então tamos supondo que \(D^2f=\left(\frac{\partial ^2 f}{\partial \partial x_i \partial x_j}f(v)\right) \) é inversível. Pelo teorema de Shwarz ou de Hadamard (de quem?) é uma matriz simétrica, então é diagonalizavel.
+
+Note que a se a derivada fosee constante em \(U\), acabamos porque temos uma matriz diagonal beleza que nos da a expressão que queremos. A prova aseguir é uma especie de ``diagonalização local".
+
+Vamos. Da para mostrar que 
+
+\[f(x_1,\ldots,x_n)= f(0)\]
+
+\end{proof}
+
+\begin{coro}\leavevmode
+\begin{enumerate}
+\item Pontos críticos não degenerados são isolados, i.e. se \(p \in \operatorname{crit}f\) é não degenerado exista uma vizinhança onde é o único ponto crítico.
+\item \(k\) não depende da carta. Porque temos
+	\[(D^2f)=2 \begin{pmatrix} -I_k&  0\\ 0 &  I_{n-k} \end{pmatrix} \]
+então \(k\) é o número de auto-valores negativos de \(D^2f\). (A mesma coisa das métricas semi-Riemannianas.)
+\end{enumerate}
+\end{coro}
+
+\section{Aula 17}
+
+\subsection{Dois lemmas}
+
+\begin{lemma}\leavevmode
+\(X\) uma variedade compacta possívelmente com bordo. Então existe uma função de Morse \(f \in C^\infty(M)\) tal que \(\operatorname{crit}f \subset \operatorname{Int}X\) (i.e. sem pontos críticos no bordo). Então \(f|_{\partial X}\equiv \operatorname{max}f\).
+\end{lemma}
+
+\begin{proof}\leavevmode
+Vamos perturbar \(f\) para que seja de Morse. Se \(\partial X \neq \varnothing\), existe um isomorfismo
+\[[0,\varepsilon) \times\partial X \cong \text{vizinhança de \(\partial X\)} \]
+(Para isso pode pegar o campo vetorial que ``entra" na variedade e usar o fluxo dele.)
+
+
+Uma bump function, logo perturbar ussando Thom para Morse functions.
+\end{proof}
+
+\begin{lemma}[Cada valor crítico corresponde a um único ponto crítico]\leavevmode
+Seja \(f \in C^\infty (M)\) de Morse. Então existe uma perturbação \(\tilde{f}\in C^\infty(X)\) de Morse tal que se \(p,q \in \operatorname{crit}f = \operatorname{crit}\tilde{f}\) e se \( p, q \in \operatorname{crit}\tilde{f}\), \(p \neq  q\) então \(\tilde{f}(p) \neq  \tilde{f}(q)\).
+\end{lemma}
+
+\begin{proof}\leavevmode
+Pega uma bump function em cada singularidade, soma sobre todas (são numeraveis), bota uns \(\varepsilon\)s. É só dar um petelejo.
+\end{proof}
+
+\subsection{Decomposição em assas (alças?)}
+
+\begin{defn}\leavevmode
+Seja \(f \in C^\infty(X)\) de Morse. \(V \in \mathfrak{X}(X)\) é um \textit{\textbf{pseudo-gradiente}} de \(f\) se 
+\begin{enumerate}
+\item \(\operatorname{ze r o s}f= \operatorname{crit}f\).
+\item A derivada direcional \(V_xf<0\) se  \(x \not \in \operatorname{crit}f\). (O fluxo do campo diminue a função.)
+\end{enumerate}
+\end{defn}
+
+\begin{example}\leavevmode
+\(-\operatorname{gr a d} f\). Como \(g\) é não degenerada, \(\operatorname{ z e r o s}(-\nabla f)=\operatorname{ z e r o s}df=\operatorname{crit}f\).
+\end{example}
+
+Uma função de morse é boa  se pontos críticos com preimagens diferents, e, se \(X\) tem bordo, \(f\) atinge maximo no bordo.
+
+Agora pega um valor regular \(a\) de \(f \in C^\infty(X)\) boa. Então \(X_a=f^{-1}(-\infty,a]\).
+
+
+\begin{prop}\leavevmode
+	Se \([a,b]\) não contém valores críticos, então  \(X_a \cong X_b\). (Ver desenho do toro, significa que no meio dos pontos críticos os conjuntos de nível tem a mesma topologia.)
+
+	Ou seja, \(X_b= X_a \sqcup (a,b] \times \partial X_a\)
+\end{prop}
+
+\begin{proof}\leavevmode
+Ideia: pega o gradiente de \(f\), normaliza e empurra usando o fluxo. (Tem que normalizar para que todos os pontos chegen no mesmo tempo.)
+\end{proof}
+
+\begin{remark}\leavevmode
+Não usamos que \(f\) for de Morse.
+\end{remark}
+
+Bom agora vamos ver o que acontece nos pontos críticos.
+
+Suponha que \(a \in \operatorname{crit} f\). Queremos saber que relação tem
+\[X_{a-\varepsilon} \leftrightsquigarrow X_{a+\varepsilon}\]
+Defina o seguinte conjunto que é uma vizinhança do ponto crítico no domínio euclidiano da carta de morse:
+\[H_k:=\{(u,v) \in \mathbb{R}^k \times \mathbb{R}^{ n-k}: \|u\|\|v\|\leq  \delta, -\varepsilon -\|u\|^2 + \|v\|^2 \leq  \varepsilon\}\]
+Tengo una hiperbolas de un lado, en el punto crítico son las dos rectas ( aqui es la singularidad) y luego tengo hiperbolas en el otro sentido. Entonces \(H_k\) es una vecindad del cero.
+
+El punto importante es que lo que est á afuera de \(H_k\) está tranquilo, porque podemos hacer lo mismo que hicimos en la porposición anterior: podemos descomponer
+\[X_{a+ \varepsilon}= X_{a- \varepsilon} \cup  H_k \cup  (a - \varepsilon, a+\varepsilon]\times(\partial X_{a-\varepsilon}\setminus H_k)\]
+El trip de la condicion \(\|u\|\|v\|<\delta\) me da una vecindad del 0. Y justo lo que no está en \(H_k\) por culpa de esa condición son tubitos, para que podamos aplicar la construcción de la proposición anterior.
+
+Y ahora, rarísimo: colapsamos la partesita buena usando el flujo del campo vectorial (el mismo campo que usamos para hacer el difeomorfismo de la prop. anterior). Y queda algo bastante extraño---si fuera un toro, queda una holla con una pulserita. Y en la bird's eye view de los conjuntos de nivel, queda un disco con cuatro pelos.
+
+Entonces queda
+\[X_{a+ \varepsilon}= X_{a- \varepsilon} \cup  H_k \cup  (a - \varepsilon, a+\varepsilon]\times(\partial X_{a-\varepsilon}\setminus H_k)=X_{a - \varepsilon}\cup \overline{H_k}\]
+
+\(\overline{H_k}=B^k \times B^{n-k}\) é uma \textit{\textbf{alça}}. O bordo dela é
+\[\partial \overline{H}_k=(\partial B^k \times B^{n-k}) \cup  B^k \times \partial B^{n-k}\]
+Pode mergulhar (da pra fazer suave, mas se tu ta preocupado pela suavidade pensa só contínuo)
+\[\varphi: \partial B^k \times B^{n-k}\hookrightarrow \partial X_{a-\varepsilon}\]
+E por fim podemos escrever
+\[X_{a+\varepsilon}=X_{a-\varepsilon} \sqcup \overline{H}_k \Big/x \sim \varphi(x)\]
+E isso se chama o processo de \textit{\textbf{handle attachment}}.
+
 \bibliography{bib.bib}
 \end{document}
