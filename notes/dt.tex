@@ -1873,11 +1873,12 @@ Esfera, toro, e superfície de genero \(g\).
 \end{example}
 
 \begin{remark}\leavevmode
-\(V \in \mathfrak{X}(X)\), \(V_x=0\), \(x\) é dito \textit{\textbf{zero simples}} se zero é um valor regular de \(\tilde{V}\) (o ``pullback" de \(V\) no \(\mathbb{R}^n\) usando cartas). 
+\(V \in \mathfrak{X}(X)\), \(V_x=0\), \(x\) é dito \textit{\textbf{zero simples}} se zero é um valor regular de \(\tilde{V}\) onde \(V(x)=(x,\tilde{V}(x)) \in TX\). 
 \end{remark}
 
 \begin{remark}\leavevmode
-SE \(x\) é zero simples de \(V\), então \(\operatorname{ind}_x V=\pm 1\). (Dani: porque a diferencial tem que ser bijectiva.) Porque a menos de uma mudança de coordendas podemos supor que \(\tilde{V}\) é a identidade ou uma reflexão.
+Se \(x\) é zero simples de \(V\), então \(\operatorname{ind}_x V=\pm 1\). 
+\iffalse(Dani: porque a diferencial tem que ser bijectiva.)\fi Porque a menos de uma mudança de coordendas podemos supor que \(\tilde{V}\) é a identidade ou uma reflexão.
 \end{remark}
 
 \begin{exercise}\leavevmode
@@ -1888,10 +1889,33 @@ Pega \(x\) um zero isolado (não necessariamente simples) de \(V\). Existe um \(
 \end{itemize}
 \end{exercise}
 
-\begin{example}[Intuição do exercício]\leavevmode
-Considere \(z \mapsto  z^n\) e faz uma perturbação, i.e. considere \(V(z)=z+\varepsilon\). Então obtemos \(n\) zeros simples bem pertinho do 0.
-\end{example}
+\begin{proof}[Prova do primeiro inciso]\leavevmode
+	(Prova dada pelo professor quando fui a perguntar hehe.)	Note que a condição de \(x\) ser um zero simples de \(V\) é equivalente a que \(V\) seja transversal (como mapa) à seção zero (como subvariedade) em \(X \times TX\). Por que? A condição de transversalidade em \(x \in X\) diz que
+	\[d_xV(T_x X)+T_{V(x)}\text{seção zero} =T_{V(x)}(TX)\]
+	Um conjunto de generadores do espaço do lado esquerdo está dado por um conjunto de generadores de \(dV(T_xX)\) e um conjunto de generadores de  \(T_{V(x)}  \text{seção zero} \}\). Como os pontos da seção zero não aportam nada nas coordenadas tangentes, a condição fica exatamente que as coordenadas tangentes de \(V\) sejam linearmente independentes, ou seja, que  \(x\) seja um valor regular de \(\tilde{V}\), onde  \(V(x)=(x,\tilde{V}(x))\). Essa é a definição de zero simples.
 
+	Pelo teorema de transversalidade de Thom, como \(T \times TX= J^0(X,TX)\), sempre existe uma aproximação transversal.
+
+	(Falta ver que a soma dos índices é a mesma, usar o Lema que diz que se uma função pode ser extendida o índice é zero. Intuição dada em aula para isso: Considere \(z \mapsto  z^n\) e faz uma perturbação, i.e. considere \(V(z)=z+\varepsilon\). Então obtemos \(n\) zeros simples bem pertinho do 0.)
+\end{proof}
+
+\iffalse\begin{proof}[Solution of exercise]\leavevmode
+\begin{enumerate}[label=\textbf{Step \arabic*}]
+\item Consider the case \(n=1\). We fix a vector field \(V: M \to \mathbb{R}\) that has a an isolated zero \(U\ni x_0\), but it is not simple, so \(V'(0)=0\) (abusing notation for the coordinate expression, i.e. that \(x_0\) is mapped to \(0 \in \mathbb{R}\) under a local chart. Now we restric to a compact set \(K\) around \(0\) so that \(V'(0)\) is bounded here. Then there exists a function \(\varepsilon:K \to \mathbb{R}\) wuch that 
+	\[\operatorname{min} V'(x)>-\varepsilon'(x)\]
+	so that
+	\[V'(x)+\varepsilon'(x) > 0\qquad  \forall  \in x \in K.\]
+Then define
+ \[W(x)=V(x)+\varepsilon(x)\]
+This gives a vector field on \(K\) that is also a submersion i.e. it has no singularities.
+
+\begin{question}\leavevmode
+\begin{itemize}
+\item  Right, but how to define this outside \(K\)?
+\item And if you take the one of the homework, and you manage to make the pasting point smooth, you get a constant vector field, right?
+\end{itemize}\end{question}
+\end{enumerate}
+\end{proof}\fi
 \begin{proof}[Prova do Poincaré-Hopf.]\leavevmode
 Podemos supor que os zeros de \(V\) são simples. Vamos usar o fluxo de \(V\) para perturbar a diagonal. Considere
 \[\operatorname{F ix}=\{x \in X: \varphi_t(x)=x\}\]
@@ -2328,6 +2352,59 @@ Pode mergulhar (da pra fazer suave, mas se tu ta preocupado pela suavidade pensa
 E por fim podemos escrever
 \[X_{a+\varepsilon}=X_{a-\varepsilon} \sqcup \overline{H}_k \Big/x \sim \varphi(x)\]
 E isso se chama o processo de \textit{\textbf{handle attachment}}.
+
+\section{Aula 18}
+
+Hoje vamos formalizar um pouco tudo aquilo.
+
+\begin{claim}\leavevmode
+\(H \cap f^{-1}(a-\varepsilon) \cong S^{k-1} \times B^{n-k}\), Explicación: \(f^{-1}(a-\varepsilon)\) es una de las hipérbolas.
+\end{claim}
+
+Aqui ussamos
+\[r_{\operatorname{max}}=\operatorname{max}\{\|v\|: (u,v) \in H \cap f^{-1}(a-\varepsilon)\}\]
+
+\begin{claim}\leavevmode
+\(H \cap f^{-1}(a+\varepsilon) \cong S^{k-1} \times B^{n-k}\), Explicación: \(f^{-1}(a-\varepsilon)\) es una de las hipérbolas.
+\end{claim}
+\begin{claim}\leavevmode
+	\(H \cap f^{-1}(a+\varepsilon) \cong S^{k-1}\times S^{n-k-1}\times[-\varepsilon,\varepsilon] \simeq S^{k-1}\times S^{n-k-1}\)
+\end{claim}
+
+\begin{exercise}\leavevmode
+\(\tilde{H} \overset{\operatorname{hom e o}}{\cong}B^k \times B^{n-k}\) (quase difeo, só pelas quinas). onde
+\[\tilde{H}=H \Big/ (u,v) sim (u',v') \text{ se } \|u\|\|v\|=\|u'\|\|v'\|=\delta,\qquad (u,v)=(e^{t}u,e^tv) \text{ para algum \(t\)}  \]
+\end{exercise}
+
+\[X_{a+\varepsilon}=X_{a-\varepsilon} {\color{3}\cup }\tilde{H}\]
+onde a união é ao longo de \(S^{k-1}\times B^{n-k} \hookrightarrow  \partial X_{a-\varepsilon}\).
+
+Uma \textit{\textbf{\(k\)-alça}} é \(\tilde{H}=B^k \times B^{n-k}\) mas não é ela só. Ela tá colada em uma \(n\)-variedade \(Z\) com bordo.
+\[\psi: \partial B_k \times B^{n-k} \hookrightarrow  \partial Z\]
+e obtemos
+ \[W=Z \sqcup \tilde{H}\Big/ x \sim \psi(x)\]
+e dessa podemos obter uma nova variedade \textit{suave}  com bordo, suavisando as quinas.
+
+\subsection{Exemplos}
+\begin{itemize}
+\item \(n=1\) 
+	\begin{itemize}
+	\item \(k=0\)  \(\tilde{H}= B^0 \times B^2\). Como \(\partial B^0=\varnothing\), não podemos colar realmente.
+	\item \(k=1\). \(\tilde{H}=B^1 \times B^0\). É um intervalinho pegado ao longo do brodo, que são dos pontinhos, i.e. \(S^0\).
+	\end{itemize}
+\item \(n=2\)
+	\begin{itemize}
+	\item \(k=0\).  \(B^0 \times B^2\), não colamos.
+	\item \(k=1\),  é como colar uma faixinha, \(\tilde{H}=B^1 \times B^1\), colada ao longo de \(S^0 \times B^1\).
+	\item \(k=2\).  É uma tampa, \(\tilde{H}=B^2 \times B^0\), colada ao longo de  \(S^1 \times B^1\).
+	\end{itemize}
+\end{itemize}
+
+Vamos 
+
+
+
+
 
 \bibliography{bib.bib}
 \end{document}
