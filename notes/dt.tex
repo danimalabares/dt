@@ -2196,6 +2196,36 @@ Mostre que para que essa forma esteja bem definida é necessário que \(p\) seja
 \[(D^2f)_p\left(\frac{\partial }{\partial x^i}, \frac{\partial }{\partial x^j}\right) =\frac{\partial ^2}{\partial x^i \partial x^j}(f \circ \varphi^{-1})(\varphi(p))\]
 para alguma carta \((U,\varphi)\) centrada em \(p\).
 
+\begin{proof}[Solution]\leavevmode
+	The point is that the hessian will not be preserved under change of coordinates. For this first recall the change of coordinates formula for the first derivative of a function. Suppose that  \(f: M \to \mathbb{R}\) and \( M\) is 2-dimensional for simplicity. Take two charts \(\varphi,\psi:U \to \mathbb{R}^2\). The differential of \(f\) at a point \(x \in U\) is the gradient of the function obtained by composing with the charts:
+	\[d_xf=\nabla_{\varphi(x)}(f \circ \varphi^{-1})=\nabla_{\psi(x)}(f \circ \psi^{-1})\]
+I'm looking for a change of coordinate matrix \(A\) such that
+ \[\nabla_{\varphi(x)}(f \circ \varphi^{-1})=A\nabla_{\psi(x)}(f \circ \psi^{-1})\]
+ Looking at this diagram
+ \[\begin{tikzcd}
+ &M\arrow[dl,"\varphi",swap]\arrow[dr,"\psi"]\\
+ \mathbb{R}^2\arrow[rr,"\psi \circ \varphi^{-1}"]&&\mathbb{R}^2
+ \end{tikzcd}\]
+ it is obvious that
+ \[f \circ \varphi^{-1}=f \circ \psi^{-1} \circ\psi \circ \varphi^{-1}\]
+ but differentiating we obtain
+ \[\nabla_{\varphi(x)}(f \circ \varphi^{-1})=\nabla_{\psi(x)}(f \circ \psi^{-1})D_{\varphi^{-1}(x)}(\psi \circ \varphi^{-1})\]
+ so that \(D_{\varphi^{-1}(x)}(\psi \circ \varphi^{-1})\) is the change of coordinate matrix I was looking for.
+
+ Now have a look at the Hessian. For now just define it to be the matrix of second partial derivatives of \(f\). But this depends on the chart. And the question is whether this matrix could change from one chart to another.
+
+ By the previous formula we can write
+ \[\frac{\partial }{\partial x}(f \circ \varphi^{-1})=\frac{\partial }{\partial x}(f \circ \psi^{-1})\frac{\partial }{\partial x}(\psi \circ \varphi^{-1})^1 + \frac{\partial }{\partial y}(f \circ \psi^{-1})\frac{\partial }{\partial x}(\psi \circ \varphi^{-1})^2\]
+ so when we differentiate again with respect to \(x\) we obtain by the chain rule
+  \begin{align*}
+ \frac{\partial ^2}{\partial x^2}(f\circ \varphi^{-1})&=\frac{\partial^2 }{\partial x^2}(f \circ \psi^{-1}) \frac{\partial }{\partial x}(\psi \circ \varphi^{-1})^1+\frac{\partial }{\partial x}(f \circ \psi^{-1})\frac{\partial ^2}{\partial x^2}(\psi \circ \varphi^{-1})^1\\
+ &+\frac{\partial^2}{\partial y \partial x}(f \circ \psi^{-1})\frac{\partial}{\partial x}(\psi \circ \varphi^{-1})^2 + \frac{\partial }{\partial y}(f \circ \psi^{-1}) \frac{\partial^2}{\partial x^2}(\psi \circ \varphi^{-1})^2
+ \end{align*}
+Now it's clear that if the gradient of \(f\) vanishes at the point, we get a nice formula 
+\[\frac{\partial ^2}{\partial x^2}(f\circ \varphi^{-1})=\frac{\partial^2 }{\partial x^2}(f \circ \psi^{-1}) \frac{\partial }{\partial x}(\psi \circ \varphi^{-1})^1+\frac{\partial^2}{\partial y \partial x}(f \circ \psi^{-1})\frac{\partial}{\partial x}(\psi \circ \varphi^{-1})^2\]
+As stated in class, the formula for the change of coordinates of the Hessian would have to be of the form \(A^{\mathbf{T}}HA\), where \(A\) is the same change of coordinate matrix as in the case of the first derivative. This could not be obtained if the gradient of \(f\) doesn't vanish since would need to add the second derivatives of the change of coordinate map multiplied by the gradient terms.
+\end{proof}
+
 Também pode vê-lo como
 \[df:X \to T^*X \rightsquigarrow d(df)_p:T_pX \to T_{(p,df_p)}(T^*X)\]
 agora se \(E\) é um fibrado tangente sobre \(X\)
