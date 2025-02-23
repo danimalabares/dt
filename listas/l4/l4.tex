@@ -56,13 +56,54 @@ Derivemos:
 \frac{\partial }{\partial x_i}(f \circ \varphi_r^{-1})&=\frac{\|\vec{x}\|^2\cdot 2ix_i+\frac{\partial \|\vec{x}\|^2}{\partial x_i}\left(r+\sum_{j \neq r}ix_i^2\right) }{\|\vec{x}\|^4}\\
 &=2x_i\cdot  \frac{i \|\vec{x}\|^2+\left(r+\sum_{j \neq r}jx_j^2\right) }{\|\vec{x}\|^4}
 \end{align*}
-É claro que se \(x_i=0\) para toda \(i\) temos um ponto crítico. Esse ponto é \(p:=(0,\ldots,\underbrace{1}_{r\text{-th place} },\ldots,0)\). (Note que não podemos ter outros pontos críticos, pois se \(x_k \neq 0\) para alguma \(k\), a derivada parcial nessa variável não pode se anular: o numerador do quociente é uma soma de números positivos!)
+É claro que se \(x_i=0\) para toda \(i\) temos um ponto crítico, i.e. em \(\vec{0}\in \mathbb{R}^n\)%\(p:=(0,\ldots,\underbrace{1}_{r\text{-th place} },\ldots,0)\)
+. (Note que não podemos ter outros pontos críticos, pois se \(x_k \neq 0\) para alguma \(k\), a derivada parcial nessa variável não pode se anular: o numerador do quociente é uma soma de números positivos!)
 
-Derivando de novo e avaliando em \(p\):
-\[\frac{\partial ^2}{\partial x_i\partial x_j}(f \circ \varphi_r^{-1})\Big|_{p}=2i\delta_{ij}\]
-Isso fica pela regra do produto: obtemos a derivada de \(2x_i\) multiplicada pelo quociente, somado com \(2x_i\) multiplcado pela derivada do quociente. É só notar que, por um lado, a derivada de \(2x_i\) respeito de \(x_j\) é \(2\delta_{ij}\) e o lado direito avaliado em \(p\) da \(i\). Por outro lado, a derivada do quociente em \(p\) se anula.
 
-Então a matrix de segundas derivadas não tem autovalores negativos, e obtemos que os pontos \([0:\ldots:\underbrace{1}_{r\text{-th place} }:\ldots:0]\) são críticos de índice 0 para toda \(r=0,\ldots,n\).
+Derivando de novo e avaliando em \(\vec{0}\):
+\[\frac{\partial ^2}{\partial x_i\partial x_j}(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=2\delta_{ij}(i+r),\qquad r \neq  i,j\]
+Isso fica pela regra do produto: obtemos a derivada de \(2x_i\) multiplicada pelo quociente, somado com \(2x_i\) multiplcado pela derivada do quociente. É só notar que, por um lado, a derivada de \(2x_i\) respeito de \(x_j\) é \(2\delta_{ij}\) e o lado direito avaliado em \(\vec{0}\) da \(i\). Por outro lado, a derivada do quociente em \(\vec{0}\) se anula.
+
+Então a matriz de segundas derivadas fica
+\[2\begin{pmatrix} r & 0 &0 & \cdots &0\\
+0 & 1+r & 0& \cdots & 0\\
+0 & 0 & 2+r & \cdots & 0\\
+\vdots & & &\ddots &\vdots \\
+0 & 0 & 0 & \cdots & n+r\end{pmatrix}\]
+que é não singular e não tem autovalores negativos. Concluimos que os pontos \([0:\ldots:\underbrace{1}_{r\text{-th place} }:\ldots:0]\) são críticos de índice 0 para cada \(r=0,\ldots,n\).
+
+\textbf{(Caso \(k=\mathbb{C}\).)} Fixe \(r \in \{0,1,2,\ldots,n\}\). Consideremos a carta coordenada \(\varphi_r([z_0:\ldots:z_n])	= (z_0,\ldots,\widehat{z_r},\ldots,z_n)\) definida em \(U_r=\{z_r \neq 0\}=\{z_r=1\}\). Nossa função fica
+	\[f \circ \varphi_r^{-1}(z_0,\ldots,\widehat{z_r},\ldots,z_n)=\frac{r+\sum_{i\neq r}iz_i\overline{z_i}}{1+\sum_{i\neq r}z_i\overline{z_i}}\]
+Para facilitar notação defina \(\vec{z}:=(z_0,\ldots,z_{r-1},1,z_{r+1},\ldots,z_n)\). A nossa função se escreve como
+\[(f \circ \varphi_r^{-1})(z_0,\ldots,\widehat{z_r},\ldots,z_n)=\frac{r+\sum_{i\neq r}iz_i\overline{z_i}}{\|\vec{z}\|^2}\]
+Derivemos:
+\begin{align*}
+\frac{\partial }{\partial z_i}(f \circ \varphi_r^{-1})&=\frac{\|\vec{z}\|^2\cdot 2i\overline{z_i}+\frac{\partial \|\vec{z}\|^2}{\partial z_i}\left(r+\sum_{j \neq r}iz_i\overline{z_i}\right) }{\|\vec{z}\|^4}\\
+&=2\overline{z_i}\cdot  \frac{i \|\vec{z}\|^2+\left(r+\sum_{j \neq r}jz_j\overline{z_j}\right) }{\|\vec{z}\|^4}
+\end{align*}
+E analogamente
+\[\frac{\partial }{\partial \overline{z}_i}(f \circ \varphi_r^{-1})=2z_i\cdot  \frac{i \|\vec{z}\|^2+\left(r+\sum_{j \neq r}jz_j\overline{z_j}\right) }{\|\vec{z}\|^4}
+\]
+Como antes, a derivada só pode ser zero quando \(z_i=0 \iff \overline{z_i}=0\) \(\forall i\), i.e. no ponto \(\vec{0}\in \mathbb{C}^n\).
+
+Para calcular a Hessiana note que as parciais cruzadas \(\frac{\partial^2 }{\partial z_i\partial \overline{z}_j}\) são as únicas que podem sobrevivir! De fato, quando derivamos de novo y avaliamos em \(\vec{0}\),
+\[\frac{\partial^2}{\partial z_i \partial z_j }(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=\frac{\partial^2 }{\partial \bar{z}_i\partial \bar{z}_j}(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=0\]
+e
+\[\frac{\partial^2 }{\partial z_i\partial \bar{z}_j}(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=\frac{\partial^2 }{\partial \bar{z}_i\partial z_j}(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=2\delta_{ij}(i+r), \qquad  r\neq i,j\]
+Essa matriz é
+\[2\left(\begin{array}{@{}c|c@{}}
+0&\begin{matrix} r & 0 &0 & \cdots &0\\
+0 & 1+r & 0& \cdots & 0\\
+0 & 0 & 2+r & \cdots & 0\\
+\vdots & & &\ddots &\vdots \\
+0 & 0 & 0 & \cdots & n+r\end{matrix}\\
+\hline
+\begin{matrix} r & 0 &0 & \cdots &0\\
+0 & 1+r & 0& \cdots & 0\\
+0 & 0 & 2+r & \cdots & 0\\
+\vdots & & &\ddots &\vdots \\
+0 & 0 & 0 & \cdots & n+r\end{matrix}&0\end{array}\right)\]
+que é não singular e não tem autovalores negativos, concluindo, como no caso real, que os pontos \([0:\ldots:\underbrace{1}_{r\text{-th place} }:\ldots:0]\) são críticos não degenerados de índice 0.
 
 \end{proof}
 \end{document}
