@@ -1,0 +1,68 @@
+\input{/Users/daniel/github/config/preamble-por.sty}
+%\input{/Users/daniel/github/config/thms-por.sty}
+
+\begin{document}
+\bibliographystyle{alpha}
+
+\begin{minipage}{\textwidth}
+	\begin{minipage}{1\textwidth}
+		Topologia Diferencial\hfill Daniel González Casanova Azuela
+		
+		{Prof. Vinicius Ramos\hfill\href{https://github.com/danimalabares/dt}{github.com/danimalabares/dt}}
+	\end{minipage}
+\end{minipage}\vspace{.2cm}\hrule
+
+\vspace{10pt}
+{\huge Lista 4}
+
+\vspace{1em}
+
+\begin{thing1}{Problem 1}\label{prob:1}\leavevmode
+Para \(k=\mathbb{R}\) ou \(\mathbb{C}\), seja \(f: kP^n \longrightarrow \mathbb{R}\) definida por
+\[f\Big([z_0:\ldots:z_n]\Big)=\frac{\sum_{j=0}^nj|z_j|^2}{\sum_{j=0}^n |z_j|^2}.\]
+Prove que \(f\) é uma função de Morse e calcule o índice de todos os pontos críticos de \(f\) para  \(k=\mathbb{R}\) e \(k=\mathbb{C}\).
+\end{thing1}
+
+	 \iffalse Primeiro considere a carta coordenada definida em \(U_0=\{[1:x_1:\ldots:x_n]\}\) como \(\varphi_0([1:x_1:\ldots:x_n])=(x_1,\ldots,x_n)\). (Supondo que \(f\) está bem definida, coisa que não comprovei.) Nessas coordenadas a nossa função fica
+	\[f \circ \varphi_0^{-1}(x_1,\ldots,x_n)=\frac{x_1^2+2x_2^2+\ldots+nx_n^2}{1+x_1^2+\ldots+x_n^2}\]
+E a derivada (o gradiente) dela acaba sendo dado por
+\begin{align*}\frac{\partial }{\partial x_i}(f \circ \varphi_0^{-1})&=\frac{\Big(1+\sum_{j=1}^n x_j^2\Big)(2ix_i)-\Big(\sum_{j=1}^njx_j^2\Big)(2x_i)}{\left(1+\sum_{j=1}^nx_j^2\right)^2 }\\
+	&=\frac{2x_i\left(i \left(1+\sum_{j=1}^nx_j^2\right)-\sum_{j=1}^njx_j^2\right) }{\left(1+\sum_{j=1}^nx_j^2\right) ^2}
+	\end{align*}
+	Podemos ver que quando \(x_i=0\) para toda \(i=1,\ldots,n\), i.e. no ponto \([1:0:\ldots:0]\), o gradiente se anula, i.e. esse é um ponto crítico.
+
+\begin{remark}\leavevmode
+Fico meio travado para comprovar se poderia ter outros pontos críticos, i.e. se o numerador da eq. anteior poderia ser zero em algum outro ponto. Vou continuar analizando o ponto crítico que já encontrei.
+\end{remark}
+
+	Para analizar a Hessiana nessa carta coordenada calculei que
+	\[\frac{\partial^2}{\partial x_i\partial x_j}(f \circ \varphi_0^{-1})\Big|_{(1,0,\ldots,0)}=2i\delta_{ij}\]
+Rascunho da conta: o \(\delta_{ij}\) aparece quando derivamos \(2x_i\) no numerador respeito a \(x_j\). Isso é o único que sobrevive quando avaliamos em \((1,0,\ldots,0)\)! (E o denominador fica igual a 1.) Obtemos que a Hessiana não tem autovalores negativos neste ponto crítico, e concluimos que ele tem índice 0.
+
+	\begin{align*}
+	\frac{\partial^2}{\partial x_i\partial x_j}(f \circ \varphi^{-1})&=\frac{\left(1+\sum_{k=1}^nx_k^2\right) 2 \delta_{ij}-2x_i 2\delta_{ij}}{\left(1+\sum_{k=1}^nx_k^2\right)^4}\\
+	&=\frac{2\delta_{ij}}{\left(1+\sum_{k=1}^n x_k^2\right)^4}\left(\left(1+\sum_{k=1}^nx_k^2\right) -2x_i\right) 
+	\end{align*}
+	avaliando no ponto crítico \((0,\ldots,0)\) obtemos \(D^2_{\vec{0}}(f\circ \varphi^{-1})=2\operatorname{Id}\). Ou seja, o índice de \([1:0:\ldots:0]\) é \(0\) (a Hessiana não tem autovalores negativos nesse ponto).\fi
+
+
+\begin{proof}[Solution]\leavevmode
+	\textbf{(Caso \(k=\mathbb{R}\).)} Fixe \(r \in \{0,1,2,\ldots,n\}\). Consideremos a carta coordenada \(\varphi_r([x_0:\ldots:x_n])	= (x_0,\ldots,\widehat{x_r},\ldots,x_n)\) definida em \(U_r=\{x_r \neq 0\}=\{x_r=1\}\). Nossa função fica
+	\[f \circ \varphi_r^{-1}(x_0,\ldots,\widehat{x_r},\ldots,x_n)=\frac{r+\sum_{i\neq r}ix_i^2}{1+\sum_{i\neq r}x_i^2}\]
+Para facilitar notação defina \(\vec{x}:=(x_0,\ldots,x_{r-1},1,x_{r+1},\ldots,x_n)\). A nossa função se escreve como
+\[(f \circ \varphi_r^{-1})(x_0,\ldots,\widehat{x_r},\ldots,x_n)=\frac{r+\sum_{i\neq r}ix_i^2}{\|\vec{x}\|^2}\]
+Derivemos:
+\begin{align*}
+\frac{\partial }{\partial x_i}(f \circ \varphi_r^{-1})&=\frac{\|\vec{x}\|^2\cdot 2ix_i+\frac{\partial \|\vec{x}\|^2}{\partial x_i}\left(r+\sum_{j \neq r}ix_i^2\right) }{\|\vec{x}\|^4}\\
+&=2x_i\cdot  \frac{i \|\vec{x}\|^2+\left(r+\sum_{j \neq r}jx_j^2\right) }{\|\vec{x}\|^4}
+\end{align*}
+É claro que se \(x_i=0\) para toda \(i\) temos um ponto crítico. Esse ponto é \(p:=(0,\ldots,\underbrace{1}_{r\text{-th place} },\ldots,0)\). (Note que não podemos ter outros pontos críticos, pois se \(x_k \neq 0\) para alguma \(k\), a derivada parcial nessa variável não pode se anular: o numerador do quociente é uma soma de números positivos!)
+
+Derivando de novo e avaliando em \(p\):
+\[\frac{\partial ^2}{\partial x_i\partial x_j}(f \circ \varphi_r^{-1})\Big|_{p}=2i\delta_{ij}\]
+Isso fica pela regra do produto: obtemos a derivada de \(2x_i\) multiplicada pelo quociente, somado com \(2x_i\) multiplcado pela derivada do quociente. É só notar que, por um lado, a derivada de \(2x_i\) respeito de \(x_j\) é \(2\delta_{ij}\) e o lado direito avaliado em \(p\) da \(i\). Por outro lado, a derivada do quociente em \(p\) se anula.
+
+Então a matrix de segundas derivadas não tem autovalores negativos, e obtemos que os pontos \([0:\ldots:\underbrace{1}_{r\text{-th place} }:\ldots:0]\) são críticos de índice 0 para toda \(r=0,\ldots,n\).
+
+\end{proof}
+\end{document}

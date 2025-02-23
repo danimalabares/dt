@@ -54,7 +54,7 @@ Prove que \(\mathsf{SO}(n)\) é uma variedade orientável e calcule a sua dimens
 
 	Now observe that a matrix in \(\mathsf{O}(n)\) is the same as an orthonormal frame of \(\mathbb{R}^n\): the column vectors of any  \(A \in \mathsf{O}(n)\) unitary and mutually orthogonal since \(A A ^{\mathbf{T}}=\operatorname{Id}\) says \(\sum_{k}a_{ik}a_{jk}=\delta_{ij}\) for every \(i,j\). 
 
-	We can compute the dimension of \(\mathsf{O}(n)\) as follows. Take a vector \(v_1\) in \(S^{n-1}\), then a unitary vector in the orthogonal complement of  \(v_1\), i.e. a vector in \(S^{n-2}\), and so on until we choose either of the two vectors in \(S^0\). This means that we are choosing points in \(S^{n-1}\times S^{n-2} \times \ldots \times S^0\), which gives \(\dim \mathsf{O}(n)=\sum_{i=0}^{n-1}i\). Gauss could tell at very early age that this number is \(\frac{n(n-1)}{2}\).
+	We can compute the dimension of \(\mathsf{O}(n)\) as follows. Take a vector \(v_1\) in \(S^{n-1}\), then a unitary vector in the orthogonal complement of  \(v_1\), i.e. a vector in \(S^{n-2}\), and so on until we choose either of the two vectors in \(S^0\). This means that we are choosing points in \(S^{n-1}\times S^{n-2} \times \ldots \times S^0\), which gives \(\dim \mathsf{O}(n)=\sum_{i=0}^{n-1}i\). It is well known that this number is \(\frac{n(n-1)}{2}\).
 
 	To orient \(\mathsf{SO}(n)\) just notice that it acts on itself homogeneously (by orientation-preserving diffeomorphisms). Taking a basis at the identity matrix and moving it around our manifold using this action generates a smooth global choice of local orientations; i.e. a global orientation.
 
@@ -97,7 +97,6 @@ Então defina
 	v(r,\theta)\qquad &r \geq \varepsilon \\
 	\rho(r)v(\varepsilon,\theta)\qquad &r \leq \varepsilon
 \end{cases}\]
-Para concluir é so dar uma perturbada a \(w:D^n \to TD^2=\mathbb{R}^2\) para 
 \end{proof}
 
 \end{proof}
@@ -109,7 +108,16 @@ Seja \(A\) uma matriz de \(n \times n\) com coeficientes inteiros e seja \(f:\ma
 \begin{proof}\leavevmode
 	To compute the degree of \(f \) it's enough to compute the number of preimages of \([0] \in \mathbb{R}^n/\mathbb{Z}^n\). To do this consider the fundamental domain \([0,1)^n\) and map it with \(A\) to  \(\mathbb{R}^n\). When we take the quotient, all the points with integer coordinates will be glued together in the class \([0]\). I.e. we are looking for the number of points with integer coordinates in \(P:=A\Big( [0,1)^n \Big)\).
 
-	I claim that this number is the volume of \(P\), i.e. the determinant of  \(A\). To see why consider the case of dimension 2. We may assume that the image of \(e_1\) is a vector in the \(x\) axis using a rotation (which preserves the volume of \(P\) \textit{and} the ammount of integer points inside \(P\)). The number of integer points inside \(P\) after rotating is simply the product of the lengths of \(Ae_1\) and \(Ae_2\):
+	I claim that this number is the volume of \(P\), i.e. the determinant of  \(A\). While this is intuitively clear, I was unable to produce a formal proof.
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{fig2}
+		\caption*{Example for \(A=\begin{pmatrix}3&1\\ 1&2\end{pmatrix}\), with determinant \(5\)}
+	\end{figure}
+\iffalse
+
+	To see why consider the case of dimension 2. We may assume that the image of \(e_1\) is a vector in the \(x\) axis using a rotation (which preserves the volume of \(P\) \textit{and} the ammount of integer points inside \(P\)). The number of integer points inside \(P\) after rotating is simply the product of the lengths of \(Ae_1\) and \(Ae_2\):
 
 
 	This product is \(\det A\)
@@ -118,13 +126,7 @@ Seja \(A\) uma matriz de \(n \times n\) com coeficientes inteiros e seja \(f:\ma
 	the case of two dimensions. First use an isometry to assume that one of the sides of \(P\) is in the \(x\) axis. Then consider the map that projects the other side of \(P\) to the \(y\) axis, mapping \(P\) to a rectangle
 
 	the area of \(P\) is the same as the area of the rectangle we obtain when projecting the side
-
-
-
-
-
-
-\iffalse
+	
 	First consider the case for \(n=1\). Take the class \([0] \in \mathbb{R}/\mathbb{Z}\) and let's check how many preimages it has in the fundamental domain \([0,1) \subset \mathbb{R}\). Our matrix \(A\) is only a number, say \(a\). So we have \(ax \in [0]=\{0+n:n \in \mathbb{Z}\}\). This just says \(ax \in \mathbb{Z}\) which happens when \(x\) is a rational number with  denominator \(a\), and there's  \(|a|\) such numbers in \([0,1)\).
 
 	Now for the case  \(n=2\) suppose \(A=\begin{pmatrix} a & b\\c & d \end{pmatrix} \), and let's look for points \(\vec{x}=(x,y) \in [0,1)^2\) such that \(A\vec{x} \in [\vec{0}]=\mathbb{Z}^2\). This means that
