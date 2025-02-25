@@ -1,4 +1,4 @@
-\input{/Users/daniel/github/config/preamble-por.sty}
+\input{/Users/daniel/github/config/preamble.sty}
 %\input{/Users/daniel/github/config/thms-por.sty}
 
 \begin{document}
@@ -15,6 +15,9 @@
 \vspace{10pt}
 {\huge Lista 4}
 
+\begin{thing6}{Comentários de V.R.}\leavevmode
+Pode ver que o índice de duas variedades complexas (que sempre são orientáveis) de dimensões complementares é sempre 1.
+\end{thing6}
 \vspace{1em}
 
 \begin{thing1}{Problem 1}\label{prob:1}\leavevmode
@@ -53,57 +56,238 @@ Para facilitar notação defina \(\vec{x}:=(x_0,\ldots,x_{r-1},1,x_{r+1},\ldots,
 \[(f \circ \varphi_r^{-1})(x_0,\ldots,\widehat{x_r},\ldots,x_n)=\frac{r+\sum_{i\neq r}ix_i^2}{\|\vec{x}\|^2}\]
 Derivemos:
 \begin{align*}
-\frac{\partial }{\partial x_i}(f \circ \varphi_r^{-1})&=\frac{\|\vec{x}\|^2\cdot 2ix_i+\frac{\partial \|\vec{x}\|^2}{\partial x_i}\left(r+\sum_{j \neq r}ix_i^2\right) }{\|\vec{x}\|^4}\\
-&=2x_i\cdot  \frac{i \|\vec{x}\|^2+\left(r+\sum_{j \neq r}jx_j^2\right) }{\|\vec{x}\|^4}
+\frac{\partial }{\partial x_i}(f \circ \varphi_r^{-1})&=\frac{\|\vec{x}\|^2\cdot 2ix_i-\frac{\partial \|\vec{x}\|^2}{\partial x_i}\left(r+\sum_{j \neq r}ix_i^2\right) }{\|\vec{x}\|^4}\\
+&=2x_i\cdot  \frac{i \|\vec{x}\|^2-\left(r+\sum_{j \neq r}jx_j^2\right) }{\|\vec{x}\|^4}
 \end{align*}
 É claro que se \(x_i=0\) para toda \(i\) temos um ponto crítico, i.e. em \(\vec{0}\in \mathbb{R}^n\)%\(p:=(0,\ldots,\underbrace{1}_{r\text{-th place} },\ldots,0)\)
-. (Note que não podemos ter outros pontos críticos, pois se \(x_k \neq 0\) para alguma \(k\), a derivada parcial nessa variável não pode se anular: o numerador do quociente é uma soma de números positivos!)
+.
 
+Note que não podemos ter outros pontos críticos…
+
+Se tivessemos um índice só em que \(x_k \neq 0\), a parcial respeito a essa variável não se anula. Assim, para ter um ponto crítico distinto de \(\vec{0}\) é necessário que as coordenadas em pelo menos dois índices \(k\) e \(k'\) foram distintas de zero. Porém, nesse caso a parcial respeito de alguma delas não se anula (falta argumentar).
 
 Derivando de novo e avaliando em \(\vec{0}\):
-\[\frac{\partial ^2}{\partial x_i\partial x_j}(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=2\delta_{ij}(i+r),\qquad r \neq  i,j\]
-Isso fica pela regra do produto: obtemos a derivada de \(2x_i\) multiplicada pelo quociente, somado com \(2x_i\) multiplcado pela derivada do quociente. É só notar que, por um lado, a derivada de \(2x_i\) respeito de \(x_j\) é \(2\delta_{ij}\) e o lado direito avaliado em \(\vec{0}\) da \(i\). Por outro lado, a derivada do quociente em \(\vec{0}\) se anula.
+\[\frac{\partial ^2}{\partial x_i\partial x_j}(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=2\delta_{ij}(i-r),\qquad r \neq  i,j\]
+Isso fica pela regra do produto: obtemos a derivada de \(2x_i\) multiplicada pelo quociente, somado com \(2x_i\) multiplcado pela derivada do quociente. É só notar que, por um lado, a derivada de \(2x_i\) respeito de \(x_j\) é \(2\delta_{ij}\) e o quociente avaliado em \(\vec{0}\) da \(i-r\). Por outro lado, a derivada do quociente em \(\vec{0}\) se anula.
 
 Então a matriz de segundas derivadas fica
-\[2\begin{pmatrix} r & 0 &0 & \cdots &0\\
-0 & 1+r & 0& \cdots & 0\\
-0 & 0 & 2+r & \cdots & 0\\
+\[2\begin{pmatrix} -r & 0 &0 & \cdots &0\\
+0 & 1-r & 0& \cdots & 0\\
+0 & 0 & 2-r & \cdots & 0\\
 \vdots & & &\ddots &\vdots \\
-0 & 0 & 0 & \cdots & n+r\end{pmatrix}\]
-que é não singular e não tem autovalores negativos. Concluimos que os pontos \([0:\ldots:\underbrace{1}_{r\text{-th place} }:\ldots:0]\) são críticos de índice 0 para cada \(r=0,\ldots,n\).
+0 & 0 & 0 & \cdots & n-r\end{pmatrix}\]
+que é não singular. Ela tem \(r\) autovalores negativos. Concluimos que os pontos \([0:\ldots:\underbrace{1}_{r\text{-th place} }:\ldots:0]\) são críticos de índice \(r\) para cada \(r=0,\ldots,n\).
 
 \textbf{(Caso \(k=\mathbb{C}\).)} Fixe \(r \in \{0,1,2,\ldots,n\}\). Consideremos a carta coordenada \(\varphi_r([z_0:\ldots:z_n])	= (z_0,\ldots,\widehat{z_r},\ldots,z_n)\) definida em \(U_r=\{z_r \neq 0\}=\{z_r=1\}\). Nossa função fica
 	\[f \circ \varphi_r^{-1}(z_0,\ldots,\widehat{z_r},\ldots,z_n)=\frac{r+\sum_{i\neq r}iz_i\overline{z_i}}{1+\sum_{i\neq r}z_i\overline{z_i}}\]
 Para facilitar notação defina \(\vec{z}:=(z_0,\ldots,z_{r-1},1,z_{r+1},\ldots,z_n)\). A nossa função se escreve como
 \[(f \circ \varphi_r^{-1})(z_0,\ldots,\widehat{z_r},\ldots,z_n)=\frac{r+\sum_{i\neq r}iz_i\overline{z_i}}{\|\vec{z}\|^2}\]
+
 Derivemos:
 \begin{align*}
-\frac{\partial }{\partial z_i}(f \circ \varphi_r^{-1})&=\frac{\|\vec{z}\|^2\cdot 2i\overline{z_i}+\frac{\partial \|\vec{z}\|^2}{\partial z_i}\left(r+\sum_{j \neq r}iz_i\overline{z_i}\right) }{\|\vec{z}\|^4}\\
-&=2\overline{z_i}\cdot  \frac{i \|\vec{z}\|^2+\left(r+\sum_{j \neq r}jz_j\overline{z_j}\right) }{\|\vec{z}\|^4}
+\frac{\partial }{\partial z_i}(f \circ \varphi_r^{-1})&=\frac{\|\vec{z}\|^2\cdot 2i\overline{z_i}-\frac{\partial \|\vec{z}\|^2}{\partial z_i}\left(r+\sum_{j \neq r}iz_i\overline{z_i}\right) }{\|\vec{z}\|^4}\\
+&=2\overline{z_i}\cdot  \frac{i \|\vec{z}\|^2-\left(r+\sum_{j \neq r}jz_j\overline{z_j}\right) }{\|\vec{z}\|^4}
 \end{align*}
 E analogamente
-\[\frac{\partial }{\partial \overline{z}_i}(f \circ \varphi_r^{-1})=2z_i\cdot  \frac{i \|\vec{z}\|^2+\left(r+\sum_{j \neq r}jz_j\overline{z_j}\right) }{\|\vec{z}\|^4}
+\[\frac{\partial }{\partial \overline{z}_i}(f \circ \varphi_r^{-1})=2z_i\cdot  \frac{i \|\vec{z}\|^2-\left(r+\sum_{j \neq r}jz_j\overline{z_j}\right) }{\|\vec{z}\|^4}
 \]
 Como antes, a derivada só pode ser zero quando \(z_i=0 \iff \overline{z_i}=0\) \(\forall i\), i.e. no ponto \(\vec{0}\in \mathbb{C}^n\).
 
 Para calcular a Hessiana note que as parciais cruzadas \(\frac{\partial^2 }{\partial z_i\partial \overline{z}_j}\) são as únicas que podem sobrevivir! De fato, quando derivamos de novo y avaliamos em \(\vec{0}\),
 \[\frac{\partial^2}{\partial z_i \partial z_j }(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=\frac{\partial^2 }{\partial \bar{z}_i\partial \bar{z}_j}(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=0\]
 e
-\[\frac{\partial^2 }{\partial z_i\partial \bar{z}_j}(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=\frac{\partial^2 }{\partial \bar{z}_i\partial z_j}(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=2\delta_{ij}(i+r), \qquad  r\neq i,j\]
+\[\frac{\partial^2 }{\partial z_i\partial \bar{z}_j}(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=\frac{\partial^2 }{\partial \bar{z}_i\partial z_j}(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=2\delta_{ij}(i-r), \qquad  r\neq i,j\]
 Essa matriz é
 \[2\left(\begin{array}{@{}c|c@{}}
-0&\begin{matrix} r & 0 &0 & \cdots &0\\
-0 & 1+r & 0& \cdots & 0\\
-0 & 0 & 2+r & \cdots & 0\\
+0&\begin{matrix} -r & 0 &0 & \cdots &0\\
+0 & 1-r & 0& \cdots & 0\\
+0 & 0 & 2-r & \cdots & 0\\
 \vdots & & &\ddots &\vdots \\
-0 & 0 & 0 & \cdots & n+r\end{matrix}\\
+0 & 0 & 0 & \cdots & n-r\end{matrix}\\
 \hline
-\begin{matrix} r & 0 &0 & \cdots &0\\
-0 & 1+r & 0& \cdots & 0\\
-0 & 0 & 2+r & \cdots & 0\\
+\begin{matrix} -r & 0 &0 & \cdots &0\\
+0 & 1-r & 0& \cdots & 0\\
+0 & 0 & 2-r & \cdots & 0\\
 \vdots & & &\ddots &\vdots \\
-0 & 0 & 0 & \cdots & n+r\end{matrix}&0\end{array}\right)\]
-que é não singular e não tem autovalores negativos, concluindo, como no caso real, que os pontos \([0:\ldots:\underbrace{1}_{r\text{-th place} }:\ldots:0]\) são críticos não degenerados de índice 0.
+0 & 0 & 0 & \cdots & n-r\end{matrix}&0\end{array}\right)\]
+que é não singular. Vemos que, como no caso real, os pontos \([0:\ldots:\underbrace{1}_{r\text{-th place} }:\ldots:0]\) são críticos não degenerados, só que agora de índice \(2r\).
+\end{proof}
 
+\begin{thing1}{Problema 2}\label{prob: 2}\leavevmode
+Seja \(m\) um número inteiro positivo \(f:\mathbb{C}P^{1}\to \mathbb{R}\) definida por
+\[f\Big([z_0:z_1]\Big)=\frac{|z_0^m+z_1^m|^2}{(|z_0|^2+|z_1|^2)^m}.\]
+Determine para quais valores de \(m\) a função \(f\) é de Morse e calcule o índice de todos os seus pontos críticos.
+\end{thing1}
+
+\begin{proof}\leavevmode
+Considere a carta \(\varphi_0:\{z_0=1\}\subset\mathbb{C}P^{1}\to \mathbb{C}\), \([1:z]\mapsto z\). Como \(z \in \mathbb{C}\) realmente é \(r(\cos \theta, \sin  \theta)\) para \(r\geq 0\), \(\theta \in [0, 2\pi)\), nossa função fica
+\begin{align*}
+f\circ \varphi_0^{-1}(z)&=\frac{ \Big|(1,0)-r^m\Big(\cos (\theta m), \sin (\theta m)\Big)\Big|^2}{(1+r^2)^m}\\
+&=\frac{\Big|\Big(1-r^m\cos (\theta m),-r^m \sin (\theta m)\Big)\Big|^2}{(1+r)^2}\\
+&=\frac{\Big(1-r^m \cos (\theta m) \Big)^2+ r^{2m} \sin^2(\theta m)}{(1+r^2)^m}\\
+&=\frac{1-2 r^m \cos (\theta m)+r^{2m} \cos^2(\theta m)+r^{2m} \sin^2 (\theta m)}{(1+r^2)^m}\\
+&=\frac{1-2r^m \cos (\theta m)+r^{2m}}{(1+r^2)^m}
+\end{align*}
+Agora derivamos, primeiro respeito a \(\theta\):
+\begin{align*}
+\frac{\partial }{\partial \theta}(f \circ \varphi_0^{-1})&= \frac{(1+r^2)^m\cdot  2r^m \sin(\theta m)m}{(1+r^2)^{2m}}
+\end{align*}
+que vai se anular quando \(\sin  (\theta m)=0\), i.e. \(\theta =0,\pi\).
+
+Agora derivamos respeito a \(r\):
+\begin{align*}
+\frac{\partial }{\partial r}(f \circ \varphi_0^{-1})&=\frac{(1+r^2)^m\cdot \Big(2\cos (\theta m)m r^{m-1}+2mr^{2m-1})-m(1+r^2)^{m-1}\cdot \Big(1-2r^m \cos (\theta m)+r^{2m}\Big)}{(1+r^2)^{2m}}\\
+\end{align*}
+Como precisamos que no ponto que buscamos \(\theta =0,\pi\), \(\cos (\theta m)\) pode ser \(1\) ou \(-1\). Então temos
+\begin{align*}
+\frac{\partial }{\partial r}(f \circ \varphi_0^{-1})&=\frac{(1+r^2)^m\cdot \Big(2(\pm 1)m r^{m-1}+2mr^{2m-1}\Big)-m(1+r^2)^{m-1}2r\cdot \Big(1-2r^m (\pm 1)+r^{2m}\Big)}{(1+r^2)^{2m}}
+\end{align*}
+Para que isso seja \(0\) preciso que o numerador se anule. Então me interessa
+\begin{align*}
+(1+r^2)^m\cdot \Big(2(\pm 1)m r^{m-1}+2mr^{2m-1}\Big)&=m(1+r^2)^{m-1}2r\cdot \Big(1-2r^m (\pm 1)+r^{2m}\Big)\\
+\iff\\
+{\color{6}2mr}(1+r^2)^m\cdot \Big(\pm r^{m-2}+r^{2m-2}\Big)&={\color{6}2mr}(1+r^2)^{m-1}\Big(1\mp 2r^m+r^{2m}\Big)\\
+\iff\\
+(1+r^2)\Big(\pm r^{m-2}+r^{2m-2}\Big)&=1\mp 2r^m+r^{2m}\\
+\iff\\
+(\pm r^{m-2}+r^{2m-2})+(\pm r^{m}+\cancelto{0}{r^{2m})}&=1\mp 2r^m+\cancelto{0}{r^{2m}}\\\iff\\
+\pm r^{m-2}+r^{2m-2}\pm r^{m}&=1\mp 2r^m\\
+\iff \\
+r^{2m-2}\pm 3r^m \pm r^{m-2}-1&=0
+\end{align*}
+Então essa é a condição que deve satisfacer \(r\). (Lembre que a condição para \(\theta\) é ser igual a \(0,\pi\).) Note que os signos da equação anterior dependen não só da escolha de \(\theta\), senão também de \(m\), pois quando \(m\) é par o signo é positivo porque obtemos um coseno avaliado num múltiplo de \(2\pi\).
+
+Por exemplo para \(m=1\) não temos pontos críticos. Para \(r=2\) também não.
+\end{proof}
+
+\iffalse\begin{proof}[Solution]\leavevmode
+	Considere a carta \(\varphi_0:\{z_0=1\}\subset\mathbb{C}P^{1}\to \mathbb{C}\), \([1:z]\mapsto z\). Obtemos
+\begin{align*}
+\frac{\partial }{\partial z}(f \circ \varphi_0^{-1})&=\frac{(1+|z|^2)^m \frac{\partial |1+z^m|^2}{\partial z}-m(1+|z|^2)^{m-1}\cdot \bar{z}\cdot |1+z^m|^2}{(1+|z|^2)^{2m}}.
+\end{align*}
+Calculamos com calma
+\[\frac{\partial |1+z^m|^2}{\partial z}=\frac{\partial }{\partial z}(1+z^m)\overline{(1+z^m)}=(1+z^m)\cdot 0+mz^{m-1}\overline{(1+z^m)}\]
+E sustituimos:
+\begin{align*}
+\frac{\partial }{\partial z}(f \circ \varphi_0^{-1})&=\frac{(1+|z|^2)^m \cdot mz^{m-1}\overline{(1+z^m)}-m(1+|z|^2)^{m-1}\cdot \bar{z}\cdot |1+z^m|^2}{(1+|z|^2)^{2m}}.
+\end{align*}
+\end{proof}\fi
+
+\begin{thing1}{Problema 4}\label{prob:a 4}\leavevmode
+Seja \(m<n\) e sejam \(\mathbb{C}P^{m}\hookrightarrow \mathbb{C}P^{n}\) e \(\mathbb{C}P^{n-m}\hookrightarrow \mathbb{C}P^{n}\) as inclusões naturais. Prove que \(I(\mathbb{C}P^{m},\mathbb{C}P^{n-m})=1\), onde um espaço projetivo complexo tem a orientação induzida como quociente de uma esfera de dimensão ímpar. Mostre que vale um resultado similar para espaços projetivos reais usando a versão \(\operatorname{mod}2\) de \(I\).
+\end{thing1}
+
+\begin{proof}[Solution]\leavevmode
+The natural embeddings are
+\begin{align*}
+\begin{aligned}i_1: \mathbb{C}P^m &\longrightarrow \mathbb{C}P^n \\
+	[z_0:z_1:\ldots:z_m] &\longmapsto [z_0:z_1:\ldots:z_m:0:\ldots:0]
+\end{aligned}
+\\\\\begin{aligned}	i_2: \mathbb{C}P^{n-m} &\longrightarrow \mathbb{C}P^n \\
+[z_{m}:z_{m+1}:\ldots:z_n] &\longmapsto [0:\ldots:0:z_{m}:z_{m+1}:\ldots:z_n] \end{aligned}\end{align*}
+which clearly intersect at the point \(p:=[0:\ldots:0:z_m:0:\ldots:0]\).
+
+Notice that this intersection is transversal, which follows from
+
+To compute the intersection index we check whether the base obtained from an oriented base of \(\mathbb{C}P^{m}\) along with an oriented base of \(\mathbb{C}P^{n-m}\) give an oriented base of \(\mathbb{C}P^{n}\) given that
+\[\underbrace{i_*(T_p \mathbb{C}P^{m})}_{=T_p\mathbb{C}P^m}\oplus T_p\mathbb{C}P^{n-m}=T_p\mathbb{C}P^{n}\]
+Let's try to use the coordinates at \(U_m=\{z_m=1\}\). The first embedding reads
+\[(z_0,\ldots,z_{m-1})\mapsto (z_0,\ldots,z_{m-1},0,\ldots,0)\]
+while the second
+\[(z_{m+1},\ldots,z_n)\mapsto (0,\ldots,z_{m+1},\ldots,z_n).\]
+So we are looking at the standard euclidean base of \(\mathbb{C}^n\cong \mathbb{R}^{2n}\), with the only caveat that we use the variable \(z_0\) and instead of \(z_m\). That is we need to check if the basis
+\begin{align*}
+\frac{\partial }{\partial x_1},\ldots,\frac{\partial }{\partial x_{m-1}},\frac{\partial }{\partial x_{m+1}},\ldots,\frac{\partial }{\partial x_n},\\
+\frac{\partial }{\partial y_1},\ldots,\frac{\partial }{\partial y_{m-1}},\frac{\partial }{\partial y_{m+1}},\ldots,\frac{\partial }{\partial y_n}
+\end{align*}
+is oriented.
+\[\frac{\partial }{\partial z_0},\ldots,\frac{\partial }{\partial z_{m-1}},\frac{\partial }{\partial z_{m+1}},\ldots,\frac{\partial }{\partial z_n}\]
+is oriented for \(\mathbb{C}P^{n}\) at \([0:\ldots:0:z_m:0:\ldots:0]\). But it is, because a local parametrization of \(S^{n}\) at \((0,\ldots,0,\underbrace{1}_{m\text{-th place} },0,\ldots,0)\) is given as a map from \(\mathbb{C}^n\) to the half-space containing \((0,\ldots,1,\ldots,0)\) by
+\begin{align*}
+	(z_0,\ldots,\widehat{z_m},\ldots,z_n) &\longmapsto \left(z_0,\ldots,z_{m-1},\sqrt{1-\sum_{i\neq m}z_i^2} ,z_{m+1},\ldots,z_n\right) 
+\end{align*}
+so that the tangent vectors are precisely the differential operators with respect to all variables but \(z_m\). (Since the dimension of the sphere is odd, an oriented basis of the sphere gives an oriented basis of  \(\mathbb{C}P^{n}\).)
+
+For the real case we can't use oriented intersection number because \(\mathbb{R}P^{n}\) is not orientable for even \(n\). But the computations might be quite similar:
+
+The natural embeddings are
+\begin{align*}
+\begin{aligned}i_1: \mathbb{R}P^m &\longrightarrow \mathbb{R}P^n \\
+	[x_0:x_1:\ldots:x_m] &\longmapsto [x_0:x_1:\ldots:x_m:0:\ldots:0]
+\end{aligned}
+\\\\\begin{aligned}	i_2: \mathbb{R}P^{n-m} &\longrightarrow \mathbb{R}P^n \\
+[x_{m}:x_{m+1}:\ldots:x_n] &\longmapsto [0:\ldots:0:x_{m}:x_{m+1}:\ldots:x_n] \end{aligned}\end{align*}
+which clearly intersect at the point \(p:=[0:\ldots:0:x_m:0:\ldots:0]\).
+
+Now we don't need to check the orientations of the bases, but barely count the number of intersection points, which as we have said is 1.
+
+\iffalse
+To compute the intersection index we check whether the base obtained from an oriented base of \(\mathbb{R}P^{m}\) along with an oriented base of \(\mathbb{R}P^{n-m}\) give an oriented base of \(\mathbb{R}P^{n}\) given that
+\[\underbrace{i_*(T_p \mathbb{R}P^{m})}_{=T_p\mathbb{R}P^m}\oplus T_p\mathbb{R}P^{n-m}=T_p\mathbb{R}P^{n}\]
+Let's try to use the coordinates at \(U_m=\{x_m=1\}\). The first embedding reads
+\[(x_0,\ldots,x_{m-1})\mapsto (x_0,\ldots,x_{m-1},0,\ldots,0)\]
+while the second
+\[(x_{m+1},\ldots,x_n)\mapsto (0,\ldots,x_{m+1},\ldots,x_n).\]
+So we are looking at the standard euclidean base of \(\mathbb{R}^n\), with the only caveat that we use the variable \(x_0\) and instead of \(x_m\). That is we need to check if the basis
+\[\frac{\partial }{\partial x_0},\ldots,\frac{\partial }{\partial x_{m-1}},\frac{\partial }{\partial x_{m+1}},\ldots,\frac{\partial }{\partial x_n}\]
+is oriented for \(\mathbb{R}P^{n}\) at \([0:\ldots:0:x_m:0:\ldots:0]\). But it is, because a local parametrixation of \(S^{n}\) at \((0,\ldots,0,\underbrace{1}_{m\text{-th place} },0,\ldots,0)\) is given as a map from \(\mathbb{R}^n\) to the half-space containing \((0,\ldots,1,\ldots,0)\) by
+\begin{align*}
+	(x_0,\ldots,\widehat{x_m},\ldots,x_n) &\longmapsto \left(x_0,\ldots,x_{m-1},\sqrt{1-\sum_{i\neq m}x_i^2} ,x_{m+1},\ldots,x_n\right) 
+\end{align*}
+so that the tangent vectors are precisely the differential operators with respect to all variables but \(x_m\). (Since the dimension of the sphere is odd, an oriented basis of the sphere gives an oriented basis of  \(\mathbb{R}P^{n}\).)
+
+
+
+	In Euclidean space, we know that two generic hyperplanes of complementary dimension intersect at one point only. This property descends to projective space, giving that two generic complementary projective subspaces must intersect at a single point. 
+
+	Consider the simpler case of embedding \(\mathbb{R}P^1 \hookrightarrow \mathbb{R}P^2\) and \(\mathbb{R}P^{2-1}\hookrightarrow \mathbb{R}P^2\). Since the natural embeddings give the same manifold, we must consider a slight deformation of one of the embeddings. Consider
+\begin{align*}
+	i: \mathbb{R}P^1 &\longrightarrow \mathbb{R}P^2 \\
+	[\cos \theta: \sin \theta] &\longmapsto [\cos \theta:\sin \theta:\varepsilon\sin \theta]
+\end{align*}
+where we can make the perturbation as slight as possible by controlling \(\varepsilon>0\).The intersection of the image of this embedding and \(\mathbb{R}P^{2-1}=\{[x_0:x_1:0]\}\) is \([1:0:0]\). Since \(\mathbb{R}P^2\) is not oriented, we can only consider \(\operatorname{mod}2\) intersection number, so we are done.
+
+Let's try to take this reasoning to the complex projective space. First suppose \(m>n-m\). Consider the definition of \(\mathbb{C}P^{m}\) as equivalence classes of points in  \(S^{m-1}\). Since we can express the last variable of a point \((x_1,\ldots,x_m)\in S^{m-1}\) as \(x_m=\sqrt{1-\sum_{i=1}^{m-1} x_i^2}\).
+
+Just consider the embedding
+\begin{align*}
+	i: \mathbb{C}P^m &\longrightarrow \mathbb{C}P^n \\
+	[z_1:\ldots:z_m] &\longmapsto [\underbrace{z_1:\ldots:z_m:z_m:\ldots:z_m}_{n-m \text{ slots} }:0:\ldots:0]
+\end{align*}
+
+
+We define for equivalence classes of points in the spere \(S^{m-1}\subset \mathbb{C}^m\) the map
+\begin{align*}
+	i: \mathbb{C}P^m &\longrightarrow \mathbb{C}P^n \end{align*}
+\(\left[z_1:\ldots:z_{m-1}:\sqrt{1-\sum_{i=1}^{m-1}|z_i|^2}\right] \)
+The natural embeddings are
+\begin{align*}
+\begin{aligned}i_1: \mathbb{C}P^m &\longrightarrow \mathbb{C}P^n \\
+	[z_0:z_1:\ldots:z_m] &\longmapsto [z_0:z_1:\ldots:z_m:0:\ldots:0]
+\end{aligned}
+\\\\\begin{aligned}	i_2: \mathbb{C}P^{n-m} &\longrightarrow \mathbb{C}P^n \\
+[z_{m}:z_{m+1}:\ldots:z_n] &\longmapsto [0:\ldots:0:z_{m}:z_{m+1}:\ldots:z_n] \end{aligned}\end{align*}
+which clearly intersect at the point \(p:=[0:\ldots:0:z_m:0:\ldots:0]\).
+
+To compute the intersection index we check whether the base obtained from an oriented base of \(\mathbb{C}P^{m}\) along with an oriented base of \(\mathbb{C}P^{n-m}\) give an oriented base of \(\mathbb{C}P^{n}\) given that
+\[\underbrace{i_*(T_p \mathbb{C}P^{m})}_{=T_p\mathbb{C}P^m}\oplus T_p\mathbb{C}P^{n-m}=T_p\mathbb{C}P^{n}\]
+Let's try to use the coordinates at \(U_m=\{z_m=1\}\). The first embedding reads
+\[(z_0,\ldots,z_{m-1})\mapsto (z_0,\ldots,z_{m-1},0,\ldots,0)\]
+while the second
+\[(z_{m+1},\ldots,z_n)\mapsto (0,\ldots,z_{m+1},\ldots,z_n).\]
+So we are looking at the standard euclidean base of \(\mathbb{C}^n\), with the only caveat that we use the variable \(z_0\) and instead of \(z_m\). That is we need to check if the basis
+\[\frac{\partial }{\partial z_0},\ldots,\frac{\partial }{\partial z_{m-1}},\frac{\partial }{\partial z_{m+1}},\ldots,\frac{\partial }{\partial z_n}\]
+is oriented for \(\mathbb{C}P^{n}\) at \([0:\ldots:0:z_m:0:\ldots:0]\). But it is, because a local parametrization of \(S^{n}\) at \((0,\ldots,0,\underbrace{1}_{m\text{-th place} },0,\ldots,0)\) is given as a map from \(\mathbb{C}^n\) to the half-space containing \((0,\ldots,1,\ldots,0)\) by
+\begin{align*}
+	(z_0,\ldots,\widehat{z_m},\ldots,z_n) &\longmapsto \left(z_0,\ldots,z_{m-1},\sqrt{1-\sum_{i\neq m}z_i^2} ,z_{m+1},\ldots,z_n\right) 
+\end{align*}
+so that the tangent vectors are precisely the differential operators with respect to all variables but \(z_m\). (Since the dimension of the sphere is odd, an oriented basis of the sphere gives an oriented basis of  \(\mathbb{C}P^{n}\).)
+
+
+\(\qquad \qquad \qquad \qquad \qquad \qquad  \longmapsto \left[z_1:\ldots:z_{m-1}:\sqrt{1-\sum_{i=1}^{m-1}|z_i|^2},\sqrt{1-\sum_{i=1}^{m-1}|z_i|^2}:0:\ldots:0\right] \)
+
+The idea is simply to use the fact that the points are in a sphere, and augment the last coordinate of the embedding by a number that can only be zero when the rest of the coordinates are fixed.
+
+Then we compare this embedding with\fi
 \end{proof}
 \end{document}

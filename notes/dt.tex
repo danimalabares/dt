@@ -2432,9 +2432,63 @@ e dessa podemos obter uma nova variedade \textit{suave}  com bordo, suavisando a
 
 Vamos 
 
+\section{Aula 19}
 
+\subsection{Um exercício}
 
+Vemos ver cómo consturir um campo vetorial em \(\Sigma_g\) com um zero só. Pega um campo vetorial qualquer que tenha zeros simples (e.g. campo pseudo-gradiente de uma função de Morse). Daí é botar todos os zeros numa vizinhança de um deles. Para isso escolhe um zero especial, e pega curvas que ligam os demais zeros com o especial. Para isso tem que extender as velocidades de cada curva localmente, usar bump function para cada um deles (ao mesmo tempo), isso produz um super campo vetorial, e posso pegar o fluxo dele porque a variedade é compacta. Então tudo bem, podemos supor que todos os zeros estão numa vizinhança de  \(x \in X\).
 
+A ver el trip es hacer algo tipo teorema del residuo. Tienes una funcion definida en una esfera, que es \(\frac{\tilde{V}}{\|\tilde{V}\|}\), y construyes otra que coincide con esa en la esfera, pero está definida en toda la bola y sólo tiene un zero.  Y en algún momento de ese proceso teines que pegar bolitas alrededor de cada punto crítico…
+
+\subsection{La pegadera}
+
+Primero tienes que enjacar la cosa que es "a lo largo de la cual vas a pegar". Entonces por ejemplo para pegar la bandita a lo largo de la holla estás priemro escogiendo una forma de mete \(S^0\) adentro de la frontera de la holla, que es un círculo. Y luego engrossas, porque en realidad la cosa de colagem es \(S^0 \times B_1\). \textbf{Y además} tienes que esocger un referencial para tu encaje, y de hecho eso es lo que determina la orientación de la pegadera, i.e. si pegas bandita torcida o al derecho. Essa se chama de \textit{\textbf{attaching sphere}}.
+
+Entonces a ver la tabla es
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c|c|c}
+		k & 0 & 1 & 2 & 3\\
+		\(H\) & \(B^0 \times B^3\) & \(B^1 \times B^2\) & \(B^2 \times B^1\) &\(B^3 \times B^0\)\\
+		colagem & \(\varnothing\)&\(S^0 \times B^2\)&\(S^1 \times B^1\)& \(S^2 \times B^0\)
+	\end{tabular}
+\end{table}
+Entonces a ver esta parte sí la entendí: pega un encaje
+\[\varphi: S^{k-1}\hookrightarrow Y\]
+Y \textbf{suponte} que \(\varphi(S^{k-1})\) tiene un fibrado normal trivial. Así tienes un referenical. Y entonces puedes usar el teorema de la vizinhança tubular. Y engrossas:
+\[N (\varphi(S^{k-1})) \cong S^{k-1} \times \mathbb{R}^{n-k}\cong B^{n-k}\]
+
+Entonces por ejemplo de cuantas formas puedes poner una 2-alça en un toro? Todo depende de la attaching sphere, que en este 
+
+Siempre: pegar una 0 alça y una 1-alça da un toro sólido. Sí porque tienes una bola y le pegas un handle literal. Luego puedes pegar un cilindrito que tapa el hoyo, y tenes \(B^3\). Pero también puedes usar de attaching sphere un meridiano, y te queda \(S^2\times S^1\).
+
+Y bueno, cuando pegas a lo largo de una curva \((p,q)\) que le da \(p\) vueltas de un lado y \(q\) vueltas del otro, te queda el \textit{\textbf{espaço lenticular}} \(L(p,q)\). Que  también es
+\[L(p,q)=S^3/\mathbb{Z}_p\]
+donde la acción está dada por
+\[k\cdot (z_1,z_2)=\left(e^{\frac{2\pi i k}{p}},e^{\frac{2\pi iqk}{p}}\right) ,\qquad k \in \mathbb{Z}_p.\]
+
+Bueno ahora pensemos en pegar más 1 alças antes de pegar una 2 alça. Entonces tomas una bola y le pegas muchos handles. Te queda un \textit{\textbf{handlebody}}. Que es una superficie de género \(g\) rellena.
+
+Y luego le pones un attaching sphere de dimension 1 o sea un círculo, cuyo haz tangente es trivial así que nomás hay de una orientación.
+
+\begin{remark}\leavevmode
+	Para poder pegar la tampa última, la que llena y quita la frontera, es necesario que las attaching spheres, cuando éstas son círculos, \textbf{no sean cohomologas}. Pero no podemos explicar por qué.
+\end{remark}
+
+\begin{remark}\leavevmode
+Tem um jeito de modificar a sua função de Morse para ordenar todos os pontos críticos em orden ascendente de índice. Assim colas em ordem. 
+\end{remark}
+
+Sempre pode supor que só tem uma 0-alça, só uma 3-alça. En 3-variedades la cantidad de 1-alças \textbf{coincide} con la cantidad de 2-alças. Eso es la característica de Euler!
+
+Y bueno, entonces la 3 variedad orientable está totalmente determinada por dos diagramas de Heegard. Un diagrama de Heegard de dice cómo pegas las 1-alças. Entonces pegas un diagrama de Heegard para las 1-alças y uno para las 2-alças, pero las 2-alças son como las 1-alças cuando viras la cosa de cabeça pra abaixo. Entonces son dos handlebodies. Y para pegarlos, el mapa es 
+\[\varphi:\Sigma_g \to \Sigma_g,\]
+porque \(\Sigma_g\) es la frontera de \(H_i\) para  \(i=1,2\). Y resulta que  \(\varphi\) troca orientación. 
+
+\begin{remark}\leavevmode
+También hay modo de hacer un diagrama de Heegard que tenga curvas de dos colores (creo que tienen que ser \(g\) curvas), unas para la parte de abajo y otras para la parte de arrbia.
+\end{remark}
 
 \bibliography{bib.bib}
 \end{document}
