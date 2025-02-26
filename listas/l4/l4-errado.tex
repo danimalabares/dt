@@ -122,100 +122,74 @@ Determine para quais valores de \(m\) a função \(f\) é de Morse e calcule o �
 \begin{proof}\leavevmode
 Considere a carta \(\varphi_0:\{z_0=1\}\subset\mathbb{C}P^{1}\to \mathbb{C}\), \([1:z]\mapsto z\). Como \(z \in \mathbb{C}\) realmente é \(r(\cos \theta, \sin  \theta)\) para \(r\geq 0\), \(\theta \in [0, 2\pi)\), nossa função fica
 \begin{align*}
-f\circ \varphi_0^{-1}(z)&=\frac{ \Big|(1,0)+r^m\Big(\cos (\theta m), \sin (\theta m)\Big)\Big|^2}{(1+r^2)^m}\\
-&=\frac{\Big|\Big(1+r^m\cos (\theta m),r^m \sin (\theta m)\Big)\Big|^2}{(1+r)^2}\\
-&=\frac{\Big(1+r^m \cos (\theta m) \Big)^2+ r^{2m} \sin^2(\theta m)}{(1+r^2)^m}\\
-&=\frac{1+2 r^m \cos (\theta m)+r^{2m} \cos^2(\theta m)+r^{2m} \sin^2 (\theta m)}{(1+r^2)^m}\\
-&=\frac{1+2r^m \cos (\theta m)+r^{2m}}{(1+r^2)^m}
+f\circ \varphi_0^{-1}(z)&=\frac{ \Big|(1,0)-r^m\Big(\cos (\theta m), \sin (\theta m)\Big)\Big|^2}{(1+r^2)^m}\\
+&=\frac{\Big|\Big(1-r^m\cos (\theta m),-r^m \sin (\theta m)\Big)\Big|^2}{(1+r)^2}\\
+&=\frac{\Big(1-r^m \cos (\theta m) \Big)^2+ r^{2m} \sin^2(\theta m)}{(1+r^2)^m}\\
+&=\frac{1-2 r^m \cos (\theta m)+r^{2m} \cos^2(\theta m)+r^{2m} \sin^2 (\theta m)}{(1+r^2)^m}\\
+&=\frac{1-2r^m \cos (\theta m)+r^{2m}}{(1+r^2)^m}
 \end{align*}
 Agora derivamos, primeiro respeito a \(\theta\):
 \begin{align*}
-\frac{\partial }{\partial \theta}(f \circ \varphi_0^{-1})&= \frac{(1+r^2)^m\cdot  2r^m \Big(-\sin(\theta m)m\Big)}{(1+r^2)^{2m}}
+\frac{\partial }{\partial \theta}(f \circ \varphi_0^{-1})&= \frac{(1+r^2)^m\cdot  2r^m \sin(\theta m)m}{(1+r^2)^{2m}}
 \end{align*}
-que vai se anular quando \(\sin  (\theta m)=0\), i.e. \(\theta =0,\pi\), ou quando \(r=0\).
+que vai se anular quando \(\sin  (\theta m)=0\), i.e. \(\theta =0,\pi\).
 
 Agora derivamos respeito a \(r\):
 \begin{align*}
-\frac{\partial }{\partial r}(f \circ \varphi_0^{-1})&=\frac{(1+r^2)^m\cdot \Big(2\cos (\theta m)m r^{m-1}+2mr^{2m-1}\Big)-m(1+r^2)^{m-1}\cdot 2r\cdot \Big(1+2r^m \cos (\theta m)+r^{2m}\Big)}{(1+r^2)^{2m}}\\
+\frac{\partial }{\partial r}(f \circ \varphi_0^{-1})&=\frac{(1+r^2)^m\cdot \Big(2\cos (\theta m)m r^{m-1}+2mr^{2m-1}\Big)-m(1+r^2)^{m-1}\cdot \Big(1-2r^m \cos (\theta m)+r^{2m}\Big)}{(1+r^2)^{2m}}\\
 \end{align*}
 Como precisamos que no ponto que buscamos \(\theta =0,\pi\), concluimos que \(\cos (\theta m)\) pode ser \(1\) ou \(-1\). Então temos
 \begin{align*}
-\frac{\partial }{\partial r}(f \circ \varphi_0^{-1})&=\frac{(1+r^2)^m\cdot \Big(2(\pm 1)m r^{m-1}+2mr^{2m-1}\Big)-m(1+r^2)^{m-1}2r\cdot \Big(1+2r^m (\pm 1)+r^{2m}\Big)}{(1+r^2)^{2m}}
+\frac{\partial }{\partial r}(f \circ \varphi_0^{-1})&=\frac{(1+r^2)^m\cdot \Big(2(\pm 1)m r^{m-1}+2mr^{2m-1}\Big)-m(1+r^2)^{m-1}2r\cdot \Big(1-2r^m (\pm 1)+r^{2m}\Big)}{(1+r^2)^{2m}}
 \end{align*}
-Para que isso seja \(0\) preciso que o numerador se anule. Então me interessa
+Para que isso seja \(0\) preciso que o numerador se anule (excluindo o caso \(r=0\) por enquanto). Então me interessa
 \begin{align*}
-(1+r^2)^m\cdot \Big(2(\pm 1)m r^{m-1}+2mr^{2m-1}\Big)&=m(1+r^2)^{m-1}2r\cdot \Big(1+2r^m (\pm 1)+r^{2m}\Big)\\
+(1+r^2)^m\cdot \Big(2(\pm 1)m r^{m-1}+2mr^{2m-1}\Big)&=m(1+r^2)^{m-1}2r\cdot \Big(1-2r^m (\pm 1)+r^{2m}\Big)\\
 \iff\\
-{\color{6}2mr}(1+r^2)^m\cdot \Big(\pm r^{m-2}+r^{2m-2}\Big)&={\color{6}2mr}(1+r^2)^{m-1}\Big(1\pm 2r^m+r^{2m}\Big)\\
+{\color{6}2mr}(1+r^2)^m\cdot \Big(\pm r^{m-2}+r^{2m-2}\Big)&={\color{6}2mr}(1+r^2)^{m-1}\Big(1\mp 2r^m+r^{2m}\Big)\\
 \iff\\
-(1+r^2)\Big(\pm r^{m-2}+r^{2m-2}\Big)&=1\pm 2r^m+r^{2m}\\
+(1+r^2)\Big(\pm r^{m-2}+r^{2m-2}\Big)&=1\mp 2r^m+r^{2m}\\
 \iff\\
-(\pm r^{m-2}+r^{2m-2})+(\pm r^{m}+\cancelto{0}{r^{2m})}&=1\pm 2r^m+\cancelto{0}{r^{2m}}\\\iff\\
-\pm r^{m-2}+r^{2m-2}\pm r^{m}&=1\pm 2r^m\\
+(\pm r^{m-2}+r^{2m-2})+(\pm r^{m}+\cancelto{0}{r^{2m})}&=1\mp 2r^m+\cancelto{0}{r^{2m}}\\\iff\\
+\pm r^{m-2}+r^{2m-2}\pm r^{m}&=1\mp 2r^m\\
 \iff \\
-r^{2m-2}\pm r^m \mp 2r^m \pm r^{m-2}-1&=0 \\
-\iff\\
-r^{2m-2}\mp r^m \pm r^{m-2}-1&=0 \qquad \qquad\qquad \qquad \qquad   (*)
+r^{2m-2}\pm 3r^m \pm r^{m-2}-1&=0 \qquad \qquad\qquad \qquad \qquad   (*)
 \end{align*}
 Então \((*)\) é a condição que deve satisfacer \(r\) num ponto crítico. (Lembre que a condição para \(\theta\) é ser igual a \(0,\pi\).) Note que os signos em \((*)\) dependen não só da escolha de \(\theta\), senão também de \(m\), pois quando \(m\) é par o signo é positivo porque obtemos um coseno avaliado num múltiplo de \(2\pi\).
 
 Pronto, vamos ver o que acontece para distintos valores de \(m\). Primeiro note que  \(0\) (que corresponde com o ponto  \([1:0] \in \mathbb{C}P^1\)) sempre é um ponto crítico.
 
-Para \(m=1\) obtemos
-\[(*)|_{m=1}=\cancel{1} \mp r \pm  r^{-1}\cancel{-1}=0\]
-que se cumple quando \(z=1\) ou \(-1\) (como  número complexo).
+Para \(m=1\) não temos pontos críticos pois 
+\[(*)|_{m=1}=\cancel{1} \pm 3r \pm  r^{-1}\cancel{-1}=0\]
+não é verdade para \(r>0\).
 
-Para \(m=2\) temos
-\[(*)|_{m=2}=r^{2} \mp  r^2 +  \cancel{1-1} = 0\]
-que no caso positivo a única solução é zero. No caso negativo a equação fica trivial, de forma que não temos restrições em \(r\), concluindo que o eixo real é tudo de pontos críticos, que portanto não são isolados.
+Para \(r=2\) temos
+\[(*)|_{m=2}=r^{2} \pm  3 r^2 +  \cancel{1-1} = \begin{cases}
+	4r^2\qquad & \text{ caso \(+\)}\\
+	-2r^2\qquad &\text{caso \(-\)} 
+\end{cases}\]
+também nunca é zero.
 
 Para \(m=3\),
-\[(*)|_{m=3}=r^4 \mp  r^3 \pm  r-1=0\]
-E aí já não sei. Então vou calcular a Hessiana. Primeiro quero derivar a parcial respeito a \(\theta\) que já tinha calculado, que boto de novo para facilitar a leitura:
+\[(*)|_{m=3}=r^4 \pm  3 r^3 \pm  r-1=0\]
+E aí já não sei. Então vou calcular a Hessiana no ponto que é crítico para todo mundo, zero. Talvez basta com calcular as duas derivadas parciais de
 \begin{align}\label{eq:1}
-\frac{\partial }{\partial \theta}(f \circ \varphi_0^{-1})&= \frac{(1+r^2)^m\cdot  2r^m \Big(-\sin(\theta m)m\Big)}{(1+r^2)^{2m}}
+\frac{\partial }{\partial \theta}(f \circ \varphi_0^{-1})&= \frac{(1+r^2)^m\cdot  2r^m \sin(\theta m)m}{(1+r^2)^{2m}}
 \end{align}
 Primeiro respeito a \(\theta\):
 \begin{align*}
-\frac{\partial^2 }{\partial \theta\partial \theta}(f \circ \varphi_0^{-1})&=\frac{(1+r^2)^{2m}(1+r^2)^m\cdot 2r^m \Big(-\cos(\theta m)m^2\Big)}{(1+r^2)^{4m}}
+\frac{\partial^2 }{\partial \theta\partial \theta}(f \circ \varphi_0^{-1})&=\frac{(1+r^2)^{2m}(1+r^2)^m\cdot 2r^m \cos(\theta m)m^2}{(1+r^2)^{4m}}
 \end{align*}
-Tendo em mente que \(z=0\)  é ponto crítico para toda \(m\), vamos notando que essa derivada se anula em \(z=0\). Para calcular a parcial respeito a \(r\) vou calcular primeiro a derivada do numerador da \cref{eq:1}, excluindo o seno (que é constante):
+Vemos que em zero isso vale zero. Para calcular a parcial respeito a \(r\) vou calcular primeiro a derivada do numerador da \cref{eq:1}, excluindo o seno (que é constante):
 \begin{align}\label{eq:2}
 \frac{\partial }{\partial r}(1+r^2)^m\cdot 2r^m m&=m(1+r^2)^{m-1}\cdot 2r\cdot 2r^m m+(1+r^2)^m \cdot 2m^2r^{m-1}
 \end{align}
 Agora sim, denotado a \cref{eq:2} como (\hyperref[eq:2]{2}),
 \begin{align*}
-\frac{\partial^2 }{\partial \theta\partial r}(f \circ \varphi_0^{-1})&=\frac{-(1+r^2)^{2m}(\hyperref[eq:2]{2})\sin(\theta m)-2m(1+r^2)^{2m-1}\cdot 2r\cdot \Big(-(1+r^2)^m\cdot 2r^m \sin(\theta m)m\Big)}{(1+r^2)^{4m}}
+\frac{\partial^2 }{\partial \theta\partial r}(f \circ \varphi_0^{-1})&=\frac{(1+r^2)^{2m}(\hyperref[eq:2]{2})\sin(\theta m)-2m(1+r^2)^{2m-1}\cdot 2r\cdot \Big((1+r^2)^m\cdot 2r^m \sin(\theta m)m\Big)}{(1+r^2)^{4m}}
 \end{align*}
-Lembre que devemos pegar \(\theta\) tal que \(\sin(\theta m)=0\), e desse modo a parcial cruzada se anula para toda \(m\). Então fica que \(z=0\) é degenerado para toda \(m\)!
+Rapidamente sustituyo em \(r=0\) e noto que é zero. Então esse ponto é crítico degenerado. Que não parece fazer muito sentido…
 
-Por último vou tentar derivar a derivada parcial respeito a \(r\) que já tinha calculado, i.e.:
-\begin{equation}\label{eq:3}\begin{aligned}&\frac{\partial }{\partial r}(f \circ \varphi_0^{-1})=\\&\frac{(1+r^2)^m\cdot \Big(2\cos (\theta m)m r^{m-1}+2mr^{2m-1}\Big)-m(1+r^2)^{m-1}\cdot 2r\cdot \Big(1+2r^m \cos (\theta m)+r^{2m}\Big)}{(1+r^2)^{2m}}
-\end{aligned}\end{equation}
-Primeiro derivo o numerador por separado. Vamos definir
-\begin{equation}\label{eq:4}
-(1+r^2)^m\cdot \Big(2\cos (\theta m)m r^{m-1}+2mr^{2m-1}\Big)
-\end{equation}
-\begin{equation}\label{eq:5}
-m(1+r^2)^{m-1}\cdot 2r\cdot \Big(1+2r^m \cos (\theta m)+r^{2m}\Big)(1+r^2)^{2m} 
-\end{equation}
-Então fica que o numerador é simplesmente (\hyperref[eq:4]{4})\(-\)(\hyperref[eq:5]{5}). Para derivá-lo vou fazer
-\begin{equation}\label{eq:6}\begin{aligned}\frac{\partial }{\partial r}(\hyperref[eq:4]{4})&=m(1+r^2)^{m-1}\cdot 2r\Big(2\cos (\theta m)m r^{m-1}+2mr^{2m-1}\Big)\\
-	& +(1+r^2)^m\cdot 2\cos(\theta m)m(m-1)r^{m-2}+2m(2m-1)r^{2m-2}
-\end{aligned}\end{equation}
-E depois
-\begin{equation}\label{eq:7}
-\begin{aligned}
-\frac{\partial }{\partial r}(\hyperref[eq:5]{5})
-&=\Big(m(m-1)(1+r^2)^{m-2}\cdot 2r\cdot 2r+m(1+r^2)^{m-1}\cdot 2 \Big)\cdot \Big(1+2r^m \cos (\theta m)+r^{2m}\Big)\\
-&+\Big(m(1+r^2)^{m-1}\cdot 2r \Big)\cdot \Big(2\cos(\theta m)mr^{m-1}+2mr^{2m-1}\Big)
-\end{aligned}\end{equation}
-
-Talvez isso foi o mais difícil. Agora podemos escrever a derivada do numerador como \((\hyperref[eq:6]{6})-(\hyperref[eq:7]{7})\). Segue que
-\begin{equation}\label{eq:8}
-\frac{\partial^2 }{\partial r^2}(f \circ \varphi_0^{-1})=\frac{(1+r^2)^{2m}\Big((\hyperref[eq:6]{6})-(\hyperref[eq:7]{7})\Big)-2m(1+r^2)^{2m-1}\cdot 2r\Big((\hyperref[eq:4]{4})-(\hyperref[eq:5]{5})\Big)}{(1+r^2)^{4m}}
-\end{equation}
-Queremos saber se isso vale zero em \(z=1\) ou \(-1\) quando  \(m=1\), porque esses são pontos críticos. Então sustituyo nas  \cref{eq:4,eq:5,eq:6,eq:7} para obter
 \end{proof}
 
 \iffalse\begin{proof}[Solution]\leavevmode
@@ -232,12 +206,8 @@ E sustituimos:
 \end{proof}\fi
 
 \begin{thing1}{Problem 3}\label{prob:3}\leavevmode
-Assumindo a classificação das superfícies compactas sem bordo, classifique as superfícies compactas com bordo a menos de difeomorfismo.
+Assumindo a classificação das superfícies compactas sem bordo, classifique as superfícies compactas com bordo a menos de sifeomorfismo.
 \end{thing1}
-
-\begin{proof}[Solution]\leavevmode
-
-\end{proof}
 
 \begin{thing1}{Problema 4}\label{prob:a 4}\leavevmode
 Seja \(m<n\) e sejam \(\mathbb{C}P^{m}\hookrightarrow \mathbb{C}P^{n}\) e \(\mathbb{C}P^{n-m}\hookrightarrow \mathbb{C}P^{n}\) as inclusões naturais. Prove que \(I(\mathbb{C}P^{m},\mathbb{C}P^{n-m})=1\), onde um espaço projetivo complexo tem a orientação induzida como quociente de uma esfera de dimensão ímpar. Mostre que vale um resultado similar para espaços projetivos reais usando a versão \(\operatorname{mod}2\) de \(I\).
@@ -246,17 +216,16 @@ Seja \(m<n\) e sejam \(\mathbb{C}P^{m}\hookrightarrow \mathbb{C}P^{n}\) e \(\mat
 \begin{proof}[Solution]\leavevmode
 The natural embeddings are
 \begin{align*}
-&\begin{aligned}i_1: \mathbb{C}P^m &\longrightarrow \mathbb{C}P^n \\
+\begin{aligned}i_1: \mathbb{C}P^m &\longrightarrow \mathbb{C}P^n \\
 	[z_0:z_1:\ldots:z_m] &\longmapsto [z_0:z_1:\ldots:z_m:0:\ldots:0]
 \end{aligned}
-\\\\\qquad \qquad & \begin{aligned}	i_2: \mathbb{C}P^{n-m} &\longrightarrow \mathbb{C}P^n \\
+\\\\\begin{aligned}	i_2: \mathbb{C}P^{n-m} &\longrightarrow \mathbb{C}P^n \\
 [z_{m}:z_{m+1}:\ldots:z_n] &\longmapsto [0:\ldots:0:z_{m}:z_{m+1}:\ldots:z_n] \end{aligned}\end{align*}
 which clearly intersect at the point \(p:=[0:\ldots:0:z_m:0:\ldots:0]\).
 
-Notice that this intersection is transversal, which may be seen in the local coordinate chart \(U_m=\{z_m\neq 0\}\) of \(\mathbb{C}P^{n}\), where the tangent spaces of \(\mathbb{C}P^{m}\) and \(\mathbb{C}P^{n-m}\) are embedded with trivial intersection. Further, by dimensional reasons we see that the condition of transversality is satisfied.
+Notice that this intersection is transversal, which follows from
 
-To compute the intersection index we check whether the base obtained from an oriented base of \(\mathbb{C}P^{m}\) along with an oriented base of \(\mathbb{C}P^{n-m}\) give an oriented base of \(\mathbb{C}P^{n}\). This becomes immediate looking, again, at the chart \(U_m=\{z_m \neq 0\}\) of \(\mathbb{C}P^{n}\), where the union of the oriented bases of \(\mathbb{C}P^{m}\) and \(\mathbb{C}P^{n-m}\) is the canonical choice of oriented basis for \(\mathbb{C}P^{n}\)
-\iffalse given that
+To compute the intersection index we check whether the base obtained from an oriented base of \(\mathbb{C}P^{m}\) along with an oriented base of \(\mathbb{C}P^{n-m}\) give an oriented base of \(\mathbb{C}P^{n}\) given that
 \[\underbrace{i_*(T_p \mathbb{C}P^{m})}_{=T_p\mathbb{C}P^m}\oplus T_p\mathbb{C}P^{n-m}=T_p\mathbb{C}P^{n}\]
 Let's try to use the coordinates at \(U_m=\{z_m=1\}\). The first embedding reads
 \[(z_0,\ldots,z_{m-1})\mapsto (z_0,\ldots,z_{m-1},0,\ldots,0)\]
@@ -273,9 +242,11 @@ is oriented for \(\mathbb{C}P^{n}\) at \([0:\ldots:0:z_m:0:\ldots:0]\). But it i
 \begin{align*}
 	(z_0,\ldots,\widehat{z_m},\ldots,z_n) &\longmapsto \left(z_0,\ldots,z_{m-1},\sqrt{1-\sum_{i\neq m}z_i^2} ,z_{m+1},\ldots,z_n\right) 
 \end{align*}
-so that the tangent vectors are precisely the differential operators with respect to all variables but \(z_m\). (Since the dimension of the sphere is odd, an oriented basis of the sphere gives an oriented basis of  \(\mathbb{C}P^{n}\).)\fi
+so that the tangent vectors are precisely the differential operators with respect to all variables but \(z_m\). (Since the dimension of the sphere is odd, an oriented basis of the sphere gives an oriented basis of  \(\mathbb{C}P^{n}\).)
 
-For the real case we can't use oriented intersection number because \(\mathbb{R}P^{n}\) is not orientable for even \(n\). But the reasoning is very similar. The natural embeddings are
+For the real case we can't use oriented intersection number because \(\mathbb{R}P^{n}\) is not orientable for even \(n\). But the computations might be quite similar:
+
+The natural embeddings are
 \begin{align*}
 \begin{aligned}i_1: \mathbb{R}P^m &\longrightarrow \mathbb{R}P^n \\
 	[x_0:x_1:\ldots:x_m] &\longmapsto [x_0:x_1:\ldots:x_m:0:\ldots:0]
