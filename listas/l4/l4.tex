@@ -78,7 +78,25 @@ Então a matriz de segundas derivadas fica
 0 & 0 & 0 & \cdots & n-r\end{pmatrix}\]
 que é não singular. Ela tem \(r\) autovalores negativos. Concluimos que os pontos \([0:\ldots:\underbrace{1}_{r\text{-th place} }:\ldots:0]\) são críticos de índice \(r\) para cada \(r=0,\ldots,n\).
 
-\textbf{(Caso \(k=\mathbb{C}\).)} Fixe \(r \in \{0,1,2,\ldots,n\}\). Consideremos a carta coordenada \(\varphi_r([z_0:\ldots:z_n])	= (z_0,\ldots,\widehat{z_r},\ldots,z_n)\) definida em \(U_r=\{z_r \neq 0\}=\{z_r=1\}\). Nossa função fica
+\textbf{(Caso \(k=\mathbb{C}\).)} Fixe \(r \in \{0,1,2,\ldots,n\}\). Consideremos a carta coordenada \(\varphi_r([z_0:\ldots:z_n])	= (z_0,\ldots,\widehat{z_r},\ldots,z_n)\) definida em \(U_r=\{z_r \neq 0\}=\{z_r=1\}\).  Expressando as coordenadas em parte real e imaginária, nossa função fica
+\begin{align*}
+	(f \circ \varphi_r^{-1})(z)&=\frac{r+\sum_{j \neq  r}j(x_j^2+y_j^2)}{1+\sum_{j \neq r}(x_j^2+y_j^2)}
+\end{align*}
+Calculemos os pontos críticos:
+\begin{align*}
+\frac{\partial }{\partial x_i}(f \circ \varphi_r^{-1})(z)&=\frac{\left(1+\sum_{j \neq r}(x_j^2+y_j^2)\right)\cdot 2ix_i-2x_i\left(r+\sum_{j \neq r}j(x_j^2+y_j^2)\right) }{\left(1+\sum_{j \neq  r}(x_j^2+y_j^2)\right)^2}\\
+&=2x_i\frac{\left(1+\sum_{j \neq r}(x_j^2+y_j^2)\right)\cdot i-\left(r+\sum_{j \neq r}j(x_j^2+y_j^2)\right) }{\left(1+\sum_{j \neq  r}(x_j^2+y_j^2)\right)^2}
+\end{align*}
+de forma que o gradiente se anula quando \(x_i=0\) para toda \(i\), e o mesmo sucede para as coordenadas imaginárias \(y_i\). Derivando de novo obtemos
+\begin{align*}
+\frac{\partial^2 }{\partial x_i\partial x_j}&=
+\end{align*}
+
+\clearpage
+
+
+
+Nossa função fica
 	\[f \circ \varphi_r^{-1}(z_0,\ldots,\widehat{z_r},\ldots,z_n)=\frac{r+\sum_{i\neq r}iz_i\overline{z_i}}{1+\sum_{i\neq r}z_i\overline{z_i}}\]
 Para facilitar notação defina \(\vec{z}:=(z_0,\ldots,z_{r-1},1,z_{r+1},\ldots,z_n)\). A nossa função se escreve como
 \[(f \circ \varphi_r^{-1})(z_0,\ldots,\widehat{z_r},\ldots,z_n)=\frac{r+\sum_{i\neq r}iz_i\overline{z_i}}{\|\vec{z}\|^2}\]
@@ -236,11 +254,14 @@ Assumindo a classificação das superfícies compactas sem bordo, classifique as
 \end{thing1}
 
 \begin{proof}[Solution]\leavevmode
-Primeiro lembrar que o esquema da prova é assim: começamos com uma variedade compacta (neste caso com bordo). Ela admite uma função de Morse (por exemplo, a função altura respesito a alguma coordenada depois de mergulhar a variedade dentro de algum \(\mathbb{R}^N\)), que podemos ajeitar essa função para que os pontos críticos não estejam no bordo, que cada valor crítico corresponda a um único ponto crítico, que os pontos críticos estejam em ordem por índice, e talvez alguma outra propriedade que se me escapa. Algumas delas (com certeza as primeiras duas) foram provadas em aula, quanto outras só comentadas.
+%Primeiro lembrar que o esquema da prova é assim: começamos com uma variedade compacta (neste caso com bordo). Ela admite uma função de Morse (por exemplo, a função altura respesito a alguma coordenada depois de mergulhar a variedade dentro de algum \(\mathbb{R}^N\)), que podemos ajeitar essa função para que os pontos críticos não estejam no bordo, que cada valor crítico corresponda a um único ponto crítico, que os pontos críticos estejam em ordem por índice, e talvez alguma outra propriedade que se me escapa. Algumas delas (com certeza as primeiras duas) foram provadas em aula, quanto outras só comentadas.
 
-Isso faz possível classificar a nossa variedade compacta com bordo a menos de difeomorfismo mediante o análise dos índices dos pontos críticos que tem aquila função de Morse. Daí usamos a construção feita em aula que classifica os pontos críticos de acordo ao handle attachment feito em aula.
+%Isso faz possível classificar a nossa variedade compacta com bordo a menos de difeomorfismo mediante o análise dos índices dos pontos críticos que tem aquila função de Morse. Daí usamos a construção feita em aula que classifica os pontos críticos de acordo ao handle attachment feito em aula.
 
-A diferencia entre a construção feita em aula e 
+A classificação das superfícies compactas com bordo pode ser feita do mesmo jeito que fizemos a classificação das superfícies compactas com bordo. Pegamos uma função de Morse qualquer (por exemplo, a função altura i.e. a projeção respeito a alguma coordenada, despois de mergulhar a variedade em algum espaço euclideano), e a ajeitamos para que os pontos críticos não estejam no bordo, que cada valor crítico corresponda a um único ponto crítico e que os pontos críticos estejam em ordem por índice (talvez alguma outra propriedade que se me escapa, essas condições foram provadas ou comentadas em aula).
+
+Daí podemos descrever a variedade mediante o proceso de handle attachment. Começamos com uma 0-alça, que é um disco, e vamos colando 1 alças con distinas orientações. Depois colamos 2-alças, também com distinas orientações. Podemos colar também uma 3-alça. A diferença com a classificação para variedades sem bordo é que agora não devemos nos preocupar por tampar furos que ficam no caminho. Sendo assim, as posibilidades são exatamente as mesmas que no caso sem bordo, i.e. somas conexas de toros ou planos projetivos, só que agora admitimos qualquer quantidade finita de pontos removidos.
+
 \end{proof}
 
 \begin{thing1}{Problema 4}\label{prob:a 4}\leavevmode
@@ -358,5 +379,15 @@ so that the tangent vectors are precisely the differential operators with respec
 The idea is simply to use the fact that the points are in a sphere, and augment the last coordinate of the embedding by a number that can only be zero when the rest of the coordinates are fixed.
 
 Then we compare this embedding with\fi
+\end{proof}
+
+\begin{thing1}{Problem 5}[Extra]\label{prob:5}\leavevmode
+Sejam \(p,q\) inteiros positivos relativamente primos. O espaço lenticular \(L(p,q)\) é definido como o quociente de  \(S^3 \subset \mathbb{C}^2\) pela ação de \(\mathbb{Z}/p\) gerada por
+\[(z_1,z_2)\mapsto (e^{2\pi i/p}\cdot z_1,e^{2\pi i q/p}\cdot z_2).\]
+Mostre que \(L(p,q)\) é uma variedade e construa um diagrama de Heegard para ela.
+\end{thing1}
+
+\begin{proof}[Solution]\leavevmode
+	Primeiro revisemos a construção de um diagrama de Heegard feita em aula. Primero consideramos uma 0-alça (no caso de 3-variedades é uma bola), e nela colamos uma certa quantidade de 1 alças (que são cilindros preenchidos), produzindo um handlebody. No bordo do handlebody (que uma superfície compacta) botamos alguma coleção de curvas que são as attaching spheres das 2-alças que colamos no seguinte passo. Outra coleção de curvas na mesma superfície representa as 3-alças .
 \end{proof}
 \end{document}
