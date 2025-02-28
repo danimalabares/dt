@@ -15,9 +15,9 @@
 \vspace{10pt}
 {\huge Lista 4}
 
-\begin{thing6}{Comentários de V.R.}\leavevmode
-Pode ver que o índice de duas variedades complexas (que sempre são orientáveis) de dimensões complementares é sempre 1.
-\end{thing6}
+%\begin{thing6}{Comentários de V.R.}\leavevmode
+%Pode ver que o índice de duas variedades complexas (que sempre são orientáveis) de dimensões complementares é sempre 1.
+%\end{thing6}
 \vspace{1em}
 
 \begin{thing1}{Problem 1}\label{prob:1}\leavevmode
@@ -82,55 +82,39 @@ que é não singular. Ela tem \(r\) autovalores negativos. Concluimos que os pon
 \begin{align*}
 	(f \circ \varphi_r^{-1})(z)&=\frac{r+\sum_{j \neq  r}j(x_j^2+y_j^2)}{1+\sum_{j \neq r}(x_j^2+y_j^2)}
 \end{align*}
-Calculemos os pontos críticos:
+Novamente denotemos \(\|\vec{x}\|^2:=1+\sum_{j \neq r}(x^2+y^2)\). Calculemos os pontos críticos:
+\begin{align*}
+\frac{\partial }{\partial x_i}(f \circ \varphi_r^{-1})(z)&=\frac{\|\vec{x}\|^2 2ix_i-2x_i\left(r+\sum_{j \neq r}j(x_j^2+y_j^2)\right)}{\|\vec{x}\|^2}
+\end{align*}
+que se anula quando \(x_i=0\) para toda \(i\), e o mesmo sucede para as coordenadas imaginárias \(y_i\). Derivando de novo e avaliando em \(\vec{0}\) obtemos
+\begin{align*}
+\frac{\partial^2 }{\partial x_i\partial x_j}&=2\delta_{ij}(i-r)=\frac{\partial^2 }{\partial y_i\partial y_j}
+\end{align*}
+enquanto que
+\[\frac{\partial^2 }{\partial x_i\partial y_j}=0=\frac{\partial^2 }{\partial y_i\partial x_j}\]
+Por fim, a Hessiana é dada por dois matrizes do tipo
+\[A:=2\begin{pmatrix} -r & 0 &0 & \cdots &0\\
+0 & 1-r & 0& \cdots & 0\\
+0 & 0 & 2-r & \cdots & 0\\
+\vdots & & &\ddots &\vdots \\
+0 & 0 & 0 & \cdots & n-r\end{pmatrix}\]
+i.e. a Hessiana é
+\[\left(\begin{array}{@{}c|c@{}}
+A&0\\
+\hline
+0&A\end{array}\right)\]
+o que significa que os pontos críticos \([0,\ldots,0,\underbrace{1}_{r \text{-th place} },0,\ldots,0]\) tem índice \(2r\).
+
+\iffalse
 \begin{align*}
 \frac{\partial }{\partial x_i}(f \circ \varphi_r^{-1})(z)&=\frac{\left(1+\sum_{j \neq r}(x_j^2+y_j^2)\right)\cdot 2ix_i-2x_i\left(r+\sum_{j \neq r}j(x_j^2+y_j^2)\right) }{\left(1+\sum_{j \neq  r}(x_j^2+y_j^2)\right)^2}\\
-&=2x_i\frac{\left(1+\sum_{j \neq r}(x_j^2+y_j^2)\right)\cdot i-\left(r+\sum_{j \neq r}j(x_j^2+y_j^2)\right) }{\left(1+\sum_{j \neq  r}(x_j^2+y_j^2)\right)^2}
+%&=2x_i\frac{\left(1+\sum_{j \neq r}(x_j^2+y_j^2)\right)\cdot i-\left(r+\sum_{j \neq r}j(x_j^2+y_j^2)\right) }{\left(1+\sum_{j \neq  r}(x_j^2+y_j^2)\right)^2}\\
+&=2x_i \frac{\left(\sum_{j\neq r}(x_j^2+y_j^2)\right) (i-1)+i-r}{\left(1+\sum_{j \neq r}(x_j^2+y_j^2)\right)^2}
 \end{align*}
-de forma que o gradiente se anula quando \(x_i=0\) para toda \(i\), e o mesmo sucede para as coordenadas imaginárias \(y_i\). Derivando de novo obtemos
+que se anula quando \(x_i=0\) para toda \(i\), e o mesmo sucede para as coordenadas imaginárias \(y_i\). Denote \(A:=\sum_{j \neq r}(x_j^2+y_j^2)\). Derivando de novo obtemos
 \begin{align*}
-\frac{\partial^2 }{\partial x_i\partial x_j}&=
-\end{align*}
-
-\clearpage
-
-
-
-Nossa função fica
-	\[f \circ \varphi_r^{-1}(z_0,\ldots,\widehat{z_r},\ldots,z_n)=\frac{r+\sum_{i\neq r}iz_i\overline{z_i}}{1+\sum_{i\neq r}z_i\overline{z_i}}\]
-Para facilitar notação defina \(\vec{z}:=(z_0,\ldots,z_{r-1},1,z_{r+1},\ldots,z_n)\). A nossa função se escreve como
-\[(f \circ \varphi_r^{-1})(z_0,\ldots,\widehat{z_r},\ldots,z_n)=\frac{r+\sum_{i\neq r}iz_i\overline{z_i}}{\|\vec{z}\|^2}\]
-
-Derivemos:
-\begin{align*}
-\frac{\partial }{\partial z_i}(f \circ \varphi_r^{-1})&=\frac{\|\vec{z}\|^2\cdot 2i\overline{z_i}-\frac{\partial \|\vec{z}\|^2}{\partial z_i}\left(r+\sum_{j \neq r}iz_i\overline{z_i}\right) }{\|\vec{z}\|^4}\\
-&=2\overline{z_i}\cdot  \frac{i \|\vec{z}\|^2-\left(r+\sum_{j \neq r}jz_j\overline{z_j}\right) }{\|\vec{z}\|^4}
-\end{align*}
-E analogamente
-\[\frac{\partial }{\partial \overline{z}_i}(f \circ \varphi_r^{-1})=2z_i\cdot  \frac{i \|\vec{z}\|^2-\left(r+\sum_{j \neq r}jz_j\overline{z_j}\right) }{\|\vec{z}\|^4}
-\]
-Como antes, a derivada só pode ser zero quando \(z_i=0 \iff \overline{z_i}=0\) \(\forall i\), i.e. no ponto \(\vec{0}\in \mathbb{C}^n\).
-
-Para calcular a Hessiana note que as parciais cruzadas \(\frac{\partial^2 }{\partial z_i\partial \overline{z}_j}\) são as únicas que podem sobrevivir! De fato, quando derivamos de novo y avaliamos em \(\vec{0}\),
-\[\frac{\partial^2}{\partial z_i \partial z_j }(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=\frac{\partial^2 }{\partial \bar{z}_i\partial \bar{z}_j}(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=0\]
-e
-\[\frac{\partial^2 }{\partial z_i\partial \bar{z}_j}(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=\frac{\partial^2 }{\partial \bar{z}_i\partial z_j}(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=2\delta_{ij}(i-r), \qquad  r\neq i,j\]
-Essa matriz é
-\[2\left(\begin{array}{@{}c|c@{}}
-0&\begin{matrix} -r & 0 &0 & \cdots &0\\
-0 & 1-r & 0& \cdots & 0\\
-0 & 0 & 2-r & \cdots & 0\\
-\vdots & & &\ddots &\vdots \\
-0 & 0 & 0 & \cdots & n-r\end{matrix}\\
-\hline
-\begin{matrix} -r & 0 &0 & \cdots &0\\
-0 & 1-r & 0& \cdots & 0\\
-0 & 0 & 2-r & \cdots & 0\\
-\vdots & & &\ddots &\vdots \\
-0 & 0 & 0 & \cdots & n-r\end{matrix}&0\end{array}\right)\]
-que é não singular. Vemos que, como no caso real, os pontos \([0:\ldots:\underbrace{1}_{r\text{-th place} }:\ldots:0]\) são críticos não degenerados, só que agora de índice \(2r\).
-\end{proof}
-
+	\frac{\partial^2 }{\partial x_i\partial x_j}&=\frac{(1+A)^2\cdot 2x_j(i-1)-2(1+A)\cdot 2x_j \left(A(i-1)+i-r\right)}{(1+A)^4}
+\end{align*}\fi
 \begin{thing1}{Problema 2}\label{prob: 2}\leavevmode
 Seja \(m\) um número inteiro positivo \(f:\mathbb{C}P^{1}\to \mathbb{R}\) definida por
 \[f\Big([z_0:z_1]\Big)=\frac{|z_0^m+z_1^m|^2}{(|z_0|^2+|z_1|^2)^m}.\]
@@ -189,7 +173,9 @@ que no caso positivo a única solução é zero. No caso negativo a equação fi
 
 Para \(m=3\),
 \[(*)|_{m=3}=r^4 \mp  r^3 \pm  r-1=0\]
-E aí já não sei. Então vou calcular a Hessiana. Primeiro quero derivar a parcial respeito a \(\theta\) que já tinha calculado, que boto de novo para facilitar a leitura:
+{\color{2}Não consegui solucionar essa equação, nem determinar os pontos críticos para \(m\) geral}.
+
+{\color{2}Aseguir mostro meu intento de calcular a Hessiana. Não consegui concluir, e as contas são um pouco \textit{involved}…} Primeiro quero derivar a parcial respeito a \(\theta\) que já tinha calculado, que boto de novo para facilitar a leitura:
 \begin{align}\label{eq:1}
 \frac{\partial }{\partial \theta}(f \circ \varphi_0^{-1})&= \frac{(1+r^2)^m\cdot  2r^m \Big(-\sin(\theta m)m\Big)}{(1+r^2)^{2m}}
 \end{align}
@@ -233,7 +219,7 @@ Talvez isso foi o mais difícil. Agora podemos escrever a derivada do numerador 
 \begin{equation}\label{eq:8}
 \frac{\partial^2 }{\partial r^2}(f \circ \varphi_0^{-1})=\frac{(1+r^2)^{2m}\Big((\hyperref[eq:6]{6})-(\hyperref[eq:7]{7})\Big)-2m(1+r^2)^{2m-1}\cdot 2r\Big((\hyperref[eq:4]{4})-(\hyperref[eq:5]{5})\Big)}{(1+r^2)^{4m}}
 \end{equation}
-Queremos saber se isso vale zero em \(z=1\) ou \(-1\) quando  \(m=1\), porque esses são pontos críticos. Então sustituyo nas  \cref{eq:4,eq:5,eq:6,eq:7} para obter
+Queremos saber se isso vale zero em \(z=1\) ou \(-1\) quando  \(m=1\), porque esses são pontos críticos. Então sustituyo nas  \cref{eq:4,eq:5,eq:6,eq:7} para obter{\color{2}…}
 \end{proof}
 
 \iffalse\begin{proof}[Solution]\leavevmode
@@ -388,6 +374,50 @@ Mostre que \(L(p,q)\) é uma variedade e construa um diagrama de Heegard para el
 \end{thing1}
 
 \begin{proof}[Solution]\leavevmode
-	Primeiro revisemos a construção de um diagrama de Heegard feita em aula. Primero consideramos uma 0-alça (no caso de 3-variedades é uma bola), e nela colamos uma certa quantidade de 1 alças (que são cilindros preenchidos), produzindo um handlebody. No bordo do handlebody (que uma superfície compacta) botamos alguma coleção de curvas que são as attaching spheres das 2-alças que colamos no seguinte passo. Outra coleção de curvas na mesma superfície representa as 3-alças .
+	{\color{2}Ideia:} Primeiro revisemos a construção de um diagrama de Heegard feita em aula. Primero consideramos uma 0-alça (no caso de 3-variedades é uma bola), e nela colamos uma certa quantidade de 1 alças (que são cilindros preenchidos), produzindo um handlebody. No bordo do handlebody, que é uma superfície compacta de gênero \(g\), botamos \(g\) curvas não cohomologas que são as attaching spheres das 2-alças que colamos no seguinte passo. Outra coleção de \(g\) curvas não cohomolôgas na mesma superfície representa as 3-alças .
+
+	{\color{2}Não consegui relacionar essa construção com o quociente dado na pergunta.}
 \end{proof}
+
+\clearpage
+
+{\color{2}Aqui comparto as contas para o exercício 1 no caso complexo usando os operadores \(\partial\) e \(\bar\partial\) em lugar das derivadas parciais em coordenadas separadas por parte real e imaginária. Foi a primeira solução que escrevi, mas infelizmente no consegui formular um argumento que me permitesse não repetir as contas! Imagino que a formalização sería do tipo: considere a complexificação do espaço tangente, onde \(\partial \) e \(\bar\partial\) estão bem definidas e mostram que a Hessiana e uma forma não degenerada  de índice \(2r\). Porém, o problema é voltar para as coordenadas reais. Tal vez uma ``mudança de coordenadas complexas \(\to \) reais?"}
+
+
+Nossa função fica
+	\[f \circ \varphi_r^{-1}(z_0,\ldots,\widehat{z_r},\ldots,z_n)=\frac{r+\sum_{i\neq r}iz_i\overline{z_i}}{1+\sum_{i\neq r}z_i\overline{z_i}}\]
+Para facilitar notação defina \(\vec{z}:=(z_0,\ldots,z_{r-1},1,z_{r+1},\ldots,z_n)\). A nossa função se escreve como
+\[(f \circ \varphi_r^{-1})(z_0,\ldots,\widehat{z_r},\ldots,z_n)=\frac{r+\sum_{i\neq r}iz_i\overline{z_i}}{\|\vec{z}\|^2}\]
+
+Derivemos:
+\begin{align*}
+\frac{\partial }{\partial z_i}(f \circ \varphi_r^{-1})&=\frac{\|\vec{z}\|^2\cdot 2i\overline{z_i}-\frac{\partial \|\vec{z}\|^2}{\partial z_i}\left(r+\sum_{j \neq r}iz_i\overline{z_i}\right) }{\|\vec{z}\|^4}\\
+&=2\overline{z_i}\cdot  \frac{i \|\vec{z}\|^2-\left(r+\sum_{j \neq r}jz_j\overline{z_j}\right) }{\|\vec{z}\|^4}
+\end{align*}
+E analogamente
+\[\frac{\partial }{\partial \overline{z}_i}(f \circ \varphi_r^{-1})=2z_i\cdot  \frac{i \|\vec{z}\|^2-\left(r+\sum_{j \neq r}jz_j\overline{z_j}\right) }{\|\vec{z}\|^4}
+\]
+Como antes, a derivada só pode ser zero quando \(z_i=0 \iff \overline{z_i}=0\) \(\forall i\), i.e. no ponto \(\vec{0}\in \mathbb{C}^n\).
+
+Para calcular a Hessiana note que as parciais cruzadas \(\frac{\partial^2 }{\partial z_i\partial \overline{z}_j}\) são as únicas que podem sobrevivir! De fato, quando derivamos de novo y avaliamos em \(\vec{0}\),
+\[\frac{\partial^2}{\partial z_i \partial z_j }(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=\frac{\partial^2 }{\partial \bar{z}_i\partial \bar{z}_j}(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=0\]
+e
+\[\frac{\partial^2 }{\partial z_i\partial \bar{z}_j}(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=\frac{\partial^2 }{\partial \bar{z}_i\partial z_j}(f \circ \varphi_r^{-1})\Big|_{\vec{0}}=2\delta_{ij}(i-r), \qquad  r\neq i,j\]
+Essa matriz é
+\[2\left(\begin{array}{@{}c|c@{}}
+0&\begin{matrix} -r & 0 &0 & \cdots &0\\
+0 & 1-r & 0& \cdots & 0\\
+0 & 0 & 2-r & \cdots & 0\\
+\vdots & & &\ddots &\vdots \\
+0 & 0 & 0 & \cdots & n-r\end{matrix}\\
+\hline
+\begin{matrix} -r & 0 &0 & \cdots &0\\
+0 & 1-r & 0& \cdots & 0\\
+0 & 0 & 2-r & \cdots & 0\\
+\vdots & & &\ddots &\vdots \\
+0 & 0 & 0 & \cdots & n-r\end{matrix}&0\end{array}\right)\]
+que é não singular. Vemos que, como no caso real, os pontos \([0:\ldots:\underbrace{1}_{r\text{-th place} }:\ldots:0]\) são críticos não degenerados, só que agora de índice \(2r\).
+\end{proof}
+
+
 \end{document}
